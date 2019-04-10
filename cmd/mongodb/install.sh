@@ -1,0 +1,41 @@
+#! /bin/sh
+export PATH=$PATH:/opt/local/bin:/opt/local/sbin:/opt/local/share/man:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
+
+
+DIR=$(cd "$(dirname "$0")"; pwd)
+DIR=$(dirname "$DIR")
+DIR=$(dirname "$DIR")
+DIR=$(dirname "$DIR")
+MDIR=$(dirname "$DIR")
+
+
+mkdir -p $MDIR/source/mongodb
+
+
+VERSION=3.2.7
+
+if [ ! -f $MDIR/source/mongodb/mongodb-osx-ssl-x86_64-${VERSION}.tar.gz ];then
+	wget -O $MDIR/source/mongodb/mongodb-osx-ssl-x86_64-${VERSION}.tar.gz http://fastdl.mongodb.org/osx/mongodb-osx-ssl-x86_64-${VERSION}.tgz
+fi
+
+if [ ! -d $MDIR/source/mongodb/mongodb-osx-ssl-x86_64-${VERSION} ];then
+	cd $MDIR/source/mongodb && tar -zxvf $MDIR/source/mongodb/mongodb-osx-ssl-x86_64-${VERSION}.tar.gz
+fi
+
+
+cd $MDIR/source/mongodb/mongodb-osx-x86_64-${VERSION}
+
+if [ ! -d $DIR/mongodb ];then
+	mkdir -p $DIR/mongodb
+	cp -r $MDIR/source/mongodb/mongodb-osx-x86_64-${VERSION}/ $DIR/mongodb/
+fi
+
+mkdir -p $DIR/mongodb/data
+mkdir -p $DIR/mongodb/logs
+
+if [ ! -f $DIR/mongodb/mongodb.conf ];then
+	cp $MDIR/bin/reinstall/tpl/mongodb/mongodb.conf $DIR/mongodb/
+
+	sed -i '_bak' "s#{PATH}#${DIR}#g" $DIR/mongodb/mongodb.conf
+	rm -rf $DIR/mongodb/mongodb.conf_bak
+fi
