@@ -24,5 +24,5 @@ sh $B_DIR/cmd_curl.sh
 sh $B_DIR/cmd_pcre.sh
 sh $B_DIR/cmd_gettext.sh
 sh $B_DIR/cmd_libiconv.sh
-
+sh $B_DIR/cmd_mhash.sh
 

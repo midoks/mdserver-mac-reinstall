@@ -9,12 +9,8 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
-LIBNAME=swoole
-LIBV='1.10.1'
-
-if [ "$VERSION" = "70" ] || [ "$VERSION" = "71" ] || [ "$VERSION" = "72" ] || [ "$VERSION" = "73" ]; then
-	LIBV='2.2.0'
-fi
+LIBNAME=xhprof
+LIBV='0.9.4'
 
 echo "install $LIBNAME start"
 
@@ -42,11 +38,11 @@ if [ ! -f "$extFile" ]; then
 		tar xvf ${LIBNAME}-${LIBV}.tgz
 	fi
 
-	cd $php_lib/${LIBNAME}-${LIBV}
+	cd $php_lib/${LIBNAME}-${LIBV}/extension
 
 	$DIR/php/php$VERSION/bin/phpize
-	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \
-	--enable-openssl --with-openssl-dir=$DIR/cmd/openssl --enable-sockets && \
+	./configure --enable-xhprof \
+	--with-php-config=$DIR/php/php$VERSION/bin/php-config  && \
 	make && make install
 fi
 
