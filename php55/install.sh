@@ -44,6 +44,7 @@ make clean
 --with-pdo-mysql=mysqlnd \
 --without-iconv \
 --with-zlib-dir=$DIR/cmd/zlib \
+--with-mhash=$DIR/cmd/mhash \
 --enable-zip \
 --enable-mbstring \
 --enable-opcache \
@@ -51,7 +52,7 @@ make clean
 --enable-wddx \
 --enable-soap \
 --enable-posix \
---with-mhash=$DIR/cmd/mhash \
+--enable-sockets \
 --enable-fpm
 
 #--enable-dtrace \

@@ -50,6 +50,7 @@ make clean
 --enable-ftp \
 --enable-wddx \
 --enable-soap \
+--enable-sockets \
 --enable-posix \
 --with-mhash=$DIR/cmd/mhash \
 --enable-fpm

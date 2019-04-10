@@ -51,6 +51,7 @@ make clean
 --enable-wddx \
 --enable-soap \
 --enable-posix \
+--enable-sockets \
 --with-mhash=$DIR/cmd/mhash \
 --enable-fpm
 

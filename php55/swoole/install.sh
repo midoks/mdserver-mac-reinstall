@@ -6,24 +6,48 @@ DIR=$(cd "$(dirname "$0")"; pwd)
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
-DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=swoole
 LIBV='1.10.1'
 
+if [ "$VERSION" = "70" ] || [ "$VERSION" = "71" ] || [ "$VERSION" = "72" || "$VERSION" = "73" ];then
+	LIBV='2.2.0'
+fi
 
-extFile=$serverPath/php//lib/php/extensions/no-debug-non-zts-20121212/${LIBNAME}.so
+echo "install swoole start"
 
-echo $DIR
-echo $VERSION
+extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20121212/${LIBNAME}.so
 
+isInstall=`cat $DIR/php/php$VERSION/etc/php.ini|grep '${LIBNAME}.so'`
+if [ "${isInstall}" != "" ];then
+	echo "php-$VERSION 已安装${LIBNAME},请选择其它版本!"
+	return
+fi
 
-#cd $MDIR/source/swoole-1.8.13/
-#echo $(pwd)
+if [ ! -f "$extFile" ];then
 
-#swoole install
-#$DIR/php/php55/bin/phpize
-#./configure --with-php-config=$DIR/php/php55/bin/php-config
-#make && make install && make clean
+	php_lib=$MDIR/source/php_${VERSION}_lib
+	mkdir -p $php_lib
+
+	if [ ! -f $php_lib/${LIBNAME}-${LIBV}.tgz ]; then
+		wget -O $php_lib/${LIBNAME}-${LIBV}.tgz http://pecl.php.net/get/${LIBNAME}-${LIBV}.tgz
+		
+	fi
+	cd $php_lib/${LIBNAME}-${LIBV}
+
+	if [ ! -d $php_lib/${LIBNAME}-${LIBV} ]; then
+		cd $php_lib
+		tar xvf ${LIBNAME}-${LIBV}.tgz
+	fi
+
+	cd $php_lib/${LIBNAME}-${LIBV}
+
+	$DIR/php/php$VERSION/bin/phpize
+	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \
+	--enable-openssl --with-openssl-dir=$DIR/cmd/openssl --enable-sockets && \
+	make && make install
+fi
+
+echo "install swoole end"
