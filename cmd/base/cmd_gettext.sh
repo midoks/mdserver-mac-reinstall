@@ -20,7 +20,7 @@ if [ ! -d $MDIR/source/cmd/gettext-0.19.4 ];then
 	cd $MDIR/source/cmd &&  tar -zxvf gettext-0.19.4.tar.gz
 fi
 
-if [ ! -d $DIR/cmd/pcre ];then
+if [ ! -d $DIR/cmd/gettext ];then
 
 cd $MDIR/source/cmd/gettext-0.19.4
 ./configure --prefix=$DIR/cmd/gettext && \

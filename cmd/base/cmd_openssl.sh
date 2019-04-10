@@ -25,7 +25,7 @@ if [ ! -d $DIR/cmd/openssl ];then
 
 cd $MDIR/source/cmd/openssl-1.0.2n
 ./Configure darwin64-x86_64-cc --prefix=$DIR/cmd/openssl no-shared  && make && make install && make clean
-
+#sed -i "s/darwin-i386-cc/darwin64-x86_64-cc/g" Makefile
 fi
 echo 'openssl end'
 

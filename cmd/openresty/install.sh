@@ -31,8 +31,8 @@ make clean
 
 ./configure \
 --prefix=$DIR/openresty \
---with-pcre=$MDIR/source/pcre-8.38 \
---with-openssl=$MDIR/source/openssl-1.0.2n \
+--with-pcre=$MDIR/source/pcre \
+--with-openssl=$MDIR/source/openssl \
 --with-http_v2_module \
 --with-http_stub_status_module
 
