@@ -23,15 +23,16 @@ if [ ! -d $MDIR/source/php/php-${PHP_VER} ];then
 fi
 
 echo $DIR
-cd $MDIR/source/php/php-${PHP_VER}
+
+if [ ! -d $MDIR/source/php/php${PHP_M_VER} ]; then
+	mv $MDIR/source/php/php-${PHP_VER} $MDIR/source/php/php${PHP_M_VER}
+	cd $MDIR/source/php/php${PHP_M_VER}
+fi
 #echo $(pwd)
 
 #./configure --help
 
-
 if [ ! -d $DIR/php/php${PHP_M_VER} ];then
-
-make clean
 
 ./configure \
 --prefix=$DIR/php/php${PHP_M_VER} \
@@ -72,7 +73,7 @@ if [ ! -f $DIR/php/php${PHP_M_VER}/php-fpm ];then
 fi
 
 
-if [ ! -f $DIR/php/php${PHP_M_VER}/etc/php.ini ];then
+if [ ! -f $DIR/php/php${PHP_M_VER}/etc/php.ini ]; then
 	cp $DIR/reinstall/tpl/php/php.ini $DIR/php/php${PHP_M_VER}/etc/php.ini
 fi
 
@@ -80,21 +81,20 @@ fi
 USER=$(who | sed -n "2,1p" |awk '{print $1}')
 SDIR=$(dirname "$DIR")
 
-if [ ! -f $DIR/php/php${PHP_M_VER}/php-fpm ];then
-	cp $DIR/reinstall/tpl/php/php-fpm $DIR/php/php${PHP_M_VER}/
-	sed -i '_bak' "s#{VERSION}#${PHP_M_VER}#g" $DIR/php/php${PHP_M_VER}/php-fpm
-
-	rm -rf $DIR/php/php${PHP_M_VER}/php-fpm_bak
+if [ ! -f "$DIR/php/php${PHP_M_VER}/php-fpm" ]; then
+	cp $DIR/reinstall/tpl/php/php-fpm $DIR/php/php${PHP_M_VER}	
 fi
 
+sed -i '_bak' "s#{VERSION}#${PHP_M_VER}#g" $DIR/php/php${PHP_M_VER}/php-fpm
+rm -rf $DIR/php/php${PHP_M_VER}/php-fpm_bak
 
 
-if [ ! -f $DIR/php/php${PHP_M_VER}/etc/php.ini ];then
+if [ ! -f $DIR/php/php${PHP_M_VER}/etc/php.ini ]; then
 	cp $DIR/reinstall/tpl/php/php.ini $DIR/php/php${PHP_M_VER}/etc/php.ini
 fi
 
 
-if [ ! -f $DIR/php/php${PHP_M_VER}/etc/php-fpm.conf ];then
+if [ ! -f $DIR/php/php${PHP_M_VER}/etc/php-fpm.conf ]; then
 	cp $DIR/reinstall/tpl/php/php-fpm.conf $DIR/php/php${PHP_M_VER}/etc/php-fpm.conf
 	sed -i '_bak' "s#{PATH}#${SDIR}#g" $DIR/php/php${PHP_M_VER}/etc/php-fpm.conf
 	sed -i '_bak' "s#{VERSION}#${PHP_M_VER}#g" $DIR/php/php${PHP_M_VER}/etc/php-fpm.conf

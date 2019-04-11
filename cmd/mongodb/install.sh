@@ -19,7 +19,7 @@ if [ ! -f $MDIR/source/mongodb/mongodb-osx-ssl-x86_64-${VERSION}.tar.gz ];then
 fi
 
 if [ ! -d $MDIR/source/mongodb/mongodb-osx-ssl-x86_64-${VERSION} ];then
-	cd $MDIR/source/mongodb && tar -zxvf $MDIR/source/mongodb/mongodb-osx-ssl-x86_64-${VERSION}.tar.gz
+	cd $MDIR/source/mongodb && tar zxvf $MDIR/source/mongodb/mongodb-osx-ssl-x86_64-${VERSION}.tar.gz
 fi
 
 

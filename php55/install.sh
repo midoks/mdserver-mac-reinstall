@@ -23,15 +23,14 @@ if [ ! -d $MDIR/source/php/php-${PHP_VER} ];then
 fi
 
 echo $DIR
-cd $MDIR/source/php/php-${PHP_VER}
-#echo $(pwd)
+if [ ! -d $MDIR/source/php/php${PHP_M_VER} ]; then
+	mv $MDIR/source/php/php-${PHP_VER} $MDIR/source/php/php${PHP_M_VER}
+	cd $MDIR/source/php/php${PHP_M_VER}
+fi
+
 
 #./configure --help
-
-
 if [ ! -d $DIR/php/php${PHP_M_VER} ];then
-
-make clean
 
 ./configure \
 --prefix=$DIR/php/php${PHP_M_VER} \
