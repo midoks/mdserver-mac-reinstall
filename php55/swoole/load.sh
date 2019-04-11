@@ -18,8 +18,3 @@ echo "[${LIBNAME}]" >> $DIR/php/php$VERSION/etc/php.ini
 echo "extension=${LIBNAME}.so" >> $DIR/php/php$VERSION/etc/php.ini
 
 echo "load $LIBNAME end"
-
-echo "restart $VERSION start"
-
-$DIR/php/php$VERSION/php-fpm restart
-echo "restart $VERSION end"

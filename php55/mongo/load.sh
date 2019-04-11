@@ -8,7 +8,7 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
-LIBNAME=curl
+LIBNAME=mongo
 
 echo "load $LIBNAME start"
 
