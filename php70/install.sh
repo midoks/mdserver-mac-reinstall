@@ -22,16 +22,13 @@ if [ ! -d $MDIR/source/php/php-${PHP_VER} ];then
 	cd $MDIR/source/php && tar -Jxf $MDIR/source/php/php-${PHP_VER}.tar.xz
 fi
 
-echo $DIR
 
-if [ ! -d $MDIR/source/php/php${PHP_M_VER} ]; then
+if [ ! -f $MDIR/source/php/php${PHP_M_VER} ]; then
 	mv $MDIR/source/php/php-${PHP_VER} $MDIR/source/php/php${PHP_M_VER}
 	cd $MDIR/source/php/php${PHP_M_VER}
 fi
-#echo $(pwd)
 
 #./configure --help
-
 if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 
 ./configure \
@@ -43,8 +40,9 @@ if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 --enable-embedded-mysqli \
 --with-mysqli=mysqlnd \
 --with-pdo-mysql=mysqlnd \
---without-iconv \
 --with-zlib-dir=$DIR/cmd/zlib \
+--with-mhash=$DIR/cmd/mhash \
+--without-iconv \
 --enable-zip \
 --enable-mbstring \
 --enable-opcache \
@@ -53,12 +51,11 @@ if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 --enable-soap \
 --enable-sockets \
 --enable-posix \
---with-mhash=$DIR/cmd/mhash \
 --enable-fpm
 
 #--enable-dtrace \
 #--enable-debug
-
+# --with-curl=$DIR/cmd/curl \
 #--with-iconv=$DIR/cmd/libiconv \
 #--with-zlib-dir=$DIR/cmd/zlib \
 
@@ -69,7 +66,6 @@ fi
 
 if [ ! -f $DIR/php/php${PHP_M_VER}/php-fpm ];then
 	cp $DIR/reinstall/tpl/php/php-fpm $DIR/php/php${PHP_M_VER}/
-
 fi
 
 

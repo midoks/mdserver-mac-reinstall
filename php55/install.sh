@@ -41,9 +41,9 @@ if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 --enable-embedded-mysqli \
 --with-mysqli=mysqlnd \
 --with-pdo-mysql=mysqlnd \
---without-iconv \
 --with-zlib-dir=$DIR/cmd/zlib \
 --with-mhash=$DIR/cmd/mhash \
+--without-iconv \
 --enable-zip \
 --enable-mbstring \
 --enable-opcache \

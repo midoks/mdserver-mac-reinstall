@@ -1,21 +1,25 @@
 #! /bin/sh
-
-PATH=$PATH:/opt/local/bin:/opt/local/sbin:/opt/local/share/man:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
+export PATH=$PATH:/opt/local/bin:/opt/local/sbin:/opt/local/share/man:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
 
 DIR=$(cd "$(dirname "$0")"; pwd)
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
-DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
-echo $DIR
+VERSION=$1
+LIBNAME=swoole
+
+echo "load $LIBNAME start"
 
 
-#cd $MDIR/source/swoole-1.8.13/
-#echo $(pwd)
+echo "" >> $DIR/php/php$VERSION/etc/php.ini
+echo "[${LIBNAME}]" >> $DIR/php/php$VERSION/etc/php.ini
+echo "extension=${LIBNAME}.so" >> $DIR/php/php$VERSION/etc/php.ini
 
-#swoole install
-#$DIR/php/php55/bin/phpize
-#./configure --with-php-config=$DIR/php/php55/bin/php-config
-#make && make install && make clean
+echo "load $LIBNAME end"
+
+echo "restart $VERSION start"
+
+$DIR/php/php$VERSION/php-fpm restart
+echo "restart $VERSION end"
