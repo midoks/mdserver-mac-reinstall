@@ -9,7 +9,7 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
-LIBNAME=curl
+LIBNAME=mcrypt
 LIBV='0'
 
 echo "install $LIBNAME start"
@@ -23,9 +23,10 @@ if [ "${isInstall}" != "" ]; then
 fi
 
 if [ ! -f "$extFile" ]; then
-	cd $MDIR/source/php/php$VERSION/ext/curl
+	cd $MDIR/source/php/php$VERSION/ext/mcrypt
 	$DIR/php/php$VERSION/bin/phpize
-	./configure  --with-curl=$DIR/cmd/curl --with-php-config=$DIR/php/php$VERSION/bin/php-config && make && make install
+	./configure  --with-php-config=$DIR/php/php$VERSION/bin/php-config  \
+	--with-mcrypt=$DIR/cmd/libmcrypt && make && make install
 fi
 
 echo "install $LIBNAME end"
