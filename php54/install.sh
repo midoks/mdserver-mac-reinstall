@@ -14,12 +14,12 @@ mkdir -p $MDIR/source/php
 PHP_VER=5.4.45
 PHP_M_VER=54
 
-if [ ! -f $MDIR/source/php/php-${PHP_VER}.tar.xz ];then
-	wget -O $MDIR/source/php/php-${PHP_VER}.tar.xz https://museum.php.net/php5/php-${PHP_VER}.tar.xz
+if [ ! -f $MDIR/source/php/php-${PHP_VER}.tar.bz2 ];then
+	wget -O $MDIR/source/php/php-${PHP_VER}.tar.bz2 https://museum.php.net/php5/php-${PHP_VER}.tar.bz2
 fi
 
 if [ ! -d $MDIR/source/php/php-${PHP_VER} ];then
-	cd $MDIR/source/php && tar -Jxf $MDIR/source/php/php-${PHP_VER}.tar.xz
+	cd $MDIR/source/php && tar -Jxf $MDIR/source/php/php-${PHP_VER}.tar.bz2
 fi
 
 echo $DIR
