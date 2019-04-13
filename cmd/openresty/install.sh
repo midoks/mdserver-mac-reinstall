@@ -33,7 +33,8 @@ if [ ! -d $DIR/openresty ]; then
 --with-pcre=$MDIR/source/cmd/pcre-8.38 \
 --with-openssl=$MDIR/source/cmd/openssl-1.0.2n \
 --with-http_v2_module \
---with-http_stub_status_module
+--with-http_stub_status_module \
+--with-ipv6
 
 make && make install && make clean
 
