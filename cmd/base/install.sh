@@ -29,5 +29,6 @@ sh $B_DIR/cmd_libpng.sh
 sh $B_DIR/cmd_freetype.sh
 sh $B_DIR/cmd_libjpeg.sh
 sh $B_DIR/cmd_scws.sh
+sh $B_DIR/cmd_imagemagick.sh
 sh $B_DIR/cmd_icu.sh
 
