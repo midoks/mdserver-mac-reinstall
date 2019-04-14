@@ -11,16 +11,17 @@ MDIR=$(dirname "$DIR")
 
 mkdir -p $MDIR/source/php
 
-PHP_VER=5.3.29
-PHP_M_VER=53
+PHP_VER=7.0.30
+PHP_M_VER=70
 
 if [ ! -f $MDIR/source/php/php-${PHP_VER}.tar.xz ];then
-	wget -O $MDIR/source/php/php-${PHP_VER}.tar.xz https://museum.php.net/php5/php-${PHP_VER}.tar.xz
+	wget -O $MDIR/source/php/php-${PHP_VER}.tar.xz https://museum.php.net/php7/php-${PHP_VER}.tar.xz
 fi
 
 if [ ! -d $MDIR/source/php/php-${PHP_VER} ];then
 	cd $MDIR/source/php && tar -Jxf $MDIR/source/php/php-${PHP_VER}.tar.xz
 fi
+
 
 if [ ! -f $MDIR/source/php/php${PHP_M_VER} ]; then
 	mv $MDIR/source/php/php-${PHP_VER} $MDIR/source/php/php${PHP_M_VER}
@@ -28,18 +29,14 @@ if [ ! -f $MDIR/source/php/php${PHP_M_VER} ]; then
 fi
 
 #./configure --help
-
-
 if [ ! -d $DIR/php/php${PHP_M_VER} ];then
-
-make clean
 
 ./configure \
 --prefix=$DIR/php/php${PHP_M_VER} \
 --exec-prefix=$DIR/php/php${PHP_M_VER} \
 --with-config-file-path=$DIR/php/php${PHP_M_VER}/etc \
---with-mysql=mysqlnd \
 --with-mysql-sock=/tmp/mysql.sock \
+--enable-mysqlnd \
 --enable-embedded-mysqli \
 --with-mysqli=mysqlnd \
 --with-pdo-mysql=mysqlnd \
@@ -52,13 +49,13 @@ make clean
 --enable-ftp \
 --enable-wddx \
 --enable-soap \
---enable-posix \
 --enable-sockets \
+--enable-posix \
 --enable-fpm
 
 #--enable-dtrace \
 #--enable-debug
-
+# --with-curl=$DIR/cmd/curl \
 #--with-iconv=$DIR/cmd/libiconv \
 #--with-zlib-dir=$DIR/cmd/zlib \
 
@@ -66,29 +63,34 @@ make && make install && make clean
 
 fi
 
-if [ ! -f $DIR/php/php${PHP_M_VER}/sbin/php-fpm ];then
-	mv $DIR/php/php${PHP_M_VER}/sbin/php-fpm.dSYM $DIR/php/php${PHP_M_VER}/sbin/php-fpm
+
+if [ ! -f $DIR/php/php${PHP_M_VER}/php-fpm ];then
+	cp $DIR/reinstall/tpl/php/php-fpm $DIR/php/php${PHP_M_VER}/
+fi
+
+
+if [ ! -f $DIR/php/php${PHP_M_VER}/etc/php.ini ]; then
+	cp $DIR/reinstall/tpl/php/php.ini $DIR/php/php${PHP_M_VER}/etc/php.ini
 fi
 
 
 USER=$(who | sed -n "2,1p" |awk '{print $1}')
 SDIR=$(dirname "$DIR")
 
-if [ ! -f $DIR/php/php${PHP_M_VER}/php-fpm ];then
-	cp $DIR/reinstall/tpl/php/php-fpm $DIR/php/php${PHP_M_VER}/
-	sed -i '_bak' "s#{VERSION}#${PHP_M_VER}#g" $DIR/php/php${PHP_M_VER}/php-fpm
-
-	rm -rf $DIR/php/php${PHP_M_VER}/php-fpm_bak
+if [ ! -f "$DIR/php/php${PHP_M_VER}/php-fpm" ]; then
+	cp $DIR/reinstall/tpl/php/php-fpm $DIR/php/php${PHP_M_VER}	
 fi
 
+sed -i '_bak' "s#{VERSION}#${PHP_M_VER}#g" $DIR/php/php${PHP_M_VER}/php-fpm
+rm -rf $DIR/php/php${PHP_M_VER}/php-fpm_bak
 
 
-if [ ! -f $DIR/php/php${PHP_M_VER}/etc/php.ini ];then
+if [ ! -f $DIR/php/php${PHP_M_VER}/etc/php.ini ]; then
 	cp $DIR/reinstall/tpl/php/php.ini $DIR/php/php${PHP_M_VER}/etc/php.ini
 fi
 
 
-if [ ! -f $DIR/php/php${PHP_M_VER}/etc/php-fpm.conf ];then
+if [ ! -f $DIR/php/php${PHP_M_VER}/etc/php-fpm.conf ]; then
 	cp $DIR/reinstall/tpl/php/php-fpm.conf $DIR/php/php${PHP_M_VER}/etc/php-fpm.conf
 	sed -i '_bak' "s#{PATH}#${SDIR}#g" $DIR/php/php${PHP_M_VER}/etc/php-fpm.conf
 	sed -i '_bak' "s#{VERSION}#${PHP_M_VER}#g" $DIR/php/php${PHP_M_VER}/etc/php-fpm.conf
