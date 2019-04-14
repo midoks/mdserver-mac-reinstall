@@ -13,6 +13,12 @@ LIBNAME=mongodb
 echo "load $LIBNAME start"
 
 
+extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20121212/${LIBNAME}.so
+if [ ! -f $extFile ]; then
+	echo "load $LIBNAME fail"
+	exit 1
+fi
+
 echo "" >> $DIR/php/php$VERSION/etc/php.ini
 echo "[${LIBNAME}]" >> $DIR/php/php$VERSION/etc/php.ini
 echo "extension=${LIBNAME}.so" >> $DIR/php/php$VERSION/etc/php.ini
