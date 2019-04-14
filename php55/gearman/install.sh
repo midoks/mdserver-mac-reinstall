@@ -9,8 +9,9 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
-LIBNAME=openssl
-LIBV='0'
+LIBNAME=gearman
+LIBV=1.1.2
+
 
 echo "install $LIBNAME start"
 
@@ -23,15 +24,27 @@ if [ "${isInstall}" != "" ]; then
 fi
 
 if [ ! -f "$extFile" ]; then
-	cd $MDIR/source/php/php$VERSION/ext/openssl
 
-	if [ -f $MDIR/source/php/php$VERSION/ext/openssl/config0.m4 ]; then
-		mv $MDIR/source/php/php$VERSION/ext/openssl/config0.m4 $MDIR/source/php/php$VERSION/ext/openssl/config.m4
+	php_lib=$MDIR/source/php_${VERSION}_lib
+	mkdir -p $php_lib
+
+	if [ ! -f $php_lib/${LIBNAME}-${LIBV}.tgz ]; then
+		wget -O $php_lib/${LIBNAME}-${LIBV}.tgz http://pecl.php.net/get/${LIBNAME}-${LIBV}.tgz
+		
+	fi
+	cd $php_lib/${LIBNAME}-${LIBV}
+
+	if [ ! -d $php_lib/${LIBNAME}-${LIBV} ]; then
+		cd $php_lib
+		tar xvf ${LIBNAME}-${LIBV}.tgz
 	fi
 
+	cd $php_lib/${LIBNAME}-${LIBV}
+
 	$DIR/php/php$VERSION/bin/phpize
-	./configure  --with-php-config=$DIR/php/php$VERSION/bin/php-config \
-	--with-openssl=$DIR/cmd/openssl && make && make install
+	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \
+	--enable-openssl --with-openssl-dir=$DIR/cmd/openssl --enable-sockets && \
+	make && make install
 fi
 
 echo "install $LIBNAME end"

@@ -9,8 +9,8 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
-LIBNAME=openssl
-LIBV='0'
+LIBNAME=gettext
+LIBV=0
 
 echo "install $LIBNAME start"
 
@@ -23,15 +23,16 @@ if [ "${isInstall}" != "" ]; then
 fi
 
 if [ ! -f "$extFile" ]; then
-	cd $MDIR/source/php/php$VERSION/ext/openssl
 
-	if [ -f $MDIR/source/php/php$VERSION/ext/openssl/config0.m4 ]; then
-		mv $MDIR/source/php/php$VERSION/ext/openssl/config0.m4 $MDIR/source/php/php$VERSION/ext/openssl/config.m4
-	fi
+	php_lib=$MDIR/source/php_${VERSION}_lib
+	mkdir -p $php_lib
+
+	cd $MDIR/source/php/php$VERSION/ext/gettext
 
 	$DIR/php/php$VERSION/bin/phpize
-	./configure  --with-php-config=$DIR/php/php$VERSION/bin/php-config \
-	--with-openssl=$DIR/cmd/openssl && make && make install
+	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config && \
+	--with-gettext=$DIR/cmd/gettext && \
+	make && make install
 fi
 
 echo "install $LIBNAME end"
