@@ -12,20 +12,22 @@ mkdir -p $MDIR/source/cmd
 
 echo 'ImageMagick start'
 
-if [ ! -f $MDIR/source/cmd/ImageMagick-x86_64-apple-darwin17.7.0.tar.gz ];then
-	wget -O $MDIR/source/cmd/ImageMagick-x86_64-apple-darwin17.7.0.tar.gz https://imagemagick.org/download/binaries/ImageMagick-x86_64-apple-darwin17.7.0.tar.gz
-fi
+brew install imagemagick
 
-if [ ! -d $MDIR/source/cmd/ImageMagick-7.0.8 ];then
-	cd $MDIR/source/cmd &&  tar -zxvf ImageMagick-x86_64-apple-darwin17.7.0.tar.gz
-fi
+# if [ ! -f $MDIR/source/cmd/ImageMagick-x86_64-apple-darwin17.7.0.tar.gz ];then
+# 	wget -O $MDIR/source/cmd/ImageMagick-x86_64-apple-darwin17.7.0.tar.gz https://imagemagick.org/download/binaries/ImageMagick-x86_64-apple-darwin17.7.0.tar.gz
+# fi
+
+# if [ ! -d $MDIR/source/cmd/ImageMagick-7.0.8 ];then
+# 	cd $MDIR/source/cmd &&  tar -zxvf ImageMagick-x86_64-apple-darwin17.7.0.tar.gz
+# fi
 
 
-if [ ! -d $DIR/cmd/ImageMagick ];then
+# if [ ! -d $DIR/cmd/ImageMagick ];then
 
-	mkdir -p $DIR/cmd/ImageMagick
-	cd $MDIR/source/cmd/ImageMagick-*
-	cp -rf ./* $DIR/cmd/ImageMagick/
-fi
+# 	mkdir -p $DIR/cmd/ImageMagick
+# 	cd $MDIR/source/cmd/ImageMagick-*
+# 	cp -rf ./* $DIR/cmd/ImageMagick/
+# fi
 
 echo 'ImageMagick end'

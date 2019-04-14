@@ -9,9 +9,8 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
-LIBNAME=imagick
-LIBV=3.4.3
-VERSION=55
+LIBNAME=iconv
+LIBV=0
 
 echo "install $LIBNAME start"
 
@@ -25,29 +24,10 @@ fi
 
 if [ ! -f "$extFile" ]; then
 
-	php_lib=$MDIR/source/php_${VERSION}_lib
-	mkdir -p $php_lib
-
-	if [ ! -f $php_lib/${LIBNAME}-${LIBV}.tgz ]; then
-		wget -O $php_lib/${LIBNAME}-${LIBV}.tgz http://pecl.php.net/get/${LIBNAME}-${LIBV}.tgz
-		
-	fi
-	cd $php_lib/${LIBNAME}-${LIBV}
-
-	if [ ! -d $php_lib/${LIBNAME}-${LIBV} ]; then
-		cd $php_lib
-		tar xvf ${LIBNAME}-${LIBV}.tgz
-	fi
-
-	cd $php_lib/${LIBNAME}-${LIBV}
-
-
-	PATH=$PATH:$DIR/cmd/ImageMagick/include/ImageMagick-7/MagickCore
-
+	cd $MDIR/source/php/php${VERSION}/ext/iconv
 	$DIR/php/php$VERSION/bin/phpize
-	./configure PKG_CONFIG_PATH=$DIR/cmd/ImageMagick/lib/pkgconfig/ \
-	--with-php-config=$DIR/php/php$VERSION/bin/php-config \
-	--with-imagick=$DIR/cmd/ImageMagick && \
+	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \
+	--with-icu-dir=$DIR/cmd/libiconv  && \
 	make && make install
 fi
 
