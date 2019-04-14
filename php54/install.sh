@@ -54,6 +54,9 @@ make clean
 --enable-soap \
 --enable-posix \
 --enable-sockets \
+--enable-sysvmsg \
+--enable-sysvsem \
+--enable-sysvshm \
 --enable-fpm
 
 #--enable-dtrace \

@@ -52,6 +52,9 @@ if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 --enable-soap \
 --enable-posix \
 --enable-sockets \
+--enable-sysvmsg \
+--enable-sysvsem \
+--enable-sysvshm \
 --enable-fpm
 
 #--enable-dtrace \
