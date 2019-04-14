@@ -23,16 +23,23 @@ if [ ! -d $MDIR/source/php/php-${PHP_VER} ];then
 fi
 
 
-if [ ! -f $MDIR/source/php/php${PHP_M_VER} ]; then
+if [ ! -d $MDIR/source/php/php${PHP_M_VER} ]; then
 	mv $MDIR/source/php/php-${PHP_VER} $MDIR/source/php/php${PHP_M_VER}
-	cd $MDIR/source/php/php${PHP_M_VER}
+	
 fi
 
+
+PATH=$PATH:/Applications/mdserver/bin/cmd/libzip
+
+
+
 #./configure --help
+cd $MDIR/source/php/php${PHP_M_VER}
 if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 
-./configure \
---prefix=$DIR/php/php${PHP_M_VER} \
+cp /Applications/mdserver/bin/cmd/libzip/include/zip.h /usr/local/include/zipconf.h
+
+./configure --prefix=$DIR/php/php${PHP_M_VER}/ \
 --exec-prefix=$DIR/php/php${PHP_M_VER} \
 --with-config-file-path=$DIR/php/php${PHP_M_VER}/etc \
 --with-mysql-sock=/tmp/mysql.sock \
@@ -43,7 +50,6 @@ if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 --with-zlib-dir=$DIR/cmd/zlib \
 --with-mhash=$DIR/cmd/mhash \
 --without-iconv \
---enable-zip \
 --enable-mbstring \
 --enable-opcache \
 --enable-ftp \
@@ -57,12 +63,11 @@ if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 --enable-fpm
 
 #--enable-dtrace \
-#--enable-debug
-# --with-curl=$DIR/cmd/curl \
-#--with-iconv=$DIR/cmd/libiconv \
-#--with-zlib-dir=$DIR/cmd/zlib \
+#--enable-debug 
+# --with-libzip=$DIR/cmd/libzip \
+# --enable-zip \
 
-make && make install && make clean
+make && make install
 
 fi
 

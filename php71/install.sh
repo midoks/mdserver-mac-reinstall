@@ -58,9 +58,6 @@ if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 
 #--enable-dtrace \
 #--enable-debug
-# --with-curl=$DIR/cmd/curl \
-#--with-iconv=$DIR/cmd/libiconv \
-#--with-zlib-dir=$DIR/cmd/zlib \
 
 make && make install && make clean
 
