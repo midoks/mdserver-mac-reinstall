@@ -24,8 +24,10 @@ fi
 
 if [ ! -f "$extFile" ]; then
 
+	cd $MDIR/source/php/php${VERSION}/ext/intl
 	$DIR/php/php$VERSION/bin/phpize
-	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config 
+	echo `pwd`
+	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \
 	--with-icu-dir=/usr/local/opt/icu4c  && \
 	make && make install
 fi

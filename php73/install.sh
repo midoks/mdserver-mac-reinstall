@@ -11,11 +11,11 @@ MDIR=$(dirname "$DIR")
 
 mkdir -p $MDIR/source/php
 
-PHP_VER=7.0.30
-PHP_M_VER=70
+PHP_VER=7.3.4
+PHP_M_VER=73
 
 if [ ! -f $MDIR/source/php/php-${PHP_VER}.tar.xz ];then
-	wget -O $MDIR/source/php/php-${PHP_VER}.tar.xz https://museum.php.net/php7/php-${PHP_VER}.tar.xz
+	wget -O $MDIR/source/php/php-${PHP_VER}.tar.xz https://www.php.net/distributions/php-${PHP_VER}.tar.xz
 fi
 
 if [ ! -d $MDIR/source/php/php-${PHP_VER} ];then
