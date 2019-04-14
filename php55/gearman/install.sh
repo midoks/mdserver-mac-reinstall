@@ -11,6 +11,7 @@ MDIR=$(dirname "$DIR")
 VERSION=$1
 LIBNAME=gearman
 LIBV=1.1.2
+VERSION=55
 
 
 echo "install $LIBNAME start"
@@ -42,8 +43,7 @@ if [ ! -f "$extFile" ]; then
 	cd $php_lib/${LIBNAME}-${LIBV}
 
 	$DIR/php/php$VERSION/bin/phpize
-	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \
-	--enable-openssl --with-openssl-dir=$DIR/cmd/openssl --enable-sockets && \
+	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config --with-gearman=$DIR/gearman && \
 	make && make install
 fi
 

@@ -8,5 +8,6 @@ DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
-#mosquitto -c /usr/local/etc/mosquitto/mosquitto.conf
-brew services start mosquitto
+
+# $DIR/gearman/bin/gearman --workers
+$DIR/gearman/sbin/gearmand -L 127.0.0.1 -p 4730 -u root -d

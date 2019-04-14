@@ -19,7 +19,7 @@ if [ ! -f $MDIR/source/gearman/gearman-${VERSION}.tar.gz ]; then
 	wget -O $MDIR/source/gearman/gearman-${VERSION}.tar.gz https://github.com/gearman/gearmand/releases/download/${VERSION}/gearmand-${VERSION}.tar.gz
 fi
 
-if [ ! -d $MDIR/source/gearman/gearman-${VERSION} ]; then
+if [ ! -d $MDIR/source/gearman/gearmand-${VERSION} ]; then
 	cd $MDIR/source/gearman && tar -zxvf $MDIR/source/gearman/gearman-${VERSION}.tar.gz
 fi
 
