@@ -23,9 +23,10 @@ if [ ! -d $MDIR/source/php/php-${PHP_VER} ];then
 fi
 
 echo $DIR
-cd $MDIR/source/php/php-${PHP_VER}
-#echo $(pwd)
-
+if [ ! -f $MDIR/source/php/php${PHP_M_VER} ]; then
+	mv $MDIR/source/php/php-${PHP_VER} $MDIR/source/php/php${PHP_M_VER}
+	cd $MDIR/source/php/php${PHP_M_VER}
+fi
 #./configure --help
 
 
@@ -42,8 +43,9 @@ make clean
 --enable-embedded-mysqli \
 --with-mysqli=mysqlnd \
 --with-pdo-mysql=mysqlnd \
---without-iconv \
 --with-zlib-dir=$DIR/cmd/zlib \
+--with-mhash=$DIR/cmd/mhash \
+--without-iconv \
 --enable-zip \
 --enable-mbstring \
 --enable-opcache \
@@ -52,7 +54,6 @@ make clean
 --enable-soap \
 --enable-posix \
 --enable-sockets \
---with-mhash=$DIR/cmd/mhash \
 --enable-fpm
 
 #--enable-dtrace \
