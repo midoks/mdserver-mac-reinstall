@@ -22,6 +22,7 @@ if [ "${isInstall}" != "" ]; then
 	return
 fi
 
+if [ ! -f "$extFile" ]; then
 	cd $MDIR/source/php/php$VERSION/ext/bcmath
 	$DIR/php/php$VERSION/bin/phpize
 	./configure  --with-php-config=$DIR/php/php$VERSION/bin/php-config  && make && make install
