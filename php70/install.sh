@@ -32,8 +32,8 @@ cd $MDIR/source/php/php${PHP_M_VER}
 if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 
 ./configure \
---prefix=$DIR/php/php${PHP_M_VER} \
---exec-prefix=$DIR/php/php${PHP_M_VER} \
+--prefix=$DIR/php/php${PHP_M_VER}/ \
+--exec-prefix=$DIR/php/php${PHP_M_VER}/ \
 --with-config-file-path=$DIR/php/php${PHP_M_VER}/etc \
 --with-mysql-sock=/tmp/mysql.sock \
 --enable-mysqlnd \
