@@ -9,13 +9,16 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
-LIBNAME=memcache
-LIBV='2.2.7'
+LIBNAME=yaf
+LIBV='2.3.5'
 
+if [ "$VERSION" = "70" ] || [ "$VERSION" = "71" ] || [ "$VERSION" = "72" ] || [ "$VERSION" = "73" ]; then
+	LIBV='3.0.8'
+fi
 
 echo "install $LIBNAME start"
 
-extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20121212/${LIBNAME}.so
+extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20170718/${LIBNAME}.so
 
 isInstall=`cat $DIR/php/php$VERSION/etc/php.ini|grep '${LIBNAME}.so'`
 if [ "${isInstall}" != "" ]; then
@@ -42,7 +45,8 @@ if [ ! -f "$extFile" ]; then
 	cd $php_lib/${LIBNAME}-${LIBV}
 
 	$DIR/php/php$VERSION/bin/phpize
-	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config --with-zlib-dir=$DIR/cmd/zlib && \
+	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \
+	 --enable-vld && \
 	make && make install
 fi
 
