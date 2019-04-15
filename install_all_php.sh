@@ -27,6 +27,7 @@ cd $DIR/php$PHP_VER/openssl && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/vld && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/gearman && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/gettext && sh install.sh $PHP_VER
+cd $DIR/php$PHP_VER/seaslog && sh install.sh $PHP_VER
 echo "php${PHP_VER} -- end"
 
 
@@ -50,6 +51,7 @@ cd $DIR/php$PHP_VER/openssl && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/vld && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/gearman && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/gettext && sh install.sh $PHP_VER
+cd $DIR/php$PHP_VER/seaslog && sh install.sh $PHP_VER
 echo "php${PHP_VER} -- end"
 
 PHP_VER=55
@@ -72,6 +74,7 @@ cd $DIR/php$PHP_VER/openssl && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/vld && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/gearman && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/gettext && sh install.sh $PHP_VER
+cd $DIR/php$PHP_VER/seaslog && sh install.sh $PHP_VER
 echo "php${PHP_VER} -- end"
 
 
@@ -95,6 +98,7 @@ cd $DIR/php$PHP_VER/openssl && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/vld && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/gearman && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/gettext && sh install.sh $PHP_VER
+cd $DIR/php$PHP_VER/seaslog && sh install.sh $PHP_VER
 echo "php${PHP_VER} -- end"
 
 
@@ -117,6 +121,7 @@ cd $DIR/php$PHP_VER/openssl && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/vld && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/gearman && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/gettext && sh install.sh $PHP_VER
+cd $DIR/php$PHP_VER/seaslog && sh install.sh $PHP_VER
 echo "php${PHP_VER} -- end"
 
 
@@ -139,6 +144,7 @@ cd $DIR/php$PHP_VER/openssl && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/vld && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/gearman && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/gettext && sh install.sh $PHP_VER
+cd $DIR/php$PHP_VER/seaslog && sh install.sh $PHP_VER
 echo "php${PHP_VER} -- end"
 
 
@@ -161,6 +167,7 @@ cd $DIR/php$PHP_VER/openssl && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/vld && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/gearman && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/gettext && sh install.sh $PHP_VER
+cd $DIR/php$PHP_VER/seaslog && sh install.sh $PHP_VER
 echo "php${PHP_VER} -- end"
 
 
@@ -183,11 +190,7 @@ cd $DIR/php$PHP_VER/msgpack && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/vld && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/gearman && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/gettext && sh install.sh $PHP_VER
+cd $DIR/php$PHP_VER/seaslog && sh install.sh $PHP_VER
 echo "php${PHP_VER} -- end"
-
-
-
-
-
 
 
