@@ -29,13 +29,7 @@ cd $DIR/cmd/openresty && sh install.sh
 cd $DIR/cmd/memcached && sh install.sh
 # memcached start #
 
-
-# php53 start #
-cd $DIR/cmd/php53 && sh install.sh
-# php53 start #
-
-
-
-
-
+# php start #
+sh install_all_php.sh
+# php end #
 

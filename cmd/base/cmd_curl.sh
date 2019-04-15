@@ -10,7 +10,13 @@ MDIR=$(dirname "$DIR")
 
 mkdir -p $MDIR/source/cmd
 
+echo 'brew curl start'
+brew install curl
+brew upgrade curl
+echo 'brew curl start'
+
 echo 'curl start'
+
 
 VERSION=7.64.1
 

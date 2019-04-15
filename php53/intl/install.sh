@@ -28,7 +28,7 @@ if [ ! -f "$extFile" ]; then
 	$DIR/php/php$VERSION/bin/phpize
 	echo `pwd`
 	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \
-	--with-icu-dir=/usr/local/Cellar/icu4c/63.1  && \
+	--with-icu-dir=/usr/local/opt/icu4c  && \
 	make && make install
 fi
 

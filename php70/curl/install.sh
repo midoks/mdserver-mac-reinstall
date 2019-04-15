@@ -14,7 +14,7 @@ LIBV='0'
 
 echo "install $LIBNAME start"
 
-extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20131226/${LIBNAME}.so
+extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20151012/${LIBNAME}.so
 
 isInstall=`cat $DIR/php/php$VERSION/etc/php.ini|grep '${LIBNAME}.so'`
 if [ "${isInstall}" != "" ]; then
@@ -25,8 +25,7 @@ fi
 if [ ! -f "$extFile" ]; then
 	cd $MDIR/source/php/php$VERSION/ext/curl
 	$DIR/php/php$VERSION/bin/phpize
-	./configure  --with-curl=/usr/local/opt/curl \
-	--with-php-config=$DIR/php/php$VERSION/bin/php-config && make && make install
+	./configure  --with-curl=/usr/local/opt/curl --with-php-config=$DIR/php/php$VERSION/bin/php-config && make && make install
 fi
 
 echo "install $LIBNAME end"

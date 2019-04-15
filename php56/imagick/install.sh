@@ -9,8 +9,8 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
-LIBNAME=curl
-LIBV='0'
+LIBNAME=imagick
+LIBV=3.4.3
 
 echo "install $LIBNAME start"
 
@@ -23,10 +23,30 @@ if [ "${isInstall}" != "" ]; then
 fi
 
 if [ ! -f "$extFile" ]; then
-	cd $MDIR/source/php/php$VERSION/ext/curl
+
+	php_lib=$MDIR/source/php_${VERSION}_lib
+	mkdir -p $php_lib
+
+	if [ ! -f $php_lib/${LIBNAME}-${LIBV}.tgz ]; then
+		wget -O $php_lib/${LIBNAME}-${LIBV}.tgz http://pecl.php.net/get/${LIBNAME}-${LIBV}.tgz
+		
+	fi
+	cd $php_lib/${LIBNAME}-${LIBV}
+
+	if [ ! -d $php_lib/${LIBNAME}-${LIBV} ]; then
+		cd $php_lib
+		tar xvf ${LIBNAME}-${LIBV}.tgz
+	fi
+
+	cd $php_lib/${LIBNAME}-${LIBV}
+
+	PATH=$PATH:$DIR/cmd/ImageMagick
+	export $PATH
 	$DIR/php/php$VERSION/bin/phpize
-	./configure  --with-curl=/usr/local/opt/curl \
-	--with-php-config=$DIR/php/php$VERSION/bin/php-config && make && make install
+	./configure \
+	--with-php-config=$DIR/php/php$VERSION/bin/php-config \
+	--with-imagick=/usr/local/Cellar/imagemagick/7.0.8-39 && \
+	make && make install
 fi
 
 echo "install $LIBNAME end"
