@@ -56,6 +56,7 @@ cp /Applications/mdserver/bin/cmd/libzip/include/zip.h /usr/local/include/zipcon
 --enable-wddx \
 --enable-soap \
 --enable-sockets \
+--enable-simplexml \
 --enable-posix \
 --enable-sysvmsg \
 --enable-sysvsem \

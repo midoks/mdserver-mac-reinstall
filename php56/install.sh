@@ -51,6 +51,7 @@ if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 --enable-wddx \
 --enable-soap \
 --enable-posix \
+--enable-simplexml \
 --enable-sockets \
 --enable-sysvmsg \
 --enable-sysvsem \
