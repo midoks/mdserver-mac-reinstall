@@ -9,12 +9,16 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
-LIBNAME=iconv
-LIBV=0
+LIBNAME=vld
+LIBV='0.14.0'
+
+if [ "$VERSION" = "70" ] || [ "$VERSION" = "71" ] || [ "$VERSION" = "72" ] || [ "$VERSION" = "73" ]; then
+	LIBV='0.15.0'
+fi
 
 echo "install $LIBNAME start"
 
-extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20121212/${LIBNAME}.so
+extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20180731/${LIBNAME}.so
 
 isInstall=`cat $DIR/php/php$VERSION/etc/php.ini|grep '${LIBNAME}.so'`
 if [ "${isInstall}" != "" ]; then
@@ -24,10 +28,25 @@ fi
 
 if [ ! -f "$extFile" ]; then
 
-	cd $MDIR/source/php/php${VERSION}/ext/iconv
+	php_lib=$MDIR/source/php_${VERSION}_lib
+	mkdir -p $php_lib
+
+	if [ ! -f $php_lib/${LIBNAME}-${LIBV}.tgz ]; then
+		wget -O $php_lib/${LIBNAME}-${LIBV}.tgz http://pecl.php.net/get/${LIBNAME}-${LIBV}.tgz
+		
+	fi
+	cd $php_lib/${LIBNAME}-${LIBV}
+
+	if [ ! -d $php_lib/${LIBNAME}-${LIBV} ]; then
+		cd $php_lib
+		tar xvf ${LIBNAME}-${LIBV}.tgz
+	fi
+
+	cd $php_lib/${LIBNAME}-${LIBV}
+
 	$DIR/php/php$VERSION/bin/phpize
 	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \
-	--with-iconv=$DIR/cmd/libiconv  && \
+	 --enable-vld && \
 	make && make install
 fi
 

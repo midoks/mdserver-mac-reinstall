@@ -14,28 +14,25 @@ mkdir -p $MDIR/source/php
 PHP_VER=5.3.29
 PHP_M_VER=53
 
-if [ ! -f $MDIR/source/php/php-${PHP_VER}.tar.xz ];then
+if [ ! -f $MDIR/source/php/php-${PHP_VER}.tar.xz ]; then
 	wget -O $MDIR/source/php/php-${PHP_VER}.tar.xz https://museum.php.net/php5/php-${PHP_VER}.tar.xz
 fi
 
-if [ ! -d $MDIR/source/php/php-${PHP_VER} ];then
-	cd $MDIR/source/php && tar -Jxf $MDIR/source/php/php-${PHP_VER}.tar.xz
+
+if [ ! -d $MDIR/source/php/php${PHP_M_VER} ]; then
+	if [ ! -d $MDIR/source/php/php-${PHP_VER} ]; then
+		cd $MDIR/source/php && tar -Jxf $MDIR/source/php/php-${PHP_VER}.tar.xz
+	fi
+
+	mv $MDIR/source/php/php-${PHP_VER} $MDIR/source/php/php${PHP_M_VER}
 fi
 
-if [ ! -f $MDIR/source/php/php${PHP_M_VER} ]; then
-	mv $MDIR/source/php/php-${PHP_VER} $MDIR/source/php/php${PHP_M_VER}
-	cd $MDIR/source/php/php${PHP_M_VER}
-fi
+cd $MDIR/source/php/php${PHP_M_VER}
 
 #./configure --help
-
-
 if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 
-make clean
-
-./configure \
---prefix=$DIR/php/php${PHP_M_VER} \
+./configure --prefix=$DIR/php/php${PHP_M_VER} \
 --exec-prefix=$DIR/php/php${PHP_M_VER} \
 --with-config-file-path=$DIR/php/php${PHP_M_VER}/etc \
 --with-mysql=mysqlnd \
@@ -62,11 +59,13 @@ make clean
 #--enable-dtrace \
 #--enable-debug
 
-#--with-iconv=$DIR/cmd/libiconv \
-#--with-zlib-dir=$DIR/cmd/zlib \
-
 make && make install && make clean
 
+fi
+
+
+if [ ! -f $DIR/php/php${PHP_M_VER}/bin/php ];then
+	mv $DIR/php/php${PHP_M_VER}/bin/php.dSYM $DIR/php/php${PHP_M_VER}/bin/php
 fi
 
 if [ ! -f $DIR/php/php${PHP_M_VER}/sbin/php-fpm ];then
@@ -107,6 +106,11 @@ if [ ! -f $DIR/php/php${PHP_M_VER}/etc/php-fpm.d/www.conf ];then
 	sed -i '_bak' "s#{USER}#${USER}#g" $DIR/php/php${PHP_M_VER}/etc/php-fpm.d/www.conf
 
 	rm -rf $DIR/php/php${PHP_M_VER}/etc/php-fpm.d/www.conf_bak
+fi
+
+
+if [ ! -d $DIR/php/php${PHP_M_VER}/lib/php/extensions/no-debug-non-zts-20090626 ]; then
+	mkdir -p $DIR/php/php${PHP_M_VER}/lib/php/extensions/no-debug-non-zts-20090626
 fi
 
 
