@@ -20,7 +20,6 @@ fi
 
 
 
-
 if [ ! -d $MDIR/source/php/php${PHP_M_VER} ]; then
 	if [ ! -d $MDIR/source/php/php-${PHP_VER} ];then
 		cd $MDIR/source/php && tar -Jxf $MDIR/source/php/php-${PHP_VER}.tar.xz
