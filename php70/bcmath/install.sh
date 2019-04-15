@@ -9,12 +9,8 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
-LIBNAME=vld
-LIBV='0.14.0'
-
-if [ "$VERSION" = "70" ] || [ "$VERSION" = "71" ] || [ "$VERSION" = "72" ] || [ "$VERSION" = "73" ]; then
-	LIBV='0.15.0'
-fi
+LIBNAME=bcmath
+LIBV='0'
 
 echo "install $LIBNAME start"
 
@@ -27,27 +23,9 @@ if [ "${isInstall}" != "" ]; then
 fi
 
 if [ ! -f "$extFile" ]; then
-
-	php_lib=$MDIR/source/php_${VERSION}_lib
-	mkdir -p $php_lib
-
-	if [ ! -f $php_lib/${LIBNAME}-${LIBV}.tgz ]; then
-		wget -O $php_lib/${LIBNAME}-${LIBV}.tgz http://pecl.php.net/get/${LIBNAME}-${LIBV}.tgz
-		
-	fi
-	cd $php_lib/${LIBNAME}-${LIBV}
-
-	if [ ! -d $php_lib/${LIBNAME}-${LIBV} ]; then
-		cd $php_lib
-		tar xvf ${LIBNAME}-${LIBV}.tgz
-	fi
-
-	cd $php_lib/${LIBNAME}-${LIBV}
-
+	cd $MDIR/source/php/php$VERSION/ext/bcmath
 	$DIR/php/php$VERSION/bin/phpize
-	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \
-	 --enable-vld && \
-	make && make install
+	./configure  --with-php-config=$DIR/php/php$VERSION/bin/php-config  && make && make install
 fi
 
 echo "install $LIBNAME end"

@@ -12,10 +12,4 @@ MDIR=$(dirname "$DIR")
 echo $DIR
 
 
-#cd $MDIR/source/swoole-1.8.13/
-#echo $(pwd)
 
-#swoole install
-#$DIR/php/php55/bin/phpize
-#./configure --with-php-config=$DIR/php/php55/bin/php-config
-#make && make install && make clean
