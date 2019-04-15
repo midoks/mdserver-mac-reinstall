@@ -47,8 +47,7 @@ if [ ! -f "$extFile" ]; then
 
 	$DIR/php/php$VERSION/bin/phpize
 	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \
-	--with-libmemcached-dir=$DIR/cmd/libmemcached \
-	--with-zlib-dir=$DIR/cmd/zlib && \
+	--with-curl=$DIR/cmd/curl && \
 	make && make install
 fi
 

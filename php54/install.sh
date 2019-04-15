@@ -105,3 +105,11 @@ if [ ! -f $DIR/php/php${PHP_M_VER}/etc/php-fpm.d/www.conf ];then
 	rm -rf $DIR/php/php${PHP_M_VER}/etc/php-fpm.d/www.conf_bak
 fi
 
+
+if [ ! -d $DIR/php/php${PHP_M_VER}/lib/php/extensions/no-debug-non-zts-20100525 ]; then
+	mkdir -p $DIR/php/php${PHP_M_VER}/lib/php/extensions/no-debug-non-zts-20100525
+fi
+
+
+
+
