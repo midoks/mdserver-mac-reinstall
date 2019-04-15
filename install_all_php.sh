@@ -22,6 +22,7 @@ cd $DIR/php$PHP_VER/redis && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/yaf && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/yar && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/mcrypt && sh install.sh $PHP_VER
+cd $DIR/php$PHP_VER/msgpack && sh install.sh $PHP_VER
 echo "php${PHP_VER} -- end"
 
 
@@ -40,6 +41,7 @@ cd $DIR/php$PHP_VER/redis && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/yaf && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/yar && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/mcrypt && sh install.sh $PHP_VER
+cd $DIR/php$PHP_VER/msgpack && sh install.sh $PHP_VER
 echo "php${PHP_VER} -- end"
 
 PHP_VER=55
@@ -57,6 +59,7 @@ cd $DIR/php$PHP_VER/redis && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/yaf && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/yar && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/mcrypt && sh install.sh $PHP_VER
+cd $DIR/php$PHP_VER/msgpack && sh install.sh $PHP_VER
 echo "php${PHP_VER} -- end"
 
 
@@ -75,6 +78,7 @@ cd $DIR/php$PHP_VER/redis && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/yaf && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/yar && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/mcrypt && sh install.sh $PHP_VER
+cd $DIR/php$PHP_VER/msgpack && sh install.sh $PHP_VER
 echo "php${PHP_VER} -- end"
 
 
@@ -87,12 +91,12 @@ cd $DIR/php$PHP_VER/bcmath && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/iconv && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/imagick && sh install.sh $PHP_VER
 #cd $DIR/php$PHP_VER/intl && sh install.sh $PHP_VER
-cd $DIR/php$PHP_VER/memcache && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/memcached && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/redis && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/yaf && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/yar && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/mcrypt && sh install.sh $PHP_VER
+cd $DIR/php$PHP_VER/msgpack && sh install.sh $PHP_VER
 echo "php${PHP_VER} -- end"
 
 
@@ -105,12 +109,12 @@ cd $DIR/php$PHP_VER/bcmath && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/iconv && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/imagick && sh install.sh $PHP_VER
 #cd $DIR/php$PHP_VER/intl && sh install.sh $PHP_VER
-cd $DIR/php$PHP_VER/memcache && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/memcached && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/redis && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/yaf && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/yar && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/mcrypt && sh install.sh $PHP_VER
+cd $DIR/php$PHP_VER/msgpack && sh install.sh $PHP_VER
 echo "php${PHP_VER} -- end"
 
 
@@ -123,12 +127,12 @@ cd $DIR/php$PHP_VER/bcmath && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/iconv && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/imagick && sh install.sh $PHP_VER
 #cd $DIR/php$PHP_VER/intl && sh install.sh $PHP_VER
-cd $DIR/php$PHP_VER/memcache && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/memcached && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/redis && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/yaf && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/yar && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/mcrypt && sh install.sh $PHP_VER
+cd $DIR/php$PHP_VER/msgpack && sh install.sh $PHP_VER
 echo "php${PHP_VER} -- end"
 
 
@@ -142,12 +146,12 @@ cd $DIR/php$PHP_VER/bcmath && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/iconv && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/imagick && sh install.sh $PHP_VER
 #cd $DIR/php$PHP_VER/intl && sh install.sh $PHP_VER
-cd $DIR/php$PHP_VER/memcache && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/memcached && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/redis && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/yaf && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/yar && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/mcrypt && sh install.sh $PHP_VER
+cd $DIR/php$PHP_VER/msgpack && sh install.sh $PHP_VER
 echo "php${PHP_VER} -- end"
 
 
