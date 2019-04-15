@@ -18,15 +18,15 @@ if [ ! -f $MDIR/source/php/php-${PHP_VER}.tar.xz ];then
 	wget -O $MDIR/source/php/php-${PHP_VER}.tar.xz https://museum.php.net/php7/php-${PHP_VER}.tar.xz
 fi
 
-if [ ! -d $MDIR/source/php/php-${PHP_VER} ];then
-	cd $MDIR/source/php && tar -Jxf $MDIR/source/php/php-${PHP_VER}.tar.xz
-fi
+if [ ! -d $MDIR/source/php/php${PHP_M_VER} ]; then
 
-
-if [ ! -f $MDIR/source/php/php${PHP_M_VER} ]; then
+	if [ ! -d $MDIR/source/php/php-${PHP_VER} ];then
+		cd $MDIR/source/php && tar -Jxf $MDIR/source/php/php-${PHP_VER}.tar.xz
+	fi
 	mv $MDIR/source/php/php-${PHP_VER} $MDIR/source/php/php${PHP_M_VER}
-	cd $MDIR/source/php/php${PHP_M_VER}
+	
 fi
+cd $MDIR/source/php/php${PHP_M_VER}
 
 #./configure --help
 if [ ! -d $DIR/php/php${PHP_M_VER} ];then

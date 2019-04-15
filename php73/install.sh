@@ -18,23 +18,23 @@ if [ ! -f $MDIR/source/php/php-${PHP_VER}.tar.xz ];then
 	wget -O $MDIR/source/php/php-${PHP_VER}.tar.xz https://www.php.net/distributions/php-${PHP_VER}.tar.xz
 fi
 
-if [ ! -d $MDIR/source/php/php-${PHP_VER} ];then
-	cd $MDIR/source/php && tar -Jxf $MDIR/source/php/php-${PHP_VER}.tar.xz
-fi
+
 
 
 if [ ! -d $MDIR/source/php/php${PHP_M_VER} ]; then
+	if [ ! -d $MDIR/source/php/php-${PHP_VER} ];then
+		cd $MDIR/source/php && tar -Jxf $MDIR/source/php/php-${PHP_VER}.tar.xz
+	fi
+
 	mv $MDIR/source/php/php-${PHP_VER} $MDIR/source/php/php${PHP_M_VER}
 	
 fi
 
+cd $MDIR/source/php/php${PHP_M_VER}
 
 PATH=$PATH:/Applications/mdserver/bin/cmd/libzip
-
-
-
 #./configure --help
-cd $MDIR/source/php/php${PHP_M_VER}
+
 if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 
 cp /Applications/mdserver/bin/cmd/libzip/include/zip.h /usr/local/include/zipconf.h
