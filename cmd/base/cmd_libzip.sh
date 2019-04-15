@@ -12,18 +12,18 @@ mkdir -p $MDIR/source/cmd
 
 echo 'zlib start'
 
-if [ ! -f $MDIR/source/cmd/libzip-1.5.2.tar.xz ];then
-	wget -O $MDIR/source/cmd/libzip-1.5.2.tar.xz https://libzip.org/download/libzip-1.5.2.tar.xz
+if [ ! -f $MDIR/source/cmd/libzip-1.2.0.tar.gz ];then
+	wget -O $MDIR/source/cmd/libzip-1.2.0.tar.gz https://nih.at/libzip/libzip-1.2.0.tar.gz
 fi
 
-if [ ! -d $MDIR/source/cmd/libzip-1.5.2 ];then
-	cd $MDIR/source/cmd &&  tar -Jxf libzip-1.5.2.tar.xz
+if [ ! -d $MDIR/source/cmd/libzip-1.2.0 ];then
+	cd $MDIR/source/cmd &&  tar -zxvf libzip-1.2.0.tar.gz
 fi
 
 
 if [ ! -d $DIR/cmd/libzip ];then
 
-cd $MDIR/source/cmd/libzip-1.5.2
+cd $MDIR/source/cmd/libzip-1.2.0
 ./configure --prefix=$DIR/cmd/libzip && make && make install && make clean
 
 fi
