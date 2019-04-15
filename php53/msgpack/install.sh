@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=msgpack
-LIBV='2.0.3'
+LIBV=0.5.7
 
 
 echo "install $LIBNAME start"
