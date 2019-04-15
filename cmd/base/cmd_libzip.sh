@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 
 mkdir -p $MDIR/source/cmd
 
-echo 'zlib start'
+echo 'libzip start'
 
 if [ ! -f $MDIR/source/cmd/libzip-1.2.0.tar.gz ];then
 	wget -O $MDIR/source/cmd/libzip-1.2.0.tar.gz https://nih.at/libzip/libzip-1.2.0.tar.gz
@@ -27,5 +27,5 @@ cd $MDIR/source/cmd/libzip-1.2.0
 ./configure --prefix=$DIR/cmd/libzip && make && make install && make clean
 
 fi
-echo 'zlib end'
+echo 'libzip end'
 
