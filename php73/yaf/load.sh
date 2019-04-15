@@ -22,6 +22,6 @@ echo "" >> $DIR/php/php$VERSION/etc/php.ini
 echo "[${LIBNAME}]" >> $DIR/php/php$VERSION/etc/php.ini
 echo "extension=${LIBNAME}.so" >> $DIR/php/php$VERSION/etc/php.ini
 echo "${LIBNAME}.use_namespace=1" >> $DIR/php/php$VERSION/etc/php.ini
-echo "${LIBNAME}.environ=dev" >> $DIR/php/php$VERSION/etc/php.ini
+echo "${LIBNAME}.environ=develop" >> $DIR/php/php$VERSION/etc/php.ini
 
 echo "load $LIBNAME end"
