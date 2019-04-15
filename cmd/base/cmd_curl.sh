@@ -12,17 +12,19 @@ mkdir -p $MDIR/source/cmd
 
 echo 'curl start'
 
-if [ ! -f $MDIR/source/cmd/curl-7.57.0.tar.gz ];then
-	wget -O $MDIR/source/cmd/curl-7.57.0.tar.gz https://curl.haxx.se/download/curl-7.57.0.tar.gz
+VERSION=7.64.1
+
+if [ ! -f $MDIR/source/cmd/curl-${VERSION}.tar.gz ];then
+	wget -O $MDIR/source/cmd/curl-${VERSION}.tar.gz https://curl.haxx.se/download/curl-${VERSION}.tar.gz
 fi
 
-if [ ! -d $MDIR/source/cmd/curl-7.57.0 ];then
-	cd $MDIR/source/cmd &&  tar -zxvf curl-7.57.0.tar.gz
+if [ ! -d $MDIR/source/cmd/${VERSION} ];then
+	cd $MDIR/source/cmd &&  tar -zxvf curl-${VERSION}.tar.gz
 fi
 
 if [ ! -d $DIR/cmd/curl ];then
 
-cd $MDIR/source/cmd/curl-7.57.0
+cd $MDIR/source/cmd/curl-${VERSION}
 ./configure --prefix=$DIR/cmd/curl --with-ssl=$DIR/cmd/openssl && \
 make && make install && make clean
 fi
