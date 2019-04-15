@@ -11,7 +11,6 @@ MDIR=$(dirname "$DIR")
 VERSION=$1
 LIBNAME=gearman
 LIBV=1.1.2
-VERSION=55
 
 
 echo "install $LIBNAME start"
