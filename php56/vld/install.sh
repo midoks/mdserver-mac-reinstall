@@ -18,7 +18,7 @@ fi
 
 echo "install $LIBNAME start"
 
-extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20100525/${LIBNAME}.so
+extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20131226/${LIBNAME}.so
 
 isInstall=`cat $DIR/php/php$VERSION/etc/php.ini|grep '${LIBNAME}.so'`
 if [ "${isInstall}" != "" ]; then

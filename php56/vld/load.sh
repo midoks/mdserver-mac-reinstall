@@ -12,7 +12,7 @@ LIBNAME=vld
 
 echo "load $LIBNAME start"
 
-extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20100525/${LIBNAME}.so
+extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20131226/${LIBNAME}.so
 if [ ! -f $extFile ]; then
 	echo "load $LIBNAME fail"
 	exit 1
