@@ -10,10 +10,10 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=vld
-LIBV='0.14.0'
+LIBV=0.13.0
 
 if [ "$VERSION" = "70" ] || [ "$VERSION" = "71" ] || [ "$VERSION" = "72" ] || [ "$VERSION" = "73" ]; then
-	LIBV='0.15.0'
+	LIBV=0.15.0
 fi
 
 echo "install $LIBNAME start"
