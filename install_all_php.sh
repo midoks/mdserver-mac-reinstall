@@ -32,6 +32,8 @@ cd $DIR/php$PHP_VER/swoole && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/xhprof && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/solr && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/scws && sh install.sh $PHP_VER
+cd $DIR/php$PHP_VER/opcache && sh install.sh $PHP_VER
+cd $DIR/php$PHP_VER/apm && sh install.sh $PHP_VER
 echo "php${PHP_VER} -- end"
 
 
@@ -60,6 +62,7 @@ cd $DIR/php$PHP_VER/swoole && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/xhprof && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/solr && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/scws && sh install.sh $PHP_VER
+cd $DIR/php$PHP_VER/opcache && sh install.sh $PHP_VER
 echo "php${PHP_VER} -- end"
 
 PHP_VER=55
