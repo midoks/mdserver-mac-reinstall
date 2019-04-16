@@ -21,5 +21,6 @@ fi
 echo "" >> $DIR/php/php$VERSION/etc/php.ini
 echo "[${LIBNAME}]" >> $DIR/php/php$VERSION/etc/php.ini
 echo "extension=${LIBNAME}.so" >> $DIR/php/php$VERSION/etc/php.ini
+echo "${LIBNAME}.output_dir=/Applications/mdserver/bin/tmp/xhprof" >> $DIR/php/php$VERSION/etc/php.ini
 
 echo "load $LIBNAME end"
