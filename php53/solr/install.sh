@@ -9,12 +9,12 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
-LIBNAME=yaconf
-LIBV=1.0.7
+LIBNAME=solr
+LIBV=2.4.0
 
 echo "install $LIBNAME start"
 
-extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20180731/${LIBNAME}.so
+extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20090626/${LIBNAME}.so
 
 isInstall=`cat $DIR/php/php$VERSION/etc/php.ini|grep '${LIBNAME}.so'`
 if [ "${isInstall}" != "" ]; then
@@ -40,12 +40,11 @@ if [ ! -f "$extFile" ]; then
 
 	cd $php_lib/${LIBNAME}-${LIBV}
 
-	PATH=$PATH:$DIR/cmd/ImageMagick
 	export $PATH
 	$DIR/php/php$VERSION/bin/phpize
 	./configure \
 	--with-php-config=$DIR/php/php$VERSION/bin/php-config \
-	--with-imagick=/usr/local/Cellar/imagemagick/7.0.8-39 && \
+	--with-curl=/usr/local/opt/curl && \
 	make && make install
 fi
 

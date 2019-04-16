@@ -21,7 +21,7 @@ if [ ! -d $MDIR/source/memcached/memcached-${VERSION} ];then
 	cd $MDIR/source/memcached && tar -zxvf $MDIR/source/memcached/memcached-${VERSION}.tar.gz
 fi
 
-if [ ! -f $DIR/memcached ]; then
+if [ ! -d $DIR/memcached ]; then
 
 cd $MDIR/source/memcached/memcached-${VERSION}
 ./configure --prefix=$DIR/memcached \

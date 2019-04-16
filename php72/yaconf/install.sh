@@ -44,8 +44,7 @@ if [ ! -f "$extFile" ]; then
 	export $PATH
 	$DIR/php/php$VERSION/bin/phpize
 	./configure \
-	--with-php-config=$DIR/php/php$VERSION/bin/php-config \
-	--with-imagick=/usr/local/Cellar/imagemagick/7.0.8-39 && \
+	--with-php-config=$DIR/php/php$VERSION/bin/php-config && \
 	make && make install
 fi
 

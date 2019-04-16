@@ -18,27 +18,25 @@ if [ ! -f $MDIR/source/mongodb/mongodb-osx-ssl-x86_64-${VERSION}.tar.gz ];then
 	wget -O $MDIR/source/mongodb/mongodb-osx-ssl-x86_64-${VERSION}.tar.gz http://fastdl.mongodb.org/osx/mongodb-osx-ssl-x86_64-${VERSION}.tgz
 fi
 
-if [ ! -d $MDIR/source/mongodb/mongodb-osx-ssl-x86_64-${VERSION} ];then
+if [ ! -d $MDIR/source/mongodb/mongodb-osx-x86_64-${VERSION} ];then
 	cd $MDIR/source/mongodb && tar zxvf $MDIR/source/mongodb/mongodb-osx-ssl-x86_64-${VERSION}.tar.gz
 fi
 
-
-cd $MDIR/source/mongodb/mongodb-osx-x86_64-${VERSION}
-
 if [ ! -d $DIR/mongodb ];then
+
+	cd $MDIR/source/mongodb/mongodb-osx-x86_64-${VERSION}
+
 	mkdir -p $DIR/mongodb
 	cp -r $MDIR/source/mongodb/mongodb-osx-x86_64-${VERSION}/ $DIR/mongodb/
 	mkdir -p $DIR/mongodb/data
 	mkdir -p $DIR/mongodb/logs
-fi
 
+	if [ ! -f $DIR/mongodb/mongodb.conf ];then
+		cp $MDIR/bin/reinstall/tpl/mongodb/mongodb.conf $DIR/mongodb/
 
-
-if [ ! -f $DIR/mongodb/mongodb.conf ];then
-	cp $MDIR/bin/reinstall/tpl/mongodb/mongodb.conf $DIR/mongodb/
-
-	sed -i '_bak' "s#{PATH}#${DIR}#g" $DIR/mongodb/mongodb.conf
-	rm -rf $DIR/mongodb/mongodb.conf_bak
+		sed -i '_bak' "s#{PATH}#${DIR}#g" $DIR/mongodb/mongodb.conf
+		rm -rf $DIR/mongodb/mongodb.conf_bak
+	fi
 fi
 
 echo "install mongodb end"

@@ -9,13 +9,12 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
-LIBNAME=mongodb
-LIBV=1.5.3
-
+LIBNAME=solr
+LIBV=2.4.0
 
 echo "install $LIBNAME start"
 
-extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20151012/${LIBNAME}.so
+extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20100525/${LIBNAME}.so
 
 isInstall=`cat $DIR/php/php$VERSION/etc/php.ini|grep '${LIBNAME}.so'`
 if [ "${isInstall}" != "" ]; then
@@ -41,8 +40,11 @@ if [ ! -f "$extFile" ]; then
 
 	cd $php_lib/${LIBNAME}-${LIBV}
 
+	export $PATH
 	$DIR/php/php$VERSION/bin/phpize
-	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config && \
+	./configure \
+	--with-php-config=$DIR/php/php$VERSION/bin/php-config \
+	--with-curl=/usr/local/opt/curl && \
 	make && make install
 fi
 

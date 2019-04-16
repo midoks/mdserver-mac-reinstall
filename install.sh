@@ -30,6 +30,6 @@ cd $DIR/cmd/memcached && sh install.sh
 # memcached start #
 
 # php start #
-sh install_all_php.sh
+cd $DIR && sh install_all_php.sh
 # php end #
 
