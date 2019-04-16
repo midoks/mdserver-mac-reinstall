@@ -43,7 +43,7 @@ if [ ! -f "$extFile" ]; then
 
 	$DIR/php/php$VERSION/bin/phpize
 	echo "$DIR/php/php$VERSION/bin/phpize"
-	./configure --enable=md_xhprof --with-php-config=$DIR/php/php$VERSION/bin/php-config && \
+	./configure --enable-md_xhprof --with-php-config=$DIR/php/php$VERSION/bin/php-config && \
 	make && make install
 fi
 
