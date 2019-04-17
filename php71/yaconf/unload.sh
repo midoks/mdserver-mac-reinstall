@@ -8,7 +8,7 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
-LIBNAME=imagick
+LIBNAME=yaconf
 
 echo "unload $LIBNAME start"
 
