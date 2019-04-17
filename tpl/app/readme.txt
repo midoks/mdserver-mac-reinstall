@@ -1,7 +1,3 @@
-
-icu4c在/Applications/mdserver/bin/reinstall/cmd/icu4c.sh可重新安装
-
-
 mysql 
 用户名 root 密码 root
 
@@ -11,14 +7,8 @@ redis
 
 如果你想自己调试,可以看我的记录:
 
-目录:re2c-0.13.5
-
-cd re2c-0.13.5
-./configure && make && make install
-
 ### 安装brew工具
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
 
 brew install openssl
 brew install pkg-config
