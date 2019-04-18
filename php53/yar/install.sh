@@ -13,7 +13,7 @@ LIBNAME=yar
 LIBV='1.2.5'
 
 if [ "$VERSION" = "70" ] || [ "$VERSION" = "71" ] || [ "$VERSION" = "72" ] || [ "$VERSION" = "73" ]; then
-	LIBV='2.05'
+	LIBV='2.0.5'
 fi
 
 
