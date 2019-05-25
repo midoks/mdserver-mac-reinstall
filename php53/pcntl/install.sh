@@ -9,21 +9,21 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
-LIBNAME=bcmath
+LIBNAME=pcntl
 LIBV='0'
 
 echo "install $LIBNAME start"
 
-extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20090626/${LIBNAME}.so
+extFile=$DIR/php/php${VERSION}/lib/php/extensions/no-debug-non-zts-20090626/${LIBNAME}.so
 
-isInstall=`cat $DIR/php/php$VERSION/etc/php.ini|grep '${LIBNAME}.so'`
+isInstall=`cat $DIR/php/php${VERSION}/etc/php.ini|grep '${LIBNAME}.so'`
 if [ "${isInstall}" != "" ]; then
 	echo "php-$VERSION 已安装${LIBNAME},请选择其它版本!"
 	return
 fi
 
 if [ ! -f "$extFile" ]; then
-	cd $MDIR/source/php/php$VERSION/ext/{LIBNAME}
+	cd $MDIR/source/php/php$VERSION/ext/${LIBNAME}
 	$DIR/php/php$VERSION/bin/phpize
 	./configure  --with-php-config=$DIR/php/php$VERSION/bin/php-config  && make && make install
 fi
