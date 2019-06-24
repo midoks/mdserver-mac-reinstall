@@ -13,7 +13,7 @@ LIBNAME=swoole
 LIBV='1.10.1'
 
 if [ "$VERSION" = "70" ] || [ "$VERSION" = "71" ] || [ "$VERSION" = "72" ] || [ "$VERSION" = "73" ]; then
-	LIBV='2.2.0'
+	LIBV='4.3.5'
 fi
 
 echo "install $LIBNAME start"
