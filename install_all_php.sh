@@ -70,7 +70,6 @@ cd $DIR/php$PHP_VER/igbinary && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/rdkafka && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/mosquitto && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/pcntl && sh install.sh $PHP_VER
-cd $DIR/php$PHP_VER/xdebug && sh install.sh $PHP_VER
 echo "php${PHP_VER} -- end"
 
 PHP_VER=55
