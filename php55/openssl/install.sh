@@ -14,6 +14,9 @@ LIBV='0'
 
 echo "install $LIBNAME start"
 
+sh $MDIR/bin/reinstall/check_common.sh $VERSION
+
+
 extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20121212/${LIBNAME}.so
 
 if [ -f  $extFile ]; then
@@ -21,7 +24,6 @@ if [ -f  $extFile ]; then
 fi
 
 
-sh $MDIR/bin/reinstall/check_common.sh
 
 if [ ! -d /usr/local/Cellar/openssl ];then
 	brew install openssl
