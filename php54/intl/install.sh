@@ -29,10 +29,6 @@ if [ "${isInstall}" != "" ]; then
 	return
 fi
 
-if [ ! -d /usr/local/Cellar/icu4c ];then
-	brew install icu4c
-fi
-
 LIB_DEPEND_DIR=`brew info icu4c | grep /usr/local/Cellar/icu4c | cut -d \  -f 1`
 
 echo "$LIBNAME-DIR:"

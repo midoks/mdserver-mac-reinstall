@@ -28,10 +28,6 @@ if [ -f  $extFile ]; then
 	rm -rf $extFile
 fi
 
-if [ ! -d /usr/local/Cellar/icu4c ];then
-	brew install icu4c
-fi
-
 LIB_DEPEND_DIR=`brew info icu4c | grep /usr/local/Cellar/icu4c | cut -d \  -f 1`
 
 echo "$LIBNAME-DIR:"
@@ -44,7 +40,7 @@ if [ ! -f "$extFile" ]; then
 	echo `pwd`
 	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \
 	--with-icu-dir=$LIB_DEPEND_DIR  && \
-	make && make install
+	make && make install && make clean
 fi
 
 echo "install $LIBNAME end"
