@@ -16,6 +16,8 @@ _LIBNAME=$(echo $LIBNAME | tr '[A-Z]' '[a-z]')
 
 echo "install $LIBNAME start"
 
+sh $MDIR/bin/reinstall/check_common.sh $VERSION
+
 extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20100525/${_LIBNAME}.so
 
 isInstall=`cat $DIR/php/php$VERSION/etc/php.ini|grep '${_LIBNAME}.so'`
