@@ -19,9 +19,9 @@ sh $MDIR/bin/reinstall/check_common.sh $VERSION
 
 extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20121212/${LIBNAME}.so
 
-if [ -f  $extFile ]; then
-	rm -rf $extFile
-fi
+# if [ -f  $extFile ]; then
+# 	rm -rf $extFile
+# fi
 
 
 

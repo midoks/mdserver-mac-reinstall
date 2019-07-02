@@ -24,6 +24,21 @@ if [ "${isInstall}" != "" ]; then
 	return
 fi
 
+
+if [ -f  $extFile ]; then
+	rm -rf $extFile
+fi
+
+
+if [ ! -d /usr/local/Cellar/openssl ];then
+	brew install openssl
+fi
+
+LIB_DEPEND_DIR=`brew info openssl | grep /usr/local/Cellar/openssl | cut -d \  -f 1`
+
+echo "$LIBNAME-DIR:"
+echo $LIB_DEPEND_DIR
+
 if [ ! -f "$extFile" ]; then
 	cd $MDIR/source/php/php$VERSION/ext/openssl
 
@@ -33,7 +48,7 @@ if [ ! -f "$extFile" ]; then
 
 	$DIR/php/php$VERSION/bin/phpize
 	./configure  --with-php-config=$DIR/php/php$VERSION/bin/php-config \
-	--with-openssl=$DIR/cmd/openssl && make && make install
+	--with-openssl=$LIB_DEPEND_DIR && make && make install
 fi
 
 echo "install $LIBNAME end"

@@ -11,7 +11,6 @@ MDIR=$(dirname "$DIR")
 VERSION=$1
 LIBNAME=mongo
 LIBV=1.5.7
-VERSION=53
 
 echo "install $LIBNAME start"
 
