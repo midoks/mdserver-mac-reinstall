@@ -26,7 +26,7 @@ fi
 
 if [ ! -f "$extFile" ]; then
 
-	php_lib=$MDIR/source/php_${VERSION}_lib
+	php_lib=$MDIR/source/php_lib
 	mkdir -p $php_lib
 
 	if [ ! -f $MDIR/source/cmd/${LIBNAME}-${LIBV}.tar.bz2 ]; then
@@ -41,7 +41,8 @@ if [ ! -f "$extFile" ]; then
 	cd $MDIR/source/cmd/scws-1.2.1/phpext
 
 	$DIR/php/php$VERSION/bin/phpize
-	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config --with-scws=$DIR/cmd/scws && make && make install
+	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config --with-scws=$DIR/cmd/scws \
+	&& make && make install && make clean
 fi
 
 echo "install $LIBNAME end"

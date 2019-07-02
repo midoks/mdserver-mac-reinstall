@@ -48,7 +48,7 @@ cd $DIR/php$PHP_VER/curl && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/bcmath && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/iconv && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/imagick && sh install.sh $PHP_VER
-cd $DIR/php$PHP_VER/intl && sh install.sh $PHP_VER
+# cd $DIR/php$PHP_VER/intl && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/memcache && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/memcached && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/redis && sh install.sh $PHP_VER

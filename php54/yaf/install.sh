@@ -30,7 +30,7 @@ fi
 
 if [ ! -f "$extFile" ]; then
 
-	php_lib=$MDIR/source/php_${VERSION}_lib
+	php_lib=$MDIR/source/php_lib
 	mkdir -p $php_lib
 
 	if [ ! -f $php_lib/${LIBNAME}-${LIBV}.tgz ]; then
@@ -49,7 +49,7 @@ if [ ! -f "$extFile" ]; then
 	$DIR/php/php$VERSION/bin/phpize
 	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \
 	 --enable-vld && \
-	make && make install
+	make && make install && make clean
 fi
 
 echo "install $LIBNAME end"

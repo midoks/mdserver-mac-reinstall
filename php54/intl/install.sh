@@ -45,7 +45,7 @@ if [ ! -f "$extFile" ]; then
 	echo `pwd`
 	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \
 	--with-icu-dir=$LIB_DEPEND_DIR  && \
-	make && make install
+	make && make install && make clean
 fi
 
 echo "install $LIBNAME end"
