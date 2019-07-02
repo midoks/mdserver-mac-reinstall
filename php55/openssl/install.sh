@@ -45,6 +45,12 @@ if [ "${isInstall}" != "" ]; then
 	return
 fi
 
+if [ ! -f $MDIR/source/php/php$VERSION ]; then
+	echo "缺少php$VERSION源码,正在安装..."
+	sh $MDIR/bin/reinstall/php$VERSION/install.sh
+fi
+
+
 if [ ! -f "$extFile" ]; then
 	cd $MDIR/source/php/php$VERSION/ext/openssl
 
