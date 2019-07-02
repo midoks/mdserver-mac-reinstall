@@ -21,18 +21,13 @@ if [ -f  $extFile ]; then
 fi
 
 
-CHECK_BREW=`which brew`
-if [  "$CHECK_BREW" == "" ];then
-	echo "缺少brew命令"
-	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-fi
+sh $MDIR/bin/reinstall/check_common.sh
 
 if [ ! -d /usr/local/Cellar/openssl ];then
 	brew install openssl
 fi
 
 LIB_DEPEND_DIR=`brew info openssl | grep /usr/local/Cellar/openssl | cut -d \  -f 1`
-
 
 echo "$LIBNAME-DIR:"
 echo $LIB_DEPEND_DIR
@@ -43,11 +38,6 @@ isInstall=`cat $DIR/php/php$VERSION/etc/php.ini|grep '${LIBNAME}.so'`
 if [ "${isInstall}" != "" ]; then
 	echo "php-$VERSION 已安装${LIBNAME},请选择其它版本!"
 	return
-fi
-
-if [ ! -f $MDIR/source/php/php$VERSION ]; then
-	echo "缺少php$VERSION源码,正在安装..."
-	sh $MDIR/bin/reinstall/php$VERSION/install.sh
 fi
 
 
