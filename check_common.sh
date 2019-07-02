@@ -10,6 +10,10 @@ VERSION=$1
 
 sh $MDIR/bin/reinstall/cmd/brew/install.sh
 
+if [ ! -d /usr/local/Cellar/openssl ];then
+	brew install openssl
+fi
+
 if [ ! -d $MDIR/source/php/php$VERSION ]; then
 	echo "缺少php$VERSION源码,正在安装..."
 	sh $MDIR/bin/reinstall/php$VERSION/install.sh
