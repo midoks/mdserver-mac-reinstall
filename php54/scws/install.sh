@@ -28,6 +28,7 @@ if [ ! -f "$extFile" ]; then
 
 	php_lib=$MDIR/source/php_lib
 	mkdir -p $php_lib
+	mkdir -p $MDIR/source/cmd
 
 	if [ ! -f $MDIR/source/cmd/${LIBNAME}-${LIBV}.tar.bz2 ]; then
 		wget -O $MDIR/source/cmd/${LIBNAME}-${LIBV}.tar.bz2 http://www.xunsearch.com/scws/down/${LIBNAME}-${LIBV}.tar.bz2
