@@ -30,6 +30,10 @@ if [ ! -d /usr/local/Cellar/libxml2 ];then
 	brew install libxml2
 fi
 
+if [ ! -d /usr/local/Cellar/bison ];then
+	brew install bison
+fi
+
 
 
 if [ ! -d $MDIR/source/php/php$VERSION ]; then
