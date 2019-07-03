@@ -28,7 +28,14 @@ if [ "${isInstall}" != "" ]; then
 	return
 fi
 
-LIB_DEPEND_DIR=`brew info icu4c | grep /usr/local/Cellar/icu4c | cut -d \  -f 1`
+if [ -f  $extFile ]; then
+	rm -rf $extFile
+fi
+
+LIB_DEPEND_DIR=`brew info icu4c | grep /usr/local/Cellar/icu4c | cut -d \  -f 1 | awk 'END {print}'`
+
+echo "$LIBNAME-DIR:"
+echo $LIB_DEPEND_DIR
 
 if [ ! -f "$extFile" ]; then
 
