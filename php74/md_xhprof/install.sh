@@ -9,14 +9,15 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
-LIBNAME=xdebug
-LIBV=2.7.2
+LIBNAME=md_xhprof
+LIBV='0.1.0'
+
 
 echo "install $LIBNAME start"
 
 sh $MDIR/bin/reinstall/check_common.sh $VERSION
 
-extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20180731/${LIBNAME}.so
+extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20190529/${LIBNAME}.so
 
 isInstall=`cat $DIR/php/php$VERSION/etc/php.ini|grep '${LIBNAME}.so'`
 if [ "${isInstall}" != "" ]; then
@@ -29,21 +30,23 @@ if [ ! -f "$extFile" ]; then
 	php_lib=$MDIR/source/php_lib
 	mkdir -p $php_lib
 
-	if [ ! -f $php_lib/${LIBNAME}-${LIBV}.tgz ]; then
-		wget -O $php_lib/${LIBNAME}-${LIBV}.tgz http://pecl.php.net/get/${LIBNAME}-${LIBV}.tgz
+	if [ ! -f $php_lib/${LIBNAME}-${LIBV}.tar.gz ]; then
+		wget -O $php_lib/${LIBNAME}-${LIBV}.tar.gz https://github.com/midoks/md_xhprof/archive/${LIBV}.tar.gz
 		
 	fi
 	cd $php_lib/${LIBNAME}-${LIBV}
 
 	if [ ! -d $php_lib/${LIBNAME}-${LIBV} ]; then
 		cd $php_lib
-		tar xvf ${LIBNAME}-${LIBV}.tgz
+		tar xvf ${LIBNAME}-${LIBV}.tar.gz
 	fi
 
-	cd $php_lib/${LIBNAME}-${LIBV}
+	cd $php_lib/${LIBNAME}-${LIBV}/src
 
 	$DIR/php/php$VERSION/bin/phpize
-	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config && make && make install && make clean
+	echo "$DIR/php/php$VERSION/bin/phpize"
+	./configure --enable-md_xhprof --with-php-config=$DIR/php/php$VERSION/bin/php-config && \
+	make && make install && make clean
 fi
 
 echo "install $LIBNAME end"

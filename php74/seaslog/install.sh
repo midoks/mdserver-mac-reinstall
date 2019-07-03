@@ -9,18 +9,20 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
-LIBNAME=xdebug
-LIBV=2.7.2
+LIBNAME=SeasLog
+LIBV=2.0.2
+
+_LIBNAME=$(echo $LIBNAME | tr '[A-Z]' '[a-z]')
 
 echo "install $LIBNAME start"
 
 sh $MDIR/bin/reinstall/check_common.sh $VERSION
 
-extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20180731/${LIBNAME}.so
+extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20190529/${_LIBNAME}.so
 
-isInstall=`cat $DIR/php/php$VERSION/etc/php.ini|grep '${LIBNAME}.so'`
+isInstall=`cat $DIR/php/php$VERSION/etc/php.ini|grep '${_LIBNAME}.so'`
 if [ "${isInstall}" != "" ]; then
-	echo "php-$VERSION 已安装${LIBNAME},请选择其它版本!"
+	echo "php-$VERSION 已安装${_LIBNAME},请选择其它版本!"
 	return
 fi
 
@@ -43,7 +45,8 @@ if [ ! -f "$extFile" ]; then
 	cd $php_lib/${LIBNAME}-${LIBV}
 
 	$DIR/php/php$VERSION/bin/phpize
-	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config && make && make install && make clean
+	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config && \
+	make && make install && make clean
 fi
 
 echo "install $LIBNAME end"
