@@ -26,6 +26,12 @@ if [ ! -d /usr/local/Cellar/curl ];then
 	brew install curl
 fi
 
+if [ ! -d /usr/local/Cellar/libxml2 ];then
+	brew install libxml2
+fi
+
+
+
 if [ ! -d $MDIR/source/php/php$VERSION ]; then
 	echo "缺少php$VERSION源码,正在安装..."
 	sh $MDIR/bin/reinstall/php$VERSION/install.sh

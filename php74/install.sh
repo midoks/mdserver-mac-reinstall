@@ -46,6 +46,8 @@ fi
 
 export PATH="/usr/local/opt/bison/bin:$PATH"
 export LDFLAGS="-L/usr/local/opt/bison/lib"
+export PKG_CONFIG_PATH="/usr/local/opt/libxml2/lib/pkgconfig"
+export LDFLAGS="-L/usr/local/opt/libxml2/lib"
 
 ./configure --prefix=$DIR/php/php${PHP_M_VER}/ \
 --exec-prefix=$DIR/php/php${PHP_M_VER}/ \
@@ -59,6 +61,7 @@ export LDFLAGS="-L/usr/local/opt/bison/lib"
 --without-iconv \
 --enable-mbstring \
 --enable-opcache \
+--enable-simplexml \
 --enable-ftp \
 --enable-soap \
 --enable-sockets \
@@ -72,7 +75,7 @@ export LDFLAGS="-L/usr/local/opt/bison/lib"
 #--enable-debug 
 # --with-libzip=$DIR/cmd/libzip \
 # --enable-zip \
-# --enable-simplexml \
+
 
 make && make install
 
