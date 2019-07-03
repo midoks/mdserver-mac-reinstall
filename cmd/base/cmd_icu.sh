@@ -13,8 +13,8 @@ mkdir -p $MDIR/source/cmd
 echo 'icu4c start'
 
 
-if [ ! -f $MDIR/source/cmd/icu4c-4_2_1-src.tgz ];then
-	wget -O $MDIR/source/cmd/icu4c-4_2_1-src.tgz http://download.icu-project.org/files/icu4c/4.2.1/icu4c-4_2_1-src.tgz
+if [ ! -f $MDIR/source/cmd/icu4c-54_2-src.tgz ];then
+	wget -O $MDIR/source/cmd/icu4c-54_2-src.tgz https://github.com/unicode-org/icu/releases/download/release-54-2/icu4c-54_2-src.tgz
 fi
 
 if [ ! -d $MDIR/source/cmd/icu ];then

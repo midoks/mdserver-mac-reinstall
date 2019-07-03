@@ -19,8 +19,8 @@ fi
 sh $B_DIR/cmd_libevent.sh
 sh $B_DIR/cmd_libmemcached.sh
 sh $B_DIR/cmd_zlib.sh
-sh $B_DIR/cmd_openssl.sh
-sh $B_DIR/cmd_curl.sh
+# sh $B_DIR/cmd_openssl.sh
+# sh $B_DIR/cmd_curl.sh
 sh $B_DIR/cmd_pcre.sh
 sh $B_DIR/cmd_gettext.sh
 sh $B_DIR/cmd_libiconv.sh
