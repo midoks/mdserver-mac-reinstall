@@ -22,9 +22,6 @@ sh $MDIR/bin/reinstall/check_common.sh $VERSION
 
 extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20180731/${LIBNAME}.so
 
-if [ -f  $extFile ]; then
-	rm -rf $extFile
-fi
 
 
 isInstall=`cat $DIR/php/php$VERSION/etc/php.ini|grep '${LIBNAME}.so'`
@@ -33,7 +30,15 @@ if [ "${isInstall}" != "" ]; then
 	return
 fi
 
+if [ -f  $extFile ]; then
+	rm -rf $extFile
+fi
+
+
 LIB_DEPEND_DIR=`brew info openssl | grep /usr/local/Cellar/openssl | cut -d \  -f 1`
+
+echo "$LIBNAME-DIR:"
+echo $LIB_DEPEND_DIR
 
 if [ ! -f "$extFile" ]; then
 
