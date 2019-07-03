@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=mongo
-LIBV=1.5.7
+LIBV=1.6.16
 
 echo "install $LIBNAME start"
 
@@ -23,6 +23,15 @@ if [ "${isInstall}" != "" ]; then
 	echo "php-$VERSION 已安装${LIBNAME},请选择其它版本!"
 	return
 fi
+
+if [ -f  $extFile ]; then
+	rm -rf $extFile
+fi
+
+LIB_DEPEND_DIR=`brew info openssl | grep /usr/local/Cellar/openssl | cut -d \  -f 1`
+
+echo "$LIBNAME-DIR:"
+echo $LIB_DEPEND_DIR
 
 if [ ! -f "$extFile" ]; then
 
@@ -42,8 +51,10 @@ if [ ! -f "$extFile" ]; then
 
 	cd $php_lib/${LIBNAME}-${LIBV}
 
+	sed -i '_bak' "s#-mmacosx-version-min=10.5##g" $php_lib/${LIBNAME}-${LIBV}/config.m4
+
 	$DIR/php/php$VERSION/bin/phpize
-	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config && \
+	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config --with-openssl-dir=$LIB_DEPEND_DIR && \
 	make && make install && make clean
 fi
 

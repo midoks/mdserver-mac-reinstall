@@ -34,6 +34,7 @@ LIB_DEPEND_DIR=`brew info openssl | grep /usr/local/Cellar/openssl | cut -d \  -
 echo "$LIBNAME-DIR:"
 echo $LIB_DEPEND_DIR
 
+export PATH="/usr/local/opt/openssl/bin:$PATH"
 export PKG_CONFIG_PATH="/usr/local/opt/openssl/lib/pkgconfig"
 
 if [ ! -f "$extFile" ]; then
