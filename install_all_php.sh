@@ -276,7 +276,6 @@ cd $DIR/php$PHP_VER/imagick && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/intl && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/mongodb && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/mcrypt && sh install.sh $PHP_VER
-cd $DIR/php$PHP_VER/msgpack && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/gettext && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/md_xhprof && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/openssl && sh install.sh $PHP_VER
