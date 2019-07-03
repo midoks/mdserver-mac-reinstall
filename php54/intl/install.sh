@@ -22,17 +22,11 @@ if [ -f  $extFile ]; then
 	rm -rf $extFile
 fi
 
-
 isInstall=`cat $DIR/php/php$VERSION/etc/php.ini|grep '${LIBNAME}.so'`
 if [ "${isInstall}" != "" ]; then
 	echo "php-$VERSION 已安装${LIBNAME},请选择其它版本!"
 	return
 fi
-
-LIB_DEPEND_DIR=`brew info icu4c | grep /usr/local/Cellar/icu4c | cut -d \  -f 1`
-
-echo "$LIBNAME-DIR:"
-echo $LIB_DEPEND_DIR
 
 if [ ! -f "$extFile" ]; then
 
@@ -40,7 +34,7 @@ if [ ! -f "$extFile" ]; then
 	$DIR/php/php$VERSION/bin/phpize
 	echo `pwd`
 	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \
-	--with-icu-dir=$LIB_DEPEND_DIR  && \
+	--with-icu-dir=$DIR/cmd/icu  && \
 	make && make install && make clean
 fi
 

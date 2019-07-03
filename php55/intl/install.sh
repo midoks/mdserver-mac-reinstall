@@ -24,15 +24,13 @@ if [ "${isInstall}" != "" ]; then
 	return
 fi
 
-LIB_DEPEND_DIR=`brew info icu4c | grep /usr/local/Cellar/icu4c | cut -d \  -f 1`
-
 if [ ! -f "$extFile" ]; then
 
 	cd $MDIR/source/php/php${VERSION}/ext/intl
 	$DIR/php/php$VERSION/bin/phpize
 	echo `pwd`
 	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \
-	--with-icu-dir=$LIB_DEPEND_DIR  && \
+	--with-icu-dir=$DIR/cmd/icu  && \
 	make && make install && make clean
 fi
 
