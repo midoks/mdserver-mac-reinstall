@@ -18,6 +18,10 @@ if [ ! -d /usr/local/Cellar/icu4c ];then
 	brew install icu4c
 fi
 
+if [ ! -d /usr/local/Cellar/imagemagick ];then
+	brew install imagemagick
+fi
+
 if [ ! -d $MDIR/source/php/php$VERSION ]; then
 	echo "缺少php$VERSION源码,正在安装..."
 	sh $MDIR/bin/reinstall/php$VERSION/install.sh

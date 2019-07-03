@@ -24,6 +24,15 @@ if [ "${isInstall}" != "" ]; then
 	return
 fi
 
+if [ -f  $extFile ]; then
+	rm -rf $extFile
+fi
+
+LIB_DEPEND_DIR=`brew info imagemagick | grep /usr/local/Cellar/imagemagick | cut -d \  -f 1`
+
+echo "$LIBNAME-DIR:"
+echo $LIB_DEPEND_DIR
+
 if [ ! -f "$extFile" ]; then
 
 	php_lib=$MDIR/source/php_lib
@@ -47,7 +56,7 @@ if [ ! -f "$extFile" ]; then
 	$DIR/php/php$VERSION/bin/phpize
 	./configure \
 	--with-php-config=$DIR/php/php$VERSION/bin/php-config \
-	--with-imagick=/usr/local/Cellar/imagemagick/7.0.8-39 && \
+	--with-imagick=$LIB_DEPEND_DIR && \
 	make && make install && make clean
 fi
 
