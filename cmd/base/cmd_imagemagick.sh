@@ -12,7 +12,10 @@ mkdir -p $MDIR/source/cmd
 
 echo 'ImageMagick start'
 
-brew install imagemagick
+if [ ! -d /usr/local/Cellar/imagemagick ];then
+	brew install imagemagick
+fi
+
 
 # if [ ! -f $MDIR/source/cmd/ImageMagick-x86_64-apple-darwin17.7.0.tar.gz ];then
 # 	wget -O $MDIR/source/cmd/ImageMagick-x86_64-apple-darwin17.7.0.tar.gz https://imagemagick.org/download/binaries/ImageMagick-x86_64-apple-darwin17.7.0.tar.gz

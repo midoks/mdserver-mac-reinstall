@@ -11,8 +11,9 @@ MDIR=$(dirname "$DIR")
 mkdir -p $MDIR/source/cmd
 
 echo 'brew curl start'
-brew install curl
-brew upgrade curl
+if [ ! -d /usr/local/Cellar/curl ];then
+	brew install curl
+fi
 echo 'brew curl start'
 
 # echo 'curl start'
