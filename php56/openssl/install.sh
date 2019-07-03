@@ -47,7 +47,7 @@ if [ ! -f "$extFile" ]; then
 
 	$DIR/php/php$VERSION/bin/phpize
 	./configure  --with-php-config=$DIR/php/php$VERSION/bin/php-config \
-	--with-openssl=$LIB_DEPEND_DIR && make && make install
+	--with-openssl=$LIB_DEPEND_DIR && make && make install && make clean
 fi
 
 echo "install $LIBNAME end"

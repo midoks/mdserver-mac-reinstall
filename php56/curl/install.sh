@@ -28,7 +28,7 @@ if [ ! -f "$extFile" ]; then
 	cd $MDIR/source/php/php$VERSION/ext/curl
 	$DIR/php/php$VERSION/bin/phpize
 	./configure  --with-curl=/usr/local/opt/curl \
-	--with-php-config=$DIR/php/php$VERSION/bin/php-config && make && make install
+	--with-php-config=$DIR/php/php$VERSION/bin/php-config && make && make install && make clean
 fi
 
 echo "install $LIBNAME end"

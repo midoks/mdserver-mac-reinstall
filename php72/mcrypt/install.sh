@@ -48,7 +48,7 @@ if [ ! -f "$extFile" ]; then
 	./configure \
 	--with-php-config=$DIR/php/php$VERSION/bin/php-config \
 	--with-mcrypt=$DIR/cmd/libmcrypt && \
-	make && make install
+	make && make install && make clean
 fi
 
 echo "install $LIBNAME end"

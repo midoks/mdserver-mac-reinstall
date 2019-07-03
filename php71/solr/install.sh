@@ -47,7 +47,7 @@ if [ ! -f "$extFile" ]; then
 	./configure \
 	--with-php-config=$DIR/php/php$VERSION/bin/php-config \
 	--with-curl=/usr/local/opt/curl && \
-	make && make install
+	make && make install && make clean
 fi
 
 echo "install $LIBNAME end"

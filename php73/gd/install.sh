@@ -33,7 +33,7 @@ if [ ! -f "$extFile" ]; then
 	--with-png-dir=$DIR/cmd/libpng \
 	--with-freetype-dir=$DIR/cmd/freetype \
 	--with-jpeg-dir=$DIR/cmd/libjpeg && \
-	make && make install
+	make && make install  && make clean
 fi
 
 echo "install $LIBNAME end"
