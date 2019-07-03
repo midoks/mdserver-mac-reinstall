@@ -23,6 +23,7 @@ if [ "${isInstall}" != "" ]; then
 	echo "php-$VERSION 已安装${LIBNAME},请选择其它版本!"
 	return
 fi
+
 if [ -f  $extFile ]; then
 	rm -rf $extFile
 fi
