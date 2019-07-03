@@ -25,7 +25,7 @@ if [ ! -d $MDIR/source/php/php${PHP_M_VER} ]; then
 		cd $MDIR/source/php && tar -Jxf $MDIR/source/php/php-${PHP_VER}.tar.xz
 	fi
 
-	mv $MDIR/source/php/php-${PHP_VER} $MDIR/source/php/php${PHP_M_VER}
+	mv $MDIR/source/php/php-src-php-${PHP_VER} $MDIR/source/php/php${PHP_M_VER}
 	
 fi
 
@@ -36,14 +36,22 @@ PATH=$PATH:/Applications/mdserver/bin/cmd/libzip
 
 if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 
-cp /Applications/mdserver/bin/cmd/libzip/include/zip.h /usr/local/include/zipconf.h
+#cp /Applications/mdserver/bin/cmd/libzip/include/zip.h /usr/local/include/zipconf.h
+./buildconf --force
+
+if [ ! -d /usr/local/Cellar/oniguruma ];then
+	brew install oniguruma
+fi
+
+
+export PATH="/usr/local/opt/bison/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/bison/lib"
 
 ./configure --prefix=$DIR/php/php${PHP_M_VER}/ \
---exec-prefix=$DIR/php/php${PHP_M_VER} \
+--exec-prefix=$DIR/php/php${PHP_M_VER}/ \
 --with-config-file-path=$DIR/php/php${PHP_M_VER}/etc \
 --with-mysql-sock=/tmp/mysql.sock \
 --enable-mysqlnd \
---enable-embedded-mysqli \
 --with-mysqli=mysqlnd \
 --with-pdo-mysql=mysqlnd \
 --with-zlib-dir=$DIR/cmd/zlib \
@@ -52,10 +60,8 @@ cp /Applications/mdserver/bin/cmd/libzip/include/zip.h /usr/local/include/zipcon
 --enable-mbstring \
 --enable-opcache \
 --enable-ftp \
---enable-wddx \
 --enable-soap \
 --enable-sockets \
---enable-simplexml \
 --enable-posix \
 --enable-sysvmsg \
 --enable-sysvsem \
@@ -66,13 +72,14 @@ cp /Applications/mdserver/bin/cmd/libzip/include/zip.h /usr/local/include/zipcon
 #--enable-debug 
 # --with-libzip=$DIR/cmd/libzip \
 # --enable-zip \
+# --enable-simplexml \
 
 make && make install
 
 fi
 
 
-if [ ! -f $DIR/php/php${PHP_M_VER}/php-fpm ];then
+if [ ! -f $DIR/php/php${PHP_M_VER}/php-fpm ]; then
 	cp $DIR/reinstall/tpl/php/php-fpm $DIR/php/php${PHP_M_VER}/
 fi
 
@@ -85,8 +92,13 @@ fi
 USER=$(who | sed -n "2,1p" |awk '{print $1}')
 SDIR=$(dirname "$DIR")
 
+if [ ! -d "$DIR/php/php${PHP_M_VER}" ]; then
+	echo "安装失败"
+	exit 1
+fi
+
 if [ ! -f "$DIR/php/php${PHP_M_VER}/php-fpm" ]; then
-	cp $DIR/reinstall/tpl/php/php-fpm $DIR/php/php${PHP_M_VER}	
+	cp $DIR/reinstall/tpl/php/php-fpm $DIR/php/php${PHP_M_VER}
 fi
 
 sed -i '_bak' "s#{VERSION}#${PHP_M_VER}#g" $DIR/php/php${PHP_M_VER}/php-fpm

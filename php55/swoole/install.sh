@@ -29,6 +29,11 @@ if [ "${isInstall}" != "" ]; then
 	return
 fi
 
+
+if [ -f  $extFile ]; then
+	rm -rf $extFile
+fi
+
 LIB_DEPEND_DIR=`brew info openssl | grep /usr/local/Cellar/openssl | cut -d \  -f 1`
 
 if [ ! -f "$extFile" ]; then

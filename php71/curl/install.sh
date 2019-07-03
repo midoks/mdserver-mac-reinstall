@@ -24,10 +24,19 @@ if [ "${isInstall}" != "" ]; then
 	return
 fi
 
+if [ -f  $extFile ]; then
+	rm -rf $extFile
+fi
+
+LIB_DEPEND_DIR=`brew info curl | grep /usr/local/Cellar/curl | cut -d \  -f 1`
+
+echo "$LIBNAME-DIR:"
+echo $LIB_DEPEND_DIR
+
 if [ ! -f "$extFile" ]; then
 	cd $MDIR/source/php/php$VERSION/ext/curl
 	$DIR/php/php$VERSION/bin/phpize
-	./configure  --with-curl=/usr/local/opt/curl --with-php-config=$DIR/php/php$VERSION/bin/php-config && \
+	./configure  --with-curl=$LIB_DEPEND_DIR --with-php-config=$DIR/php/php$VERSION/bin/php-config && \
 	make && make install && make clean
 fi
 
