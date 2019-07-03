@@ -13,3 +13,8 @@ if [  "$CHECK_BREW" == "" ];then
 	echo "缺少brew命令,正在安装..."
 	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
+
+
+if [ ! -d /usr/local/Cellar/wget ];then
+	brew install wget
+fi
