@@ -10,12 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=igbinary
-LIBV=1.1.1
-
-if [ "$VERSION" = "70" ] || [ "$VERSION" = "71" ] || [ "$VERSION" = "72" ] || [ "$VERSION" = "73" ]; then
-	LIBV=3.0.1
-fi
-
+LIBV=3.0.1
 
 echo "install $LIBNAME start"
 

@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=mongodb
-LIBV=1.5.3
+LIBV=1.5.5
 
 
 echo "install $LIBNAME start"
@@ -24,6 +24,7 @@ if [ "${isInstall}" != "" ]; then
 	echo "php-$VERSION 已安装${LIBNAME},请选择其它版本!"
 	return
 fi
+
 
 if [ ! -f "$extFile" ]; then
 
