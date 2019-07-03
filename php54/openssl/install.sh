@@ -25,8 +25,6 @@ if [ "${isInstall}" != "" ]; then
 	return
 fi
 
-
-
 if [ -f  $extFile ]; then
 	rm -rf $extFile
 fi
