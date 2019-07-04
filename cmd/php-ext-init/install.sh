@@ -10,7 +10,7 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 
-mkdir -p $MDIR/source/gearman
+mkdir -p $MDIR/source
 
 PHP_VER=54
 echo "php${PHP_VER}  -- init -- start"
