@@ -12,7 +12,18 @@ VERSION=$1
 LIBNAME=mongo
 LIBV=1.6.16
 
+
+#check
+echo "extension=$LIBNAME.so" > /tmp/t_php_conf.ini
+FIND_IS_INSTALL=$($DIR/php/php$VERSION/bin/php -c /tmp/t_php_conf.ini -r 'phpinfo();' |grep $LIBNAME | grep Reason)
+
 echo "install $LIBNAME start"
+
+if [ "$FIND_IS_INSTALL" == "" ]; then
+	echo "install $LIBNAME end"
+	exit 0
+fi
+rm -rf /tmp/t_php_conf.ini
 
 sh $MDIR/bin/reinstall/check_common.sh $VERSION
 

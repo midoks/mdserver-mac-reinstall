@@ -23,9 +23,8 @@ fi
 if [ ! -d $MDIR/source/php/php${PHP_M_VER} ]; then
 	if [ ! -d $MDIR/source/php/php-${PHP_VER} ];then
 		cd $MDIR/source/php && tar -Jxf $MDIR/source/php/php-${PHP_VER}.tar.xz
+		mv $MDIR/source/php/php-${PHP_VER} $MDIR/source/php/php${PHP_M_VER}
 	fi
-	mv $MDIR/source/php/php-${PHP_VER} $MDIR/source/php/php${PHP_M_VER}
-	
 fi
 cd $MDIR/source/php/php${PHP_M_VER}
 

@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=mongodb
-LIBV=1.5.3
+LIBV=1.5.5
 
 
 echo "install $LIBNAME start"
