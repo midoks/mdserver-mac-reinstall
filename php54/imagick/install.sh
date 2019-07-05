@@ -13,16 +13,23 @@ LIBNAME=imagick
 LIBV=3.4.3
 
 #check
+echo "extension=$LIBNAME.so"
 echo "extension=$LIBNAME.so" > /tmp/t_php_conf.ini
-FIND_IS_INSTALL=$($DIR/php/php$VERSION/bin/php -c /tmp/t_php_conf.ini -r 'phpinfo();' |grep $LIBNAME | grep Reason)
+echo "$DIR/php/php$VERSION/bin/php -c /tmp/t_php_conf.ini -r 'phpinfo();' |grep $LIBNAME | grep 'PHP Warning'"
+FIND_IS_INSTALL=$($DIR/php/php$VERSION/bin/php -c /tmp/t_php_conf.ini -r "phpinfo();" | grep "$LIBNAME" | grep 'PHP Warning ' 2>&1)
+
+echo $?
+echo "dd:$FIND_IS_INSTALL"
 
 echo "install $LIBNAME start"
 
 if [ "$FIND_IS_INSTALL" == "" ]; then
 	echo "install $LIBNAME end"
-	rm -rf /tmp/t_php_conf.ini
+	#rm -rf /tmp/t_php_conf.ini
 	exit 0
 fi
+
+exit 0
 
 sh $MDIR/bin/reinstall/check_common.sh $VERSION
 
@@ -60,6 +67,7 @@ if [ ! -f "$extFile" ]; then
 	fi
 
 	cd $php_lib/${LIBNAME}-${LIBV}
+	make clean
 
 	$DIR/php/php$VERSION/bin/phpize
 	./configure \

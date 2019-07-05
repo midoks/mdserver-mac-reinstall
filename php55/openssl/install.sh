@@ -12,29 +12,33 @@ VERSION=$1
 LIBNAME=openssl
 LIBV='0'
 
+#check
+echo "extension=$LIBNAME.so" > /tmp/t_php_conf.ini
+FIND_IS_INSTALL=$($DIR/php/php$VERSION/bin/php -c /tmp/t_php_conf.ini -r 'phpinfo();' |grep $LIBNAME | grep Reason)
+
 echo "install $LIBNAME start"
+
+if [ "$FIND_IS_INSTALL" == "" ]; then
+	echo "install $LIBNAME end"
+	rm -rf /tmp/t_php_conf.ini
+	exit 0
+fi
+
 
 sh $MDIR/bin/reinstall/check_common.sh $VERSION
 
 
 extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20121212/${LIBNAME}.so
 
-# if [ -f  $extFile ]; then
-# 	rm -rf $extFile
-# fi
-
-
-
-if [ ! -d /usr/local/Cellar/openssl ];then
-	brew install openssl
+if [ -f  $extFile ]; then
+	rm -rf $extFile
 fi
+
 
 LIB_DEPEND_DIR=`brew info openssl | grep /usr/local/Cellar/openssl | cut -d \  -f 1`
 
 echo "$LIBNAME-DIR:"
 echo $LIB_DEPEND_DIR
-
-
 
 isInstall=`cat $DIR/php/php$VERSION/etc/php.ini|grep '${LIBNAME}.so'`
 if [ "${isInstall}" != "" ]; then

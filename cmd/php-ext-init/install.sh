@@ -13,6 +13,7 @@ sh $MDIR/bin/reinstall/cmd/base/cmd_icu.sh
 
 
 mkdir -p $MDIR/source
+mkdir -p $MDIR/bin/logs/reinstall
 
 PHP_VER=54
 echo "php${PHP_VER}  -- init -- start"

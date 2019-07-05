@@ -22,9 +22,10 @@ echo "install $LIBNAME start"
 
 if [ "$FIND_IS_INSTALL" == "" ]; then
 	echo "install $LIBNAME end"
+	rm -rf /tmp/t_php_conf.ini
 	exit 0
 fi
-rm -rf /tmp/t_php_conf.ini
+
 
 sh $MDIR/bin/reinstall/check_common.sh $VERSION
 
