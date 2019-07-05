@@ -12,6 +12,9 @@ if [ ! -d /usr/local/Cellar/opencv ];then
 	brew install opencv
 fi
 
+export LDFLAGS="-L/usr/local/opt/openblas/lib"
+export CPPFLAGS="-I/usr/local/opt/openblas/include"
+export PKG_CONFIG_PATH="/usr/local/opt/openblas/lib/pkgconfig"
 
 VERSION=$1
 LIBNAME=opencv
