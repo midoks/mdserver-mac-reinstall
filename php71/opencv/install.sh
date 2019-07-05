@@ -16,6 +16,10 @@ export LDFLAGS="-L/usr/local/opt/openblas/lib"
 export CPPFLAGS="-I/usr/local/opt/openblas/include"
 export PKG_CONFIG_PATH="/usr/local/opt/openblas/lib/pkgconfig"
 
+export LDFLAGS="-L/usr/local/opt/opencv@2/lib"
+export CPPFLAGS="-I/usr/local/opt/opencv@2/include"
+export PKG_CONFIG_PATH="/usr/local/opt/opencv@2/lib/pkgconfig"
+
 VERSION=$1
 LIBNAME=opencv
 LIBV=master
