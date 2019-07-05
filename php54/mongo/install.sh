@@ -15,6 +15,7 @@ LIBV=1.6.16
 
 #check
 echo "extension=$LIBNAME.so" > /tmp/t_php_conf.ini
+echo "$DIR/php/php$VERSION/bin/php -c /tmp/t_php_conf.ini -r 'phpinfo();' |grep $LIBNAME | grep Reason"
 FIND_IS_INSTALL=$($DIR/php/php$VERSION/bin/php -c /tmp/t_php_conf.ini -r 'phpinfo();' |grep $LIBNAME | grep Reason)
 
 echo "install $LIBNAME start"
