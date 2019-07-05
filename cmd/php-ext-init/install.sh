@@ -8,6 +8,10 @@ DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
+
+sh $MDIR/bin/reinstall/cmd/base/cmd_icu.sh
+
+
 mkdir -p $MDIR/source
 sh $MDIR/bin/reinstall/check_common.sh
 
