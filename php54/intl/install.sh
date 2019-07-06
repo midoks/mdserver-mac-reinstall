@@ -12,6 +12,15 @@ VERSION=$1
 LIBNAME=intl
 LIBV=0
 
+# export PATH="$MDIR/bin/cmd/icu/bin:$PATH"
+# export PATH="$MDIR/bin/cmd/icu/sbin:$PATH"
+# export PATH="$MDIR/bin/cmd/icu/lib:$PATH"
+# export PKG_CONFIG_PATH="$MDIR/bin/cmd/icu/lib/pkgconfig"
+# export LDFLAGS="-L$MDIR/bin/cmd/icu/lib"
+# echo $LDFLAGS
+# echo $PATH
+# export LDFLAGS="-L/usr/local/opt/icu4c/lib"
+# export LD_LIBRARY_PATH=/Applications/mdserver/bin/cmd/icu/lib
 
 #check
 TMP_PHP_INI=/tmp/t_tmp_php.ini
@@ -29,7 +38,6 @@ if [ "$FIND_IS_INSTALL" != "" ]; then
 	echo "install $LIBNAME end"	
 	exit 0
 fi
-
 
 
 sh $MDIR/bin/reinstall/check_common.sh $VERSION
@@ -51,8 +59,7 @@ if [ ! -f "$extFile" ]; then
 	cd $MDIR/source/php/php${VERSION}/ext/intl
 	$DIR/php/php$VERSION/bin/phpize
 	echo `pwd`
-	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \
-	--with-icu-dir=$DIR/cmd/icu  && \
+	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config --enable-intl  && \
 	make && make install && make clean
 fi
 

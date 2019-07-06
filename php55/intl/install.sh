@@ -50,8 +50,7 @@ if [ ! -f "$extFile" ]; then
 	cd $MDIR/source/php/php${VERSION}/ext/intl
 	$DIR/php/php$VERSION/bin/phpize
 	echo `pwd`
-	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \
-	--with-icu-dir=$DIR/cmd/icu  && \
+	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config --enable-intl && \
 	make && make install && make clean
 fi
 
