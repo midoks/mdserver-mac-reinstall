@@ -14,7 +14,7 @@ mkdir -p $MDIR/source/cmd
 echo 'icu4c start'
 
 
-if [ ! -d $DIR/cmd/icu ];then
+if [ ! -d /usr/local/lib/icu/52.2 ];then
 
 	if [ ! -f $MDIR/source/cmd/icu4c-52_2-src.tgz ];then
 		wget -O $MDIR/source/cmd/icu4c-52_2-src.tgz https://github.com/unicode-org/icu/releases/download/release-52-2/icu4c-52_2-src.tgz
