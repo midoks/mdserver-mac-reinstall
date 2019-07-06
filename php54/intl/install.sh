@@ -12,23 +12,13 @@ VERSION=$1
 LIBNAME=intl
 LIBV=0
 
-# export PATH="$MDIR/bin/cmd/icu/bin:$PATH"
-# export PATH="$MDIR/bin/cmd/icu/sbin:$PATH"
-# export PATH="$MDIR/bin/cmd/icu/lib:$PATH"
-# export PKG_CONFIG_PATH="$MDIR/bin/cmd/icu/lib/pkgconfig"
-# export LDFLAGS="-L$MDIR/bin/cmd/icu/lib"
-# echo $LDFLAGS
-# echo $PATH
-# export LDFLAGS="-L/usr/local/opt/icu4c/lib"
-# export LD_LIBRARY_PATH=/Applications/mdserver/bin/cmd/icu/lib
-
 #check
 TMP_PHP_INI=/tmp/t_tmp_php.ini
 TMP_CHECK_LOG=/tmp/t_check_php.log
 
 echo "extension=$LIBNAME.so" > $TMP_PHP_INI
 $DIR/php/php$VERSION/bin/php -c $TMP_PHP_INI -r 'phpinfo();' > $TMP_CHECK_LOG
-FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "${LIBNAME}"`
+FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "${LIBNAME}.default_locale"`
 
 echo "install $LIBNAME start"
 
