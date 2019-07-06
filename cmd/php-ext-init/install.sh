@@ -15,6 +15,9 @@ sh $MDIR/bin/reinstall/cmd/base/cmd_icu.sh
 mkdir -p $MDIR/source
 mkdir -p $MDIR/bin/logs/reinstall
 
+
+echo "" > $MDIR/bin/logs/reinstall/cmd_php-ext-init_install.log
+
 PHP_VER=54
 echo "php${PHP_VER}  -- init -- start"
 cd $MDIR/bin/reinstall/php$PHP_VER/intl && sh install.sh $PHP_VER
