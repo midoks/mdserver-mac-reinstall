@@ -21,8 +21,8 @@ export CPPFLAGS="-I/usr/local/opt/opencv@2/include"
 export PKG_CONFIG_PATH="/usr/local/opt/opencv@2/lib/pkgconfig"
 
 VERSION=$1
-LIBNAME=opencv
-LIBV=master
+LIBNAME=php-opencv
+LIBV=3.3.0
 
 echo "install $LIBNAME start"
 
@@ -30,11 +30,17 @@ sh $MDIR/bin/reinstall/check_common.sh $VERSION
 
 extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20160303/${LIBNAME}.so
 
+
 isInstall=`cat $DIR/php/php$VERSION/etc/php.ini|grep '${LIBNAME}.so'`
 if [ "${isInstall}" != "" ]; then
 	echo "php-$VERSION 已安装${LIBNAME},请选择其它版本!"
 	return
 fi
+
+if [ -f  $extFile ]; then
+	rm -rf $extFile
+fi
+
 
 if [ ! -f "$extFile" ]; then
 
@@ -42,7 +48,7 @@ if [ ! -f "$extFile" ]; then
 	mkdir -p $php_lib
 
 	if [ ! -f $php_lib/${LIBNAME}-${LIBV}.tgz ]; then
-		wget -O $php_lib/${LIBNAME}-${LIBV}.tgz https://github.com/midoks/opencv/archive/master.tar.gz
+		wget -O $php_lib/${LIBNAME}-${LIBV}.tgz https://github.com/hihozhou/php-opencv/archive/3.3.0.tar.gz
 		
 	fi
 	cd $php_lib/${LIBNAME}-${LIBV}
