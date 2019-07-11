@@ -59,8 +59,6 @@ if [ ! -f "$extFile" ]; then
 
 	cd $php_lib/${LIBNAME}-${LIBV}
 
-	PATH=$PATH:$DIR/cmd/ImageMagick
-	export $PATH
 	$DIR/php/php$VERSION/bin/phpize
 	./configure \
 	--with-php-config=$DIR/php/php$VERSION/bin/php-config \
