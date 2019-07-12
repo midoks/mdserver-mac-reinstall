@@ -10,17 +10,19 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=vld
-LIBV='0.14.0'
-
-if [ "$VERSION" = "70" ] || [ "$VERSION" = "71" ] || [ "$VERSION" = "72" ] || [ "$VERSION" = "73" ]; then
-	LIBV='0.15.0'
-fi
+LIBV='0.15.0'
 
 echo "install $LIBNAME start"
 
 sh $MDIR/bin/reinstall/check_common.sh $VERSION
 
 extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20160303/${LIBNAME}.so
+
+
+if [ -f  $extFile ]; then
+	rm -rf $extFile
+fi
+
 
 isInstall=`cat $DIR/php/php$VERSION/etc/php.ini|grep '${LIBNAME}.so'`
 if [ "${isInstall}" != "" ]; then
@@ -34,10 +36,8 @@ if [ ! -f "$extFile" ]; then
 	mkdir -p $php_lib
 
 	if [ ! -f $php_lib/${LIBNAME}-${LIBV}.tgz ]; then
-		wget -O $php_lib/${LIBNAME}-${LIBV}.tgz http://pecl.php.net/get/${LIBNAME}-${LIBV}.tgz
-		
+		wget -O $php_lib/${LIBNAME}-${LIBV}.tgz http://pecl.php.net/get/${LIBNAME}-${LIBV}.tgz	
 	fi
-	cd $php_lib/${LIBNAME}-${LIBV}
 
 	if [ ! -d $php_lib/${LIBNAME}-${LIBV} ]; then
 		cd $php_lib
