@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=vld
-LIBV='0.15.0'
+LIBV=0.16.0
 
 echo "install $LIBNAME start"
 
