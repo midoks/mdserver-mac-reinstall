@@ -51,10 +51,11 @@ if [ ! -f "$extFile" ]; then
 	cd $php_lib/${LIBNAME}-${LIBV}
 
 	$DIR/php/php$VERSION/bin/phpize
+
+	echo "./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config --with-nsq --with-libevent-path=$LIB_DEPEND_DIR"
 	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \
 	--with-nsq \
-	--with-libevent-path=$LIB_DEPEND_DIR \
-	make && make install && make clean
+	--with-libevent-path=$LIB_DEPEND_DIR && make && make install && make clean
 fi
 
 echo "install $LIBNAME end"
