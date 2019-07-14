@@ -34,6 +34,10 @@ if [ ! -d /usr/local/Cellar/bison ];then
 	brew install bison
 fi
 
+if [ ! -d /usr/local/Cellar/libevent ];then
+	brew install libevent
+fi
+
 
 
 echo "PHP-VERIONS:$VERSION"
