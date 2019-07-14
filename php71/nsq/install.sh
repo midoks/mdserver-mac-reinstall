@@ -12,7 +12,6 @@ VERSION=$1
 LIBNAME=nsq
 LIBV=3.4.1
 
-
 echo "install $LIBNAME start"
 
 sh $MDIR/bin/reinstall/check_common.sh $VERSION
