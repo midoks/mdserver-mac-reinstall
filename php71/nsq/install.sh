@@ -12,6 +12,7 @@ VERSION=$1
 LIBNAME=nsq
 LIBV=3.4.1
 
+exit 0
 
 echo "install $LIBNAME start"
 
@@ -19,11 +20,22 @@ sh $MDIR/bin/reinstall/check_common.sh $VERSION
 
 extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20160303/${LIBNAME}.so
 
+if [ -f  $extFile ]; then
+	rm -rf $extFile
+fi
+
+
 isInstall=`cat $DIR/php/php$VERSION/etc/php.ini|grep '${LIBNAME}.so'`
 if [ "${isInstall}" != "" ]; then
 	echo "php-$VERSION 已安装${LIBNAME},请选择其它版本!"
 	return
 fi
+
+LIB_DEPEND_DIR=`brew info libevent | grep /usr/local/Cellar/libevent | cut -d \  -f 1 | awk 'END {print}'`
+
+echo "$LIBNAME-DIR:"
+echo $LIB_DEPEND_DIR
+exit 0
 
 if [ ! -f "$extFile" ]; then
 
@@ -34,7 +46,6 @@ if [ ! -f "$extFile" ]; then
 		wget -O $php_lib/${LIBNAME}-${LIBV}.tgz http://pecl.php.net/get/${LIBNAME}-${LIBV}.tgz
 		
 	fi
-	cd $php_lib/${LIBNAME}-${LIBV}
 
 	if [ ! -d $php_lib/${LIBNAME}-${LIBV} ]; then
 		cd $php_lib
@@ -45,6 +56,7 @@ if [ ! -f "$extFile" ]; then
 
 	$DIR/php/php$VERSION/bin/phpize
 	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \
+	--with-nsq \
 	make && make install && make clean
 fi
 
