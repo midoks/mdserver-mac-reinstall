@@ -9,22 +9,14 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
-LIBNAME=ioncube
-LIBV='0'
-PHP_VERSION=7.1
-
-
+LIBNAME=lua
+LIBV=2.0.6
 
 echo "install $LIBNAME start"
 
 sh $MDIR/bin/reinstall/check_common.sh $VERSION
 
-extDir=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20160303
-extFile=$extDir/${LIBNAME}.so
-
-if [ -f  $extFile ]; then
-	rm -rf $extFile
-fi
+extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20170718/${LIBNAME}.so
 
 isInstall=`cat $DIR/php/php$VERSION/etc/php.ini|grep '${LIBNAME}.so'`
 if [ "${isInstall}" != "" ]; then
@@ -32,25 +24,36 @@ if [ "${isInstall}" != "" ]; then
 	return
 fi
 
+if [ ! -d /usr/local/Cellar/lua ];then
+	brew install lua
+fi
+
+LIB_DEPEND_DIR=`brew info lua | grep /usr/local/Cellar/lua | cut -d \  -f 1 | awk 'END {print}'`
+
+echo "$LIBNAME-DIR:"
+echo $LIB_DEPEND_DIR
+
 if [ ! -f "$extFile" ]; then
 
 	php_lib=$MDIR/source/php_lib
 	mkdir -p $php_lib
 
-	if [ ! -f $php_lib/ioncube_loaders_dar_x86-64.tar.gz ]; then
-		wget -O $php_lib/ioncube_loaders_dar_x86-64.tar.gz http://downloads3.ioncube.com/loader_downloads/ioncube_loaders_dar_x86-64.tar.gz
+	if [ ! -f $php_lib/${LIBNAME}-${LIBV}.tgz ]; then
+		wget -O $php_lib/${LIBNAME}-${LIBV}.tgz http://pecl.php.net/get/${LIBNAME}-${LIBV}.tgz
 		
 	fi
 
-	cd $php_lib/ioncube
-
 	if [ ! -d $php_lib/${LIBNAME}-${LIBV} ]; then
 		cd $php_lib
-		tar xvf ioncube_loaders_dar_x86-64.tar.gz
+		tar xvf ${LIBNAME}-${LIBV}.tgz
 	fi
 
-	cd $php_lib/ioncube
-	cp $php_lib/ioncube/ioncube_loader_dar_${PHP_VERSION}.so $extDir/ioncube.so
+	cd $php_lib/${LIBNAME}-${LIBV}
+
+	$DIR/php/php$VERSION/bin/phpize
+	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \
+	--with-lua=$LIB_DEPEND_DIR \
+	&& make && make install && make clean
 fi
 
 echo "install $LIBNAME end"
