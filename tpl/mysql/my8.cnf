@@ -1,0 +1,38 @@
+[client]
+port		= 3308
+socket		= /tmp/mysql8.sock
+
+[mysqld]
+log-error   = mysql.log
+pid-file    = mysql.pid
+port		= 3308
+socket		= /tmp/mysql8.sock
+skip-external-locking   				#skip-locking
+key_buffer_size = 256M
+max_allowed_packet = 1M
+table_open_cache = 256
+sort_buffer_size = 1M
+read_buffer_size = 1M
+read_rnd_buffer_size = 4M
+myisam_sort_buffer_size = 64M
+thread_cache_size = 8
+query_cache_size= 16M
+thread_concurrency = 8
+lower_case_table_names = 2
+
+
+[mysqldump]
+quick
+max_allowed_packet = 16M
+
+[mysql]
+no-auto-rehash
+
+[myisamchk]
+key_buffer_size = 128M
+sort_buffer_size = 128M
+read_buffer = 2M
+write_buffer = 2M
+
+[mysqlhotcopy]
+interactive-timeout
