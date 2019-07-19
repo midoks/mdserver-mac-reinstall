@@ -3,6 +3,7 @@ port		= 3308
 socket		= /tmp/mysql8.sock
 
 [mysqld]
+#default_authentication_plugin = mysql_native_password
 log-error   = mysql8.log
 pid-file    = mysql8.pid
 port		= 3308

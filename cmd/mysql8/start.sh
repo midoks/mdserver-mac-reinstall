@@ -11,6 +11,6 @@ MDIR=$(dirname "$DIR")
 cd $DIR/mysql8
 
 
-$DIR/mysql8/bin/mysqld \
---defaults-file=$DIR/tmp/my8.cnf \
---user=mysql&
+# $DIR/mysql8/bin/mysqld \
+# --defaults-file=$DIR/tmp/my8.cnf \
+# --user=mysql&
