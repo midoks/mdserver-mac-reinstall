@@ -15,7 +15,7 @@ mkdir -p $MDIR/source/mysql
 VERSION=8.0.16
 
 
-if [ ! -f $MDIR/source/mysql/mysql-${VERSION}-osx10.11-x86_64.tar.gz ]; then
+if [ ! -f $MDIR/source/mysql/mysql-${VERSION}-osx10.14-x86_64.tar.gz ]; then
 	wget -O $MDIR/source/mysql/mysql-${VERSION}-macos10.14-x86_64.tar.gz https://cdn.mysql.com//Downloads/MySQL-8.0/mysql-${VERSION}-macos10.14-x86_64.tar.gz
 fi
 
