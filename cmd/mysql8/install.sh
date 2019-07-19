@@ -8,6 +8,8 @@ DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
+echo "" > $MDIR/bin/logs/reinstall/cmd_mysql8_install.log
+
 # https://downloads.mysql.com/archives/community/
 mkdir -p $MDIR/source/mysql
 
@@ -48,7 +50,15 @@ fi
 #mysql init pwd
 if [ ! -f $DIR/mysql8/data/mysql.log ]; then
 cd $DIR/mysql8/
+
+echo "$DIR/mysql8/bin/mysqld_safe \
+--basedir=$DIR/mysql8 \
+--datadir=$DIR/mysql8/data \
+--defaults-file=$DIR/tmp/my8.cnf \
+--user=mysql&"
 $DIR/mysql8/bin/mysqld_safe \
+--basedir=$DIR/mysql8 \
+--datadir=$DIR/mysql8/data \
 --defaults-file=$DIR/tmp/my8.cnf \
 --user=mysql&
 
