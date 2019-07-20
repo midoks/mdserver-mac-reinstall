@@ -8,5 +8,6 @@ DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
-# $DIR/mysql/bin/mysqladmin -uroot -proot shutdown
+
 ps -ef | grep mysql | grep -v grep | awk -F ' ' '{print $2}' | xargs kill
+# $DIR/mysql/bin/mysqladmin -uroot -proot shutdown

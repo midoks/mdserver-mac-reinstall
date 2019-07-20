@@ -65,20 +65,19 @@ PASSWORD=${PASSWORD%% }
 PASSWORD=${PASSWORD## }
 
 echo $PASSWORD
-
 sleep 3
 
 
-# ;
+
+
 # echo "$DIR/mysql8/bin/mysqladmin --defaults-file=$DIR/tmp/my8.cnf -u root password root"
 #$DIR/mysql8/bin/mysqladmin --defaults-file=$DIR/tmp/my8.cnf -u root password root
-echo "${DIR}/mysql8/bin/mysql --defaults-file=${DIR}/tmp/my8.cnf -uroot -p${PASSWORD} -e \"alter user user() identified by 'root'\""
-MOD_PWD=`$DIR/mysql8/bin/mysql --defaults-file=$DIR/tmp/my8.cnf -uroot -p$PASSWORD -Ne "alter user user() identified by 'root'" > /tmp/rs.txt`
+echo "${DIR}/mysql8/bin/mysql --defaults-file=${DIR}/tmp/my8.cnf -uroot -p -e \"alter user user() identified by 'root'\""
+MOD_PWD=`$DIR/mysql8/bin/mysql  --defaults-file=$DIR/tmp/my8.cnf -uroot -p -Ne "alter user user() identified by 'root'" > /tmp/rs.txt`
 echo $MOD_PWD
 
 
 sleep 3
 #$DIR/mysql8/bin/mysqladmin --defaults-file=$DIR/tmp/my8.cnf -uroot -proot shutdown
 fi
-
 
