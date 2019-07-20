@@ -10,4 +10,3 @@ MDIR=$(dirname "$DIR")
 
 
 ps -ef | grep mysql | grep -v grep | awk -F ' ' '{print $2}' | xargs kill
-# $DIR/mysql/bin/mysqladmin -uroot -proot shutdown

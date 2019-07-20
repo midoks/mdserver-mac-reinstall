@@ -10,8 +10,8 @@ MDIR=$(dirname "$DIR")
 
 cd $DIR/mysql8
 
-ps -ef | grep mysql | grep -v grep | awk -F ' ' '{print $2}' | xargs kill
+# ps -ef | grep mysql | grep -v grep | awk -F ' ' '{print $2}' | xargs kill
 
-# $DIR/mysql8/bin/mysqld \
-# --defaults-file=$DIR/tmp/my8.cnf \
-# --user=mysql&
+$DIR/mysql8/bin/mysqld \
+--defaults-file=$DIR/tmp/my8.cnf \
+--user=mysql&
