@@ -9,4 +9,6 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 
-brew services stop mosquitto
+# brew services stop mosquitto
+
+ps -ef | grep mosquitto | grep -v grep | awk -F ' ' '{print $2}' | xargs kill

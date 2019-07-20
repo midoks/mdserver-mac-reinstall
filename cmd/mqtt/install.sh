@@ -9,5 +9,10 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 echo 'install mosquitto start'
-brew install mosquitto
+
+
+if [ ! -d /usr/local/Cellar/mosquitto ];then
+	brew install mosquitto
+fi
+
 echo 'install mosquitto end'
