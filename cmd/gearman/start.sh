@@ -9,5 +9,6 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 
-# $DIR/gearman/bin/gearman --workers
-$DIR/gearman/sbin/gearmand -L 127.0.0.1 -p 4730 -u root -d
+
+echo "$DIR/gearman/sbin/gearmand -L 127.0.0.1 -p 4730 -u ${USER} -d"
+$DIR/gearman/sbin/gearmand -L 127.0.0.1 -p 4730 -u midoks -d
