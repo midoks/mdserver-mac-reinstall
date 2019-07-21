@@ -24,8 +24,13 @@ echo '' >  $MDIR/bin/logs/stop_err.log
 echo '' >  $MDIR/bin/logs/stop.log
 
 
-echo '' > $MDIR/bin/php/php53/var/log/php-fpm.log
-echo '' > $MDIR/bin/php/php53/var/log/www-slow.log
+
+if [ -f $MDIR/bin/php/php53/var/log/php-fpm.log ];then
+	echo '' > $MDIR/bin/php/php53/var/log/php-fpm.log
+	echo '' > $MDIR/bin/php/php53/var/log/www-slow.log
+fi
+
+
 echo '' > $MDIR/bin/php/php54/var/log/php-fpm.log
 echo '' > $MDIR/bin/php/php54/var/log/www-slow.log
 echo '' > $MDIR/bin/php/php55/var/log/php-fpm.log
@@ -40,8 +45,12 @@ echo '' > $MDIR/bin/php/php72/var/log/php-fpm.log
 echo '' > $MDIR/bin/php/php72/var/log/www-slow.log
 echo '' > $MDIR/bin/php/php73/var/log/php-fpm.log
 echo '' > $MDIR/bin/php/php73/var/log/www-slow.log
-echo '' > $MDIR/bin/php/php74/var/log/php-fpm.log
-echo '' > $MDIR/bin/php/php74/var/log/www-slow.log
+
+
+if [ -f $MDIR/bin/php/php74/var/log/php-fpm.log ];then
+	echo '' > $MDIR/bin/php/php74/var/log/php-fpm.log
+	echo '' > $MDIR/bin/php/php74/var/log/www-slow.log
+fi
 
 echo '' > $MDIR/bin/openresty/nginx/logs/error.log
 echo '' > $MDIR/bin/openresty/nginx/logs/access.log
