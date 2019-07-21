@@ -8,11 +8,7 @@ DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
-
 MOSQ_DIR=`brew info mosquitto | grep /usr/local/Cellar/mosquitto | cut -d \  -f 1 | awk 'END {print}'`
 
-
-
 echo "$MOSQ_DIR/sbin/mosquitto -c /usr/local/etc/mosquitto/mosquitto.conf"
-
-$MOSQ_DIR/sbin/mosquitto -c /usr/local/etc/mosquitto/mosquitto.conf
+$MOSQ_DIR/sbin/mosquitto -c /usr/local/etc/mosquitto/mosquitto.conf &
