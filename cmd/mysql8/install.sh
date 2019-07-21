@@ -44,18 +44,10 @@ if [ ! -d $DIR/mysql8/data/mysql ];then
 fi
 
 
-#ijfk(<:xe7qP
-
 #mysql init pwd
 if [ ! -f $DIR/mysql8/data/mysql.log ]; then
-cd $DIR/mysql8/
 
-echo "$DIR/mysql8/bin/mysqld_safe \
---defaults-file=$DIR/tmp/my8.cnf \
---user=mysql&"
-# $DIR/mysql8/bin/mysqld \
-# --defaults-file=$DIR/tmp/my8.cnf \
-# --user=mysql&
+cd $DIR/mysql8/
 
 PASSWORD=`cat $MDIR/bin/logs/reinstall/cmd_mysql8_install.log | grep root@localhost | awk -F 'root@localhost:' '{print $2}'` 
 PASSWORD=${PASSWORD%% }
