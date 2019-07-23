@@ -7,14 +7,11 @@ DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
-LOG_FILE=$MDIR/bin/logs/reinstall/cmd_mqtt_start.log
-echo "start!" > $LOG_FILE
+# LOG_FILE=$MDIR/bin/logs/reinstall/cmd_mqtt_start.log
 
 
-MOSQ_DIR=`brew info mosquitto | grep /usr/local/Cellar/mosquitto | cut -d \  -f 1 | awk 'END {print}'`
+echo "start!"
 
-echo "$MOSQ_DIR/sbin/mosquitto -c /usr/local/etc/mosquitto/mosquitto.conf"
-$MOSQ_DIR/sbin/mosquitto -c /usr/local/etc/mosquitto/mosquitto.conf &
 
 
 echo "ok!"

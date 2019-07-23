@@ -16,7 +16,12 @@ RUN apt-get -y install net-tools
 RUN apt-get -y install iputils-ping
 RUN apt-get -y install vim
 RUN apt-get -y install python
+RUN apt-get -y install wget
 
+
+RUN mkdir -p /root/hadoop
+RUN cd /root/hadoop && wget http://archive.apache.org/dist/hadoop/common/hadoop-2.8.3/hadoop-2.8.3.tar.gz
+RUN cd /root/hadoop && tar -xvzf hadoop-2.8.3.tar.gz
 
 
 
