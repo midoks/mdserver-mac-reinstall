@@ -1,0 +1,19 @@
+<configuration>
+    <property>
+        <name>dfs.replication</name>
+        <value>2</value>
+        <final>true</final>
+    </property>
+
+    <property>
+        <name>dfs.namenode.name.dir</name>
+        <value>/root/hadoop/hadoop-2.8.0/namenode</value>
+        <final>true</final>
+    </property>
+
+    <property>
+        <name>dfs.datanode.data.dir</name>
+        <value>/root/hadoop/hadoop-2.8.0/datanode</value>
+        <final>true</final>
+    </property>
+</configuration>
