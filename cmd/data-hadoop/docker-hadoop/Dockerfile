@@ -4,7 +4,7 @@
 #
 # Dockerizing Ubuntu: Dockerfile for building Ubuntu images
 
-FROM 		ubuntu:16.04
+FROM 		ubuntu:18.04
 MAINTAINER  midoks <midoks@163.com>
 
 
@@ -20,7 +20,9 @@ RUN apt-get -y install wget
 
 
 RUN mkdir -p /root/hadoop
-RUN cd /root/hadoop && wget http://archive.apache.org/dist/hadoop/common/hadoop-2.8.3/hadoop-2.8.3.tar.gz
+#RUN cd /root/hadoop && wget http://archive.apache.org/dist/hadoop/common/hadoop-2.8.3/hadoop-2.8.3.tar.gz
+
+RUN ADD /Applications/mdserver/source/hadoop/hadoop-2.8.3.tar.gz /root/hadoop/
 RUN cd /root/hadoop && tar -xvzf hadoop-2.8.3.tar.gz
 
 

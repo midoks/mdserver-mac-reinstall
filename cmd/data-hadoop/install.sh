@@ -22,6 +22,12 @@ if [ "$FIND_DOCKER" == "" ]; then
 	exit 0
 fi
 
+mkdir -p $MDIR/source/hadoop
+if [ -f $MDIR/source/hadoop/hadoop-2.8.3.tar.gz ]; then
+	wget -O $MDIR/source/hadoop/hadoop-2.8.3.tar.gz http://archive.apache.org/dist/hadoop/common/hadoop-2.8.3/hadoop-2.8.3.tar.gz
+fi
+
+
 cd  $MDIR/bin/reinstall/cmd/data-hadoop/docker-hadoop && docker build ./ -t $DOCKERNAME:$VERSION
 
 
