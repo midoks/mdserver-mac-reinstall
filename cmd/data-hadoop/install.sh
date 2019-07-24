@@ -7,6 +7,12 @@ DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
+
+DOCKERNAME=hadoop
+VERSION=v1.0.0
+DOCKER_CON_NAME=hadoop_docker
+
+
 echo '' > $MDIR/bin/logs/reinstall/cmd_data-hadoop_install.log
 echo 'install hadoop start'
 FIND_DOCKER=`which docker`
@@ -16,7 +22,9 @@ if [ "$FIND_DOCKER" == "" ]; then
 	exit 0
 fi
 
-cd  $MDIR/bin/reinstall/cmd/data-hadoop/docker-hadoop && docker build ./
+cd  $MDIR/bin/reinstall/cmd/data-hadoop/docker-hadoop && docker build ./ -t $DOCKERNAME:$VERSION
+
+
 
 
 

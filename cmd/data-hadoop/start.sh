@@ -7,11 +7,22 @@ DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
-# LOG_FILE=$MDIR/bin/logs/reinstall/cmd_mqtt_start.log
+DOCKERNAME=hadoop
+VERSION=v1.0.0
+DOCKER_CON_NAME=hadoop_docker
+
+H_DAY=`date +%Y%m%d%H%M%S`
+
+DOCKER_CON_NAME_TIME=${DOCKER_CON_NAME}_${H_DAY}
 
 
-echo "start!"
+LOG_FILE=$MDIR/bin/logs/reinstall/cmd_data-hadoop_start.log
+echo "start!" > $LOG_FILE
 
+echo $DOCKER_CON_NAME_TIME
+docker run -p 8111:80 -d --name $DOCKER_CON_NAME_TIME $DOCKERNAME:$VERSION
+SIGN=`docker ps | grep $DOCKER_CON_NAME | awk '{print $1}'`
 
-
+echo "into shell:\r\n"
+echo "docker exec -it $SIGN /bin/bash\r\n"
 echo "ok!"

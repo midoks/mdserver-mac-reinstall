@@ -7,10 +7,18 @@ DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
+DOCKERNAME=hadoop
+VERSION=v1.0.0
+DOCKER_CON_NAME=hadoop_docker
 
-LOG_FILE=$MDIR/bin/logs/reinstall/cmd_mqtt_stop.log
+LOG_FILE=$MDIR/bin/logs/reinstall/cmd_data-hadoop_stop.log
 echo "stop!" > $LOG_FILE
 
-ps -ef | grep mosquitto | grep -v grep | awk -F ' ' '{print $2}' | xargs kill
+echo "docker ps -a |grep $DOCKER_CON_NAME | awk '{print $1}'"
+SIGN=`docker ps -a |grep $DOCKER_CON_NAME | awk '{print $1}'`
+echo "docker stop $SIGN"
+docker stop $SIGN
+echo "docker rm -f $SIGN"
+docker rm -f $SIGN
 
 echo "ok!"
