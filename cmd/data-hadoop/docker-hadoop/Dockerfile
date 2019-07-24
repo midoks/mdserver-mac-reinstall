@@ -25,7 +25,6 @@ ADD hadoop-2.8.3.tar.gz /root/hadoop/
 
 RUN apt -y install default-jdk
 RUN apt-get -y install ssh
-RUN service ssh start
 
 RUN ssh-keygen -t rsa -P '' -f ~/.ssh/id_dsa
 RUN cat ~/.ssh/id_dsa.pub >> ~/.ssh/authorized_keys
