@@ -54,5 +54,8 @@ ADD conf/mapred-site.xml /root/hadoop/hadoop-2.8.3/etc/hadoop
 
 
 ADD supervisord.conf /etc/supervisord.conf
+ADD start.sh /start.sh
+RUN chmod +x /start.sh
+
 EXPOSE 22
-ENTRYPOINT ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisord.conf"]
+ENTRYPOINT ["/bin/sh", "/start.sh"]
