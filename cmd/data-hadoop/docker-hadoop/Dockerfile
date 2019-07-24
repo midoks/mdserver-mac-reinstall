@@ -27,13 +27,11 @@ RUN apt -y install default-jdk
 #RUN apt install openjdk-8-jdk
 
 
-RUN echo "export JAVA_HOME=/usr/lib/jvm/java-8-oracle" > /root/.bashrc
-RUN echo "export HADOOP_HOME=/root/hadoop/hadoop-2.8.0" > /root/.bashrc
-RUN echo "export HADOOP_CONFIG_HOME=$HADOOP_HOME/etc/hadoop" > /root/.bashrc
-RUN echo "export PATH=$PATH:$HADOOP_HOME/bin" > /root/.bashrc
-RUN echo "export PATH=$PATH:$HADOOP_HOME/sbin" > /root/.bashrc
-
-
+RUN echo "export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64" >> /root/.bashrc
+RUN echo "export HADOOP_HOME=/root/hadoop/hadoop-2.8.0" >> /root/.bashrc
+RUN echo "export HADOOP_CONFIG_HOME=$HADOOP_HOME/etc/hadoop" >> /root/.bashrc
+RUN echo "export PATH=$PATH:$HADOOP_HOME/bin" >>/root/.bashrc
+RUN echo "export PATH=$PATH:$HADOOP_HOME/sbin" >> /root/.bashrc
 
 
 
