@@ -17,20 +17,15 @@ RUN apt-get -y install iputils-ping
 RUN apt-get -y install vim
 RUN apt-get -y install python
 RUN apt-get -y install wget
-
+RUN apt-get -y install supervisor
 
 RUN mkdir -p /root/hadoop
-#RUN cd /root/hadoop && wget http://archive.apache.org/dist/hadoop/common/hadoop-2.8.3/hadoop-2.8.3.tar.gz
-
-RUN ADD /Applications/mdserver/source/hadoop/hadoop-2.8.3.tar.gz /root/hadoop/
-RUN cd /root/hadoop && tar -xvzf hadoop-2.8.3.tar.gz
+ADD hadoop-2.8.3.tar.gz /root/hadoop/
+#RUN cd /root/hadoop && tar -xvzf hadoop-2.8.3.tar.gz
 
 
 
 
-
-
-RUN apt-get -y install supervisor
 ADD supervisord.conf /etc/supervisord.conf
 EXPOSE 22
 ENTRYPOINT ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisord.conf"]
