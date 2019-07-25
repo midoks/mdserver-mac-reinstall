@@ -3,6 +3,8 @@
 source /root/.bashrc
 
 echo $(hostname)
+echo $HADOOP_CONFIG_HOME/slaves
+
 if [ $(hostname) == "master" ]
 then
 	if [ `grep "slave1" $HADOOP_CONFIG_HOME/slaves` ]
