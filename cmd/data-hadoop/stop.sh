@@ -14,7 +14,7 @@ DOCKER_CON_NAME=hadoop_docker
 LOG_FILE=$MDIR/bin/logs/reinstall/cmd_data-hadoop_stop.log
 echo "stop!" > $LOG_FILE
 
-echo "docker ps -a |grep $DOCKER_CON_NAME | awk '{print $1}'"
+echo "docker ps -a |grep $DOCKER_CON_NAME | awk '{print \$1}'"
 SIGN=`docker ps -a |grep $DOCKER_CON_NAME | awk '{print $1}'`
 if [ "$SIGN" == "" ];then
 	echo "ok!"

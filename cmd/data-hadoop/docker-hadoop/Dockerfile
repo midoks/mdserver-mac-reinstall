@@ -24,7 +24,8 @@ RUN apt-get -y install strace
 RUN apt-get -y install curl
 RUN apt-get -y install lsof
 RUN apt-get -y install rsync
-RUN apt-get install -y unzip
+RUN apt-get -y install unzip
+RUN apt-get -y install nano
 
 
 RUN mkdir -p /root/hadoop
@@ -63,6 +64,9 @@ ADD conf/mapred-site.xml /root/hadoop/hadoop-2.8.3/etc/hadoop
 ADD supervisord.conf /etc/supervisord.conf
 ADD start.sh /start.sh
 RUN chmod +x /start.sh
+
+ADD set.sh /set.sh
+RUN chmod +x /set.sh
 
 EXPOSE 22
 ENTRYPOINT ["/bin/sh", "/start.sh"]
