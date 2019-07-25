@@ -17,6 +17,7 @@ then
 		echo "\"slave1\" >> $HADOOP_CONFIG_HOME/slaves"
 	fi
 
+	FIND_SLAVE=`grep "slave2" $HADOOP_CONFIG_HOME/slaves`
 	if [ "$FIND_SLAVE" == "slave2" ]
 	then
 		echo "slave2 has exist"
