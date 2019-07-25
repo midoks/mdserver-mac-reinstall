@@ -28,7 +28,6 @@ echo "docker run  -p  9901:8031 \
 	--name $DOCKER_CON_NAME_TIME $DOCKERNAME:$VERSION"
 docker run  -p  9901:8031 \
 	-h master \
-	--cpu-shares 1 \
 	-d --cap-add=SYS_PTRACE \
 	--net=bridge \
 	--name $DOCKER_CON_NAME_TIME $DOCKERNAME:$VERSION
@@ -53,7 +52,6 @@ echo "docker run \
 	--name $DOCKER_CON_NAME_TIME $DOCKERNAME:$VERSION"
 docker run \
 	-h slave1 \
-	--cpu-shares 1 \
 	-d --cap-add=SYS_PTRACE \
 	--net=bridge \
 	--name $DOCKER_CON_NAME_TIME $DOCKERNAME:$VERSION
@@ -80,7 +78,6 @@ echo "docker run \
 	--name $DOCKER_CON_NAME_TIME $DOCKERNAME:$VERSION"
 docker run \
 	-h slave2 \
-	--cpu-shares 1 \
 	-d --cap-add=SYS_PTRACE \
 	--net=bridge \
 	--name $DOCKER_CON_NAME_TIME $DOCKERNAME:$VERSION
