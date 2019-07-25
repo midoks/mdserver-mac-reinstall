@@ -11,6 +11,7 @@ DOCKERNAME=hadoop
 VERSION=v1.0.0
 DOCKER_CON_NAME=hadoop_docker
 
+echo "\$HADOOP_CONFIG_HOME/slaves"
 
 # ------------------  master start ---------------------
 H_DAY=`date +%Y%m%d%H%M%S`
@@ -62,6 +63,7 @@ echo "\r\n"
 echo "into slave1 shell:"
 echo "docker exec -it $SIGN /bin/bash\r\n"
 # ------------------  slave1 end -----------------------
+
 
 
 sleep 1
