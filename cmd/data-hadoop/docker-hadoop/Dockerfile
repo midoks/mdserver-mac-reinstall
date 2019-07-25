@@ -25,6 +25,7 @@ RUN apt-get -y install curl
 RUN apt-get -y install lsof
 RUN apt-get -y install rsync
 
+
 RUN mkdir -p /root/hadoop
 ADD hadoop-2.8.3.tar.gz /root/hadoop/
 
