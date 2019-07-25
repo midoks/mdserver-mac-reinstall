@@ -21,4 +21,14 @@ docker stop $SIGN
 echo "docker rm -f $SIGN"
 docker rm -f $SIGN
 
+
+echo "\r\n\r\n"
+SIGN_EXIT=`docker ps -a |grep 'Exited' | awk '{print $1}'`
+if [ "$SIGN_EXIT" == "" ];then
+	echo "ok!"
+	exit 0
+fi
+echo "other exit rm:"
+echo "docker rm -f $SIGN_EXIT"
+docker rm -f $SIGN_EXIT
 echo "ok!"
