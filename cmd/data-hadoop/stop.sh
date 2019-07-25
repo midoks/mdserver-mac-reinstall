@@ -9,7 +9,7 @@ MDIR=$(dirname "$DIR")
 
 DOCKERNAME=hadoop
 VERSION=v1.0.0
-DOCKER_CON_NAME=hadoop_docker
+DOCKER_CON_NAME=hadoop
 
 LOG_FILE=$MDIR/bin/logs/reinstall/cmd_data-hadoop_stop.log
 echo "stop!" > $LOG_FILE

@@ -11,7 +11,7 @@ MDIR=$(dirname "$DIR")
 
 DOCKERNAME=hadoop
 VERSION=v1.0.0
-DOCKER_CON_NAME=hadoop_docker
+DOCKER_CON_NAME=hadoop
 
 
 echo '' > $MDIR/bin/logs/reinstall/cmd_data-hadoop_install.log
