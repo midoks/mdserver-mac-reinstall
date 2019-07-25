@@ -18,16 +18,15 @@ RUN apt-get -y install vim
 RUN apt-get -y install python
 RUN apt-get -y install wget
 RUN apt-get -y install supervisor
-
-RUN mkdir -p /root/hadoop
-ADD hadoop-2.8.3.tar.gz /root/hadoop/
-#RUN cd /root/hadoop && tar -xvzf hadoop-2.8.3.tar.gz
-
-RUN apt -y install default-jdk
+RUN apt-get -y install default-jdk
 RUN apt-get -y install ssh
 RUN apt-get -y install strace
 RUN apt-get -y install curl
 RUN apt-get -y install lsof
+RUN apt-get -y install rsync
+
+RUN mkdir -p /root/hadoop
+ADD hadoop-2.8.3.tar.gz /root/hadoop/
 
 
 RUN ssh-keygen -t rsa -P '' -f ~/.ssh/id_dsa

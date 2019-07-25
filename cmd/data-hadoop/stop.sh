@@ -16,6 +16,10 @@ echo "stop!" > $LOG_FILE
 
 echo "docker ps -a |grep $DOCKER_CON_NAME | awk '{print $1}'"
 SIGN=`docker ps -a |grep $DOCKER_CON_NAME | awk '{print $1}'`
+if [ "$SIGN" == "" ];then
+	echo "ok!"
+	exit 0
+fi
 echo "docker stop $SIGN"
 docker stop $SIGN
 echo "docker rm -f $SIGN"
