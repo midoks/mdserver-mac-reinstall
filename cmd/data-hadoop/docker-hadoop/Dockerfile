@@ -69,4 +69,4 @@ ADD set.sh /set.sh
 RUN chmod +x /set.sh
 
 EXPOSE 22
-ENTRYPOINT ["/bin/sh", "/start.sh"]
+CMD ["/bin/sh", "/start.sh"]
