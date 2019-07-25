@@ -45,11 +45,11 @@ rm /etc/hosts.tmp
 echo -e "172.17.0.2\\tmaster\\n172.17.0.3\\tslave1\\n172.17.0.4\\tslave2" > /etc/hosts
 
 
-# FIND_HADOOP=`ps -ef|grep java | grep -v grep | awk '{print $2}'`
-# echo "FIND_HADOOP:$FIND_HADOOP"
-# if [ "$FIND_HADOOP" == "" ];then
-# bash /root/hadoop/hadoop-2.8.3/sbin/start-all.sh
-# fi
+FIND_HADOOP=`ps -ef|grep java | grep -v grep | awk '{print $2}'`
+echo "FIND_HADOOP:$FIND_HADOOP"
+if [ "$FIND_HADOOP" == "" ];then
+bash /root/hadoop/hadoop-2.8.3/sbin/start-all.sh &
+fi
 
 
 FIND_SUPER=`ps -ef|grep supervisord | grep -v grep | awk '{print $2}'`
