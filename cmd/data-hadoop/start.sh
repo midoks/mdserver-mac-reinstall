@@ -21,7 +21,12 @@ LOG_FILE=$MDIR/bin/logs/reinstall/cmd_data-hadoop_start.log
 echo "start!" > $LOG_FILE
 
 echo $DOCKER_CON_NAME_TIME
-docker run  -p  9901:9001 \
+echo "docker run  -p  9901:8031 \
+	-h master \
+	-d --cap-add=SYS_PTRACE \
+	--net=bridge \
+	--name $DOCKER_CON_NAME_TIME $DOCKERNAME:$VERSION"
+docker run  -p  9901:8031 \
 	-h master \
 	-d --cap-add=SYS_PTRACE \
 	--net=bridge \
@@ -39,8 +44,12 @@ echo "docker exec -it $SIGN /bin/bash\r\n"
 # ------------------  slave1 start ---------------------
 H_DAY=`date +%Y%m%d%H%M%S`
 DOCKER_CON_NAME_TIME=${DOCKER_CON_NAME}_slave1_${H_DAY}
-
 echo $DOCKER_CON_NAME_TIME
+echo "docker run \
+	-h slave1 \
+	-d --cap-add=SYS_PTRACE \
+	--net=bridge \
+	--name $DOCKER_CON_NAME_TIME $DOCKERNAME:$VERSION"
 docker run \
 	-h slave1 \
 	-d --cap-add=SYS_PTRACE \
@@ -55,13 +64,20 @@ echo "docker exec -it $SIGN /bin/bash\r\n"
 # ------------------  slave1 end -----------------------
 
 
+sleep 1
+
 # ------------------  slave2 start ---------------------
 H_DAY=`date +%Y%m%d%H%M%S`
 DOCKER_CON_NAME_TIME=${DOCKER_CON_NAME}_slave2_${H_DAY}
 
 echo $DOCKER_CON_NAME_TIME
+echo "docker run \
+	-h slave2 \
+	-d --cap-add=SYS_PTRACE \
+	--net=bridge \
+	--name $DOCKER_CON_NAME_TIME $DOCKERNAME:$VERSION"
 docker run \
-	-h slave1 \
+	-h slave2 \
 	-d --cap-add=SYS_PTRACE \
 	--net=bridge \
 	--name $DOCKER_CON_NAME_TIME $DOCKERNAME:$VERSION
