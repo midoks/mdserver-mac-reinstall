@@ -50,7 +50,7 @@ docker run \
 SIGN=`docker ps | grep ${DOCKER_CON_NAME}_slave1 | awk '{print $1}'`
 
 echo "\r\n"
-echo "into slave2 shell:"
+echo "into slave1 shell:"
 echo "docker exec -it $SIGN /bin/bash\r\n"
 # ------------------  slave1 end -----------------------
 
@@ -69,7 +69,7 @@ docker run \
 SIGN=`docker ps | grep ${DOCKER_CON_NAME}_slave2 | awk '{print $1}'`
 
 echo "\r\n"
-echo "into slave1 shell:"
+echo "into slave2 shell:"
 echo "docker exec -it $SIGN /bin/bash\r\n"
 # ------------------  slave2 end -----------------------
 
