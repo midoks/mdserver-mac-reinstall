@@ -5,9 +5,11 @@ source /root/.bashrc
 echo $(hostname)
 echo $HADOOP_CONFIG_HOME/slaves
 
+
 if [ $(hostname) == "master" ]
 then
-	if [ `grep "slave1" $HADOOP_CONFIG_HOME/slaves` ]
+	FIND_SLAVE=`grep "slave1" $HADOOP_CONFIG_HOME/slaves`
+	if [ "$FIND_SLAVE" == "slave1" ]
 	then
 		echo "slave1 has exist"
 	else
@@ -15,7 +17,7 @@ then
 		echo "\"slave1\" >> $HADOOP_CONFIG_HOME/slaves"
 	fi
 
-	if [ `grep "slave2" $HADOOP_CONFIG_HOME/slaves` ]
+	if [ "$FIND_SLAVE" == "slave2" ]
 	then
 		echo "slave2 has exist"
 
