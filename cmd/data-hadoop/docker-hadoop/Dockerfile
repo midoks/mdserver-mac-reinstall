@@ -30,9 +30,6 @@ RUN apt-get -y install curl
 RUN apt-get -y install lsof
 
 
-RUN mkdir -p /root/cdh5
-ADD cdh5.16.2-release.tar.gz /root/cdh5/
-
 RUN ssh-keygen -t rsa -P '' -f ~/.ssh/id_dsa
 RUN cat ~/.ssh/id_dsa.pub >> ~/.ssh/authorized_keys
 

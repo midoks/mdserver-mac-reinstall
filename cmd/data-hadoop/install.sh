@@ -29,13 +29,9 @@ if [ ! -f $MDIR/source/hadoop/hadoop-2.8.3.tar.gz ]; then
 fi
 
 
-if [ ! -f $MDIR/source/hadoop/cdh5.16.2-release.tar.gz ]; then
-	wget -O $MDIR/source/hadoop/cdh5.16.2-release.tar.gz https://github.com/cloudera/hue/archive/cdh5.16.2-release.tar.gz
-fi
 
 
 cp $MDIR/source/hadoop/hadoop-2.8.3.tar.gz $PWD_DIR/docker-hadoop/
-cp $MDIR/source/hadoop/cdh5.16.2-release.tar.gz $PWD_DIR/docker-hadoop/
 
 
 
@@ -44,7 +40,6 @@ cd  $MDIR/bin/reinstall/cmd/data-hadoop/docker-hadoop && docker build ./ -t $DOC
 
 
 rm -rf $PWD_DIR/docker-hadoop/hadoop-2.8.3.tar.gz
-rm -rf $PWD_DIR/docker-hadoop/cdh5.16.2-release.tar.gz
 
 
 echo 'install hadoop end'
