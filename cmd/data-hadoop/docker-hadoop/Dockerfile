@@ -24,6 +24,7 @@ RUN apt-get -y install strace
 RUN apt-get -y install curl
 RUN apt-get -y install lsof
 RUN apt-get -y install rsync
+RUN apt-get install -y unzip
 
 
 RUN mkdir -p /root/hadoop
@@ -32,6 +33,9 @@ ADD hadoop-2.8.3.tar.gz /root/hadoop/
 
 RUN ssh-keygen -t rsa -P '' -f ~/.ssh/id_dsa
 RUN cat ~/.ssh/id_dsa.pub >> ~/.ssh/authorized_keys
+
+RUN echo "StrictHostKeyChecking no" >> /etc/ssh/ssh_config
+RUN echo "UserKnownHostsFile /dev/null" >> /etc/ssh/ssh_config
 
 
 RUN echo "export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64" >> /root/.bashrc

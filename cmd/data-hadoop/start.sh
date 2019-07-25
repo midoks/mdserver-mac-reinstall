@@ -20,7 +20,13 @@ LOG_FILE=$MDIR/bin/logs/reinstall/cmd_data-hadoop_start.log
 echo "start!" > $LOG_FILE
 
 echo $DOCKER_CON_NAME_TIME
-docker run -p 9901:9001 -p 9970:50070 -p 9930:50030 -d --cap-add=SYS_PTRACE --name $DOCKER_CON_NAME_TIME $DOCKERNAME:$VERSION
+docker run  -p  9901:9001 -p 9970:50070 -p 9930:50030 \
+	-d --cap-add=SYS_PTRACE \
+	--net=bridge \
+	--name $DOCKER_CON_NAME_TIME $DOCKERNAME:$VERSION
+
+
+
 SIGN=`docker ps | grep $DOCKER_CON_NAME | awk '{print $1}'`
 
 echo "into shell:\r\n"

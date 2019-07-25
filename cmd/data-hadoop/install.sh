@@ -29,12 +29,7 @@ if [ ! -f $MDIR/source/hadoop/hadoop-2.8.3.tar.gz ]; then
 fi
 
 
-
-
 cp $MDIR/source/hadoop/hadoop-2.8.3.tar.gz $PWD_DIR/docker-hadoop/
-
-
-
 echo "docker build ./ -t $DOCKERNAME:$VERSION\r\n"
 cd  $MDIR/bin/reinstall/cmd/data-hadoop/docker-hadoop && docker build ./ -t $DOCKERNAME:$VERSION
 
