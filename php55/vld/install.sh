@@ -22,13 +22,17 @@ sh $MDIR/bin/reinstall/check_common.sh $VERSION
 
 extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20121212/${LIBNAME}.so
 
-isInstall=`cat $DIR/php/php$VERSION/etc/php.ini|grep '${LIBNAME}.so'`
+if [ -f  $extFile ]; then
+	rm -rf $extFile
+fi
+
+isInstall=`cat $DIR/php/php$VERSION/etc/php.ini| grep '${LIBNAME}.so'`
 if [ "${isInstall}" != "" ]; then
 	echo "php-$VERSION 已安装${LIBNAME},请选择其它版本!"
 	return
 fi
 
-if [ ! -f "$extFile" ]; then
+if [ ! -f $extFile ]; then
 
 	php_lib=$MDIR/source/php_lib
 	mkdir -p $php_lib
