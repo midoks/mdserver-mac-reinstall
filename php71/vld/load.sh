@@ -22,4 +22,7 @@ echo "" >> $DIR/php/php$VERSION/etc/php.ini
 echo "[${LIBNAME}]" >> $DIR/php/php$VERSION/etc/php.ini
 echo "extension=${LIBNAME}.so" >> $DIR/php/php$VERSION/etc/php.ini
 
+
+$DIR/php/php$VERSION/php-fpm reload
+
 echo "load $LIBNAME end"

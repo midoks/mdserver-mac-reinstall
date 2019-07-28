@@ -19,4 +19,6 @@ if [ -f  $extFile ]; then
 	rm -rf $extFile
 fi
 
+$DIR/php/php$VERSION/php-fpm reload
+
 echo "uninstall $LIBNAME end"
