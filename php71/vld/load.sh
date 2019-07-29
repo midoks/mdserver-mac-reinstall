@@ -21,7 +21,9 @@ fi
 echo "" >> $DIR/php/php$VERSION/etc/php.ini
 echo "[${LIBNAME}]" >> $DIR/php/php$VERSION/etc/php.ini
 echo "extension=${LIBNAME}.so" >> $DIR/php/php$VERSION/etc/php.ini
-
+echo "vld.active=1" >> $DIR/php/php$VERSION/etc/php.ini
+echo "vld.skip_prepend=1" >> $DIR/php/php$VERSION/etc/php.ini
+echo "vld.skip_append=1" >> $DIR/php/php$VERSION/etc/php.ini
 
 $DIR/php/php$VERSION/php-fpm reload
 

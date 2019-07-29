@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=vld
-LIBV=0.16.1
+LIBV=0.16.0
 
 echo "install $LIBNAME start"
 
@@ -36,7 +36,7 @@ if [ ! -f "$extFile" ]; then
 	mkdir -p $php_lib
 
 	if [ ! -f $php_lib/${LIBNAME}-${LIBV}.tgz ]; then
-		wget -O $php_lib/${LIBNAME}-${LIBV}.tgz https://github.com/midoks/vld/archive/${LIBV}.tar.gz
+		wget -O $php_lib/${LIBNAME}-${LIBV}.tgz http://pecl.php.net/get/${LIBNAME}-${LIBV}.tgz	
 	fi
 
 	if [ ! -d $php_lib/${LIBNAME}-${LIBV} ]; then
