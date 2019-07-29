@@ -9,7 +9,7 @@ MDIR=$(dirname "$DIR")
 
 
 LOG_FILE=$MDIR/bin/logs/reinstall/cmd_nsq_reload.log
-echo "stop!" > $LOG_FILE
+echo "reload!" > $LOG_FILE
 
 brew services reload nsq
 
