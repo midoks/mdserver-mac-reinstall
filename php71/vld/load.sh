@@ -25,6 +25,6 @@ echo "vld.active=1" >> $DIR/php/php$VERSION/etc/php.ini
 echo "vld.skip_prepend=1" >> $DIR/php/php$VERSION/etc/php.ini
 echo "vld.skip_append=1" >> $DIR/php/php$VERSION/etc/php.ini
 
-$DIR/php/php$VERSION/php-fpm reload
+$MDIR/bin/reinstall/reload.sh $VERSION
 
 echo "load $LIBNAME end"

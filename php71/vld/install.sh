@@ -52,6 +52,6 @@ if [ ! -f "$extFile" ]; then
 	make && make install && make clean
 fi
 
-$DIR/php/php$VERSION/php-fpm reload
+$MDIR/bin/reinstall/reload.sh $VERSION
 
 echo "install $LIBNAME end"
