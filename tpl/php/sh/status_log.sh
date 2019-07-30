@@ -25,7 +25,10 @@ function startPHP(){
 }
 
 function stopPHP(){
-	$DIR/php/php$PHP_VERSION/php-fpm stop
+	FIND_ISRUN=`ps -ef|grep php$PHP_VERSION |grep -v grep`
+	if [ "$FIND_ISRUN" != "" ];then
+		$DIR/php/php$PHP_VERSION/php-fpm stop
+	fi
 	
 	/bin/rm -rf $DIR/tmp/xhprof/*.xhprof
 	/bin/rm -rf $DIR/tmp/xdebug/*
