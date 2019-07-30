@@ -18,4 +18,6 @@ sed -i '_bak' '/^$/N;/^\n$/D' $DIR/php/php$VERSION/etc/php.ini
 
 rm -rf $DIR/php/php$VERSION/etc/php.ini_bak
 
+$MDIR/bin/reinstall/reload.sh $VERSION
+
 echo "unload $LIBNAME end"
