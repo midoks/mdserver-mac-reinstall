@@ -32,4 +32,6 @@ echo "${LIBNAME}.trace_error=1" >> $DIR/php/php$VERSION/etc/php.ini
 echo "${LIBNAME}.trace_exception=1" >> $DIR/php/php$VERSION/etc/php.ini
 echo "${LIBNAME}.default_datetime_format=1" >> $DIR/php/php$VERSION/etc/php.ini
 
+$MDIR/bin/reinstall/reload.sh $VERSION
+
 echo "load $LIBNAME end"
