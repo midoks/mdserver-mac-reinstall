@@ -24,4 +24,6 @@ echo "extension=${LIBNAME}.so" >> $DIR/php/php$VERSION/etc/php.ini
 echo "${LIBNAME}.use_namespace=1" >> $DIR/php/php$VERSION/etc/php.ini
 echo "${LIBNAME}.environ=develop" >> $DIR/php/php$VERSION/etc/php.ini
 
+$MDIR/bin/reinstall/reload.sh $VERSION
+
 echo "load $LIBNAME end"
