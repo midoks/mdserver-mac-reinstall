@@ -28,7 +28,18 @@ function stopPHP(){
 	$DIR/php/php$PHP_VERSION/php-fpm stop
 	
 	/bin/rm -rf $DIR/tmp/xhprof/*.xhprof
+	/bin/rm -rf $DIR/tmp/xdebug/*
 	/bin/rm -rf $DIR/tmp/session/sess_*
+	/bin/rm -rf $DIR/tmp/logs/*
+}
+
+function reloadPHP(){
+	$DIR/php/php$PHP_VERSION/php-fpm reload
+	
+	/bin/rm -rf $DIR/tmp/xhprof/*.xhprof
+	/bin/rm -rf $DIR/tmp/session/sess_*
+	/bin/rm -rf $DIR/tmp/logs/*
+	/bin/rm -rf $DIR/tmp/xdebug/*
 }
 
 if [ $2 = "start" ];then 
@@ -39,4 +50,8 @@ fi
 if [ $2 = "stop" ];then 
 	stopPHP
 	checkPHPStop
+fi
+
+if [ $2 = "reload" ];then 
+	reloadPHP
 fi
