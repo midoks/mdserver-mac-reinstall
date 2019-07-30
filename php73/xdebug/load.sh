@@ -25,4 +25,6 @@ echo "${LIBNAME}.profiler_enable=on" >> $DIR/php/php$VERSION/etc/php.ini
 echo "${LIBNAME}.trace_output_dir=/Applications/mdserver/bin/tmp/xdebug" >> $DIR/php/php$VERSION/etc/php.ini
 echo "${LIBNAME}.profiler_output_dir=/Applications/mdserver/bin/tmp/xdebug" >> $DIR/php/php$VERSION/etc/php.ini
 
+$MDIR/bin/reinstall/reload.sh $VERSION
+
 echo "load $LIBNAME end"
