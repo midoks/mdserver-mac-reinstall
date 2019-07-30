@@ -52,6 +52,4 @@ if [ ! -f "$extFile" ]; then
 	make && make install && make clean
 fi
 
-$MDIR/bin/reinstall/reload.sh $VERSION
-
 echo "install $LIBNAME end"
