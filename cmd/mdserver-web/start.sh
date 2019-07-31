@@ -17,8 +17,8 @@ LOG_FILE=$MDIR/bin/logs/reinstall/cmd_mdserver-web_start.log
 echo "start!" > $LOG_FILE
 
 echo $DOCKER_CON_NAME
-echo "docker run  -p  7200:7200 -d --cap-add=SYS_PTRACE --name $DOCKER_CON_NAME_TIME $DOCKERNAME:$VERSION"
-docker run -p 6020:6020 -d --cap-add=SYS_PTRACE --name $DOCKER_CON_NAME $DOCKERNAME:$VERSION
+echo "docker run -p 7200:7200 -d --cap-add=SYS_PTRACE --name $DOCKER_CON_NAME_TIME $DOCKERNAME:$VERSION"
+docker run -p 7200:7200 -d --cap-add=SYS_PTRACE --name $DOCKER_CON_NAME $DOCKERNAME:$VERSION
 
 SIGN=`docker ps | grep ${DOCKER_CON_NAME} | awk '{print $1}'`
 
