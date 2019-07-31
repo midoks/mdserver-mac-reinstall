@@ -13,6 +13,13 @@ MDIR=$(dirname "$DIR")
 echo '' > $MDIR/bin/logs/reinstall/cmd_go-fastdfs_install.log
 echo 'install go-fastdfs start'
 
+if [ ! -d /usr/local/Cellar/go ];then
+	echo "install golang start"
+	brew install go
+	echo "install golang end"
+fi
+
+
 mkdir -p $MDIR/source/go-fastdfs
 
 if [ ! -f $MDIR/source/go-fastdfs/v1.3.1.tar.gz ]; then
