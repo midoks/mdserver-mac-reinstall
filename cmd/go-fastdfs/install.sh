@@ -31,26 +31,25 @@ if [ ! -d $MDIR/source/go-fastdfs/go-fastdfs-1.3.1 ]; then
 fi
 
 if [ ! -f $MDIR/source/go-fastdfs/go-fastdfs-1.3.1/fileserver ];then
+	
 	cd $MDIR/source/go-fastdfs/go-fastdfs-1.3.1
 
 	if [ -d $MDIR/source/go-fastdfs/go-fastdfs-1.3.1/vendor ];then
 		 mv vendor src
 	fi
 	pwd=`pwd`
+	echo "$pwd go build -o fileserver fileserver.go"
 	GOPATH=$pwd go build -o fileserver fileserver.go
 fi
 
 cd $MDIR/source/go-fastdfs/go-fastdfs-1.3.1
+
 
 if [ ! -d $MDIR/source/go-fastdfs/demo ];then
 	mkdir -p $MDIR/source/go-fastdfs/demo
 	mv fileserver $MDIR/source/go-fastdfs/demo
 	chmod +x $MDIR/source/go-fastdfs/demo/fileserver
 fi
-
-cd $MDIR/source/go-fastdfs/demo/ && ./fileserver
-
-
 
 
 echo 'install go-fastdfs end'
