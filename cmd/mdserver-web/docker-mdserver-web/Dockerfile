@@ -4,8 +4,8 @@
 #
 # Dockerizing Ubuntu: Dockerfile for building Ubuntu images
 
-#FROM		centos:centos7.1.1503
-FROM 		ansible/centos7-ansible
+FROM		centos:centos7.1.1503
+#FROM 		ansible/centos7-ansible
 MAINTAINER  midoks <midoks@163.com>
 
 ENV TZ "Asia/Shanghai"
@@ -13,8 +13,8 @@ ENV TZ "Asia/Shanghai"
 ENV TERM xterm
 
 
-#ADD aliyun-mirror.repo /etc/yum.repos.d/CentOS-Base.repo
-#ADD aliyun-epel.repo /etc/yum.repos.d/epel.repo
+ADD aliyun-mirror.repo /etc/yum.repos.d/CentOS-Base.repo
+ADD aliyun-epel.repo /etc/yum.repos.d/epel.repo
 
 
 RUN rpm --rebuilddb && yum install -y deltarpm && yum -y makecache fast
@@ -25,6 +25,7 @@ RUN rpm --rebuilddb && yum install -y curl wget tar bzip2 unzip vim-enhanced pas
 
 RUN rpm --rebuilddb && yum install -y --enablerepo=epel pwgen python-pip
 RUN pip install --upgrade pip
+RUN yum install -y strace
 
 
 RUN pip install supervisor
@@ -32,6 +33,9 @@ ADD supervisord.conf /etc/supervisord.conf
 
 RUN mkdir -p /etc/supervisor.conf.d && \
     mkdir -p /var/log/supervisor
+
+
+RUN curl -fsSL  https://raw.githubusercontent.com/midoks/mdserver-web/master/scripts/install.sh | sh
 
 EXPOSE 22
 
