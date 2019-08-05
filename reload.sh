@@ -19,5 +19,10 @@ if [ ! -f $MDIR/tmp/php$VERSION-fpm.pid ];then
 fi
 
 
-$MDIR/php/php$VERSION/php-fpm reload
+echo "cd $MDIR/php && ./status.sh $VERSION stop"
+cd $MDIR/php && ./status.sh $VERSION stop
 
+sleep 2
+
+echo "cd $MDIR/php && ./status.sh $VERSION start"
+cd $MDIR/php && ./status.sh $VERSION start
