@@ -22,7 +22,7 @@ fi
 echo "cd $MDIR/php && ./status.sh $VERSION stop"
 cd $MDIR/php && ./status.sh $VERSION stop
 
-sleep 2
+sleep 1
 
 echo "cd $MDIR/php && ./status.sh $VERSION start"
 cd $MDIR/php && ./status.sh $VERSION start
