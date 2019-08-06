@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=mdprof
-LIBV='0.1.0'
+LIBV=0.1.0
 
 
 echo "install $LIBNAME start"
@@ -51,7 +51,7 @@ if [ ! -f "$extFile" ]; then
 
 	$DIR/php/php$VERSION/bin/phpize
 	echo "$DIR/php/php$VERSION/bin/phpize"
-	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config && \
+	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config --enable-mdprof && \
 	make && make install && make clean
 fi
 
