@@ -36,14 +36,11 @@ if [ ! -f "$extFile" ]; then
 
 	cd $MDIR/source/php_lib
 
-	if [ ! -f $php_lib/mdprof ]; then
+	if [ ! -d $php_lib/mdprof ]; then
 		git clone https://github.com/midoks/mdprof
 	fi
 
-	if [ -d $MDIR/source/php_lib/mdprof_run ];then
-		rm -rf $MDIR/source/php_lib/mdprof_run/
-	fi
-
+	rm -rf $MDIR/source/php_lib/mdprof_run
 	# mkdir -p $MDIR/source/php_lib/mdprof_run
 	cp -rf $MDIR/source/php_lib/mdprof/ $MDIR/source/php_lib/mdprof_run/
 
