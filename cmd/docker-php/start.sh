@@ -11,6 +11,16 @@ DOCKERNAME=php71
 VERSION=1.0.0
 DOCKER_CON_NAME=php71
 
+echo "docker run  -p 9901:8031 -d --cap-add=SYS_PTRACE --name ${DOCKER_CON_NAME} $DOCKERNAME:$VERSION"
+docker run -p 9901:8031 -d --cap-add=SYS_PTRACE --name ${DOCKER_CON_NAME} $DOCKERNAME:$VERSION
+
+SIGN=`docker ps | grep ${DOCKER_CON_NAME} | awk '{print $1}'`
+
+
+echo "\r\n"
+echo "into master shell:"
+echo "docker exec -it $SIGN /bin/bash\r\n"
+# ------------------  master end -----------------------
 
 
 echo "ok!"
