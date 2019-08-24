@@ -9,3 +9,5 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 echo $MDIR
+
+brew uninstall grafana

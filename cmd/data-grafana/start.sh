@@ -12,7 +12,10 @@ echo "start!" > $LOG_FILE
 
 brew services start grafana
 
+
+
 echo "\r\n"
+echo "http://127.0.0.1:3000\n"
 echo "info:"
 echo "user:admin"
 echo "password:admin"
