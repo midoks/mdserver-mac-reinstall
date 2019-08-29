@@ -24,12 +24,17 @@ if [ "$FIND_DOCKER" == "" ]; then
 fi
 
 mkdir -p $MDIR/source
-if [ ! -f $MDIR/source/docker-php ]; then
+if [ ! -d $MDIR/source/docker-php ]; then
 	 cd $MDIR/source && git clone https://github.com/midoks/docker-php
 fi
 
-cd $MDIR/source/docker-php
-git pull
+# if [ ! -d $MDIR/source/docker-php ]; then
+cd $MDIR/source/docker-php && git pull
+# fi
+
+
+
+echo "docker build -t $DOCKERNAME:$VERSION ./"
 docker build -t $DOCKERNAME:$VERSION ./
 
 
