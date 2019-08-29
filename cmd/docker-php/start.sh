@@ -11,6 +11,8 @@ DOCKERNAME=php71
 VERSION=1.0.0
 DOCKER_CON_NAME=php71
 
+echo '' > $MDIR/bin/logs/reinstall/cmd_docker-php_start.log
+
 echo "docker run  -p 9901:8031 -d --cap-add=SYS_PTRACE --name ${DOCKER_CON_NAME} $DOCKERNAME:$VERSION"
 docker run -p 9901:8031 -d --cap-add=SYS_PTRACE --name ${DOCKER_CON_NAME} $DOCKERNAME:$VERSION
 
