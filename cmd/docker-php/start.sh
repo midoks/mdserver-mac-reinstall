@@ -13,8 +13,8 @@ DOCKER_CON_NAME=php71
 
 echo '' > $MDIR/bin/logs/reinstall/cmd_docker-php_start.log
 
-echo "docker run  -p 9090:80 -d --cap-add=SYS_PTRACE --name ${DOCKER_CON_NAME} $DOCKERNAME:$VERSION"
-docker run -p 9090:80 -d --cap-add=SYS_PTRACE --name ${DOCKER_CON_NAME} $DOCKERNAME:$VERSION
+echo "docker run -v $MDIR/source/docker-php/www:/www -p 9090:80 -d --cap-add=SYS_PTRACE --name ${DOCKER_CON_NAME} $DOCKERNAME:$VERSION"
+docker run -v $MDIR/source/docker-php/www:/www -p 9090:80 -d --cap-add=SYS_PTRACE --name ${DOCKER_CON_NAME} $DOCKERNAME:$VERSION
 
 SIGN=`docker ps | grep ${DOCKER_CON_NAME} | awk '{print $1}'`
 
