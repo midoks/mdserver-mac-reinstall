@@ -21,7 +21,8 @@ SIGN=`docker ps | grep ${DOCKER_CON_NAME} | awk '{print $1}'`
 
 echo "\r\n"
 echo "into master shell:"
-echo "docker exec -it $SIGN /bin/bash\r\n"
+echo "docker run -it $DOCKERNAME:$VERSION bash\r\n"
+echo "docker exec -it $SIGN bash\r\n"
 # ------------------  master end -----------------------
 
 
