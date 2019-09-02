@@ -16,7 +16,7 @@ VERSION=1.0.0
 DOCKER_CON_NAME=drone
 
 
-echo '' > $MDIR/bin/logs/reinstall/cmd_docker_dir_docker-php_install.log
+echo '' > $MDIR/bin/logs/reinstall/cmd_docker_dir_docker-drone_install.log
 echo 'install drone start'
 FIND_DOCKER=`which docker`
 
@@ -31,7 +31,7 @@ if [ ! -d $MDIR/source/gogs-drone-docker ]; then
 fi
 
 if [ -d $MDIR/source/gogs-drone-docker ]; then
-cd $MDIR/source/gogs-drone-docker && git pull
+cd $MDIR/source/gogs-drone-docker && git pull && docker-compose up -d
 fi
 
 
