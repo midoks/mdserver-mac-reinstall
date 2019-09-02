@@ -6,10 +6,12 @@ DIR=$(cd "$(dirname "$0")"; pwd)
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
+DIR=$(dirname "$DIR")
+DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 
-LOG_FILE=$MDIR/bin/logs/reinstall/cmd_docker-gitlab_reload.log
+LOG_FILE=$MDIR/bin/logs/reinstall/cmd_docker_dir_docker-php_reload.log
 echo "reload start!" > $LOG_FILE
 
 cd $SDIR

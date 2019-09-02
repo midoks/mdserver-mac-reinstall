@@ -6,16 +6,18 @@ PWD_DIR=$(cd "$(dirname "$0")"; pwd)
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
+DIR=$(dirname "$DIR")
+DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 
-DOCKERNAME=mdserver-web
+DOCKERNAME=tdengine
 VERSION=v1.0.0
-DOCKER_CON_NAME=mdserver-web
+DOCKER_CON_NAME=tdengine
 
 
-echo '' > $MDIR/bin/logs/reinstall/cmd_mdserver-web_install.log
-echo 'install mdserver-web start'
+echo '' > $MDIR/bin/logs/reinstall/cmd_docker_dir_iot-tdengine_install.log
+echo 'install tdengine start'
 FIND_DOCKER=`which docker`
 
 if [ "$FIND_DOCKER" == "" ]; then
@@ -24,8 +26,10 @@ if [ "$FIND_DOCKER" == "" ]; then
 fi
 
 echo "docker build ./ -t $DOCKERNAME:$VERSION\r\n"
-cd  $MDIR/bin/reinstall/cmd/mdserver-web/docker-mdserver-web \
+cd  $MDIR/bin/reinstall/cmd/docker/dir/iot-tdengine/docker-tdengine \
 && docker build ./ -t $DOCKERNAME:$VERSION
 
 
-echo 'install mdserver-web end'
+echo 'install tdengine end'
+
+

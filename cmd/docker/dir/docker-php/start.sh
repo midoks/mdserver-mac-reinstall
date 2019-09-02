@@ -5,26 +5,26 @@ DIR=$(cd "$(dirname "$0")"; pwd)
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
+DIR=$(dirname "$DIR")
+DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
-DOCKERNAME=mdserver-web
-VERSION=v1.0.0
-DOCKER_CON_NAME=mdserver-web
+DOCKERNAME=php71
+VERSION=1.0.0
+DOCKER_CON_NAME=php71
 
-# ------------------  master start ---------------------
+echo '' > $MDIR/bin/logs/reinstall/cmd_docker_dir_docker-php_start.log
 
-LOG_FILE=$MDIR/bin/logs/reinstall/cmd_mdserver-web_start.log
-echo "start!" > $LOG_FILE
-
-echo $DOCKER_CON_NAME
-echo "docker run -p 7200:7200 -d --cap-add=SYS_PTRACE --name $DOCKER_CON_NAME_TIME $DOCKERNAME:$VERSION"
-docker run -p 7200:7200 -d --cap-add=SYS_PTRACE --name $DOCKER_CON_NAME $DOCKERNAME:$VERSION
+echo "docker run -v $MDIR/source/docker-php/www:/www -p 9090:80 -d --cap-add=SYS_PTRACE --name ${DOCKER_CON_NAME} $DOCKERNAME:$VERSION"
+docker run -v $MDIR/source/docker-php/www:/www -p 9090:80 -d --cap-add=SYS_PTRACE --name ${DOCKER_CON_NAME} $DOCKERNAME:$VERSION
 
 SIGN=`docker ps | grep ${DOCKER_CON_NAME} | awk '{print $1}'`
+
 
 echo "\r\n"
 echo "into master shell:"
 echo "docker exec -it $SIGN /bin/bash\r\n"
 # ------------------  master end -----------------------
+
 
 echo "ok!"

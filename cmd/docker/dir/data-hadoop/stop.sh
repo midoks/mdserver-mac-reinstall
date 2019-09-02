@@ -5,20 +5,36 @@ DIR=$(cd "$(dirname "$0")"; pwd)
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
+DIR=$(dirname "$DIR")
+DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 DOCKERNAME=hadoop
 VERSION=v1.0.0
 DOCKER_CON_NAME=hadoop
 
-LOG_FILE=$MDIR/bin/logs/reinstall/cmd_data-hadoop_uninstall.log
-echo "uninstall!" > $LOG_FILE
+LOG_FILE=$MDIR/bin/logs/reinstall/cmd_docker_dir_data-hadoop_stop.log
+echo "stop!" > $LOG_FILE
 
+echo "docker ps -a |grep $DOCKER_CON_NAME | awk '{print \$1}'"
 SIGN=`docker ps -a |grep $DOCKER_CON_NAME | awk '{print $1}'`
+if [ "$SIGN" == "" ];then
+	echo "ok!"
+	exit 0
+fi
 echo "docker stop $SIGN"
 docker stop $SIGN
-
 echo "docker rm -f $SIGN"
 docker rm -f $SIGN
 
-echo 'ok'
+
+echo "\r\n\r\n"
+SIGN_EXIT=`docker ps -a |grep 'Exited' | awk '{print $1}'`
+if [ "$SIGN_EXIT" == "" ];then
+	echo "ok!"
+	exit 0
+fi
+echo "other exit rm:"
+echo "docker rm -f $SIGN_EXIT"
+docker rm -f $SIGN_EXIT
+echo "ok!"

@@ -6,6 +6,8 @@ PWD_DIR=$(cd "$(dirname "$0")"; pwd)
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
+DIR=$(dirname "$DIR")
+DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 
@@ -14,7 +16,7 @@ VERSION=v1.0.0
 DOCKER_CON_NAME=hadoop
 
 
-echo '' > $MDIR/bin/logs/reinstall/cmd_data-hadoop_install.log
+echo '' > $MDIR/bin/logs/reinstall/cmd_docker_dir_data-hadoop_install.log
 echo 'install hadoop start'
 FIND_DOCKER=`which docker`
 
@@ -31,7 +33,7 @@ fi
 
 cp $MDIR/source/hadoop/hadoop-2.8.3.tar.gz $PWD_DIR/docker-hadoop/
 echo "docker build ./ -t $DOCKERNAME:$VERSION\r\n"
-cd  $MDIR/bin/reinstall/cmd/data-hadoop/docker-hadoop && docker build ./ -t $DOCKERNAME:$VERSION
+cd  $MDIR/bin/reinstall/cmd/docker/dir/data-hadoop/docker-hadoop && docker build ./ -t $DOCKERNAME:$VERSION
 
 
 rm -rf $PWD_DIR/docker-hadoop/hadoop-2.8.3.tar.gz

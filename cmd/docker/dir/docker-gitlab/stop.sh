@@ -5,13 +5,15 @@ DIR=$(cd "$(dirname "$0")"; pwd)
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
+DIR=$(dirname "$DIR")
+DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 DOCKERNAME=gitlab
 VERSION=1.0.0
 DOCKER_CON_NAME=gitlab
 
-echo '' > $MDIR/bin/logs/reinstall/cmd_docker-gitlab_stop.log
+echo '' > $MDIR/bin/logs/reinstall/cmd_docker_dir_docker-gitlab_stop.log
 
 echo "docker ps -a |grep $DOCKER_CON_NAME | awk '{print \$1}'"
 SIGN=`docker ps -a |grep $DOCKER_CON_NAME | awk '{print $1}'`

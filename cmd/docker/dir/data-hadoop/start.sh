@@ -5,6 +5,8 @@ DIR=$(cd "$(dirname "$0")"; pwd)
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
+DIR=$(dirname "$DIR")
+DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 DOCKERNAME=hadoop
@@ -18,7 +20,7 @@ H_DAY=`date +%Y%m%d%H%M%S`
 DOCKER_CON_NAME_TIME=${DOCKER_CON_NAME}_master_${H_DAY}
 
 
-LOG_FILE=$MDIR/bin/logs/reinstall/cmd_data-hadoop_start.log
+LOG_FILE=$MDIR/bin/logs/reinstall/cmd_docker_dir_data-hadoop_start.log
 echo "start!" > $LOG_FILE
 
 echo "\$HADOOP_CONFIG_HOME/slaves"

@@ -6,6 +6,8 @@ PWD_DIR=$(cd "$(dirname "$0")"; pwd)
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
+DIR=$(dirname "$DIR")
+DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 
@@ -14,7 +16,7 @@ VERSION=1.0.0
 DOCKER_CON_NAME=php71
 
 
-echo '' > $MDIR/bin/logs/reinstall/cmd_docker-php_install.log
+echo '' > $MDIR/bin/logs/reinstall/cmd_docker_dir_docker-php_install.log
 echo 'install php71 start'
 FIND_DOCKER=`which docker`
 
