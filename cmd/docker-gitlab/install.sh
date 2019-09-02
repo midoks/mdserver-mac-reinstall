@@ -31,9 +31,9 @@ docker run --detach \
 --publish 8443:443 --publish 8080:80 --publish 2222:22 \
 --name gitlab \
 --restart always \
---volume $MDIR/source/gitlab/config:/etc/gitlab \
---volume $MDIR/source/gitlab/logs:/var/log/gitlab \
---volume $MDIR/source/gitlab/data:/var/opt/gitlab \
+--volume $MDIR/source/docker-gitlab/config:/etc/gitlab \
+--volume $MDIR/source/docker-gitlab/logs:/var/log/gitlab \
+--volume $MDIR/source/docker-gitlab/data:/var/opt/gitlab \
 gitlab/gitlab-ce
 
 echo 'install gitlab end'
