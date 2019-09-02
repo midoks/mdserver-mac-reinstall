@@ -5,13 +5,15 @@ DIR=$(cd "$(dirname "$0")"; pwd)
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
+DIR=$(dirname "$DIR")
+DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 DOCKERNAME=php71
 VERSION=1.0.0
 DOCKER_CON_NAME=php71
 
-LOG_FILE=$MDIR/bin/logs/reinstall/cmd_docker-php_uninstall.log
+LOG_FILE=$MDIR/bin/logs/reinstall/cmd_docker_dir_docker-drone_uninstall.log
 echo "uninstall!" > $LOG_FILE
 
 
