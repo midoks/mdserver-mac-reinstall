@@ -7,11 +7,11 @@ DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
-DOCKERNAME=go
+DOCKERNAME=php71
 VERSION=1.0.0
-DOCKER_CON_NAME=go
+DOCKER_CON_NAME=php71
 
-echo '' > $MDIR/bin/logs/reinstall/cmd_docker-go_stop.log
+echo '' > $MDIR/bin/logs/reinstall/cmd_docker-php_stop.log
 
 echo "docker ps -a |grep $DOCKER_CON_NAME | awk '{print \$1}'"
 SIGN=`docker ps -a |grep $DOCKER_CON_NAME | awk '{print $1}'`

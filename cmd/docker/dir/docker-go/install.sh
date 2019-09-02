@@ -6,15 +6,19 @@ PWD_DIR=$(cd "$(dirname "$0")"; pwd)
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
+DIR=$(dirname "$DIR")
+DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 
 DOCKERNAME=go
 VERSION=1.0.0
-DOCKER_CON_NAME=php71
+DOCKER_CON_NAME=go
+
+echo $MDIR
 
 
-echo '' > $MDIR/bin/logs/reinstall/cmd_docker-go_install.log
+echo '' > $MDIR/bin/logs/reinstall/cmd_docker_dir_docker-go_install.log
 echo 'install go start'
 FIND_DOCKER=`which docker`
 
@@ -28,9 +32,11 @@ if [ ! -d $MDIR/source/docker-go ]; then
 	 cd $MDIR/source && git clone https://github.com/midoks/docker-go
 fi
 
-# if [ ! -d $MDIR/source/docker-php ]; then
+if [ -d $MDIR/source/docker-go ]; then
 cd $MDIR/source/docker-go && git pull
-# fi
+fi
+
+
 
 
 
