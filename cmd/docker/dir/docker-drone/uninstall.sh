@@ -9,9 +9,9 @@ DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
-DOCKERNAME=php71
+DOCKERNAME=drone
 VERSION=1.0.0
-DOCKER_CON_NAME=php71
+DOCKER_CON_NAME=drone
 
 LOG_FILE=$MDIR/bin/logs/reinstall/cmd_docker_dir_docker-drone_uninstall.log
 echo "uninstall!" > $LOG_FILE
