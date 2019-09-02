@@ -13,11 +13,33 @@ DOCKER_CON_NAME=gitlab
 
 echo '' > $MDIR/bin/logs/reinstall/cmd_docker-gitlab_start.log
 
-echo "docker run -v $MDIR/source/docker-php/www:/www -p 9090:80 -d --cap-add=SYS_PTRACE --name ${DOCKER_CON_NAME} $DOCKERNAME:$VERSION"
-docker run -v $MDIR/source/docker-php/www:/www -p 9090:80 -d --cap-add=SYS_PTRACE --name ${DOCKER_CON_NAME} $DOCKERNAME:$VERSION
+
+
+
+
+
+echo "docker run -v docker run --detach \
+--hostname gitlab.chain.cn \
+--publish 8443:443 --publish 8080:80 --publish 2222:22 \
+--name gitlab \
+--restart always \
+--volume $MDIR/source/docker-gitlab/config:/etc/gitlab \
+--volume $MDIR/source/docker-gitlab/logs:/var/log/gitlab \
+--volume $MDIR/source/docker-gitlab/data:/var/opt/gitlab \
+gitlab/gitlab-ce"
+
+
+docker run --detach \
+--hostname gitlab.chain.cn \
+--publish 8443:443 --publish 8080:80 --publish 2222:22 \
+--name gitlab \
+--restart always \
+--volume $MDIR/source/docker-gitlab/config:/etc/gitlab \
+--volume $MDIR/source/docker-gitlab/logs:/var/log/gitlab \
+--volume $MDIR/source/docker-gitlab/data:/var/opt/gitlab \
+gitlab/gitlab-ce
 
 SIGN=`docker ps | grep ${DOCKER_CON_NAME} | awk '{print $1}'`
-
 
 echo "\r\n"
 echo "into master shell:"
