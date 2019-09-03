@@ -36,8 +36,8 @@ fi
 
 
 
-echo "docker build -t $DOCKERNAME:$VERSION ./"
-docker build -t $DOCKERNAME:$VERSION ./
+# echo "docker build -t $DOCKERNAME:$VERSION ./"
+# docker build -t $DOCKERNAME:$VERSION ./
 
 
 echo 'install drone end'
