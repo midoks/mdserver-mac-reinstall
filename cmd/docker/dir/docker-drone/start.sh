@@ -2,6 +2,7 @@
 export PATH=$PATH:/opt/local/bin:/opt/local/sbin:/opt/local/share/man:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
 
 DIR=$(cd "$(dirname "$0")"; pwd)
+PWD_DIR=$(cd "$(dirname "$0")"; pwd)
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
@@ -9,22 +10,30 @@ DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
+
 DOCKERNAME=drone
 VERSION=1.0.0
 DOCKER_CON_NAME=drone
 
+
 echo '' > $MDIR/bin/logs/reinstall/cmd_docker_dir_docker-drone_start.log
+echo 'install drone start'
+FIND_DOCKER=`which docker`
 
-echo "docker run -v $MDIR/source/docker-php/www:/www -p 9090:80 -d --cap-add=SYS_PTRACE --name ${DOCKER_CON_NAME} $DOCKERNAME:$VERSION"
-docker run -v $MDIR/source/docker-php/www:/www -p 9090:80 -d --cap-add=SYS_PTRACE --name ${DOCKER_CON_NAME} $DOCKERNAME:$VERSION
+if [ "$FIND_DOCKER" == "" ]; then
+	echo "please installed docker!"
+	exit 0
+fi
 
-SIGN=`docker ps | grep ${DOCKER_CON_NAME} | awk '{print $1}'`
+mkdir -p $MDIR/source
+if [ ! -d $MDIR/source/gogs-drone-docker ]; then
+	 cd $MDIR/source && git clone https://github.com/alicfeng/gogs-drone-docker.git
+fi
+
+if [ -d $MDIR/source/gogs-drone-docker ]; then
+cd $MDIR/source/gogs-drone-docker && git pull && docker-compose up -d
+fi
 
 
-echo "\r\n"
-echo "into master shell:"
-echo "docker exec -it $SIGN /bin/bash\r\n"
-# ------------------  master end -----------------------
 
-
-echo "ok!"
+echo 'install drone end'
