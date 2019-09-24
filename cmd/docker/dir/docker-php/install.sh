@@ -11,13 +11,13 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 
-DOCKERNAME=php71
+DOCKERNAME=php72
 VERSION=1.0.0
-DOCKER_CON_NAME=php71
+DOCKER_CON_NAME=php72
 
 
 echo '' > $MDIR/bin/logs/reinstall/cmd_docker_dir_docker-php_install.log
-echo 'install php71 start'
+echo 'install php72 start'
 FIND_DOCKER=`which docker`
 
 if [ "$FIND_DOCKER" == "" ]; then
@@ -40,4 +40,4 @@ echo "docker build -t $DOCKERNAME:$VERSION ./"
 docker build -t $DOCKERNAME:$VERSION ./
 
 
-echo 'install php71 end'
+echo 'install php72 end'
