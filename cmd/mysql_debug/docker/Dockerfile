@@ -44,18 +44,18 @@ RUN yum swap -y fakesystemd systemd || yum swap -y fakesystemd systemd \
 RUN yum install -y openssl-devel || yum install -y openssl-devel || yum clean all
 RUN yum install -y ncurses-devel || yum install -y ncurses-devel || yum clean all
 
-#RUN cd /tmp/mysql && cmake . -DWITH_DEBUG=1 \
-#-DMYSQL_DATADIR=/usr/local/mysql56/data \
-#-DCMAKE_INSTALL_PREFIX=/usr/local/mysql56 \
-#-DSYSCONFDIR=/etc \
-#-DWITH_INNOBASE_STORAGE_ENGINE=1 \
-#-DDEFAULT_CHARSET=utf8 \
-#-DDEFAULT_COLLATION=utf8_general_ci \
-#-DMYSQL_UNIX_ADDR=/tmp/mysql.sock \
-#make && make install
-
 RUN mkdir -p /tmp/mysql
 ADD ./ /tmp/mysql
+
+RUN cd /tmp/mysql && /usr/bin/cmake . -DWITH_DEBUG=1 \
+-DMYSQL_DATADIR=/usr/local/mysql56/data \
+-DCMAKE_INSTALL_PREFIX=/usr/local/mysql56 \
+-DSYSCONFDIR=/etc \
+-DWITH_INNOBASE_STORAGE_ENGINE=1 \
+-DDEFAULT_CHARSET=utf8 \
+-DDEFAULT_COLLATION=utf8_general_ci \
+-DMYSQL_UNIX_ADDR=/tmp/mysql.sock \
+make && make install
 
 ADD ./my_install.sh /
 ADD ./start.sh /
