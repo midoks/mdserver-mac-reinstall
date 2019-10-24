@@ -38,8 +38,8 @@ RUN yum install -y cmake
 RUN mkdir -p /tmp/mysql
 ADD ./ /tmp/mysql
 
-ADD my_install.sh /
-ADD start.sh /
+ADD ./my_install.sh /
+ADD ./start.sh /
 
 EXPOSE 22
 
