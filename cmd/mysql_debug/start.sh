@@ -19,4 +19,12 @@ echo "start!" > $LOG_FILE
 
 docker run -p 3308:3306 -d --cap-add=SYS_PTRACE --name $DOCKER_CON_NAME $DOCKERNAME:$VERSION
 
+SIGN=`docker ps | grep ${DOCKER_CON_NAME} | awk '{print $1}'`
+
+echo "\r\n"
+echo "into master shell:"
+echo "docker exec -it $SIGN /bin/bash\r\n"
+# ------------------  master end -----------------------
+
+echo "ok!"
 
