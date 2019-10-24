@@ -35,6 +35,10 @@ RUN mkdir -p /etc/supervisor.conf.d && \
     mkdir -p /var/log/supervisor
 
 RUN yum install -y cmake
+
+RUN yum swap -y fakesystemd systemd && yum clean all
+RUN yum update -y  && yum clean all
+
 RUN mkdir -p /tmp/mysql
 ADD ./ /tmp/mysql
 
