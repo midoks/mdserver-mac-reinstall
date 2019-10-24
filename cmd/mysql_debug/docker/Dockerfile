@@ -37,7 +37,8 @@ RUN yum install -y cmake
 RUN yum install -y bison
 RUN yum install -y strace
 
-#RUN yum swap -y fakesystemd systemd && yum update -y && yum clean all
+RUN yum swap -y fakesystemd systemd || yum swap -y fakesystemd systemd \
+&& yum update -y || yum update -y && yum clean all
 #RUN yum update -y && yum clean all
 
 #RUN yum install -y openssl-devel
