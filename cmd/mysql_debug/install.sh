@@ -20,15 +20,25 @@ fi
 
 
 if [ ! -d $DIR/mysql_debug ];then
-	echo "$MDIR/source/mysql_debug/mysql-server && cmake . -G \"Xcode\" -DWITH_DEBUG=1 \
+	echo "$MDIR/source/mysql_debug/mysql-server 
+	 && cmake . -G \"Xcode\" -DWITH_DEBUG=1 \
 	-DMYSQL_DATADIR=$MDIR/mysql56/data \
 	-DWITH_INNOBASE_STORAGE_ENGINE=1 \
-	-DCMAKE_INSTALL_PREFIX=$MDIR/mysql56 && make && make install"
+	-DCMAKE_INSTALL_PREFIX=$MDIR/mysql56 \
+	-DDEFAULT_CHARSET=utf8 \
+	-DDEFAULT_COLLATION=utf8_general_ci \
+	-DMYSQL_UNIX_ADDR=/tmp/mysql56.sock \
+	&& make && make install"
 
-	cd $MDIR/source/mysql_debug/mysql-server && cmake . -G "Xcode" -DWITH_DEBUG=1 \
+	cd $MDIR/source/mysql_debug/mysql-server \
+	&& cmake . -G "Xcode" -DWITH_DEBUG=1 \
 	-DMYSQL_DATADIR=$MDIR/mysql56/data \
 	-DWITH_INNOBASE_STORAGE_ENGINE=1 \
-	-DCMAKE_INSTALL_PREFIX=$MDIR/mysql56 && make && make install
+	-DCMAKE_INSTALL_PREFIX=$MDIR/mysql56 \
+	-DDEFAULT_CHARSET=utf8 \
+	-DDEFAULT_COLLATION=utf8_general_ci \
+	-DMYSQL_UNIX_ADDR=/tmp/mysql56.sock \
+	&& make && make install
 fi
 
 # if [ ! -d $DIR/tmp/my.cnf ]; then
