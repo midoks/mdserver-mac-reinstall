@@ -25,7 +25,6 @@ RUN rpm --rebuilddb && yum install -y curl wget tar bzip2 unzip vim-enhanced pas
 
 RUN rpm --rebuilddb && yum install -y --enablerepo=epel pwgen python-pip
 RUN pip install --upgrade pip
-RUN yum install -y strace
 
 
 RUN pip install supervisor
@@ -34,20 +33,26 @@ ADD supervisord.conf /etc/supervisord.conf
 RUN mkdir -p /etc/supervisor.conf.d && \
     mkdir -p /var/log/supervisor
 
-RUN yum swap -y fakesystemd systemd && yum clean all
-RUN yum update -y  && yum clean all
+RUN yum install -y cmake
+RUN yum install -y bison
+RUN yum install -y strace
 
-RUN yum install -y cmake bison openssl-devel ncurses-devel
+#RUN yum swap -y fakesystemd systemd && yum clean all
+#RUN yum update -y
+#RUN yum clean all
 
-RUN cd /tmp/mysql && cmake . -DWITH_DEBUG=1 \
--DMYSQL_DATADIR=/usr/local/mysql56/data \
--DCMAKE_INSTALL_PREFIX=/usr/local/mysql56 \
--DSYSCONFDIR=/etc \
--DWITH_INNOBASE_STORAGE_ENGINE=1 \
--DDEFAULT_CHARSET=utf8 \
--DDEFAULT_COLLATION=utf8_general_ci \
--DMYSQL_UNIX_ADDR=/tmp/mysql.sock \
-make && make install
+#RUN yum install -y openssl-devel
+#RUN yum install -y ncurses-devel
+
+#RUN cd /tmp/mysql && cmake . -DWITH_DEBUG=1 \
+#-DMYSQL_DATADIR=/usr/local/mysql56/data \
+#-DCMAKE_INSTALL_PREFIX=/usr/local/mysql56 \
+#-DSYSCONFDIR=/etc \
+#-DWITH_INNOBASE_STORAGE_ENGINE=1 \
+#-DDEFAULT_CHARSET=utf8 \
+#-DDEFAULT_COLLATION=utf8_general_ci \
+#-DMYSQL_UNIX_ADDR=/tmp/mysql.sock \
+#make && make install
 
 RUN mkdir -p /tmp/mysql
 ADD ./ /tmp/mysql

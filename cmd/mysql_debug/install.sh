@@ -45,7 +45,7 @@ echo "docker build ./ -t $DOCKERNAME:$VERSION"
 docker build ./ -t $DOCKERNAME:$VERSION
 
 echo "docker run -p 3308:3306 -d --cap-add=SYS_PTRACE --name $DOCKER_CON_NAME $DOCKERNAME:$VERSION"
-# docker run -p 3308:3306 -d --cap-add=SYS_PTRACE --name $DOCKER_CON_NAME $DOCKERNAME:$VERSION
+docker run -p 3308:3306 -d --cap-add=SYS_PTRACE --name $DOCKER_CON_NAME $DOCKERNAME:$VERSION
 
 
 SIGN=`docker ps | grep ${DOCKER_CON_NAME} | awk '{print $1}'`
