@@ -41,8 +41,8 @@ RUN yum swap -y fakesystemd systemd || yum swap -y fakesystemd systemd \
 && yum update -y || yum update -y && yum clean all
 #RUN yum update -y && yum clean all
 
-#RUN yum install -y openssl-devel
-#RUN yum install -y ncurses-devel
+RUN yum install -y openssl-devel
+RUN yum install -y ncurses-devel
 
 #RUN cd /tmp/mysql && cmake . -DWITH_DEBUG=1 \
 #-DMYSQL_DATADIR=/usr/local/mysql56/data \
