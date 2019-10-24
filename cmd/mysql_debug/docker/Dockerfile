@@ -34,12 +34,12 @@ ADD supervisord.conf /etc/supervisord.conf
 RUN mkdir -p /etc/supervisor.conf.d && \
     mkdir -p /var/log/supervisor
 
-RUN yum install -y cmake
+RUN yum install -y cmake strace bison
 
 RUN yum swap -y fakesystemd systemd && yum clean all
 RUN yum update -y  && yum clean all
 
-RUN yum install -y openssl-devel ncurses-devel bison
+RUN yum install -y openssl-devel ncurses-devel
 
 RUN cd /tmp/mysql && cmake . -DWITH_DEBUG=1 \
 -DMYSQL_DATADIR=/usr/local/mysql56/data \

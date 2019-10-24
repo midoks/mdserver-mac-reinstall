@@ -23,7 +23,8 @@ mkdir -p $MDIR/source/mysql_debug
 if [ ! -d $MDIR/source/mysql_debug/mysql-server ]; then
 	cd $MDIR/source/mysql_debug && git clone https://github.com/midoks/mysql-server
 else 
-	cd $MDIR/source/mysql_debug/mysql-server && git pull && git checkout 5.6_md_debug
+	echo "123"
+	#cd $MDIR/source/mysql_debug/mysql-server && git pull && git checkout 5.6_md_debug
 fi
 
 cp -rf $MDIR/bin/reinstall/cmd/mysql_debug/docker/* $MDIR/source/mysql_debug/mysql-server
@@ -44,7 +45,7 @@ echo "docker build ./ -t $DOCKERNAME:$VERSION"
 docker build ./ -t $DOCKERNAME:$VERSION
 
 echo "docker run -p 3308:3306 -d --cap-add=SYS_PTRACE --name $DOCKER_CON_NAME $DOCKERNAME:$VERSION"
-docker run -p 3308:3306 -d --cap-add=SYS_PTRACE --name $DOCKER_CON_NAME $DOCKERNAME:$VERSION
+# docker run -p 3308:3306 -d --cap-add=SYS_PTRACE --name $DOCKER_CON_NAME $DOCKERNAME:$VERSION
 
 
 SIGN=`docker ps | grep ${DOCKER_CON_NAME} | awk '{print $1}'`
