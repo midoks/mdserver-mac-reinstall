@@ -55,7 +55,7 @@ RUN cd /tmp/mysql && /usr/bin/cmake . -DWITH_DEBUG=1 \
 -DDEFAULT_CHARSET=utf8 \
 -DDEFAULT_COLLATION=utf8_general_ci \
 -DMYSQL_UNIX_ADDR=/tmp/mysql.sock \
-make && make install
+&& make && make install
 
 ADD ./my_install.sh /
 ADD ./start.sh /
