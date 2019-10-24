@@ -23,13 +23,13 @@ mkdir -p $MDIR/source/mysql_debug
 if [ ! -d $MDIR/source/mysql_debug/mysql-server ]; then
 	cd $MDIR/source/mysql_debug && git clone https://github.com/midoks/mysql-server
 else 
-	cd $MDIR/source/mysql_debug && git pull && git checkout 5.6_md_debug
+	cd $MDIR/source/mysql_debug/mysql-server && git pull && git checkout 5.6_md_debug
 fi
 
-cp -f $MDIR/bin/reinstall/cmd/mysql_debug/docker/Dockerfile $MDIR/source/mysql_debug/mysql-server/Dockerfile
-cp -f $MDIR/bin/reinstall/cmd/mysql_debug/docker/aliyun-epel.repo $MDIR/source/mysql_debug/mysql-server/aliyun-epel.repo
-cp -f $MDIR/bin/reinstall/cmd/mysql_debug/docker/aliyun-mirror.repo $MDIR/source/mysql_debug/mysql-server/aliyun-mirror.repo
-cp -f $MDIR/bin/reinstall/cmd/mysql_debug/docker/supervisord.conf $MDIR/source/mysql_debug/mysql-server/supervisord.conf
+cp -rf $MDIR/bin/reinstall/cmd/mysql_debug/docker/Dockerfile $MDIR/source/mysql_debug/mysql-server
+cp -rf $MDIR/bin/reinstall/cmd/mysql_debug/docker/aliyun-epel.repo $MDIR/source/mysql_debug/mysql-server
+cp -rf $MDIR/bin/reinstall/cmd/mysql_debug/docker/aliyun-mirror.repo $MDIR/source/mysql_debug/mysql-server
+cp -rf $MDIR/bin/reinstall/cmd/mysql_debug/docker/supervisord.conf $MDIR/source/mysql_debug/mysql-server
 
 
 
@@ -39,7 +39,7 @@ echo $DOCKERNAME:$VERSION
 
 docker build ./ -t $DOCKERNAME:$VERSION
 
-# docker run -p 3308:3306 -d --cap-add=SYS_PTRACE --name $DOCKER_CON_NAME $DOCKERNAME:$VERSION
+docker run -p 3308:3306 -d --cap-add=SYS_PTRACE --name $DOCKER_CON_NAME $DOCKERNAME:$VERSION
 
 
 SIGN=`docker ps | grep ${DOCKER_CON_NAME} | awk '{print $1}'`
