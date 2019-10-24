@@ -26,14 +26,14 @@ else
 	cd $MDIR/source/mysql_debug/mysql-server && git pull && git checkout 5.6_md_debug
 fi
 
-cp -rf $MDIR/bin/reinstall/cmd/mysql_debug/docker/Dockerfile $MDIR/source/mysql_debug/mysql-server
-cp -rf $MDIR/bin/reinstall/cmd/mysql_debug/docker/aliyun-epel.repo $MDIR/source/mysql_debug/mysql-server
-cp -rf $MDIR/bin/reinstall/cmd/mysql_debug/docker/aliyun-mirror.repo $MDIR/source/mysql_debug/mysql-server
-cp -rf $MDIR/bin/reinstall/cmd/mysql_debug/docker/supervisord.conf $MDIR/source/mysql_debug/mysql-server
+cp -rf $MDIR/bin/reinstall/cmd/mysql_debug/docker/* $MDIR/source/mysql_debug/mysql-server
 
 
 
-cd $MDIR/source/mysql_debug/mysql-server
+cp -rf $MDIR/source/mysql_debug/mysql-server $MDIR/source/mysql_debug/mysql
+cd $MDIR/source/mysql_debug/mysql && rm -rf .git
+
+cd $MDIR/source/mysql_debug/mysql
 
 echo $DOCKERNAME:$VERSION
 
