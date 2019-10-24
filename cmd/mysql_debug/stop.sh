@@ -13,8 +13,8 @@ DOCKERNAME=mysql
 VERSION=56
 DOCKER_CON_NAME=mysql
 
-LOG_FILE=$MDIR/bin/logs/reinstall/cmd_mysql_debug_uninstall.log
-echo "uninstall!" > $LOG_FILE
+LOG_FILE=$MDIR/bin/logs/reinstall/cmd_mysql_debug_stop.log
+echo "stop!" > $LOG_FILE
 
 
 echo "docker ps -a |grep $DOCKER_CON_NAME | awk '{print \$1}'"

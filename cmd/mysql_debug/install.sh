@@ -8,6 +8,14 @@ DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
+
+DOCKERNAME=mysql
+VERSION=56
+DOCKER_CON_NAME=mysql
+
+LOG_FILE=$MDIR/bin/logs/reinstall/cmd_mysql_debug_install.log
+echo "install!" > $LOG_FILE
+
 # https://github.com/midoks/mysql-server
 mkdir -p $MDIR/source/mysql_debug
 
@@ -18,28 +26,54 @@ else
 	cd $MDIR/source/mysql_debug && git pull && git checkout 5.6_md_debug
 fi
 
+cp -f $MDIR/bin/reinstall/cmd/mysql_debug/docker/Dockerfile $MDIR/source/mysql_debug/mysql-server/Dockerfile
+cp -f $MDIR/bin/reinstall/cmd/mysql_debug/docker/aliyun-epel.repo $MDIR/source/mysql_debug/mysql-server/aliyun-epel.repo
+cp -f $MDIR/bin/reinstall/cmd/mysql_debug/docker/aliyun-mirror.repo $MDIR/source/mysql_debug/mysql-server/aliyun-mirror.repo
+cp -f $MDIR/bin/reinstall/cmd/mysql_debug/docker/supervisord.conf $MDIR/source/mysql_debug/mysql-server/supervisord.conf
 
-if [ ! -d $DIR/mysql_debug ];then
-	echo "$MDIR/source/mysql_debug/mysql-server 
-	 && cmake . -G \"Xcode\" -DWITH_DEBUG=1 \
-	-DMYSQL_DATADIR=$MDIR/mysql56/data \
-	-DWITH_INNOBASE_STORAGE_ENGINE=1 \
-	-DCMAKE_INSTALL_PREFIX=$MDIR/mysql56 \
-	-DDEFAULT_CHARSET=utf8 \
-	-DDEFAULT_COLLATION=utf8_general_ci \
-	-DMYSQL_UNIX_ADDR=/tmp/mysql56.sock \
-	&& make && make install"
 
-	cd $MDIR/source/mysql_debug/mysql-server \
-	&& cmake . -G "Xcode" -DWITH_DEBUG=1 \
-	-DMYSQL_DATADIR=$MDIR/mysql56/data \
-	-DWITH_INNOBASE_STORAGE_ENGINE=1 \
-	-DCMAKE_INSTALL_PREFIX=$MDIR/mysql56 \
-	-DDEFAULT_CHARSET=utf8 \
-	-DDEFAULT_COLLATION=utf8_general_ci \
-	-DMYSQL_UNIX_ADDR=/tmp/mysql56.sock \
-	&& make && make install
-fi
+
+cd $MDIR/source/mysql_debug/mysql-server
+
+echo $DOCKERNAME:$VERSION
+
+docker build ./ -t $DOCKERNAME:$VERSION
+
+# docker run -p 3308:3306 -d --cap-add=SYS_PTRACE --name $DOCKER_CON_NAME $DOCKERNAME:$VERSION
+
+
+SIGN=`docker ps | grep ${DOCKER_CON_NAME} | awk '{print $1}'`
+
+echo "\r\n"
+echo "into master shell:"
+echo "docker exec -it $SIGN /bin/bash\r\n"
+# ------------------  master end -----------------------
+
+echo "ok!"
+
+
+# if [ ! -d $DIR/mysql_debug ];then
+# 	echo "$MDIR/source/mysql_debug/mysql-server 
+# 	 && cmake . -G \"Xcode\" -DWITH_DEBUG=1 \
+# 	-DMYSQL_DATADIR=$MDIR/mysql56/data \
+# 	-DWITH_INNOBASE_STORAGE_ENGINE=1 \
+# 	-DCMAKE_INSTALL_PREFIX=$MDIR/mysql56 \
+# 	-DDEFAULT_CHARSET=utf8 \
+# 	-DDEFAULT_COLLATION=utf8_general_ci \
+# 	-DMYSQL_UNIX_ADDR=/tmp/mysql56.sock \
+# 	&& make && make install"
+
+# 	cd $MDIR/source/mysql_debug/mysql-server \
+# 	&& cmake . -G "Xcode" -DWITH_DEBUG=1 \
+# 	-DMYSQL_DATADIR=$MDIR/mysql56/data \
+# 	-DCMAKE_INSTALL_PREFIX=$MDIR/mysql56 \
+# 	-DSYSCONFDIR=$MDIR/etc \
+# 	-DWITH_INNOBASE_STORAGE_ENGINE=1 \
+# 	-DDEFAULT_CHARSET=utf8 \
+# 	-DDEFAULT_COLLATION=utf8_general_ci \
+# 	-DMYSQL_UNIX_ADDR=/tmp/mysql56.sock
+# 	# make && make install
+# fi
 
 # if [ ! -d $DIR/tmp/my.cnf ]; then
 # 	mkdir -p $DIR/tmp
