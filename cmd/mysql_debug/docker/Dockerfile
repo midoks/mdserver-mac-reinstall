@@ -39,7 +39,7 @@ RUN yum install -y cmake
 RUN yum swap -y fakesystemd systemd && yum clean all
 RUN yum update -y  && yum clean all
 
-RUN yum install -y openssl-devel ncurses-devel
+RUN yum install -y openssl-devel ncurses-devel bison
 
 RUN mkdir -p /tmp/mysql
 ADD ./ /tmp/mysql
