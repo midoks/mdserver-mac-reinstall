@@ -60,7 +60,7 @@ RUN cd /tmp/mysql && /usr/bin/cmake . -DWITH_DEBUG=1 \
 -DMYSQL_UNIX_ADDR=/tmp/mysql.sock
 
 RUN cd /tmp/mysql && make 
-RUN cd /tmp/mysql && make install
+#RUN cd /tmp/mysql && make install
 
 
 EXPOSE 22
