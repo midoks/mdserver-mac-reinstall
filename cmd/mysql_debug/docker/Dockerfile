@@ -62,6 +62,9 @@ RUN cd /tmp/mysql && /usr/bin/cmake . -DWITH_DEBUG=1 \
 RUN cd /tmp/mysql && make 
 RUN cd /tmp/mysql && make install
 
+RUN groupadd mysql
+RUN useradd -g mysql mysql
+
 
 EXPOSE 22
 
