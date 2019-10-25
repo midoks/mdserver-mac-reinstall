@@ -30,9 +30,9 @@ fi
 cp -rf $MDIR/bin/reinstall/cmd/mysql_debug/docker/* $MDIR/source/mysql_debug/mysql-server
 
 
-if [ -d $MDIR/source/mysql_debug/mysql ]; then
-	rm -rf $MDIR/source/mysql_debug/mysql
-fi
+# if [ -d $MDIR/source/mysql_debug/mysql ]; then
+# 	rm -rf $MDIR/source/mysql_debug/mysql
+# fi
 
 cp -rf $MDIR/source/mysql_debug/mysql-server $MDIR/source/mysql_debug/mysql
 cd $MDIR/source/mysql_debug/mysql && rm -rf .git
