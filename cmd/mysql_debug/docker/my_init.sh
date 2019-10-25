@@ -4,10 +4,9 @@ export PATH=$PATH:/opt/local/bin:/opt/local/sbin:/opt/local/share/man:/usr/local
 
 /usr/local/mysql56/scripts/mysql_install_db --basedir=/usr/local/mysql56 --datadir=/usr/local/mysql56/data --user=mysql
 
-/usr/local/mysql56/bin/mysqld_safe --user=mysql &
+# /usr/local/mysql56/bin/mysqld_safe --user=mysql &
 
-#/usr/local/mysql56/bin/mysqld_safe --debug --user=mysql &
-
+/usr/local/mysql56/bin/mysqld_safe --debug --user=mysql &
 
 #/usr/local/mysql56/bin/mysqladmin -u root password 'root' shutdown
 
