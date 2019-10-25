@@ -36,6 +36,9 @@ if [ ! -d $MDIR/source/mysql_debug/mysql ]; then
 	cd $MDIR/source/mysql_debug/mysql && rm -rf .git
 fi
 
+
+cp -rf $MDIR/bin/reinstall/cmd/mysql_debug/docker/* $MDIR/source/mysql_debug/mysql
+
 cd $MDIR/source/mysql_debug/mysql
 
 echo $DOCKERNAME:$VERSION
