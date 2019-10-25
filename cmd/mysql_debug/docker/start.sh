@@ -10,7 +10,8 @@ echo "start"
 
 /usr/local/mysql56/bin/mysqladmin -u root password 'root'
 
-# grant all privileges on *.* to 'root'@'%' identified by 'root';
-/usr/local/mysql56/bin/mysql -uroot -proot  < "grant all PRIVILEGES on *.*  to root@'%'  identified by '*';"
+
+echo "grant all PRIVILEGES on *.*  to root@'%'  identified by 'root'" > /tmp.sql
+/usr/local/mysql56/bin/mysql -uroot -proot < tmp.sql
 
 echo "end"
