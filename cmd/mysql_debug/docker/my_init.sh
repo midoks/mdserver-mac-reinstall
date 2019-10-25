@@ -6,6 +6,9 @@ export PATH=$PATH:/opt/local/bin:/opt/local/sbin:/opt/local/share/man:/usr/local
 
 /usr/local/mysql56/bin/mysqld_safe --user=mysql &
 
+#/usr/local/mysql56/bin/mysqld_safe --debug --user=mysql &
+
+
 #/usr/local/mysql56/bin/mysqladmin -u root password 'root' shutdown
 
 echo "grant all PRIVILEGES on *.*  to root@'%'  identified by 'root'" > /tmp.sql
