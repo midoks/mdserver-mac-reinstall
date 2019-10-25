@@ -10,3 +10,6 @@ echo "123123"
 
 /usr/local/mysql56/scripts/mysql_install_db --basedir=/usr/local/mysql56 --datadir=/usr/local/mysql56/data --user=mysql &
 
+
+/usr/local/mysql56/bin/mysql -uroot -proot  < "grant all PRIVILEGES on *.*  to root@'*'  identified by '*';"
+
