@@ -46,20 +46,20 @@ RUN yum install -y ncurses-devel || yum install -y ncurses-devel || yum clean al
 
 RUN mkdir -p /tmp/mysql
 ADD ./ /tmp/mysql
-
-RUN cd /tmp/mysql && /usr/bin/cmake . -DWITH_DEBUG=1 \
--DMYSQL_DATADIR=/usr/local/mysql56/data \
--DCMAKE_INSTALL_PREFIX=/usr/local/mysql56 \
--DSYSCONFDIR=/etc \
--DWITH_INNOBASE_STORAGE_ENGINE=1 \
--DDEFAULT_CHARSET=utf8 \
--DDEFAULT_COLLATION=utf8_general_ci \
--DMYSQL_UNIX_ADDR=/tmp/mysql.sock \
-&& make && make install
-
+ADD ./my.cnf /etc/
 ADD ./my_install.sh /
 ADD ./start.sh /
-ADD ./my.cnf /etc/
+
+#RUN cd /tmp/mysql && /usr/bin/cmake . -DWITH_DEBUG=1 \
+#-DMYSQL_DATADIR=/usr/local/mysql56/data \
+#-DCMAKE_INSTALL_PREFIX=/usr/local/mysql56 \
+#-DSYSCONFDIR=/etc \
+#-DWITH_INNOBASE_STORAGE_ENGINE=1 \
+#-DDEFAULT_CHARSET=utf8 \
+#-DDEFAULT_COLLATION=utf8_general_ci \
+#-DMYSQL_UNIX_ADDR=/tmp/mysql.sock \
+#&& make && make install
+
 
 EXPOSE 22
 
