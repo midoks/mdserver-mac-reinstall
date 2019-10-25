@@ -65,8 +65,9 @@ RUN cd /tmp/mysql && /usr/bin/cmake . -DWITH_DEBUG=1 \
 RUN cd /tmp/mysql && make 
 RUN cd /tmp/mysql && make install
 
+ADD ./my_init.sh /
 
-
+RUN /usr/bin/sh /my_init.sh
 
 EXPOSE 22
 
