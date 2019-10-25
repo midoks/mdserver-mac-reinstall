@@ -59,6 +59,7 @@ RUN cd /tmp/mysql && /usr/bin/cmake . -DWITH_DEBUG=1 \
 
 ADD ./my_install.sh /
 ADD ./start.sh /
+ADD ./my.cnf /etc/
 
 EXPOSE 22
 
