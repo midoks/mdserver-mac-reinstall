@@ -3,9 +3,9 @@ export PATH=$PATH:/opt/local/bin:/opt/local/sbin:/opt/local/share/man:/usr/local
 
 echo "start"
 
-/usr/local/mysql56/bin/mysqld_safe &
-
 /usr/local/mysql56/scripts/mysql_install_db --basedir=/usr/local/mysql56 --datadir=/usr/local/mysql56/data --user=mysql &
+
+/usr/local/mysql56/bin/mysqld_safe &
 
 /usr/local/mysql56/bin/mysqladmin -u root password 'root'
 
