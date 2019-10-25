@@ -77,6 +77,8 @@ echo "ok!"
 # 	cp $MDIR/bin/reinstall/tpl/mysql/my.cnf $DIR/tmp/
 # fi
 
+# ./scripts/mysql_install_db --basedir=/usr/local/mysql56 --datadir=/usr/local/mysql56/data --user=mysql
+
 #mysql 5.1, 5.6版本,直接初始化表
 # if [ ! -d $DIR/mysql/data/mysql ];then
 # 	$DIR/mysql/scripts/mysql_install_db \

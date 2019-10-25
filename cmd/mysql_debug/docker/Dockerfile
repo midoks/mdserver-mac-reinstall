@@ -44,6 +44,9 @@ RUN yum swap -y fakesystemd systemd || yum swap -y fakesystemd systemd \
 RUN yum install -y openssl-devel || yum install -y openssl-devel || yum clean all
 RUN yum install -y ncurses-devel || yum install -y ncurses-devel || yum clean all
 
+RUN groupadd mysql
+RUN useradd -g mysql mysql
+
 RUN mkdir -p /tmp/mysql
 ADD ./ /tmp/mysql
 ADD ./my.cnf /etc/
@@ -62,8 +65,7 @@ RUN cd /tmp/mysql && /usr/bin/cmake . -DWITH_DEBUG=1 \
 RUN cd /tmp/mysql && make 
 RUN cd /tmp/mysql && make install
 
-RUN groupadd mysql
-RUN useradd -g mysql mysql
+
 
 
 EXPOSE 22
