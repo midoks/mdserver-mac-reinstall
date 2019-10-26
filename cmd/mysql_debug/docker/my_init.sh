@@ -14,3 +14,5 @@ sleep 3
 
 echo "grant all PRIVILEGES on *.*  to root@'%'  identified by 'root'" > /tmp.sql
 /usr/local/mysql56/bin/mysql -uroot -proot < tmp.sql
+
+exit 0
