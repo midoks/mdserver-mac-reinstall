@@ -16,3 +16,6 @@ echo "grant all PRIVILEGES on *.*  to root@'%'  identified by 'root'" > /tmp.sql
 /usr/local/mysql56/bin/mysql -uroot -proot < tmp.sql
 
 exit 0
+
+# /usr/local/mysql56/bin/mysql -uroot -proot shutdown
+# /usr/local/mysql56/bin/mysqld_safe --debug --user=mysql
