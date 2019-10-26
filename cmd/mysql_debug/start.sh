@@ -16,7 +16,7 @@ DOCKER_CON_NAME=mysql
 LOG_FILE=$MDIR/bin/logs/reinstall/cmd_mysql_debug_start.log
 echo "start!" > $LOG_FILE
 
-
+echo "docker run -di -p 3308:3306 -v $MDIR/source/mysql_debug/mysql:/tmp/mysql  --cap-add=SYS_PTRACE --name $DOCKER_CON_NAME $DOCKERNAME:$VERSION"
 docker run -di -p 3308:3306 -v $MDIR/source/mysql_debug/mysql:/tmp/mysql  --cap-add=SYS_PTRACE --name $DOCKER_CON_NAME $DOCKERNAME:$VERSION
 
 SIGN=`docker ps | grep ${DOCKER_CON_NAME} | awk '{print $1}'`
