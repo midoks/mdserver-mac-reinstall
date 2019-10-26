@@ -36,6 +36,8 @@ if [ ! -d $MDIR/source/mysql_debug/mysql ]; then
 	#rm -rf $MDIR/source/mysql_debug/mysql
 	cp -rf $MDIR/source/mysql_debug/mysql-server $MDIR/source/mysql_debug/mysql
 	cd $MDIR/source/mysql_debug/mysql && rm -rf .git
+	cd $MDIR/source/mysql_debug/mysql && rm -rf .gitignore
+	cd $MDIR/source/mysql_debug/mysql && rm -rf .gitattributes
 fi
 
 
