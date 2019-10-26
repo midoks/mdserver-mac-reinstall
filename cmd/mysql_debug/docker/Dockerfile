@@ -67,7 +67,7 @@ RUN cd /tmp/mysql && make install
 
 ADD ./my_init.sh /
 
-RUN /usr/bin/sh /my_init.sh
+#RUN /usr/bin/sh /my_init.sh
 
 EXPOSE 22
 
