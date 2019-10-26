@@ -69,6 +69,8 @@ ADD ./my_init.sh /
 
 #RUN /usr/bin/sh /my_init.sh
 
+RUN export MYSQL_DEBUG=d:t:O,/tmp/client.trace
+
 EXPOSE 22
 
 ENTRYPOINT ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisord.conf"]
