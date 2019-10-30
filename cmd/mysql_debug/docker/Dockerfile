@@ -67,10 +67,10 @@ RUN cd /tmp/mysql && make install
 
 ADD ./my_init.sh /
 
-RUN export MYSQL_DEBUG=d:t:O,/tmp/client.trace
-
 #RUN /usr/bin/sh /my_init.sh
+
+ENV WELCOME "mysql debug docker!"
 
 EXPOSE 22
 
-ENTRYPOINT ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisord.conf"]
+ENTRYPOINT ["/bin/bash", "-c", "/start.sh"]

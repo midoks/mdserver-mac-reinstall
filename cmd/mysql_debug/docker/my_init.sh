@@ -13,7 +13,7 @@ sleep 3
 /usr/local/mysql56/bin/mysqladmin -u root password 'root'
 
 echo "grant all PRIVILEGES on *.*  to root@'%'  identified by 'root'" > /tmp.sql
-/usr/local/mysql56/bin/mysql -uroot -proot < tmp.sql
+/usr/local/mysql56/bin/mysql -uroot -proot < /tmp.sql
 
 exit 0
 
