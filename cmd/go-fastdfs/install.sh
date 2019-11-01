@@ -9,6 +9,8 @@ DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
+GO_VERSION=1.3.4
+
 
 echo '' > $MDIR/bin/logs/reinstall/cmd_go-fastdfs_install.log
 echo 'install go-fastdfs start'
@@ -22,19 +24,19 @@ fi
 
 mkdir -p $MDIR/source/go-fastdfs
 
-if [ ! -f $MDIR/source/go-fastdfs/v1.3.1.tar.gz ]; then
-	wget -O $MDIR/source/go-fastdfs/v1.3.1.tar.gz   https://github.com/sjqzhang/go-fastdfs/archive/v1.3.1.tar.gz
+if [ ! -f $MDIR/source/go-fastdfs/v${GO_VERSION}.tar.gz ]; then
+	wget -O $MDIR/source/go-fastdfs/v${GO_VERSION}.tar.gz   https://github.com/sjqzhang/go-fastdfs/archive/v${GO_VERSION}.tar.gz
 fi
 
-if [ ! -d $MDIR/source/go-fastdfs/go-fastdfs-1.3.1 ]; then
-	cd $MDIR/source/go-fastdfs && tar -zxvf $MDIR/source/go-fastdfs/v1.3.1.tar.gz
+if [ ! -d $MDIR/source/go-fastdfs/go-fastdfs-${GO_VERSION} ]; then
+	cd $MDIR/source/go-fastdfs && tar -zxvf $MDIR/source/go-fastdfs/v${GO_VERSION}.tar.gz
 fi
 
-if [ ! -f $MDIR/source/go-fastdfs/go-fastdfs-1.3.1/fileserver ];then
+if [ ! -f $MDIR/source/go-fastdfs/go-fastdfs-${GO_VERSION}/fileserver ];then
 	
-	cd $MDIR/source/go-fastdfs/go-fastdfs-1.3.1
+	cd $MDIR/source/go-fastdfs/go-fastdfs-${GO_VERSION}
 
-	if [ -d $MDIR/source/go-fastdfs/go-fastdfs-1.3.1/vendor ];then
+	if [ -d $MDIR/source/go-fastdfs/go-fastdfs-${GO_VERSION}/vendor ];then
 		 mv vendor src
 	fi
 	pwd=`pwd`
@@ -42,7 +44,7 @@ if [ ! -f $MDIR/source/go-fastdfs/go-fastdfs-1.3.1/fileserver ];then
 	GOPATH=$pwd go build -o fileserver fileserver.go
 fi
 
-cd $MDIR/source/go-fastdfs/go-fastdfs-1.3.1
+cd $MDIR/source/go-fastdfs/go-fastdfs-${GO_VERSION}
 
 
 if [ ! -d $MDIR/source/go-fastdfs/demo ];then
