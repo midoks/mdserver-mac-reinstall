@@ -5,20 +5,21 @@ DIR=$(cd "$(dirname "$0")"; pwd)
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
+DIR=$(dirname "$DIR")
+DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
-LOG_FILE=$MDIR/bin/logs/reinstall/cmd_nsq_start.log
+LOG_FILE=$MDIR/bin/logs/reinstall/cmd_big_dir_grafana_start.log
 echo "start!" > $LOG_FILE
 
+brew services start grafana
 
-FIND_IS_INSTALL=`ps -ef|grep nsqd| grep -v grep |awk -F ' ' '{print $2}'`
 
-if [ "$FIND_IS_INSTALL" != '' ];then
-	echo "already start!"
-	exit 0
-fi
 
-brew services start nsq
-
+echo "\r\n"
+echo "http://127.0.0.1:3000\n"
+echo "info:"
+echo "user:admin"
+echo "password:admin"
 
 echo "ok!"

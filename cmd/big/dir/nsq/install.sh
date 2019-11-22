@@ -6,13 +6,14 @@ DIR=$(cd "$(dirname "$0")"; pwd)
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
+DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
-echo 'install grafana start'
+echo 'install nsq start'
 
 
-if [ ! -d /usr/local/Cellar/grafana ];then
-	brew install grafana
+if [ ! -d /usr/local/Cellar/nsq ];then
+	brew install nsq
 fi
 
-echo 'install grafana end'
+echo 'install nsq end'
