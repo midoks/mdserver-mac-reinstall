@@ -5,10 +5,12 @@ DIR=$(cd "$(dirname "$0")"; pwd)
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
+DIR=$(dirname "$DIR")
+DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 
-LOG_FILE=$MDIR/bin/logs/reinstall/cmd_mqtt_stop.log
+LOG_FILE=$MDIR/bin/logs/reinstall/cmd_big_dir_mqtt_stop.log
 echo "stop!" > $LOG_FILE
 
 ps -ef | grep mosquitto | grep -v grep | awk -F ' ' '{print $2}' | xargs kill
