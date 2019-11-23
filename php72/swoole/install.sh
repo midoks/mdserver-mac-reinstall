@@ -10,11 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=swoole
-LIBV='1.10.1'
-
-if [ "$VERSION" = "70" ] || [ "$VERSION" = "71" ] || [ "$VERSION" = "72" ] || [ "$VERSION" = "73" ]; then
-	LIBV='4.3.5'
-fi
+LIBV=4.4.12
 
 #check
 TMP_PHP_INI=/tmp/t_tmp_php.ini

@@ -32,7 +32,7 @@ fi
 
 sh $MDIR/bin/reinstall/check_common.sh $VERSION
 
-extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20180731/${LIBNAME}.so
+extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20190529/${LIBNAME}.so
 
 
 
