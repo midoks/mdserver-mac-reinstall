@@ -70,6 +70,9 @@ cd $MDIR/bin/reinstall/php$PHP_VER/swoole && sh install.sh $PHP_VER
 cd $MDIR/bin/reinstall/php$PHP_VER/imagick && sh install.sh $PHP_VER
 cd $MDIR/bin/reinstall/php$PHP_VER/mongodb && sh install.sh $PHP_VER
 cd $MDIR/bin/reinstall/php$PHP_VER/iconv && sh install.sh $PHP_VER
+cd $MDIR/bin/reinstall/php$PHP_VER/gd && sh install.sh $PHP_VER
+cd $MDIR/bin/reinstall/php$PHP_VER/bcmath && sh install.sh $PHP_VER
+cd $MDIR/bin/reinstall/php$PHP_VER/gettext && sh install.sh $PHP_VER
 echo "php${PHP_VER}  -- init -- end"
 
 
@@ -83,6 +86,9 @@ cd $MDIR/bin/reinstall/php$PHP_VER/swoole && sh install.sh $PHP_VER
 cd $MDIR/bin/reinstall/php$PHP_VER/imagick && sh install.sh $PHP_VER
 cd $MDIR/bin/reinstall/php$PHP_VER/mongodb && sh install.sh $PHP_VER
 cd $MDIR/bin/reinstall/php$PHP_VER/iconv && sh install.sh $PHP_VER
+cd $MDIR/bin/reinstall/php$PHP_VER/gd && sh install.sh $PHP_VER
+cd $MDIR/bin/reinstall/php$PHP_VER/bcmath && sh install.sh $PHP_VER
+cd $MDIR/bin/reinstall/php$PHP_VER/gettext && sh install.sh $PHP_VER
 echo "php${PHP_VER}  -- init -- end"
 
 
@@ -96,6 +102,9 @@ cd $MDIR/bin/reinstall/php$PHP_VER/swoole && sh install.sh $PHP_VER
 cd $MDIR/bin/reinstall/php$PHP_VER/imagick && sh install.sh $PHP_VER
 cd $MDIR/bin/reinstall/php$PHP_VER/mongodb && sh install.sh $PHP_VER
 cd $MDIR/bin/reinstall/php$PHP_VER/iconv && sh install.sh $PHP_VER
+cd $MDIR/bin/reinstall/php$PHP_VER/gd && sh install.sh $PHP_VER
+cd $MDIR/bin/reinstall/php$PHP_VER/bcmath && sh install.sh $PHP_VER
+cd $MDIR/bin/reinstall/php$PHP_VER/gettext && sh install.sh $PHP_VER
 echo "php${PHP_VER}  -- init -- end"
 
 
@@ -109,6 +118,9 @@ cd $MDIR/bin/reinstall/php$PHP_VER/swoole && sh install.sh $PHP_VER
 cd $MDIR/bin/reinstall/php$PHP_VER/imagick && sh install.sh $PHP_VER
 cd $MDIR/bin/reinstall/php$PHP_VER/mongodb && sh install.sh $PHP_VER
 cd $MDIR/bin/reinstall/php$PHP_VER/iconv && sh install.sh $PHP_VER
+cd $MDIR/bin/reinstall/php$PHP_VER/gd && sh install.sh $PHP_VER
+cd $MDIR/bin/reinstall/php$PHP_VER/bcmath && sh install.sh $PHP_VER
+cd $MDIR/bin/reinstall/php$PHP_VER/gettext && sh install.sh $PHP_VER
 echo "php${PHP_VER}  -- init -- end"
 
 
@@ -122,5 +134,8 @@ cd $MDIR/bin/reinstall/php$PHP_VER/swoole && sh install.sh $PHP_VER
 cd $MDIR/bin/reinstall/php$PHP_VER/imagick && sh install.sh $PHP_VER
 cd $MDIR/bin/reinstall/php$PHP_VER/mongodb && sh install.sh $PHP_VER
 cd $MDIR/bin/reinstall/php$PHP_VER/iconv && sh install.sh $PHP_VER
+cd $MDIR/bin/reinstall/php$PHP_VER/gd && sh install.sh $PHP_VER
+cd $MDIR/bin/reinstall/php$PHP_VER/bcmath && sh install.sh $PHP_VER
+cd $MDIR/bin/reinstall/php$PHP_VER/gettext && sh install.sh $PHP_VER
 echo "php${PHP_VER}  -- init -- end"
 
