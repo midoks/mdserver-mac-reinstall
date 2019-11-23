@@ -9,8 +9,8 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
-LIBNAME=yar
-LIBV=2.0.5
+LIBNAME=yaml
+LIBV=2.0.4
 
 
 #check
@@ -19,7 +19,7 @@ TMP_CHECK_LOG=/tmp/t_check_php.log
 
 echo "extension=$LIBNAME.so" > $TMP_PHP_INI
 $DIR/php/php$VERSION/bin/php -c $TMP_PHP_INI -r 'phpinfo();' > $TMP_CHECK_LOG
-FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "${LIBNAME}.allow_persistent"`
+FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "${LIBNAME}"`
 
 echo "install $LIBNAME start"
 
@@ -30,11 +30,9 @@ if [ "$FIND_IS_INSTALL" != "" ]; then
 	exit 0
 fi
 
-
-
 sh $MDIR/bin/reinstall/check_common.sh $VERSION
 
-extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20180731/${LIBNAME}.so
+extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20170718/${LIBNAME}.so
 
 isInstall=`cat $DIR/php/php$VERSION/etc/php.ini|grep '${LIBNAME}.so'`
 if [ "${isInstall}" != "" ]; then
@@ -46,10 +44,6 @@ if [ -f  $extFile ]; then
 	rm -rf $extFile
 fi
 
-LIB_DEPEND_DIR=`brew info curl | grep /usr/local/Cellar/curl | cut -d \  -f 1`
-
-echo "$LIBNAME-DIR:"
-echo $LIB_DEPEND_DIR
 
 if [ ! -f "$extFile" ]; then
 
