@@ -20,8 +20,6 @@ if [ ! -f $MDIR/source/php/php-${PHP_VER}.tar.xz ];then
 	wget -O $MDIR/source/php/php-${PHP_VER}.tar.xz https://github.com/php/php-src/archive/php-${PHP_VER}.tar.gz
 fi
 
-
-
 if [ ! -d $MDIR/source/php/php${PHP_M_VER} ]; then
 	if [ ! -d $MDIR/source/php/php-${PHP_VER} ];then
 		cd $MDIR/source/php && tar -Jxf $MDIR/source/php/php-${PHP_VER}.tar.xz

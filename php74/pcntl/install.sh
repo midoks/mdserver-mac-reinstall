@@ -9,6 +9,7 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
+EXT_VERSION=no-debug-non-zts-20190902
 LIBNAME=pcntl
 LIBV='0'
 
@@ -16,8 +17,7 @@ echo "install $LIBNAME start"
 
 sh $MDIR/bin/reinstall/check_common.sh $VERSION
 
-extFile=$DIR/php/php${VERSION}/lib/php/extensions/no-debug-non-zts-20190529/${LIBNAME}.so
-
+extFile=$DIR/php/php$VERSION/lib/php/extensions/${EXT_VERSION}/${LIBNAME}.so
 isInstall=`cat $DIR/php/php${VERSION}/etc/php.ini|grep '${LIBNAME}.so'`
 if [ "${isInstall}" != "" ]; then
 	echo "php-$VERSION 已安装${LIBNAME},请选择其它版本!"

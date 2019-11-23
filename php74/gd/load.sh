@@ -9,10 +9,11 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=gd
+EXT_VERION=no-debug-non-zts-20190902
 
 echo "load $LIBNAME start"
 
-extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20190529/${LIBNAME}.so
+extFile=$DIR/php/php$VERSION/lib/php/extensions/${EXT_VERION}/${LIBNAME}.so
 if [ ! -f $extFile ]; then
 	echo "load $LIBNAME fail"
 	exit 1

@@ -117,7 +117,7 @@ echo "php${PHP_VER}  -- init -- start"
 cd $MDIR/bin/reinstall/php$PHP_VER/intl && sh install.sh $PHP_VER
 cd $MDIR/bin/reinstall/php$PHP_VER/openssl && sh install.sh $PHP_VER
 cd $MDIR/bin/reinstall/php$PHP_VER/curl && sh install.sh $PHP_VER
-cd $MDIR/bin/reinstall/php$PHP_VER/yar && sh install.sh $PHP_VER
+cd $MDIR/bin/reinstall/php$PHP_VER/rdkafka && sh install.sh $PHP_VER
 cd $MDIR/bin/reinstall/php$PHP_VER/swoole && sh install.sh $PHP_VER
 cd $MDIR/bin/reinstall/php$PHP_VER/imagick && sh install.sh $PHP_VER
 cd $MDIR/bin/reinstall/php$PHP_VER/mongodb && sh install.sh $PHP_VER

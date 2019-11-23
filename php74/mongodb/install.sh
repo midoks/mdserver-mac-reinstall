@@ -10,6 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=mongodb
+EXT_VERSION=no-debug-non-zts-20190902
 LIBV=1.5.5
 
 
@@ -31,11 +32,8 @@ if [ "$FIND_IS_INSTALL" != "" ]; then
 	exit 0
 fi
 
-
 sh $MDIR/bin/reinstall/check_common.sh $VERSION
-
-extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20190529/${LIBNAME}.so
-
+extFile=$DIR/php/php$VERSION/lib/php/extensions/${EXT_VERSION}/${LIBNAME}.so
 if [ -f  $extFile ]; then
 	rm -rf $extFile
 fi

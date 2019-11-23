@@ -11,12 +11,13 @@ MDIR=$(dirname "$DIR")
 VERSION=$1
 LIBNAME=mcrypt
 LIBV=1.0.2
+EXT_VERSION=no-debug-non-zts-20190902
 
 echo "install $LIBNAME start"
 
 sh $MDIR/bin/reinstall/check_common.sh $VERSION
 
-extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20190529/${LIBNAME}.so
+extFile=$DIR/php/php$VERSION/lib/php/extensions/${EXT_VERSION}/${LIBNAME}.so
 
 isInstall=`cat $DIR/php/php$VERSION/etc/php.ini|grep '${LIBNAME}.so'`
 if [ "${isInstall}" != "" ]; then
