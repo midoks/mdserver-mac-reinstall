@@ -29,7 +29,7 @@ fi
 
 #./configure --help
 if [ ! -d $DIR/php/php${PHP_M_VER} ];then
-
+cd $MDIR/source/php/php${PHP_M_VER}
 ./configure \
 --prefix=$DIR/php/php${PHP_M_VER} \
 --exec-prefix=$DIR/php/php${PHP_M_VER} \

@@ -37,7 +37,7 @@ PATH=$PATH:/Applications/mdserver/bin/cmd/libzip
 if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 
 cp /Applications/mdserver/bin/cmd/libzip/include/zip.h /usr/local/include/zipconf.h
-
+cd $MDIR/source/php/php${PHP_M_VER}
 ./configure --prefix=$DIR/php/php${PHP_M_VER}/ \
 --exec-prefix=$DIR/php/php${PHP_M_VER} \
 --with-config-file-path=$DIR/php/php${PHP_M_VER}/etc \
@@ -67,7 +67,7 @@ cp /Applications/mdserver/bin/cmd/libzip/include/zip.h /usr/local/include/zipcon
 # --with-libzip=$DIR/cmd/libzip \
 # --enable-zip \
 
-make && make install
+make && make install && make clean
 
 fi
 
