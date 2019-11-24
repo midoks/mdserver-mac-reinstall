@@ -273,7 +273,7 @@ cd $DIR/php$PHP_VER/curl && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/bcmath && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/iconv && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/imagick && sh install.sh $PHP_VER
-cd $DIR/php$PHP_VER/intl && sh install.sh $PHP_VER
+# cd $DIR/php$PHP_VER/intl && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/mongodb && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/mcrypt && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/gettext && sh install.sh $PHP_VER

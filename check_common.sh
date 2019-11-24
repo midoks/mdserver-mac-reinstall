@@ -39,10 +39,9 @@ if [ ! -d /usr/local/Cellar/libevent ];then
 fi
 
 
-
-echo "PHP-VERIONS:$VERSION"
-echo "$MDIR/source/php/php$VERSION"
 if [ ! -d $MDIR/source/php/php$VERSION ]; then
+	echo "PHP-VERIONS:$VERSION"
+	echo "$MDIR/source/php/php$VERSION"
 	echo "缺少php$VERSION源码,正在安装..."
 	sh $MDIR/bin/reinstall/php$VERSION/install.sh
 fi
