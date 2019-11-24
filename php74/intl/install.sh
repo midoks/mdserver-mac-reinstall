@@ -20,7 +20,7 @@ TMP_CHECK_LOG=/tmp/t_check_php.log
 echo "extension=$LIBNAME.so" > $TMP_PHP_INI
 $DIR/php/php$VERSION/bin/php -c $TMP_PHP_INI -r 'phpinfo();' > $TMP_CHECK_LOG
 FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "${LIBNAME}.default_locale"`
-
+echo $FIND_IS_INSTALL
 echo "install $LIBNAME start"
 
 rm -rf $TMP_PHP_INI
@@ -50,11 +50,12 @@ echo $LIB_DEPEND_DIR
 
 if [ ! -f "$extFile" ]; then
 
+	echo "$MDIR/source/php/php${VERSION}/ext/intl"
 	cd $MDIR/source/php/php${VERSION}/ext/intl
 	$DIR/php/php$VERSION/bin/phpize
 	echo `pwd`
 	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \
-	--with-icu-dir=$LIB_DEPEND_DIR  && \
+	--with-libdir=$LIB_DEPEND_DIR  && \
 	make && make install && make clean
 fi
 
