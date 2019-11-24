@@ -48,7 +48,7 @@ cd $DIR/php$PHP_VER/curl && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/bcmath && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/iconv && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/imagick && sh install.sh $PHP_VER
-# cd $DIR/php$PHP_VER/intl && sh install.sh $PHP_VER
+cd $DIR/php$PHP_VER/intl && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/memcache && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/memcached && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/redis && sh install.sh $PHP_VER
@@ -80,7 +80,7 @@ cd $DIR/php$PHP_VER/curl && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/bcmath && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/iconv && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/imagick && sh install.sh $PHP_VER
-#cd $DIR/php$PHP_VER/intl && sh install.sh $PHP_VER
+cd $DIR/php$PHP_VER/intl && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/memcache && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/memcached && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/mongodb && sh install.sh $PHP_VER
@@ -103,6 +103,7 @@ cd $DIR/php$PHP_VER/rdkafka && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/mosquitto && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/pcntl && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/xdebug && sh install.sh $PHP_VER
+cd $DIR/php$PHP_VER/protobuf && sh install.sh $PHP_VER
 echo "php${PHP_VER} -- end"
 
 
@@ -114,7 +115,7 @@ cd $DIR/php$PHP_VER/curl && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/bcmath && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/iconv && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/imagick && sh install.sh $PHP_VER
-#cd $DIR/php$PHP_VER/intl && sh install.sh $PHP_VER
+cd $DIR/php$PHP_VER/intl && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/memcache && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/memcached && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/mongodb && sh install.sh $PHP_VER
@@ -148,7 +149,7 @@ cd $DIR/php$PHP_VER/curl && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/bcmath && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/iconv && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/imagick && sh install.sh $PHP_VER
-# cd $DIR/php$PHP_VER/intl && sh install.sh $PHP_VER
+cd $DIR/php$PHP_VER/intl && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/memcached && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/mongodb && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/redis && sh install.sh $PHP_VER
