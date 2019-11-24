@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=xdebug
-LIBV=2.7.2
+LIBV=2.8.0
 
 #check
 TMP_PHP_INI=/tmp/t_tmp_php.ini
@@ -58,7 +58,7 @@ if [ ! -f "$extFile" ]; then
 	cd $php_lib/${LIBNAME}-${LIBV}
 
 	$DIR/php/php$VERSION/bin/phpize
-	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \
+	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config && \
 	make && make install && make clean
 fi
 

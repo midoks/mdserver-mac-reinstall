@@ -43,7 +43,7 @@ if [ ! -f "$extFile" ]; then
 	cd $php_lib/${LIBNAME}-${LIBV}
 
 	$DIR/php/php$VERSION/bin/phpize
-	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \
+	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config && \
 	make && make install && make clean
 fi
 
