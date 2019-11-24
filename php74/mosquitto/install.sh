@@ -19,7 +19,7 @@ TMP_CHECK_LOG=/tmp/t_check_php.log
 
 echo "extension=$LIBNAME.so" > $TMP_PHP_INI
 $DIR/php/php$VERSION/bin/php -c $TMP_PHP_INI -r 'phpinfo();' > $TMP_CHECK_LOG
-FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "${LIBNAME}"`
+FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "lib${LIBNAME}"`
 
 echo "install $LIBNAME start"
 
