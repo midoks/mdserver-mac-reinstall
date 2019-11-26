@@ -12,6 +12,10 @@ VERSION=$1
 LIBNAME=openssl
 LIBV='0'
 
+if [ ! -d $DIR/cmd/openssl ];then
+	cd $MDIR/bin/reinstall/cmd/base && sh cmd_openssl.sh
+fi
+
 export PKG_CONFIG_PATH=/Applications/mdserver/bin/cmd/openssl/lib/pkgconfig
 
 #check

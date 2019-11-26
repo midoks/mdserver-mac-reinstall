@@ -12,6 +12,10 @@ VERSION=$1
 LIBNAME=openssl
 LIBV='0'
 
+if [ ! -d $DIR/cmd/openssl ];then
+	cd $MDIR/bin/reinstall/cmd/base && sh cmd_openssl.sh
+fi
+
 #check
 TMP_PHP_INI=/tmp/t_tmp_php.ini
 TMP_CHECK_LOG=/tmp/t_check_php.log
