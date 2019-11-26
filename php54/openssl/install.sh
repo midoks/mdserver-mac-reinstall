@@ -12,6 +12,8 @@ VERSION=$1
 LIBNAME=openssl
 LIBV='0'
 
+export PKG_CONFIG_PATH=/Applications/mdserver/bin/cmd/openssl/lib/pkgconfig
+
 #check
 TMP_PHP_INI=/tmp/t_tmp_php.ini
 TMP_CHECK_LOG=/tmp/t_check_php.log
@@ -19,6 +21,8 @@ TMP_CHECK_LOG=/tmp/t_check_php.log
 echo "extension=$LIBNAME.so" > $TMP_PHP_INI
 $DIR/php/php$VERSION/bin/php -c $TMP_PHP_INI -r 'phpinfo();' > $TMP_CHECK_LOG
 FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "OpenSSL Library Version"`
+
+#echo $FIND_IS_INSTALL
 
 echo "install $LIBNAME start"
 rm -rf $TMP_PHP_INI
@@ -48,10 +52,8 @@ if [ ! -d /usr/local/Cellar/openssl ];then
 	brew install openssl
 fi
 
-LIB_DEPEND_DIR=`brew info openssl | grep /usr/local/Cellar/openssl | cut -d \  -f 1`
 
-echo "$LIBNAME-DIR:"
-echo $LIB_DEPEND_DIR
+LDFLAGS="-Wl,-rpath-link=$DIR/cmd/openssl -Wl,--verbose"
 
 if [ ! -f "$extFile" ]; then
 	cd $MDIR/source/php/php$VERSION/ext/openssl
@@ -62,7 +64,7 @@ if [ ! -f "$extFile" ]; then
 
 	$DIR/php/php$VERSION/bin/phpize
 	./configure  --with-php-config=$DIR/php/php$VERSION/bin/php-config \
-	--with-openssl=$LIB_DEPEND_DIR && make && make install && make clean
+	--with-openssl=$DIR/cmd/openssl  && make && make install && make clean
 fi
 
 echo "install $LIBNAME end"
