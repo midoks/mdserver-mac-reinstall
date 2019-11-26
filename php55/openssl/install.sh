@@ -40,11 +40,6 @@ if [ -f  $extFile ]; then
 fi
 
 
-LIB_DEPEND_DIR=`brew info openssl | grep /usr/local/Cellar/openssl | cut -d \  -f 1`
-
-echo "$LIBNAME-DIR:"
-echo $LIB_DEPEND_DIR
-
 isInstall=`cat $DIR/php/php$VERSION/etc/php.ini|grep '${LIBNAME}.so'`
 if [ "${isInstall}" != "" ]; then
 	echo "php-$VERSION 已安装${LIBNAME},请选择其它版本!"
@@ -61,7 +56,7 @@ if [ ! -f "$extFile" ]; then
 
 	$DIR/php/php$VERSION/bin/phpize
 	./configure  --with-php-config=$DIR/php/php$VERSION/bin/php-config \
-	--with-openssl=$LIB_DEPEND_DIR && make && make install
+	--with-openssl=$DIR/cmd/openssl && make && make install
 fi
 
 echo "install $LIBNAME end"
