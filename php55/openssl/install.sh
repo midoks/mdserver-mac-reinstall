@@ -12,6 +12,9 @@ VERSION=$1
 LIBNAME=openssl
 LIBV='0'
 
+export PKG_CONFIG_PATH=/Applications/mdserver/bin/cmd/openssl/lib/pkgconfig
+LDFLAGS="-Wl,-rpath-link=$DIR/cmd/openssl -Wl,--verbose"
+
 #check
 TMP_PHP_INI=/tmp/t_tmp_php.ini
 TMP_CHECK_LOG=/tmp/t_check_php.log
@@ -56,7 +59,7 @@ if [ ! -f "$extFile" ]; then
 
 	$DIR/php/php$VERSION/bin/phpize
 	./configure  --with-php-config=$DIR/php/php$VERSION/bin/php-config \
-	--with-openssl=$DIR/cmd/openssl && make && make install
+	--with-openssl=$DIR/cmd/openssl && make && make install && make clean
 fi
 
 echo "install $LIBNAME end"
