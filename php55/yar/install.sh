@@ -10,12 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=yar
-LIBV='1.2.5'
-
-if [ "$VERSION" = "70" ] || [ "$VERSION" = "71" ] || [ "$VERSION" = "72" ] || [ "$VERSION" = "73" ]; then
-	LIBV='2.05'
-fi
-
+LIBV=1.2.5
 
 #check
 TMP_PHP_INI=/tmp/t_tmp_php.ini
