@@ -26,6 +26,11 @@ if [ ! -d /usr/local/Cellar/curl ];then
 	brew install curl
 fi
 
+
+if [ ! -d /usr/local/Cellar/wget ];then
+	brew install wget
+fi
+
 if [ ! -d /usr/local/Cellar/libxml2 ];then
 	brew install libxml2
 fi
