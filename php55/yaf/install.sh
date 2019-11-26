@@ -10,19 +10,17 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=yaf
-LIBV='2.3.5'
-
-if [ "$VERSION" = "70" ] || [ "$VERSION" = "71" ] || [ "$VERSION" = "72" ] || [ "$VERSION" = "73" ]; then
-	LIBV='3.0.8'
-fi
+LIBV=2.3.5
 
 #check
 TMP_PHP_INI=/tmp/t_tmp_php.ini
 TMP_CHECK_LOG=/tmp/t_check_php.log
 
-echo "zend_extension=$LIBNAME.so" > $TMP_PHP_INI
+echo "extension=$LIBNAME.so" > $TMP_PHP_INI
 $DIR/php/php$VERSION/bin/php -c $TMP_PHP_INI -r 'phpinfo();' > $TMP_CHECK_LOG
 FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "${LIBNAME}.action_prefer"`
+
+
 echo "install $LIBNAME start"
 
 rm -rf $TMP_PHP_INI
