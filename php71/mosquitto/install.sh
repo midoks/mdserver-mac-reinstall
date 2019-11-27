@@ -49,6 +49,7 @@ if [ ! -f "$extFile" ]; then
 		
 	fi
 
+	rm -rf $php_lib/Mosquitto-PHP-master
 	if [ ! -d $php_lib/${LIBNAME}-${LIBV} ]; then
 		cd $php_lib
 		tar xvf ${LIBNAME}-${LIBV}.tgz

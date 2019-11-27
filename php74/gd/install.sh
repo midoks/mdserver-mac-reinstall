@@ -43,7 +43,6 @@ if [ ! -f "$extFile" ]; then
 
 	cd $MDIR/source/php/php${VERSION}/ext/gd
 	$DIR/php/php$VERSION/bin/phpize
-
 	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \
 	--with-zlib-dir=$DIR/cmd/zlib \
 	--with-png-dir=$DIR/cmd/libpng \
