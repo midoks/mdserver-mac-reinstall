@@ -170,6 +170,7 @@ cd $DIR/php$PHP_VER/rdkafka && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/mosquitto && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/pcntl && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/xdebug && sh install.sh $PHP_VER
+cd $DIR/php$PHP_VER/yaml && sh install.sh $PHP_VER
 echo "php${PHP_VER} -- end"
 
 
@@ -202,6 +203,7 @@ cd $DIR/php$PHP_VER/rdkafka && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/mosquitto && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/pcntl && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/xdebug && sh install.sh $PHP_VER
+cd $DIR/php$PHP_VER/yaml && sh install.sh $PHP_VER
 echo "php${PHP_VER} -- end"
 
 
@@ -233,6 +235,7 @@ cd $DIR/php$PHP_VER/rdkafka && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/mosquitto && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/pcntl && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/xdebug && sh install.sh $PHP_VER
+cd $DIR/php$PHP_VER/yaml && sh install.sh $PHP_VER
 echo "php${PHP_VER} -- end"
 
 
@@ -264,6 +267,7 @@ cd $DIR/php$PHP_VER/rdkafka && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/mosquitto && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/pcntl && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/xdebug && sh install.sh $PHP_VER
+cd $DIR/php$PHP_VER/yaml && sh install.sh $PHP_VER
 echo "php${PHP_VER} -- end"
 
 
@@ -289,5 +293,6 @@ cd $DIR/php$PHP_VER/pcntl && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/nsq && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/apcu && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/xdebug && sh install.sh $PHP_VER
+cd $DIR/php$PHP_VER/yaml && sh install.sh $PHP_VER
 echo "php${PHP_VER} -- end"
 
