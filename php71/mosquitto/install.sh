@@ -48,7 +48,6 @@ if [ ! -f "$extFile" ]; then
 		wget -O $php_lib/${LIBNAME}-${LIBV}.tgz https://github.com/mgdm/Mosquitto-PHP/archive/master.zip
 		
 	fi
-	cd $php_lib/${LIBNAME}-${LIBV}
 
 	if [ ! -d $php_lib/${LIBNAME}-${LIBV} ]; then
 		cd $php_lib
@@ -57,11 +56,10 @@ if [ ! -f "$extFile" ]; then
 
 	cd $php_lib/Mosquitto-PHP-master
 	
-	export $PATH
 	$DIR/php/php$VERSION/bin/phpize
 	./configure \
 	--with-php-config=$DIR/php/php$VERSION/bin/php-config  && \
-	make && make install && make clean
+	make clean && make && make install && make clean
 fi
 
 echo "install $LIBNAME end"

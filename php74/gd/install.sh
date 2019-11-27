@@ -43,12 +43,13 @@ if [ ! -f "$extFile" ]; then
 
 	cd $MDIR/source/php/php${VERSION}/ext/gd
 	$DIR/php/php$VERSION/bin/phpize
+
 	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \
 	--with-zlib-dir=$DIR/cmd/zlib \
 	--with-png-dir=$DIR/cmd/libpng \
 	--with-freetype-dir=$DIR/cmd/freetype \
 	--with-jpeg-dir=$DIR/cmd/libjpeg && \
-	make && make install  && make clean
+	make clean && make && make install  && make clean
 fi
 
 echo "install $LIBNAME end"

@@ -10,6 +10,8 @@ MDIR=$(dirname "$DIR")
 
 mkdir -p $MDIR/source/cmd
 
+echo "" > $MDIR/bin/logs/reinstall/cmd_base_install.log
+
 
 if [ ! -f /usr/local/bin/brew ];then
 	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"

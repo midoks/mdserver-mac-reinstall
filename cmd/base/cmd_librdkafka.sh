@@ -11,7 +11,9 @@ MDIR=$(dirname "$DIR")
 mkdir -p $MDIR/source/cmd
 
 echo 'librdkafka start'
-brew install librdkafka
-brew upgrade librdkafka
+
+if [ ! -d /usr/local/Cellar/librdkafka ];then
+	brew install librdkafka
+fi
 echo 'librdkafka end'
 

@@ -64,7 +64,7 @@ if [ ! -f $extFile ]; then
 
 	$DIR/php/php$VERSION/bin/phpize
 	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \
-	 --enable-vld && \
+	--enable-vld && \
 	make && make install
 fi
 

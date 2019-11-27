@@ -21,7 +21,7 @@ TMP_CHECK_LOG=/tmp/t_check_php.log
 echo "extension=$LIBNAME.so" > $TMP_PHP_INI
 $DIR/php/php$VERSION/bin/php -c $TMP_PHP_INI -r 'phpinfo();' > $TMP_CHECK_LOG
 
-FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "${LIBNAME}" `
+FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "GetText Support" `
 
 echo "install $LIBNAME start"
 
@@ -51,7 +51,7 @@ if [ ! -f "$extFile" ]; then
 	$DIR/php/php$VERSION/bin/phpize
 	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \
 	--with-gettext=$DIR/cmd/gettext && \
-	make && make install && make clean
+	make clean && make && make install  && make clean
 fi
 
 echo "install $LIBNAME end"
