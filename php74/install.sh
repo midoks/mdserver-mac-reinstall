@@ -40,8 +40,7 @@ if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 ./buildconf --force
 
 
-
-cd $DIR/php/php${PHP_M_VER}
+cd $MDIR/source/php/php${PHP_M_VER}
 
 
 export PATH="/usr/local/opt/bison/bin:$PATH"

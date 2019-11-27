@@ -28,7 +28,6 @@ if [ ! -d $MDIR/source/php/php${PHP_M_VER} ]; then
 fi
 
 cd $MDIR/source/php/php${PHP_M_VER}
-
 #./configure --help
 if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 
