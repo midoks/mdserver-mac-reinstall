@@ -87,6 +87,7 @@ cd $DIR/php$PHP_VER/mongodb && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/redis && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/yaf && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/yar && sh install.sh $PHP_VER
+
 cd $DIR/php$PHP_VER/mcrypt && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/msgpack && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/openssl && sh install.sh $PHP_VER
@@ -95,6 +96,7 @@ cd $DIR/php$PHP_VER/gearman && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/gettext && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/seaslog && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/swoole && sh install.sh $PHP_VER
+
 cd $DIR/php$PHP_VER/xhprof && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/solr && sh install.sh $PHP_VER
 cd $DIR/php$PHP_VER/scws && sh install.sh $PHP_VER
