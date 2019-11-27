@@ -49,6 +49,10 @@ if [ ! -d /usr/local/Cellar/libevent ];then
 	brew install libevent
 fi
 
+if [ ! -d /usr/local/Cellar/oniguruma ];then
+	brew install oniguruma
+fi
+
 
 if [ ! -d $MDIR/source/php/php$VERSION ]; then
 	echo "PHP-VERIONS:$VERSION"

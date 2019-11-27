@@ -39,9 +39,9 @@ if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 #cp /Applications/mdserver/bin/cmd/libzip/include/zip.h /usr/local/include/zipconf.h
 ./buildconf --force
 
-if [ ! -d /usr/local/Cellar/oniguruma ];then
-	brew install oniguruma
-fi
+
+
+cd $DIR/php/php${PHP_M_VER}
 
 
 export PATH="/usr/local/opt/bison/bin:$PATH"
