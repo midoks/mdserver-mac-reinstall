@@ -9,9 +9,9 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
-LIBNAME=yar
+LIBNAME=redis
 EXT_VERSION=no-debug-non-zts-20190902
-LIBV=2.0.5
+LIBV=5.1.1
 
 #check
 TMP_PHP_INI=/tmp/t_tmp_php.ini
@@ -20,7 +20,7 @@ TMP_CHECK_LOG=/tmp/t_check_php.log
 echo "extension=$LIBNAME.so" > $TMP_PHP_INI
 $DIR/php/php$VERSION/bin/php -c $TMP_PHP_INI -r 'phpinfo();' > $TMP_CHECK_LOG
 
-FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "${LIBNAME}.environ" `
+FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "${LIBNAME}.arrays.algorithm" `
 
 echo "install $LIBNAME start"
 

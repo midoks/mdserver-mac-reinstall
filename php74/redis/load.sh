@@ -8,7 +8,7 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
-LIBNAME=yar
+LIBNAME=redis
 EXT_VERSION=no-debug-non-zts-20190902
 
 echo "load $LIBNAME start"
