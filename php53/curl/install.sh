@@ -39,6 +39,11 @@ if [ "${isInstall}" != "" ]; then
 	return
 fi
 
+LIB_DEPEND_DIR=`brew info curl | grep /usr/local/Cellar/curl | cut -d \  -f 1 | awk 'END {print}'`
+
+echo "$LIBNAME-DIR:"
+echo $LIB_DEPEND_DIR
+
 if [ ! -f "$extFile" ]; then
 	cd $MDIR/source/php/php$VERSION/ext/curl
 	$DIR/php/php$VERSION/bin/phpize

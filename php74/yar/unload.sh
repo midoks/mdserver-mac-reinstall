@@ -8,7 +8,7 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
-LIBNAME=solr
+LIBNAME=yar
 
 echo "unload $LIBNAME start"
 
