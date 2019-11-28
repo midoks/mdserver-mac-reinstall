@@ -22,8 +22,8 @@ FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "${LIBNAME}.cafile"`
 
 echo "install $LIBNAME start"
 
-# rm -rf $TMP_PHP_INI
-# rm -rf $TMP_CHECK_LOG
+rm -rf $TMP_PHP_INI
+rm -rf $TMP_CHECK_LOG
 if [ "$FIND_IS_INSTALL" != "" ]; then
 	echo "install $LIBNAME end"	
 	exit 0

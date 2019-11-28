@@ -12,7 +12,22 @@ VERSION=$1
 LIBNAME=bcmath
 LIBV='0'
 
+#check
+TMP_PHP_INI=/tmp/t_tmp_php.ini
+TMP_CHECK_LOG=/tmp/t_check_php.log
+
+echo "extension=$LIBNAME.so" > $TMP_PHP_INI
+$DIR/php/php$VERSION/bin/php -c $TMP_PHP_INI -r 'phpinfo();' > $TMP_CHECK_LOG
+FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "BCMath support"`
+
 echo "install $LIBNAME start"
+
+rm -rf $TMP_PHP_INI
+rm -rf $TMP_CHECK_LOG
+if [ "$FIND_IS_INSTALL" != "" ]; then
+	echo "install $LIBNAME end"	
+	exit 0
+fi
 
 sh $MDIR/bin/reinstall/check_common.sh $VERSION
 
@@ -25,7 +40,7 @@ if [ "${isInstall}" != "" ]; then
 fi
 
 if [ ! -f "$extFile" ]; then
-	cd $MDIR/source/php/php$VERSION/ext/{LIBNAME}
+	cd $MDIR/source/php/php$VERSION/ext/${LIBNAME}
 	$DIR/php/php$VERSION/bin/phpize
 	./configure  --with-php-config=$DIR/php/php$VERSION/bin/php-config  && make && make install
 fi
