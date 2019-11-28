@@ -56,7 +56,7 @@ echo "mysql server$ update user set authentication_string=password('root') where
 echo "mysql server$ flush privileges;"
 echo "mysql server$ exit;"
 
-echo "ps -ef|grep mysql |grep -v grep|awk '{print $2}'|xargs kill"
+echo "ps -ef|grep mysql |grep -v grep|awk '{print \$2}'|xargs kill"
 
 echo "----------------------- reset -------------------------"
 
