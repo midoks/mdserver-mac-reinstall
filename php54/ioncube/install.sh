@@ -11,7 +11,7 @@ MDIR=$(dirname "$DIR")
 VERSION=$1
 LIBNAME=ioncube
 LIBV='0'
-PHP_VERSION='5.4'
+PHP_VERSION=5.4
 
 #check
 TMP_PHP_INI=/tmp/t_tmp_php.ini
@@ -20,6 +20,8 @@ TMP_CHECK_LOG=/tmp/t_check_php.log
 echo "zend_extension=$LIBNAME.so" > $TMP_PHP_INI
 $DIR/php/php$VERSION/bin/php -c $TMP_PHP_INI -r 'phpinfo();' > $TMP_CHECK_LOG
 FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "${LIBNAME}.loader.encoded_paths"`
+
+echo $FIND_IS_INSTALL
 
 
 echo "install $LIBNAME start"
@@ -64,7 +66,7 @@ if [ ! -f "$extFile" ]; then
 	fi
 
 	cd $php_lib/ioncube
-	cp $php_lib/ioncube/ioncube_loader_dar_${PHP_VERSION}.so $extDir/ioncube.so
+	cp $php_lib/ioncube/ioncube_loader_dar_${PHP_VERSION}_ts.so $extDir/ioncube.so
 fi
 
 echo "install $LIBNAME end"

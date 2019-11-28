@@ -19,7 +19,8 @@ TMP_CHECK_LOG=/tmp/t_check_php.log
 echo "extension=$LIBNAME.so" > $TMP_PHP_INI
 $DIR/php/php$VERSION/bin/php -c $TMP_PHP_INI -r 'phpinfo();' > $TMP_CHECK_LOG
 FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "SSH2 support"`
-
+echo $FIND_IS_INSTALL
+# echo `cat $TMP_CHECK_LOG`
 echo "install $LIBNAME start"
 
 rm -rf $TMP_PHP_INI
@@ -39,6 +40,10 @@ if [ "${isInstall}" != "" ]; then
 	return
 fi
 
+if [ -f  $extFile ]; then
+	rm -rf $extFile
+fi
+
 if [ ! -f "$extFile" ]; then
 
 	php_lib=$MDIR/source/php_lib
@@ -54,12 +59,6 @@ if [ ! -f "$extFile" ]; then
 		cd $php_lib
 		tar xvf ${LIBNAME}-${LIBV}.tgz
 	fi
-
-	echo $php_lib/${LIBNAME}-${LIBV}
-
-	exit 0 
-
-
 
 	cd $php_lib/${LIBNAME}-${LIBV}
 

@@ -28,7 +28,7 @@ LIBV=3.3.0
 TMP_PHP_INI=/tmp/t_tmp_php.ini
 TMP_CHECK_LOG=/tmp/t_check_php.log
 
-echo "extension=$LIBNAME.so" > $TMP_PHP_INI
+echo "extension=opencv.so" > $TMP_PHP_INI
 $DIR/php/php$VERSION/bin/php -c $TMP_PHP_INI -r 'phpinfo();' > $TMP_CHECK_LOG
 FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "opencv support"`
 
@@ -57,6 +57,16 @@ if [ -f  $extFile ]; then
 fi
 
 
+if [ ! -d /usr/local/Cellar/opencv@3 ];then
+	brew install opencv@3
+fi
+
+# LIB_DEPEND_DIR=`brew info opencv@3 | grep /usr/local/Cellar/opencv@3 | cut -d \  -f 1 | awk 'END {print}'`
+# echo "$LIBNAME-DIR:"
+# echo $LIB_DEPEND_DIR
+brew unlink opencv
+brew link opencv@3 --force
+
 if [ ! -f "$extFile" ]; then
 
 	php_lib=$MDIR/source/php_lib
@@ -74,6 +84,11 @@ if [ ! -f "$extFile" ]; then
 	fi
 
 	cd $php_lib/${LIBNAME}-${LIBV}
+
+	#echo 'export PATH="/usr/local/opt/opencv@3/bin:$PATH"' >> ~/.bash_profile
+	export LDFLAGS="-L/usr/local/opt/opencv@3/lib"
+  	export CPPFLAGS="-I/usr/local/opt/opencv@3/include"
+	export PKG_CONFIG_PATH="/usr/local/opt/opencv@3/lib/pkgconfig"
 
 	$DIR/php/php$VERSION/bin/phpize
 	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \

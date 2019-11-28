@@ -12,7 +12,23 @@ VERSION=$1
 LIBNAME=amqp
 LIBV=1.9.4
 
+#check
+TMP_PHP_INI=/tmp/t_tmp_php.ini
+TMP_CHECK_LOG=/tmp/t_check_php.log
+
+echo "extension=$LIBNAME.so" > $TMP_PHP_INI
+$DIR/php/php$VERSION/bin/php -c $TMP_PHP_INI -r 'phpinfo();' > $TMP_CHECK_LOG
+FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "${LIBNAME}.auto_ack"`
+
 echo "install $LIBNAME start"
+
+rm -rf $TMP_PHP_INI
+rm -rf $TMP_CHECK_LOG
+if [ "$FIND_IS_INSTALL" != "" ]; then
+	echo "install $LIBNAME end"	
+	exit 0
+fi
+
 
 sh $MDIR/bin/reinstall/check_common.sh $VERSION
 
