@@ -38,7 +38,7 @@ fi
 if [ ! -d $DIR/mysql/data/mysql ];then
 
 	echo "$DIR/mysql/bin/mysqld --defaults-file=$DIR/tmp/my.cnf --initialize"
-	$DIR/mysql/bin/mysqld --defaults-file=$DIR/tmp/my.cnf --initialize
+	$DIR/mysql/bin/mysqld --defaults-file=$DIR/tmp/my.cnf --initialize --explicit_defaults_for_timestamp
 	sleep 2
 fi
 
