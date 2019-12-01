@@ -14,25 +14,34 @@ SCALE_VERSION=2.12
 mkdir -p $MDIR/source/kafka
 KAFKA_DIR=$MDIR/source/kafka
 
+
 LOG_FILE=$MDIR/bin/logs/reinstall/cmd_big_dir_kafka_start.log
 echo "start!" > $LOG_FILE
 
+echo "cd $KAFKA_DIR/kafka_${SCALE_VERSION}-${VERSION}"
 cd $KAFKA_DIR/kafka_${SCALE_VERSION}-${VERSION}
 
-echo "begin service!"
-echo "$KAFKA_DIR/kafka_${SCALE_VERSION}-${VERSION}/bin/zookeeper-server-start.sh \
-$KAFKA_DIR/kafka_${SCALE_VERSION}-${VERSION}/config/zookeeper.properties &"
-$KAFKA_DIR/kafka_${SCALE_VERSION}-${VERSION}/bin/zookeeper-server-start.sh \
-$KAFKA_DIR/kafka_${SCALE_VERSION}-${VERSION}/config/zookeeper.properties &
+echo "begin zookeeper service!"
+echo "./bin/zookeeper-server-start.sh \
+./config/zookeeper.properties &"
+./bin/zookeeper-server-start.sh \
+./config/zookeeper.properties &
+
+
+echo "begin kafka service!"
+echo "./bin/kafka-server-start.sh \
+./config/server.properties &"
+./bin/kafka-server-start.sh \
+./config/server.properties &
 
 echo "--topic--"
-echo "$KAFKA_DIR/kafka_${SCALE_VERSION}-${VERSION}/bin/kafka-topics.sh \
+echo "./bin/kafka-topics.sh \
 --create \
 --replication-factor 1 \
---partitions 1 
+--partitions 1 \
 --zookeeper 127.0.0.1:2181 \
 --topic kafka_message"
-# $KAFKA_DIR/kafka_${SCALE_VERSION}-${VERSION}/bin/kafka-topics.sh \
+# ./bin/kafka-topics.sh \
 # --create \
 # --replication-factor 1 \
 # --partitions 1 
@@ -40,31 +49,31 @@ echo "$KAFKA_DIR/kafka_${SCALE_VERSION}-${VERSION}/bin/kafka-topics.sh \
 # --topic kafka_message
 
 echo "-- topic list --"
-echo "$KAFKA_DIR/kafka_${SCALE_VERSION}-${VERSION}/bin/kafka-topics.sh \
+echo "./bin/kafka-topics.sh \
 --list \
 --zookeeper 127.0.0.1:2181"
-# $KAFKA_DIR/kafka_${SCALE_VERSION}-${VERSION}/bin/kafka-topics.sh \
-# --list \
-# --zookeeper 127.0.0.1:2181
+./bin/kafka-topics.sh \
+--list \
+--zookeeper 127.0.0.1:2181
 
 
 echo "--producer--"
-echo "$KAFKA_DIR/kafka_${SCALE_VERSION}-${VERSION}/bin/kafka-console-producer.sh \
---broker-list 127.0.0.1:2181 \
+echo "./bin/kafka-console-producer.sh \
+--broker-list 127.0.0.1:9092 \
 --topic kafka_message"
-# $KAFKA_DIR/kafka_${SCALE_VERSION}-${VERSION}/bin/kafka-console-producer.sh \
-# --broker-list 127.0.0.1:2181 \
-# --topic kafka_message
+./bin/kafka-console-producer.sh \
+--broker-list 127.0.0.1:9092 \
+--topic kafka_message
 
 
 echo "--consumer--"
-echo "$KAFKA_DIR/kafka_${SCALE_VERSION}-${VERSION}/bin/kafka-console-consumer.sh \
---zookeeper 127.0.0.1:2181 \
+echo "./bin/kafka-console-consumer.sh \
+--bootstrap-server 127.0.0.1:9092 \
 --topic kafka_message \
 --from-beginning"
-# $KAFKA_DIR/kafka_${SCALE_VERSION}-${VERSION}/bin/kafka-console-consumer.sh \
-# --zookeeper 127.0.0.1:2181 \
-# --topic kafka_message \
-# --from-beginning
+./bin/kafka-console-consumer.sh \
+--bootstrap-server 127.0.0.1:9092 \
+--topic kafka_message \
+--from-beginning
 
 echo "ok!"

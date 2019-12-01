@@ -25,7 +25,7 @@ function stop_kafka(){
     echo $kafka_pid2
     kill -9 $kafka_pid2
 
-    kafka_pid=$(ps ax | grep -i 'kafka.Kafka' | grep java | grep -v grep | awk '{print $1}')
+    kafka_pid=$(ps ax | grep -i 'kafka' | grep java | grep -v grep | awk '{print $1}')
     echo $kafka_pid
     kill -9 $kafka_pid
 }
