@@ -20,21 +20,29 @@ LOG_FILE=$MDIR/bin/logs/reinstall/cmd_big_dir_redis-clusor_install.log
 echo "-----------" > $LOG_FILE
 echo 'install redis-clusor start'
 
+if [ ! -d $REDIS_CLUSTOR_DIR/redis ];then
+	mkdir -p $REDIS_CLUSTOR_DIR/redis
+	cp -rf $MDIR/bin/redis/ $REDIS_CLUSTOR_DIR/redis/
+	rm -rf $REDIS_CLUSTOR_DIR/redis/data
+	rm -rf $REDIS_CLUSTOR_DIR/redis/etc
 
-REDIS_LIST=("1" "2" "3")
+	cp -rf $DIR_PWD/tpl/redis-trib.rb $REDIS_CLUSTOR_DIR
+fi
+
+REDIS_LIST=("1" "2" "3" "4" "5" "6")
 
 for i in ${REDIS_LIST[*]}
 do
 	echo $i
 	if [ ! -d $REDIS_CLUSTOR_DIR/redis${i} ];then
 		mkdir -p $REDIS_CLUSTOR_DIR/redis${i}
-		cp -rf $MDIR/bin/redis/ $REDIS_CLUSTOR_DIR/redis${i}/
 	fi
 
-	cd $REDIS_CLUSTOR_DIR/redis${i}/data && rm -rf $REDIS_CLUSTOR_DIR/redis${i}/data/
-	mkdir -p $REDIS_CLUSTOR_DIR/redis${i}/data/
+	if [ ! -d $REDIS_CLUSTOR_DIR/redis${i}/data ];then
+		mkdir -p $REDIS_CLUSTOR_DIR/redis${i}/data
+		mkdir -p $REDIS_CLUSTOR_DIR/redis${i}/etc
+	fi
 
-	rm -rf $REDIS_CLUSTOR_DIR/redis${i}/etc/redis.conf
 	cp -rf $DIR_PWD/tpl/redis.conf $REDIS_CLUSTOR_DIR/redis${i}/etc/
 
 	PORT=700${i}

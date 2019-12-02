@@ -9,6 +9,10 @@ DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
+# gem sources -a https://rubygems.org/
+# /usr/bin/gem install redis -v 3.2.1
+
+
 REDIS_CLUSTOR_DIR=$MDIR/source/redis-clustor
 mkdir -p $REDIS_CLUSTOR_DIR
 
@@ -16,10 +20,17 @@ mkdir -p $REDIS_CLUSTOR_DIR
 LOG_FILE=$MDIR/bin/logs/reinstall/cmd_big_dir_redis-clustor_start.log
 echo "start!" > $LOG_FILE
 
-REDIS_LIST=("1" "2" "3")
+REDIS_LIST=("1" "2" "3" "4" "5" "6")
+
+REDIS_CLUSTOR_STR=""
 
 for i in ${REDIS_LIST[*]}
 do
-	$REDIS_CLUSTOR_DIR/redis${i}/bin/redis-server $REDIS_CLUSTOR_DIR/redis${i}/etc/redis.conf
+	$REDIS_CLUSTOR_DIR/redis/bin/redis-server $REDIS_CLUSTOR_DIR/redis${i}/etc/redis.conf
+	REDIS_CLUSTOR_STR="${REDIS_CLUSTOR_STR}127.0.0.1:700${i} "
 done
+
+# echo $REDIS_CLUSTOR_STR
+echo "$REDIS_CLUSTOR_DIR/redis-trib.rb create --replicas 1 $REDIS_CLUSTOR_STR"
+# $REDIS_CLUSTOR_DIR/redis-trib.rb create --replicas 1 $REDIS_CLUSTOR_STR
 echo "ok!"

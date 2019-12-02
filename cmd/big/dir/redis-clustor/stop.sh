@@ -17,13 +17,14 @@ LOG_FILE=$MDIR/bin/logs/reinstall/cmd_big_dir_redis-clustor_stop.log
 echo "stop!" > $LOG_FILE
 
 
-REDIS_LIST=("1" "2" "3")
+REDIS_LIST=("1" "2" "3" "4" "5" "6")
+
 for i in ${REDIS_LIST[*]}
 do
 	PORT=700${i}
 	FIND_PORT=`ps -ef|grep *:$PORT | grep -v grep | awk '{print $2}'`
 	if [ "$FIND_PORT" != "" ];then
-		$REDIS_CLUSTOR_DIR/redis${i}/bin/redis-cli -p ${PORT} shutdown
+		$REDIS_CLUSTOR_DIR/redis/bin/redis-cli -p ${PORT} shutdown
 	fi
 done
 
