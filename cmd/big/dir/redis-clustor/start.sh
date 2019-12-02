@@ -12,6 +12,7 @@ MDIR=$(dirname "$DIR")
 # gem sources -a https://rubygems.org/
 # /usr/bin/gem install redis -v 3.2.1
 
+echo "$MDIR/source/redis-clustor/redis/bin/redis-cli -c -h 127.0.0.1 -p 7001"
 
 REDIS_CLUSTOR_DIR=$MDIR/source/redis-clustor
 mkdir -p $REDIS_CLUSTOR_DIR
