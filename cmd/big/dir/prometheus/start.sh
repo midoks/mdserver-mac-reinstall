@@ -20,6 +20,11 @@ mkdir -p $APP_DIR/prometheus_demo/tsdb_dir
 
 cd $APP_DIR/prometheus_demo
 
+
+is_run=`ps -ef|grep prometheus_demo | grep -v grep | awk '{print $2}'`
+echo $is_run
+if [ "$is_run" == "" ];then
+
 echo "$APP_DIR/prometheus_demo/prometheus \
 --config.file $APP_DIR/prometheus_demo/prometheus.yml \
 --storage.tsdb.path $APP_DIR/prometheus_demo/tsdb_dir \
@@ -30,6 +35,26 @@ $APP_DIR/prometheus_demo/prometheus \
 --storage.tsdb.path $APP_DIR/prometheus_demo/tsdb_dir \
 --web.console.templates=$APP_DIR/prometheus_demo/consoles \
 --web.console.libraries=$APP_DIR/prometheus_demo/console_libraries &
+
+fi
+
+
+is_run=`ps -ef|grep mysqld_exporter | grep -v grep | awk '{print $2}'`
+if [ "$is_run" == "" ];then
+
+
+
+echo '[client]
+host=127.0.0.1
+user=root
+password=root
+' > $APP_DIR/mysqld_exporter_demo/.my.cnf
+
+$APP_DIR/mysqld_exporter_demo/mysqld_exporter \
+--config.my-cnf="$APP_DIR/mysqld_exporter_demo/.my.cnf" &
+
+fi
+
 
 
 

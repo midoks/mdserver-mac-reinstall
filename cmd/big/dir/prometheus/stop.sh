@@ -18,5 +18,6 @@ mkdir -p $MDIR/source/prometheus
 APP_DIR=$MDIR/source/prometheus
 
 ps -ef|grep prometheus | grep -v grep | awk '{print $2}' | xargs kill
+# ps -ef|grep mysqld_exporter | grep -v grep | awk '{print $2}' | xargs kill
 
 echo "ok!"
