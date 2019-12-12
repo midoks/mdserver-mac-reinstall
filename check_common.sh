@@ -53,6 +53,10 @@ if [ ! -d /usr/local/Cellar/oniguruma ];then
 	brew install oniguruma
 fi
 
+if [ ! -d /usr/local/Cellar/libzip ];then
+	brew install libzip
+fi
+
 
 if [ ! -d $MDIR/source/php/php$VERSION ]; then
 	echo "PHP-VERIONS:$VERSION"
