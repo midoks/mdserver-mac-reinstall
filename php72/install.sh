@@ -42,7 +42,6 @@ cd $MDIR/source/php/php${PHP_M_VER}
 --with-zlib-dir=$DIR/cmd/zlib \
 --with-mhash=$DIR/cmd/mhash \
 --without-iconv \
---enable-zip \
 --enable-mbstring \
 --enable-opcache \
 --enable-ftp \
