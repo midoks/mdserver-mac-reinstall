@@ -40,6 +40,10 @@ RUN yum install -y strace
 RUN yum swap -y fakesystemd systemd || yum swap -y fakesystemd systemd \
 && yum update -y || yum update -y && yum clean all
 
+RUN yum update -y cmake
+RUN rpm --rebuilddb && yum install -y cmake3
+
+RUN rpm --rebuilddb && yum install -y boost &&  yum install -y boost-devel && yum install -y boost-doc
 
 RUN yum install -y openssl-devel || yum install -y openssl-devel || yum clean all
 RUN yum install -y ncurses-devel || yum install -y ncurses-devel || yum clean all
@@ -58,6 +62,8 @@ RUN cd /tmp/mysql && /usr/bin/cmake . -DWITH_DEBUG=1 \
 -DCMAKE_INSTALL_PREFIX=/usr/local/mysql56 \
 -DSYSCONFDIR=/etc \
 -DWITH_INNOBASE_STORAGE_ENGINE=1 \
+-DDOWNLOAD_BOOST=1 \
+-DWITH_BOOST=/usr/include/boost2 \
 -DDEFAULT_CHARSET=utf8 \
 -DDEFAULT_COLLATION=utf8_general_ci \
 -DMYSQL_UNIX_ADDR=/tmp/mysql.sock
@@ -65,7 +71,7 @@ RUN cd /tmp/mysql && /usr/bin/cmake . -DWITH_DEBUG=1 \
 RUN cd /tmp/mysql && make 
 RUN cd /tmp/mysql && make install
 
-ADD ./my_init.sh /
+#ADD ./my_init.sh /
 
 #RUN /usr/bin/sh /my_init.sh
 

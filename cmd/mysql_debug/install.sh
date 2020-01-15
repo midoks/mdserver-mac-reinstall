@@ -12,7 +12,7 @@ MDIR=$(dirname "$DIR")
 
 
 DOCKERNAME=mysql
-VERSION=56
+VERSION=5.7
 DOCKER_CON_NAME=mysql
 
 LOG_FILE=$MDIR/bin/logs/reinstall/cmd_mysql_debug_install.log
@@ -25,8 +25,8 @@ mkdir -p $MDIR/source/mysql_debug
 if [ ! -d $MDIR/source/mysql_debug/mysql-server ]; then
 	cd $MDIR/source/mysql_debug && git clone https://github.com/midoks/mysql-server
 else 
-	echo "123"
-	#cd $MDIR/source/mysql_debug/mysql-server && git pull && git checkout 5.6_md_debug
+	echo "checkout mysql version"
+	cd $MDIR/source/mysql_debug/mysql-server && git pull && git checkout $VERSION
 fi
 
 cp -rf $MDIR/bin/reinstall/cmd/mysql_debug/docker/* $MDIR/source/mysql_debug/mysql-server
