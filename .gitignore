@@ -1,3 +1,2 @@
 *.DS_Store
 cmd/self-*
-php71/hashlib/*.sh
