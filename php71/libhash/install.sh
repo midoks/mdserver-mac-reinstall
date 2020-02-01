@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=libhash
-LIBV=0.1.0
+LIBV=1.0
 
 
 echo "install $LIBNAME start"
