@@ -57,21 +57,16 @@ ADD ./my.cnf /etc/
 ADD ./my_install.sh /
 ADD ./start.sh /
 
-RUN cd /tmp/mysql && /usr/bin/cmake . -DWITH_DEBUG=1 \
--DMYSQL_DATADIR=/usr/local/mysql56/data \
--DCMAKE_INSTALL_PREFIX=/usr/local/mysql56 \
--DSYSCONFDIR=/etc \
+RUN cd /tmp/mysql && /usr/bin/cmake . -DWITH_DEBUG=1 -DMYSQL_DATADIR=/usr/local/mysql56/data \
+-DCMAKE_INSTALL_PREFIX=/usr/local/mysql56 -DSYSCONFDIR=/etc \
 -DWITH_INNOBASE_STORAGE_ENGINE=1 \
--DDOWNLOAD_BOOST=1 \
--DWITH_BOOST=/usr/include/boost2 \
--DDEFAULT_CHARSET=utf8 \
--DDEFAULT_COLLATION=utf8_general_ci \
+-DDOWNLOAD_BOOST=1 -DWITH_BOOST=/usr/include/boost \
+-DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci \
 -DMYSQL_UNIX_ADDR=/tmp/mysql.sock
-
 RUN cd /tmp/mysql && make 
 RUN cd /tmp/mysql && make install
+ADD ./my_init.sh /
 
-#ADD ./my_init.sh /
 
 #RUN /usr/bin/sh /my_init.sh
 
