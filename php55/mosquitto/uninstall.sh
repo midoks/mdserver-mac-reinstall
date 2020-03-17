@@ -15,5 +15,5 @@ extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20121212/${LIBN
 
 if [ -f "$extFile" ]; then
 	rm -f $extFile
-	echo "delete ok"
+	echo "delete php${VERSION} ${LIBNAME} ok"
 fi
