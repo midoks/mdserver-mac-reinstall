@@ -6,7 +6,14 @@ DIR=$(cd "$(dirname "$0")"; pwd)
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
-DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
-echo $DIR
+VERSION=$1
+LIBNAME=swoole
+
+extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20160303/${LIBNAME}.so
+
+if [ -f "$extFile" ]; then
+	rm -f $extFile
+	echo "delete php${VERSION} ${LIBNAME} ok"
+fi
