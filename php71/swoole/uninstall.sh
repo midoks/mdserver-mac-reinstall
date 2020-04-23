@@ -1,5 +1,4 @@
 #! /bin/sh
-
 export PATH=$PATH:/opt/local/bin:/opt/local/sbin:/opt/local/share/man:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
 
 DIR=$(cd "$(dirname "$0")"; pwd)
@@ -11,9 +10,4 @@ MDIR=$(dirname "$DIR")
 VERSION=$1
 LIBNAME=swoole
 
-extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20160303/${LIBNAME}.so
-
-if [ -f "$extFile" ]; then
-	rm -f $extFile
-	echo "delete php${VERSION} ${LIBNAME} ok"
-fi
+sh $MDIR/bin/reinstall/ext_shell/uninstall.sh $VERSION $LIBNAME

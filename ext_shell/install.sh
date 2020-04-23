@@ -11,6 +11,9 @@ VERSION=$1
 LIBNAME=$2
 LIBV=$3
 
+CONFIG_OPTION=$4
+CONFIG_OPTION=${CONFIG_OPTION//\|/ }
+
 
 NON_ZTS_FILENAME=no-debug-non-zts-20121212
 if [ "$VERSION" == "56" ]; then
@@ -76,8 +79,9 @@ if [ ! -f "$extFile" ]; then
 	cd $php_lib/${LIBNAME}-${LIBV}
 
 	$DIR/php/php$VERSION/bin/phpize
-	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config  --enable-apcu && \
+	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config  --enable-${LIBNAME} ${CONFIG_OPTION} && \
 	make && make install && make clean
+
 fi
 
 echo "install $LIBNAME end"
