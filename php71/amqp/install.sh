@@ -16,8 +16,6 @@ LIBV=1.10.2
 
 if [ ! -d /usr/local/Cellar/rabbitmq-c ];then
 	brew install rabbitmq-c
-else
-	brew upgrade rabbitmq-c
 fi
 
 
