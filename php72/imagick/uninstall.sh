@@ -6,7 +6,9 @@ DIR=$(cd "$(dirname "$0")"; pwd)
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
-DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
-echo $DIR
+VERSION=$1
+LIBNAME=imagick
+
+sh $MDIR/bin/reinstall/ext_shell/uninstall.sh $VERSION $LIBNAME

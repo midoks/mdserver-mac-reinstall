@@ -10,14 +10,4 @@ MDIR=$(dirname "$DIR")
 VERSION=$1
 LIBNAME=imagick
 
-echo "unload $LIBNAME start"
-
-sed -i '_bak' "/${LIBNAME}.so/d"  $DIR/php/php$VERSION/etc/php.ini
-sed -i '_bak' "/${LIBNAME}/d" $DIR/php/php$VERSION/etc/php.ini
-sed -i '_bak' '/^$/N;/^\n$/D' $DIR/php/php$VERSION/etc/php.ini
-
-rm -rf $DIR/php/php$VERSION/etc/php.ini_bak
-
-$MDIR/bin/reinstall/reload.sh $VERSION
-
-echo "unload $LIBNAME end"
+sh $MDIR/bin/reinstall/ext_shell/unload.sh $VERSION $LIBNAME
