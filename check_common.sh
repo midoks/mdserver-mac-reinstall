@@ -18,8 +18,8 @@ sh $MDIR/bin/reinstall/cmd/brew/install.sh
 
 if [ ! -d /usr/local/Cellar/openssl ];then
 	brew install openssl
-else
-	brew upgrade openssl
+# else
+# 	brew upgrade openssl
 fi
 
 if [ ! -d /usr/local/Cellar/icu4c ];then
@@ -61,8 +61,8 @@ fi
 
 if [ ! -d /usr/local/Cellar/rabbitmq-c ];then
 	brew install rabbitmq-c
-else
-	brew upgrade rabbitmq-c
+# else
+# 	brew upgrade rabbitmq-c
 fi
 
 
