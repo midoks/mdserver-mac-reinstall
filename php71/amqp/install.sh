@@ -11,11 +11,18 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=amqp
-LIBV=1.9.4
+LIBV=1.10.2
+
+
+if [ ! -d /usr/local/Cellar/rabbitmq-c ];then
+	brew install rabbitmq-c
+else
+	brew upgrade rabbitmq-c
+fi
 
 
 LIB_DEPEND_DIR=`brew info rabbitmq-c | grep /usr/local/Cellar/rabbitmq-c | cut -d \  -f 1 | awk 'END {print}'`
-CONFIG_OPTION="${CONFIG_OPTION}|--with-amqp|--with-librabbitmq-dir=$LIB_DEPEND_DIR"
+CONFIG_OPTION="--with-amqp|--with-librabbitmq-dir=${LIB_DEPEND_DIR}"
 
 sh $MDIR/bin/reinstall/ext_shell/install.sh $VERSION $LIBNAME $LIBV $CONFIG_OPTION
 
