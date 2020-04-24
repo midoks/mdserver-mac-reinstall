@@ -5,103 +5,34 @@ export PATH=$PATH:/opt/local/bin:/opt/local/sbin:/opt/local/share/man:/usr/local
 DIR=$(cd "$(dirname "$0")"; pwd)
 MDIR=$(dirname "$DIR")
 
+CHECK_BREW=`which brew`
+if [  "$CHECK_BREW" == "" ];then
+	echo "缺少brew命令,正在安装..."
+	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
 
-
-# PHP_VER=53
-# echo "php${PHP_VER} -- start"
-# cd $DIR/php$PHP_VER && sh install.sh
-# dir=$(ls -l $DIR/php$PHP_VER |awk '/^d/ {print $NF}')
-# for i in $dir
-# do
-# 	cd $DIR/php$PHP_VER/$i && sh install.sh $PHP_VER
-# done
-# echo "php${PHP_VER} -- end"
-
-
-# PHP_VER=54
-# echo "php${PHP_VER} -- start"
-# cd $DIR/php$PHP_VER && sh install.sh
-# dir=$(ls -l $DIR/php$PHP_VER |awk '/^d/ {print $NF}')
-# for i in $dir
-# do
-# 	cd $DIR/php$PHP_VER/$i && sh install.sh $PHP_VER
-# done
-# echo "php${PHP_VER} -- end"
-
-PHP_VER=55
-echo "php${PHP_VER} -- start"
-cd $DIR/php$PHP_VER && sh install.sh
-dir=$(ls -l $DIR/php$PHP_VER |awk '/^d/ {print $NF}')
-for i in $dir
-do
-	cd $DIR/php$PHP_VER/$i && sh install.sh $PHP_VER
+PHP_EXT_NEED_LIST=(openssl icu4c imagemagick curl wget libxml2 libevent oniguruma libzip rabbitmq-c)
+for PHP_EXT in ${PHP_EXT_NEED_LIST[@]}; do
+	if [ ! -d /usr/local/Cellar/${PHP_EXT} ];then
+		brew install ${PHP_EXT}
+	else
+		brew upgrade ${PHP_EXT}
+	fi
 done
-echo "php${PHP_VER} -- end"
 
 
-PHP_VER=56
-echo "php${PHP_VER} -- start"
-cd $DIR/php$PHP_VER && sh install.sh
-dir=$(ls -l $DIR/php$PHP_VER |awk '/^d/ {print $NF}')
-for i in $dir
-do
-	cd $DIR/php$PHP_VER/$i && sh install.sh $PHP_VER
+# PHP_VER_LIST=(53 54 55 56 70 71 72 73 74)
+PHP_VER_LIST=(55 56 71 72 73 74)
+for PHP_VER in ${PHP_VER_LIST[@]}; do
+	echo "php${PHP_VER} -- start"
+	cd $DIR/php$PHP_VER && sh install.sh
+	dir=$(ls -l $DIR/php$PHP_VER |awk '/^d/ {print $NF}')
+	for i in $dir
+	do
+		cd $DIR/php$PHP_VER/$i && sh install.sh $PHP_VER
+	done
+	echo "php${PHP_VER} -- end"
 done
-echo "php${PHP_VER} -- end"
 
 
-# PHP_VER=70
-# echo "php${PHP_VER} -- start"
-# cd $DIR/php$PHP_VER && sh install.sh
-# dir=$(ls -l $DIR/php$PHP_VER |awk '/^d/ {print $NF}')
-# for i in $dir
-# do
-# 	cd $DIR/php$PHP_VER/$i && sh install.sh $PHP_VER
-# done
-# echo "php${PHP_VER} -- end"
-
-
-PHP_VER=71
-echo "php${PHP_VER} -- start"
-cd $DIR/php$PHP_VER && sh install.sh
-dir=$(ls -l $DIR/php$PHP_VER |awk '/^d/ {print $NF}')
-for i in $dir
-do
-	cd $DIR/php$PHP_VER/$i && sh install.sh $PHP_VER
-done
-echo "php${PHP_VER} -- end"
-
-
-PHP_VER=72
-echo "php${PHP_VER} -- start"
-cd $DIR/php$PHP_VER && sh install.sh
-dir=$(ls -l $DIR/php$PHP_VER |awk '/^d/ {print $NF}')
-for i in $dir
-do
-	cd $DIR/php$PHP_VER/$i && sh install.sh $PHP_VER
-done
-echo "php${PHP_VER} -- end"
-
-
-
-PHP_VER=73
-echo "php${PHP_VER} -- start"
-cd $DIR/php$PHP_VER && sh install.sh
-dir=$(ls -l $DIR/php$PHP_VER |awk '/^d/ {print $NF}')
-for i in $dir
-do
-	cd $DIR/php$PHP_VER/$i && sh install.sh $PHP_VER
-done
-echo "php${PHP_VER} -- end"
-
-
-PHP_VER=74
-echo "php${PHP_VER} -- start"
-cd $DIR/php$PHP_VER && sh install.sh
-dir=$(ls -l $DIR/php$PHP_VER |awk '/^d/ {print $NF}')
-for i in $dir
-do
-	cd $DIR/php$PHP_VER/$i && sh install.sh $PHP_VER
-done
-echo "php${PHP_VER} -- end"
 

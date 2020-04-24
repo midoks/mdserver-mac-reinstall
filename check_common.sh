@@ -16,55 +16,12 @@ VERSION=$1
 
 sh $MDIR/bin/reinstall/cmd/brew/install.sh
 
-if [ ! -d /usr/local/Cellar/openssl ];then
-	brew install openssl
-# else
-# 	brew upgrade openssl
-fi
-
-if [ ! -d /usr/local/Cellar/icu4c ];then
-	brew install icu4c
-fi
-
-if [ ! -d /usr/local/Cellar/imagemagick ];then
-	brew install imagemagick
-fi
-
-if [ ! -d /usr/local/Cellar/curl ];then
-	brew install curl
-fi
-
-
-if [ ! -d /usr/local/Cellar/wget ];then
-	brew install wget
-fi
-
-if [ ! -d /usr/local/Cellar/libxml2 ];then
-	brew install libxml2
-fi
-
-if [ ! -d /usr/local/Cellar/bison ];then
-	brew install bison
-fi
-
-if [ ! -d /usr/local/Cellar/libevent ];then
-	brew install libevent
-fi
-
-if [ ! -d /usr/local/Cellar/oniguruma ];then
-	brew install oniguruma
-fi
-
-if [ ! -d /usr/local/Cellar/libzip ];then
-	brew install libzip
-fi
-
-if [ ! -d /usr/local/Cellar/rabbitmq-c ];then
-	brew install rabbitmq-c
-# else
-# 	brew upgrade rabbitmq-c
-fi
-
+PHP_EXT_NEED_LIST=(openssl icu4c imagemagick curl wget libxml2 libevent oniguruma libzip rabbitmq-c)
+for PHP_EXT in ${PHP_EXT_NEED_LIST[@]}; do
+	if [ ! -d /usr/local/Cellar/${PHP_EXT} ];then
+		brew install ${PHP_EXT}
+	fi
+done
 
 if [ ! -d $MDIR/source/php/php$VERSION ]; then
 	echo "PHP-VERIONS:$VERSION"
@@ -72,7 +29,5 @@ if [ ! -d $MDIR/source/php/php$VERSION ]; then
 	echo "缺少php$VERSION源码,正在安装..."
 	sh $MDIR/bin/reinstall/php$VERSION/install.sh
 fi
-
-
 
 
