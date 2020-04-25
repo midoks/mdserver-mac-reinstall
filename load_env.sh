@@ -20,8 +20,8 @@ echo 'load:'$USER
 
 echo "export PHP_VER=\"$PHP_M_VER\" #mdserver-mac loadenv" >> /Users/$USER/.zshrc
 echo "alias php=\"/Applications/mdserver/bin/php/php\$PHP_VER/bin/php\" #mdserver-mac loadenv" >> /Users/$USER/.zshrc
-echo "alias phpize=\"/Applications/mdserver/bin/php/php\$PHP_VAR/bin/phpize\" #mdserver-mac loadenv" >> /Users/$USER/.zshrc
-echo "alias pecl=\"/Applications/mdserver/bin/php/php\$PHP_VAR/bin/pecl\" #mdserver-mac loadenv" >> /Users/$USER/.zshrc
+echo "alias phpize=\"/Applications/mdserver/bin/php/php\$PHP_VER/bin/phpize\" #mdserver-mac loadenv" >> /Users/$USER/.zshrc
+echo "alias pecl=\"/Applications/mdserver/bin/php/php\$PHP_VER/bin/pecl\" #mdserver-mac loadenv" >> /Users/$USER/.zshrc
 
 source /Users/$USER/.zshrc
 
