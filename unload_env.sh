@@ -14,8 +14,8 @@ USER=$(who | sed -n "1,1p" |awk '{print $1}')
 # echo `who`
 echo 'unload:'$USER
 
-# echo /Users/$USER/.bash_profile
-sed -i '_bak' "/#mdserver-mac loadenv/d"  /Users/$USER/.bash_profile
-# sed -i '_bak' '/^$/N;/^\n$/D' /Users/$USER/.bash_profile
+# echo /Users/$USER/.zshrc
+sed -i '_bak' "/#mdserver-mac loadenv/d"  /Users/$USER/.zshrc
+# sed -i '_bak' '/^$/N;/^\n$/D' /Users/$USER/.zshrc
 
-source /Users/$USER/.bash_profile
+source /Users/$USER/.zshrc
