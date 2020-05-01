@@ -17,7 +17,7 @@ PHP_VER=7.4.5
 PHP_M_VER=74
 
 if [ ! -f $MDIR/source/php/php-${PHP_VER}.tar.xz ];then
-	wget -O $MDIR/source/php/php-${PHP_VER}.tar.xz https://github.com/php/php-src/archive/php-${PHP_VER}.tar.gz
+	wget -O $MDIR/source/php/php-${PHP_VER}.tar.xz https://www.php.net/distributions/php-${PHP_VER}.tar.xz
 fi
 
 if [ ! -d $MDIR/source/php/php${PHP_M_VER} ]; then

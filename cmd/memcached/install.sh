@@ -11,7 +11,7 @@ MDIR=$(dirname "$DIR")
 
 mkdir -p $MDIR/source/memcached
 
-VERSION=1.5.12
+VERSION=1.6.5
 
 if [ ! -f $MDIR/source/memcached/memcached-${VERSION}.tar.gz ];then
 	wget -O $MDIR/source/memcached/memcached-${VERSION}.tar.gz https://memcached.org/files/memcached-${VERSION}.tar.gz
@@ -23,10 +23,10 @@ fi
 
 if [ ! -d $DIR/memcached ]; then
 
+# --with-libevent=$DIR/cmd/libevent \
+# --with-zlib-dir=$DIR/cmd/zlib \
 cd $MDIR/source/memcached/memcached-${VERSION}
-./configure --prefix=$DIR/memcached \
---with-libevent=$DIR/cmd/libevent \
---with-zlib-dir=$DIR/cmd/zlib && \
+./configure --prefix=$DIR/memcached && \
 make && make install && make clean
 
 fi
