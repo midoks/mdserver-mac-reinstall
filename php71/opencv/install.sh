@@ -8,6 +8,8 @@ DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
+exit 0
+
 if [ ! -d /usr/local/Cellar/opencv ];then
 	brew install opencv
 fi

@@ -46,7 +46,6 @@ fi
 
 LIB_DEPEND_DIR=`brew info openssl | grep /usr/local/Cellar/openssl | cut -d \  -f 1`
 
-echo "$LIBNAME-DIR:"
 echo $LIB_DEPEND_DIR
 
 export PATH="/usr/local/opt/openssl/bin:$PATH"

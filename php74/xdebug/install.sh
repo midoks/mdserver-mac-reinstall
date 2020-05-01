@@ -11,7 +11,7 @@ MDIR=$(dirname "$DIR")
 VERSION=$1
 LIBNAME=xdebug
 EXT_VERSION=no-debug-non-zts-20190902
-LIBV=2.8.0
+LIBV=2.9.5
 
 #check
 TMP_PHP_INI=/tmp/t_tmp_php.ini

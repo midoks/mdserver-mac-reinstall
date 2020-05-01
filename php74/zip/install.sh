@@ -8,6 +8,8 @@ DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
+exit 0
+
 VERSION=$1
 LIBNAME=zip
 LIBV=0
@@ -37,7 +39,7 @@ if [ -f  $extFile ]; then
 	rm -rf $extFile
 fi
 
-isInstall=`cat $DIR/php/php$VERSION/etc/php.ini|grep '${LIBNAME}.so'`
+isInstall=`cat $DIR/php/php$VERSION/etc/php.ini|grep '${LIBNAME}'`
 if [ "${isInstall}" != "" ]; then
 	echo "php-$VERSION 已安装${LIBNAME},请选择其它版本!"
 	return
@@ -49,7 +51,6 @@ fi
 
 LIB_DEPEND_DIR=`brew info libzip | grep /usr/local/Cellar/libzip | cut -d \  -f 1 | awk 'END {print}'`
 
-echo "$LIBNAME-DIR:"
 echo $LIB_DEPEND_DIR
 
 brew unlink libzip && brew link libzip
@@ -58,7 +59,6 @@ if [ ! -f "$extFile" ]; then
 
 	cd $MDIR/source/php/php${VERSION}/ext/zip
 	$DIR/php/php$VERSION/bin/phpize
-	echo `pwd`
 	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \
 	--with-zip  && \
 	make && make install && make clean

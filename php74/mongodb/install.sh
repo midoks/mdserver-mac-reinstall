@@ -11,7 +11,7 @@ MDIR=$(dirname "$DIR")
 VERSION=$1
 LIBNAME=mongodb
 EXT_VERSION=no-debug-non-zts-20190902
-LIBV=1.5.5
+LIBV=1.7.4
 
 
 #check
