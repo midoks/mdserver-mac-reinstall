@@ -25,7 +25,7 @@ if [ ! -d $MDIR/source/php/php${PHP_M_VER} ]; then
 		cd $MDIR/source/php && tar -Jxf $MDIR/source/php/php-${PHP_VER}.tar.xz
 	fi
 
-	mv $MDIR/source/php/php-src-php-${PHP_VER} $MDIR/source/php/php${PHP_M_VER}
+	mv $MDIR/source/php/php-${PHP_VER} $MDIR/source/php/php${PHP_M_VER}
 	
 fi
 
