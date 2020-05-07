@@ -25,13 +25,17 @@ function startPHP(){
 }
 
 function stopPHP(){
-	echo "$DIR/php/php$PHP_VERSION/php-fpm stop"
 	FIND_ISRUN=`ps -ef|grep php$PHP_VERSION |grep -v grep`
-	echo $FIND_ISRUN
 	if [ "$FIND_ISRUN" != "" ];then
 		$DIR/php/php$PHP_VERSION/php-fpm stop
 	fi
-	
+
+	PHP_VER_LIST=(55 56 71 72 73 74)
+	for PHP_VER in ${PHP_VER_LIST[@]}; do
+		echo "$DIR/php/php$PHP_VER/php-fpm stop"
+		$DIR/php/php$PHP_VER/php-fpm stop
+	done
+
 	/bin/rm -rf $DIR/tmp/xhprof/*.xhprof
 	/bin/rm -rf $DIR/tmp/xdebug/*
 	/bin/rm -rf $DIR/tmp/session/sess_*
@@ -42,9 +46,9 @@ function reloadPHP(){
 	$DIR/php/php$PHP_VERSION/php-fpm reload
 	
 	/bin/rm -rf $DIR/tmp/xhprof/*.xhprof
+	/bin/rm -rf $DIR/tmp/xdebug/*
 	/bin/rm -rf $DIR/tmp/session/sess_*
 	/bin/rm -rf $DIR/tmp/logs/*
-	/bin/rm -rf $DIR/tmp/xdebug/*
 }
 
 if [ $2 = "start" ];then 
