@@ -32,8 +32,11 @@ function stopPHP(){
 
 	PHP_VER_LIST=(55 56 71 72 73 74)
 	for PHP_VER in ${PHP_VER_LIST[@]}; do
-		echo "$DIR/php/php$PHP_VER/php-fpm stop"
-		$DIR/php/php$PHP_VER/php-fpm stop
+		isStop=`$DIR/php/php$PHP_VER/php-fpm status | grep 'stopped'`
+		if [ "$isStop" == "" ];then
+			echo "$DIR/php/php$PHP_VER/php-fpm stop"
+			$DIR/php/php$PHP_VER/php-fpm stop
+		fi 
 	done
 
 	/bin/rm -rf $DIR/tmp/xhprof/*.xhprof
