@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=yaml
-LIBV=2.0.4
+LIBV=2.1.0
 
 
 #check

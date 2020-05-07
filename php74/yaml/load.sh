@@ -21,7 +21,7 @@ fi
 
 echo "" >> $DIR/php/php$VERSION/etc/php.ini
 echo "[${LIBNAME}]" >> $DIR/php/php$VERSION/etc/php.ini
-echo "zend_extension=${LIBNAME}.so" >> $DIR/php/php$VERSION/etc/php.ini
+echo "extension=${LIBNAME}.so" >> $DIR/php/php$VERSION/etc/php.ini
 
 $MDIR/bin/reinstall/reload.sh $VERSION
 

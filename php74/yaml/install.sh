@@ -11,7 +11,7 @@ MDIR=$(dirname "$DIR")
 VERSION=$1
 LIBNAME=yaml
 EXT_VERSION=no-debug-non-zts-20190902
-LIBV=2.0.4
+LIBV=2.1.0
 
 #check
 TMP_PHP_INI=/tmp/t_tmp_php.ini
