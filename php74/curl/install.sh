@@ -48,6 +48,12 @@ LIB_DEPEND_DIR=`brew info curl | grep /usr/local/Cellar/curl | cut -d \  -f 1 | 
 echo "$LIBNAME-DIR:"
 echo $LIB_DEPEND_DIR
 
+
+LIB_OPENSSL_DEPEND_DIR=`brew info openssl | grep /usr/local/Cellar/openssl | cut -d \  -f 1 | awk 'END {print}'`
+OPENSSL_PKG=$LIB_OPENSSL_DEPEND_DIR/lib/pkgconfig
+export PKG_CONFIG_PATH=$OPENSSL_PKG
+echo $PKG_CONFIG_PATH
+
 if [ ! -f "$extFile" ]; then
 	cd $MDIR/source/php/php$VERSION/ext/curl
 	$DIR/php/php$VERSION/bin/phpize

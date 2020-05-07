@@ -6,13 +6,7 @@ DIR=$(cd "$(dirname "$0")"; pwd)
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
+DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
-VERSION=$1
-LIBNAME=apcu
-LIBV=4.0.11
-
-CONFIG_OPTION="--enable-${LIBNAME}"
-
-FIND="APCu Support"
-sh $MDIR/bin/reinstall/ext_shell/install.sh $VERSION $LIBNAME $LIBV $CONFIG_OPTION
+echo $DIR

@@ -11,7 +11,7 @@ if [  "$CHECK_BREW" == "" ];then
 	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
-# PHP_EXT_NEED_LIST=(openssl icu4c imagemagick curl wget libxml2 libevent oniguruma libzip rabbitmq-c)
+# PHP_EXT_NEED_LIST=(openssl icu4c imagemagick curl wget libxml2 libevent oniguruma zlib libzip rabbitmq-c)
 # for PHP_EXT in ${PHP_EXT_NEED_LIST[@]}; do
 # 	if [ ! -d /usr/local/Cellar/${PHP_EXT} ];then
 # 		brew install ${PHP_EXT}

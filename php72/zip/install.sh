@@ -48,6 +48,7 @@ if [ -f  $extFile ]; then
 fi
 
 LIB_DEPEND_DIR=`brew info libzip | grep /usr/local/Cellar/libzip | cut -d \  -f 1 | awk 'END {print}'`
+LIB_ZLIB_DEPEND_DIR=`brew info zlib | grep /usr/local/Cellar/zlib | cut -d \  -f 1 | awk 'END {print}'`
 
 echo "$LIBNAME-DIR:"
 echo $LIB_DEPEND_DIR
@@ -58,7 +59,7 @@ if [ ! -f "$extFile" ]; then
 	$DIR/php/php$VERSION/bin/phpize
 	echo `pwd`
 	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \
-	--with-libzip=$LIB_DEPEND_DIR  && \
+	--with-libzip=$LIB_DEPEND_DIR -with-zlib-dir=$LIB_ZLIB_DEPEND_DIR  && \
 	make && make install && make clean
 fi
 

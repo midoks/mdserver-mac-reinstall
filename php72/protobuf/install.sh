@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=protobuf
-LIBV=3.9.1
+LIBV=3.11.4
 
 
 echo "install $LIBNAME start"

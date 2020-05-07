@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=protobuf
-LIBV=3.10.0
+LIBV=3.11.4
 
 #check
 TMP_PHP_INI=/tmp/t_tmp_php.ini

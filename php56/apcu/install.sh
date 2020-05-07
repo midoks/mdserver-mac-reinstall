@@ -14,4 +14,6 @@ LIBV=4.0.11
 
 
 CONFIG_OPTION="--enable-${LIBNAME}"
-sh $MDIR/bin/reinstall/ext_shell/install.sh $VERSION $LIBNAME $LIBV $CONFIG_OPTION
+
+FIND="APCu Support"
+sh $MDIR/bin/reinstall/ext_shell/install.sh $VERSION $LIBNAME $LIBV $CONFIG_OPTION $FIND
