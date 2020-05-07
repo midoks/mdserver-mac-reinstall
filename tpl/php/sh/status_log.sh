@@ -15,8 +15,8 @@ function checkPHPStart(){
 
 function checkPHPStop(){
 	echo "checkPHP stop"
-	if [ -f /tmp/php-fpm.pid ];then
-		rm -rf /tmp/php-fpm.pid
+	if [ -f /tmp/php$PHP_VERSION-cgi.sock ];then
+		rm -rf /tmp/php$PHP_VERSION-cgi.sock
 	fi
 }
 
@@ -25,7 +25,9 @@ function startPHP(){
 }
 
 function stopPHP(){
+	echo "$DIR/php/php$PHP_VERSION/php-fpm stop"
 	FIND_ISRUN=`ps -ef|grep php$PHP_VERSION |grep -v grep`
+	echo $FIND_ISRUN
 	if [ "$FIND_ISRUN" != "" ];then
 		$DIR/php/php$PHP_VERSION/php-fpm stop
 	fi
