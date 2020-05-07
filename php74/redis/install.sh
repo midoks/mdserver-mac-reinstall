@@ -11,7 +11,7 @@ MDIR=$(dirname "$DIR")
 VERSION=$1
 LIBNAME=redis
 EXT_VERSION=no-debug-non-zts-20190902
-LIBV=5.2.1
+LIBV=5.2.2
 
 #check
 TMP_PHP_INI=/tmp/t_tmp_php.ini

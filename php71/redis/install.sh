@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=redis
-LIBV=5.2.1
+LIBV=5.2.2
 
 echo "install $LIBNAME start"
 
