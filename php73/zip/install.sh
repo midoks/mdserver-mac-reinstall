@@ -58,7 +58,7 @@ if [ ! -f "$extFile" ]; then
 	$DIR/php/php$VERSION/bin/phpize
 	echo `pwd`
 	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \
-	--with-libzip=$LIB_DEPEND_DIR  && \
+	--with-libzip=$LIB_DEPEND_DIR --with-zlib-dir=$MDIR/bin/cmd/zlib  && \
 	make && make install && make clean
 fi
 

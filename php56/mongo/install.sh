@@ -45,7 +45,7 @@ if [ -f  $extFile ]; then
 	rm -rf $extFile
 fi
 
-LIB_DEPEND_DIR=`brew info openssl | grep /usr/local/Cellar/openssl | cut -d \  -f 1`
+LIB_DEPEND_DIR=`brew info openssl | grep /usr/local/Cellar/openssl | cut -d \  -f 1 | awk 'END {print}'`
 
 echo "$LIBNAME-DIR:"
 echo $LIB_DEPEND_DIR
@@ -71,7 +71,8 @@ if [ ! -f "$extFile" ]; then
 	sed -i '_bak' "s#-mmacosx-version-min=10.5##g" $php_lib/${LIBNAME}-${LIBV}/config.m4
 
 	$DIR/php/php$VERSION/bin/phpize
-	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config --with-openssl-dir=$LIB_DEPEND_DIR && \
+	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \
+	--with-openssl-dir=$LIB_DEPEND_DIR && \
 	make && make install && make clean
 fi
 
