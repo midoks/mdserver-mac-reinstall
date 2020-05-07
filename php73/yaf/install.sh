@@ -10,11 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=yaf
-LIBV='2.3.5'
-
-if [ "$VERSION" = "70" ] || [ "$VERSION" = "71" ] || [ "$VERSION" = "72" ] || [ "$VERSION" = "73" ]; then
-	LIBV='3.0.8'
-fi
+LIBV=3.1.4
 
 echo "install $LIBNAME start"
 
