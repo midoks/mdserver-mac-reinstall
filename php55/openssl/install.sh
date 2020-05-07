@@ -46,7 +46,7 @@ if [ -f  $extFile ]; then
 	rm -rf $extFile
 fi
 
-LIB_DEPEND_DIR=`brew info openssl | grep /usr/local/Cellar/openssl | cut -d \  -f 1`
+# LIB_DEPEND_DIR=`brew info openssl | grep /usr/local/Cellar/openssl | cut -d \  -f 1 | awk 'END {print}'`
 
 isInstall=`cat $DIR/php/php$VERSION/etc/php.ini|grep '${LIBNAME}.so'`
 if [ "${isInstall}" != "" ]; then
@@ -61,6 +61,8 @@ if [ ! -f "$extFile" ]; then
 	if [ -f $MDIR/source/php/php$VERSION/ext/openssl/config0.m4 ]; then
 		mv $MDIR/source/php/php$VERSION/ext/openssl/config0.m4 $MDIR/source/php/php$VERSION/ext/openssl/config.m4
 	fi
+
+	#$DIR/cmd/openssl
 	
 	$DIR/php/php$VERSION/bin/phpize
 	./configure  --with-php-config=$DIR/php/php$VERSION/bin/php-config \
