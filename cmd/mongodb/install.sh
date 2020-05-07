@@ -12,22 +12,22 @@ MDIR=$(dirname "$DIR")
 mkdir -p $MDIR/source/mongodb
 
 echo "install mongodb start"
-VERSION=3.2.7
+VERSION=4.2.6
 
-if [ ! -f $MDIR/source/mongodb/mongodb-osx-ssl-x86_64-${VERSION}.tar.gz ];then
-	wget -O $MDIR/source/mongodb/mongodb-osx-ssl-x86_64-${VERSION}.tar.gz http://fastdl.mongodb.org/osx/mongodb-osx-ssl-x86_64-${VERSION}.tgz
+if [ ! -f $MDIR/source/mongodb/mongodb-macos-x86_64-${VERSION}.tgz ];then
+	wget -O $MDIR/source/mongodb/mongodb-macos-x86_64-${VERSION}.tgz http://fastdl.mongodb.org/osx/mongodb-macos-x86_64-${VERSION}.tgz
 fi
 
-if [ ! -d $MDIR/source/mongodb/mongodb-osx-x86_64-${VERSION} ];then
-	cd $MDIR/source/mongodb && tar zxvf $MDIR/source/mongodb/mongodb-osx-ssl-x86_64-${VERSION}.tar.gz
+if [ ! -d $MDIR/source/mongodb/mongodb-macos-x86_64-${VERSION} ];then
+	cd $MDIR/source/mongodb && tar zxvf $MDIR/source/mongodb/mongodb-macos-x86_64-${VERSION}.tgz
 fi
 
 if [ ! -d $DIR/mongodb ];then
 
-	cd $MDIR/source/mongodb/mongodb-osx-x86_64-${VERSION}
+	cd $MDIR/source/mongodb/mongodb-macos-x86_64-${VERSION}
 
 	mkdir -p $DIR/mongodb
-	cp -r $MDIR/source/mongodb/mongodb-osx-x86_64-${VERSION}/ $DIR/mongodb/
+	cp -r $MDIR/source/mongodb/mongodb-macos-x86_64-${VERSION}/ $DIR/mongodb/
 	mkdir -p $DIR/mongodb/data
 	mkdir -p $DIR/mongodb/logs
 
