@@ -8,7 +8,6 @@ DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
-exit 0
 
 VERSION=$1
 LIBNAME=zip
