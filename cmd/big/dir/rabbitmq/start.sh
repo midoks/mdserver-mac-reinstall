@@ -14,8 +14,6 @@ APP_NAME=rabbitmq
 APP_DIR=$MDIR/source/${APP_NAME}
 mkdir -p $APP_DIR
 
-
-
 LOG_FILE=$MDIR/bin/logs/reinstall/cmd_big_dir_${APP_NAME}_start.log
 echo "-----------" > $LOG_FILE
 echo "start ${APP_NAME} start"
