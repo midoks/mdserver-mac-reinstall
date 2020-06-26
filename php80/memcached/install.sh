@@ -9,9 +9,9 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
-LIBNAME=yaf
-LIBV=3.2.5
+LIBNAME=memcached
+LIBV=3.1.5
 
-CONFIG_OPTION="--enable-yaf"
-FIND="yaf.environ"
+CONFIG_OPTION="--enable-memcached"
+FIND="memcached.compression_factor"
 sh $MDIR/bin/reinstall/ext_shell/install.sh $VERSION $LIBNAME $LIBV $CONFIG_OPTION $FIND
