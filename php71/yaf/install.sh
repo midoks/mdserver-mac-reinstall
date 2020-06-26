@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=yaf
-LIBV=3.1.4
+LIBV=3.2.5
 
 
 echo "install $LIBNAME start"
