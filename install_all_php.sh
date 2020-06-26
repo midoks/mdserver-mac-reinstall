@@ -22,7 +22,7 @@ fi
 
 
 # PHP_VER_LIST=(53 54 55 56 70 71 72 73 74)
-PHP_VER_LIST=(55 56 71 72 73 74)
+PHP_VER_LIST=(55 56 71 72 73 74 80)
 for PHP_VER in ${PHP_VER_LIST[@]}; do
 	echo "php${PHP_VER} -- start"
 	cd $DIR/php$PHP_VER && sh install.sh
