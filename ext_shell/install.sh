@@ -16,7 +16,7 @@ CONFIG_OPTION=$4
 CONFIG_OPTION=${CONFIG_OPTION//\|/ }
 
 FIND_KEYWORD=$5
-if [ "$FIND_KEYWORD"=="" ];then
+if [ "$FIND_KEYWORD" == " " ];then
 	FIND_KEYWORD=$LIBNAME
 fi
 
