@@ -30,7 +30,7 @@ function stopPHP(){
 		$DIR/php/php$PHP_VERSION/php-fpm stop
 	fi
 
-	PHP_VER_LIST=(55 56 71 72 73 74)
+	PHP_VER_LIST=(55 56 71 72 73 74 80)
 	for PHP_VER in ${PHP_VER_LIST[@]}; do
 		isStop=`$DIR/php/php$PHP_VER/php-fpm status | grep 'stopped'`
 		if [ "$isStop" == "" ];then
