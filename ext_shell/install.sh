@@ -33,6 +33,8 @@ elif [[ "$VERSION" == "73" ]]; then
 	NON_ZTS_FILENAME=no-debug-non-zts-20180731
 elif [[ "$VERSION" == "74" ]]; then
 	NON_ZTS_FILENAME=no-debug-non-zts-20190902
+elif [[ "$VERSION" == "80" ]]; then
+	NON_ZTS_FILENAME=no-debug-non-zts-20190128
 else
 	NON_ZTS_FILENAME=no-debug-non-zts-20121212
 fi
