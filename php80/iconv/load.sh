@@ -8,6 +8,6 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
-LIBNAME=igbinary
+LIBNAME=iconv
 
-sh $MDIR/bin/reinstall/ext_shell/uninstall.sh $VERSION $LIBNAME
+sh $MDIR/bin/reinstall/ext_shell/load.sh $VERSION $LIBNAME
