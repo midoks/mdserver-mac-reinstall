@@ -10,7 +10,6 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=nsq
-TMP_PHP_INI=/tmp/t_tmp_php.ini
 LIBV=3.5.0
 
 LIB_DEPEND_DIR=`brew info libevent | grep /usr/local/Cellar/libevent | cut -d \  -f 1 | awk 'END {print}'`
