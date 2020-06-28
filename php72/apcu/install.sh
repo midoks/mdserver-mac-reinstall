@@ -10,9 +10,10 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=apcu
-LIBV=5.1.17
+LIBV=5.1.18
 
 CONFIG_OPTION="--enable-${LIBNAME}"
 
-FIND="APCu Support"
+FIND="apc.coredump_unmap"
 sh $MDIR/bin/reinstall/ext_shell/install.sh $VERSION $LIBNAME $LIBV $CONFIG_OPTION $FIND
+
