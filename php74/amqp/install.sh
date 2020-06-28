@@ -22,5 +22,6 @@ fi
 LIB_DEPEND_DIR=`brew info rabbitmq-c | grep /usr/local/Cellar/rabbitmq-c | cut -d \  -f 1 | awk 'END {print}'`
 CONFIG_OPTION="--with-amqp|--with-librabbitmq-dir=${LIB_DEPEND_DIR}"
 
-sh $MDIR/bin/reinstall/ext_shell/install.sh $VERSION $LIBNAME $LIBV $CONFIG_OPTION
+FIND="amqp.auto_ack"
+sh $MDIR/bin/reinstall/ext_shell/install.sh $VERSION $LIBNAME $LIBV $CONFIG_OPTION $FIND
 
