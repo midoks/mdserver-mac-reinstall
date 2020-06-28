@@ -13,7 +13,7 @@ LIBNAME=redis
 LIBV=5.2.2
 
 
-CONFIG_OPTION="--enable-redis"
+CONFIG_OPTION="|"
 FIND="redis.arrays.algorithm"
 sh $MDIR/bin/reinstall/ext_shell/install.sh $VERSION $LIBNAME $LIBV $CONFIG_OPTION $FIND
 
