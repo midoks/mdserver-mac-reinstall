@@ -8,6 +8,6 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
-LIBNAME=couchbase
+LIBNAME=mosquitto
 
 sh $MDIR/bin/reinstall/ext_shell/load.sh $VERSION $LIBNAME
