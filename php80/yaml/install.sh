@@ -9,10 +9,9 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
-LIBNAME=nsq
-LIBV=3.5.0
+LIBNAME=yaml
+LIBV=2.1.0
 
-LIB_DEPEND_DIR=`brew info libevent | grep /usr/local/Cellar/libevent | cut -d \  -f 1 | awk 'END {print}'`
-CONFIG_OPTION="--with-nsq|--with-libevent-path=${LIB_DEPEND_DIR}"
-FIND="zhenyu.wu"
+CONFIG_OPTION="|"
+FIND="yaml.decode_binary"
 sh $MDIR/bin/reinstall/ext_shell/install.sh $VERSION $LIBNAME $LIBV $CONFIG_OPTION $FIND
