@@ -9,20 +9,5 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=nsq
-EXT_VERSION=no-debug-non-zts-20190902
 
-echo "load $LIBNAME start"
-
-extFile=$DIR/php/php$VERSION/lib/php/extensions/${EXT_VERSION}/${LIBNAME}.so
-if [ ! -f $extFile ]; then
-	echo "load $LIBNAME fail"
-	exit 1
-fi
-
-echo "" >> $DIR/php/php$VERSION/etc/php.ini
-echo "[${LIBNAME}]" >> $DIR/php/php$VERSION/etc/php.ini
-echo "extension=${LIBNAME}.so" >> $DIR/php/php$VERSION/etc/php.ini
-
-$MDIR/bin/reinstall/reload.sh $VERSION
-
-echo "load $LIBNAME end"
+sh $MDIR/bin/reinstall/ext_shell/load.sh $VERSION $LIBNAME
