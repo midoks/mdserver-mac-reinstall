@@ -30,6 +30,11 @@ echo "${LIBNAME}.revalidate_freq=60" >> $DIR/php/php$VERSION/etc/php.ini
 echo "${LIBNAME}.fast_shutdown=1" >> $DIR/php/php$VERSION/etc/php.ini
 echo "${LIBNAME}.enable_cli=1" >> $DIR/php/php$VERSION/etc/php.ini
 
+echo "${LIBNAME}.jit=1205" >> $DIR/php/php$VERSION/etc/php.ini
+echo "${LIBNAME}.jit_buffer_size=64M" >> $DIR/php/php$VERSION/etc/php.ini
+
+
+
 $MDIR/bin/reinstall/reload.sh $VERSION
 
 echo "load $LIBNAME end"

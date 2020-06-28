@@ -9,7 +9,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=opcache
-EXT_VERSION=no-debug-non-zts-20190902
+EXT_VERSION=no-debug-non-zts-20190128
 
 echo "load $LIBNAME start"
 
