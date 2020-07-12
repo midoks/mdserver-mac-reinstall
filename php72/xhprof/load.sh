@@ -8,21 +8,9 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
-LIBNAME=md_xhprof
+LIBNAME=xhprof
 
-echo "load $LIBNAME start"
-
-extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20180731/${LIBNAME}.so
-if [ ! -f $extFile ]; then
-	echo "load $LIBNAME fail"
-	exit 1
-fi
-
-echo "" >> $DIR/php/php$VERSION/etc/php.ini
-echo "[${LIBNAME}]" >> $DIR/php/php$VERSION/etc/php.ini
-echo "extension=${LIBNAME}.so" >> $DIR/php/php$VERSION/etc/php.ini
+sh $MDIR/bin/reinstall/ext_shell/load.sh $VERSION $LIBNAME
 echo "${LIBNAME}.output_dir=/Applications/mdserver/bin/tmp/xhprof" >> $DIR/php/php$VERSION/etc/php.ini
-
 $MDIR/bin/reinstall/reload.sh $VERSION
 
-echo "load $LIBNAME end"
