@@ -22,6 +22,7 @@ $DIR/php/php$VERSION/bin/php -c $TMP_PHP_INI -r 'phpinfo();' > $TMP_CHECK_LOG
 FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "${LIBNAME}.loader.encoded_paths"`
 
 
+echo "install $LIBNAME start"
 
 rm -rf $TMP_PHP_INI
 rm -rf $TMP_CHECK_LOG
