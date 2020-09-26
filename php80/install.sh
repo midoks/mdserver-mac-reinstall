@@ -73,8 +73,13 @@ export LDFLAGS="-L/usr/local/opt/libxml2/lib"
 # --enable-zip \
 
 
-make && make install
+make && make install && make clean
 
+fi
+
+if [ "$?" != "0" ];then
+	echo "install fail!!"
+	exit 2
 fi
 
 

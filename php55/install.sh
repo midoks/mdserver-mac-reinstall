@@ -66,6 +66,11 @@ make && make install && make clean
 
 fi
 
+if [ "$?" != "0" ];then
+	echo "install fail!!"
+	exit 2
+fi
+
 
 USER=$(who | sed -n "2,1p" |awk '{print $1}')
 SDIR=$(dirname "$DIR")
