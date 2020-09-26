@@ -57,8 +57,6 @@ if [ ! -f "$extFile" ]; then
 		
 	fi
 
-	cd $php_lib/ioncube
-
 	if [ ! -d $php_lib/${LIBNAME}-${LIBV} ]; then
 		cd $php_lib
 		tar xvf zend-loader-php5.5-darwin10.7-x86_64_update1.tar.gz
