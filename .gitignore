@@ -1,2 +1,3 @@
 *.DS_Store
 cmd/self-*
+php52/*
