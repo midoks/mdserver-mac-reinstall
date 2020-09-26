@@ -86,8 +86,6 @@ if [ ! -f $DIR/php/php${PHP_M_VER}/php-fpm ];then
 	cp $DIR/php/php${PHP_M_VER}/sbin/php-fpm $DIR/php/php${PHP_M_VER}/
 fi
 
-
-
 if [ ! -f $DIR/php/php${PHP_M_VER}/etc/php.ini ];then
 	cp $DIR/reinstall/tpl/php/php.ini $DIR/php/php${PHP_M_VER}/etc/php.ini
 fi
@@ -95,14 +93,9 @@ fi
 
 if [ ! -f $DIR/php/php${PHP_M_VER}/etc/php-fpm.conf ];then
 	cp $DIR/reinstall/php/php52/lib/php-fpm.conf $DIR/php/php${PHP_M_VER}/etc/php-fpm.conf
-	#sed -i '_bak' "s#{PATH}#${SDIR}#g" $DIR/php/php${PHP_M_VER}/etc/php-fpm.conf
-	#sed -i '_bak' "s#{VERSION}#${PHP_M_VER}#g" $DIR/php/php${PHP_M_VER}/etc/php-fpm.conf
-	#rm -rf $DIR/php/php${PHP_M_VER}/etc/php-fpm.conf_bak
 fi
 
 
-# if [ ! -d $DIR/php/php${PHP_M_VER}/lib/php/extensions/no-debug-non-zts-20090626 ]; then
-# 	mkdir -p $DIR/php/php${PHP_M_VER}/lib/php/extensions/no-debug-non-zts-20090626
-# fi
-
-
+if [ ! -d $DIR/php/php${PHP_M_VER}/lib/php/extensions/no-debug-non-zts-20060613 ]; then
+	mkdir -p $DIR/php/php${PHP_M_VER}/lib/php/extensions/no-debug-non-zts-20060613
+fi
