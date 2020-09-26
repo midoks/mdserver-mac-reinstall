@@ -37,7 +37,7 @@ if [ ! -d $MDIR/source/php/php${PHP_M_VER} ]; then
 fi
 
 cd $MDIR/source/php
-gzip -cd php-5.2.17-fpm-0.5.14.diff.gz | patch -d php-5.2.17 -p1
+gzip -cd php-5.2.17-fpm-0.5.14.diff.gz | patch -d php52 -p1
 cd $MDIR/source/php/php${PHP_M_VER}
 patch -p1 < ../php-5.2.17-max-input-vars.patch
 sed -i '_bak' "s/\!png_check_sig (sig, 8)/png_sig_cmp (sig, 0, 8)/" ext/gd/libgd/gd_png.c 
@@ -46,6 +46,8 @@ sed -i '_bak' "s/\!png_check_sig (sig, 8)/png_sig_cmp (sig, 0, 8)/" ext/gd/libgd
 \cp -rf $DIR/reinstall/php52/lib/node.c $MDIR/source/php/php52/ext/dom/node.c
 \cp -rf $DIR/reinstall/php52/lib/documenttype.c $MDIR/source/php/php52/ext/dom/documenttype.c
 \cp -rf $DIR/reinstall/php52/lib/simplexml.c $MDIR/source/php/php52/ext/simplexml/simplexml.c
+\cp -rf $DIR/reinstall/php52/lib/php_xmlwriter.c $MDIR/source/php/php52/ext/xmlwriter/php_xmlwriter.c
+\cp -rf $DIR/reinstall/php52/lib/reentrancy.c $MDIR/source/php/php52/main/reentrancy.c
 
 
 #./configure --help
@@ -53,7 +55,12 @@ if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 
 ./configure --prefix=$DIR/php/php${PHP_M_VER} \
 --exec-prefix=$DIR/php/php${PHP_M_VER} \
---with-config-file-path=$DIR/php/php${PHP_M_VER}/etc
+--with-config-file-path=$DIR/php/php${PHP_M_VER}/etc \
+--with-iconv=$DIR/cmd/libiconv \
+--enable-sockets \
+--enable-sysvmsg \
+--enable-sysvsem \
+--enable-sysvshm
 
 make  && make install && make clean
 
