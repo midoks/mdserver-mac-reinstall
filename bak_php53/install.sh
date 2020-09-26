@@ -63,6 +63,12 @@ make && make install && make clean
 
 fi
 
+if [ "$?" != "0" ];then
+	echo "install fail!!"
+	exit 2
+fi
+
+
 
 if [ ! -f $DIR/php/php${PHP_M_VER}/bin/php ];then
 	mv $DIR/php/php${PHP_M_VER}/bin/php.dSYM $DIR/php/php${PHP_M_VER}/bin/php
