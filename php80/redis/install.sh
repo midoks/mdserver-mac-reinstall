@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=redis
-LIBV=5.2.2
+LIBV=5.3.1
 
 
 CONFIG_OPTION="|"
