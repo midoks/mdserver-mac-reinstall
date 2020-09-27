@@ -50,8 +50,6 @@ if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 --with-mhash=$DIR/cmd/mhash \
 --without-iconv \
 --enable-zip \
---enable-mbstring \
---enable-opcache \
 --enable-ftp \
 --enable-wddx \
 --enable-soap \
@@ -63,15 +61,24 @@ if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 --enable-sysvshm \
 --enable-fpm
 
+\cp -rf $DIR/reinstall/php54/lib/reentrancy.c $MDIR/source/php/php54/main/reentrancy.c
+
+#--enable-mbstring \
 #--enable-dtrace \
 #--enable-debug
-
 #--with-iconv=$DIR/cmd/libiconv \
 #--with-zlib-dir=$DIR/cmd/zlib \
 
 make && make install && make clean
 
 fi
+
+if [ "$?" != "0" ];then
+	#rm -rf $MDIR/source/php/php${PHP_M_VER}
+	echo "install fail!!"
+	exit 2
+fi
+
 
 
 USER=$(who | sed -n "2,1p" |awk '{print $1}')
