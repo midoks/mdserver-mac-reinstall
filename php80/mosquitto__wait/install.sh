@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=mosquitto
-EXT_VERSION=no-debug-non-zts-20190128
+EXT_VERSION=no-debug-non-zts-20200804
 LIBV=0
 
 #check

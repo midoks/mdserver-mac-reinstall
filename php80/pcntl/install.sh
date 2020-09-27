@@ -9,7 +9,7 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
-EXT_VERSION=no-debug-non-zts-20190128
+EXT_VERSION=no-debug-non-zts-20200804
 LIBNAME=pcntl
 LIBV='0'
 

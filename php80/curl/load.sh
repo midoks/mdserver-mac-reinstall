@@ -9,7 +9,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=curl
-EXT_VERION=no-debug-non-zts-20190128
+EXT_VERION=no-debug-non-zts-20200804
 
 echo "load $LIBNAME start"
 

@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 export PATH=$PATH:/opt/local/bin:/opt/local/sbin:/opt/local/share/man:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
 
 
@@ -12,9 +12,9 @@ mkdir -p $MDIR/source/php
 PHP_VER=8.0.0
 PHP_M_VER=80
 
-#php-8.0.0alpha1.tar
+#php-8.0.0alpha1.tar.gz
 if [ ! -f $MDIR/source/php/php-${PHP_VER}.tar.gz ];then
-	wget -O $MDIR/source/php/php-${PHP_VER}.tar.gz https://downloads.php.net/~pollita/php-${PHP_VER}alpha1.tar.gz
+	wget -O $MDIR/source/php/php-${PHP_VER}.tar.gz https://downloads.php.net/~pollita/php-${PHP_VER}beta4.tar.gz
 fi
 
 
@@ -23,7 +23,7 @@ if [ ! -d $MDIR/source/php/php${PHP_M_VER} ]; then
 		cd $MDIR/source/php && tar -zvxf $MDIR/source/php/php-${PHP_VER}.tar.gz
 	fi
 
-	mv $MDIR/source/php/php-${PHP_VER}alpha1 $MDIR/source/php/php${PHP_M_VER}
+	mv $MDIR/source/php/php-${PHP_VER}beta4 $MDIR/source/php/php${PHP_M_VER}
 fi
 
 cd $MDIR/source/php/php${PHP_M_VER}

@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=bcmath
-EXT_VERION=no-debug-non-zts-20190128
+EXT_VERION=no-debug-non-zts-20200804
 LIBV='0'
 
 #check
