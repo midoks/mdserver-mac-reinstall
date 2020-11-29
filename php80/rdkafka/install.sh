@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=rdkafka
-LIBV=4.0.3
+LIBV=4.0.4
 
 CONFIG_OPTION="--enable-rdkafka"
 FIND="librdkafka"

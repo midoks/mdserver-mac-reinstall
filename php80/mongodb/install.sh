@@ -9,9 +9,9 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
-LIBNAME=couchbase
-LIBV=2.6.2
+LIBNAME=mongodb
+LIBV=1.9.0
 
-CONFIG_OPTION="--with-couchbase"
-FIND="couchbase.decoder.json_arrays"
+CONFIG_OPTION="--enable-mongodb"
+FIND="mongodb.debug"
 sh $MDIR/bin/reinstall/ext_shell/install.sh $VERSION $LIBNAME $LIBV $CONFIG_OPTION $FIND

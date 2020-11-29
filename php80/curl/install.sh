@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=curl
-EXT_VERION=no-debug-non-zts-20200804
+EXT_VERION=no-debug-non-zts-20200930
 LIBV='0'
 
 #check

@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=igbinary
-LIBV=3.1.2
+LIBV=3.1.6
 
 CONFIG_OPTION="--enable-igbinary"
 FIND="igbinary.compact_strings"
