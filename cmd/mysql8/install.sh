@@ -13,19 +13,19 @@ echo "" > $LOG_FILE
 
 mkdir -p $MDIR/source/mysql
 
-VERSION=8.0.16
-if [ ! -f $MDIR/source/mysql/mysql-${VERSION}-macos10.14-x86_64.tar.gz ]; then
-	wget -O $MDIR/source/mysql/mysql-${VERSION}-macos10.14-x86_64.tar.gz https://cdn.mysql.com//Downloads/MySQL-8.0/mysql-${VERSION}-macos10.14-x86_64.tar.gz
+VERSION=8.0.23
+if [ ! -f $MDIR/source/mysql/mysql-${VERSION}-macos10.15-x86_64.tar.gz ]; then
+	wget -O $MDIR/source/mysql/mysql-${VERSION}-macos10.15-x86_64.tar.gz https://cdn.mysql.com//Downloads/MySQL-8.0/mysql-${VERSION}-macos10.15-x86_64.tar.gz
 fi
 
-if [ ! -d $MDIR/source/mysql/mysql-${VERSION}-macos10.14-x86_64 ]; then
-	cd $MDIR/source/mysql && tar -zxvf $MDIR/source/mysql/mysql-${VERSION}-macos10.14-x86_64.tar.gz
+if [ ! -d $MDIR/source/mysql/mysql-${VERSION}-macos10.15-x86_64 ]; then
+	cd $MDIR/source/mysql && tar -zxvf $MDIR/source/mysql/mysql-${VERSION}-macos10.15-x86_64.tar.gz
 fi
 
 
 if [ ! -d $DIR/mysql8 ];then
 	mkdir -p $DIR/mysql8
-	cp -r $MDIR/source/mysql/mysql-${VERSION}-macos10.14-x86_64/ $DIR/mysql8/
+	cp -r $MDIR/source/mysql/mysql-${VERSION}-macos10.15-x86_64/ $DIR/mysql8/
 fi
 
 if [ ! -d $DIR/tmp/my8.cnf ]; then
