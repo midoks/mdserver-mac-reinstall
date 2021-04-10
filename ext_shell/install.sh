@@ -16,9 +16,11 @@ CONFIG_OPTION=$4
 CONFIG_OPTION=${CONFIG_OPTION//\|/ }
 
 FIND_KEYWORD=$5
-if [ "$FIND_KEYWORD" == " " ];then
+if [ "$FIND_KEYWORD" == "" ];then
 	FIND_KEYWORD=$LIBNAME
 fi
+
+# echo "$VERSION $LIBNAME $LIBV $FIND_KEYWORD $CONFIG_OPTION"
 
 NON_ZTS_FILENAME=no-debug-non-zts-20121212
 if [ "$VERSION" == "56" ]; then
@@ -46,8 +48,6 @@ TMP_CHECK_LOG=/tmp/t_check_php.log
 echo "extension=$LIBNAME.so" > $TMP_PHP_INI
 $DIR/php/php$VERSION/bin/php -c $TMP_PHP_INI -r 'phpinfo();' > $TMP_CHECK_LOG
 FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "$FIND_KEYWORD"`
-
-# echo $FIND_IS_INSTALL
 
 echo "install $LIBNAME start"
 

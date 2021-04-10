@@ -16,4 +16,5 @@ LIBV=3.4.4
 LIB_DEPEND_DIR=`brew info imagemagick | grep /usr/local/Cellar/imagemagick | cut -d \  -f 1`
 CONFIG_OPTION="--with-imagick=${LIB_DEPEND_DIR}"
 
+echo "sh $MDIR/bin/reinstall/ext_shell/install.sh $VERSION $LIBNAME $LIBV $CONFIG_OPTION"
 sh $MDIR/bin/reinstall/ext_shell/install.sh $VERSION $LIBNAME $LIBV $CONFIG_OPTION
