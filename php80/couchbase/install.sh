@@ -9,10 +9,9 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
-LIBNAME=nsq
-LIBV=3.5.0
+LIBNAME=couchbase
+LIBV=3.2.0
 
-LIB_DEPEND_DIR=`brew info libevent | grep /usr/local/Cellar/libevent | cut -d \  -f 1 | awk 'END {print}'`
-CONFIG_OPTION="--with-nsq|--with-libevent-path=${LIB_DEPEND_DIR}"
-FIND="zhenyu.wu"
+CONFIG_OPTION="--with-couchbase"
+FIND="couchbase.decoder.json_arrays"
 sh $MDIR/bin/reinstall/ext_shell/install.sh $VERSION $LIBNAME $LIBV $CONFIG_OPTION $FIND

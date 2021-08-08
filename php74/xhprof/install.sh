@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=xhprof
-LIBV=2.2.0
+LIBV=2.3.4
 
 #check
 TMP_PHP_INI=/tmp/t_tmp_php.ini

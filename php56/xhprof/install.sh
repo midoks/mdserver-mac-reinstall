@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=xhprof
-LIBV='0.9.4'
+LIBV=0.9.4
 
 echo "install $LIBNAME start"
 

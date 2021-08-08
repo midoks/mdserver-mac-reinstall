@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=xdebug
-LIBV=3.0.0
+LIBV=3.0.4
 
 CONFIG_OPTION="--enable-xdebug"
 FIND="xdebug.environ"

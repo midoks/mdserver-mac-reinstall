@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=protobuf
-LIBV=3.14.0
+LIBV=3.17.3
 
 CONFIG_OPTION="--enable-protobuf"
 FIND="protobuf.keep_descriptor_pool_after_request"
