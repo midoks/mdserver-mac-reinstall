@@ -12,7 +12,7 @@ MDIR=$(dirname "$DIR")
 mkdir -p $MDIR/source/mongodb
 
 echo "install mongodb start"
-VERSION=4.2.6
+VERSION=5.0.2
 
 if [ ! -f $MDIR/source/mongodb/mongodb-macos-x86_64-${VERSION}.tgz ];then
 	wget -O $MDIR/source/mongodb/mongodb-macos-x86_64-${VERSION}.tgz http://fastdl.mongodb.org/osx/mongodb-macos-x86_64-${VERSION}.tgz

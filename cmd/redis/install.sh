@@ -12,7 +12,7 @@ MDIR=$(dirname "$DIR")
 
 mkdir -p $MDIR/source/redis
 
-VERSION=6.0.0
+VERSION=6.2.5
 
 if [ ! -f $MDIR/source/redis/redis-${VERSION}.tar.gz ];then
 	wget -O $MDIR/source/redis/redis-${VERSION}.tar.gz http://download.redis.io/releases/redis-${VERSION}.tar.gz
