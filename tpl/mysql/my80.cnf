@@ -1,15 +1,15 @@
 [client]
-port		= 3308
-socket		= /tmp/mysql8.sock
+port		= 3306
+socket		= /tmp/mysql80.sock
 
 [mysqld]
 #default_authentication_plugin = mysql_native_password
-log-error   = mysql8.log
-pid-file    = mysql8.pid
-port		= 3308
-socket		= /tmp/mysql8.sock
-basedir  	= /Applications/mdserver/bin/mysql8
-datadir 	= /Applications/mdserver/bin/mysql8/data
+log-error   = mysql.log
+pid-file    = mysql.pid
+port		= 3306
+socket		= /tmp/mysql80.sock
+basedir  	= /Applications/mdserver/bin/mysql/mysql80
+datadir 	= /Applications/mdserver/bin/mysql/mysql80/data
 skip-external-locking   				#skip-locking
 key_buffer_size = 256M
 max_allowed_packet = 1M

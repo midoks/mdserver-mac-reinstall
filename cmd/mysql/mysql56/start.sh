@@ -6,7 +6,11 @@ DIR=$(cd "$(dirname "$0")"; pwd)
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
+DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
+MY_VERSION=56
 
-ps -ef | grep mysql | grep -v grep | awk -F ' ' '{print $2}' | xargs kill
+cd $DIR/mysql/mysql${MY_VERSION}
+
+$DIR/mysql/mysql${MY_VERSION}/bin/mysqld --defaults-file=$DIR/mysql/mysql${MY_VERSION}/my.cnf --user=mysql &

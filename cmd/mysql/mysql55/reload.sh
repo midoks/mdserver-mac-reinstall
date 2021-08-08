@@ -6,10 +6,12 @@ DIR=$(cd "$(dirname "$0")"; pwd)
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
+DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
-cd $DIR/mysql8
 
-$DIR/mysql8/bin/mysqld \
---defaults-file=$DIR/tmp/my8.cnf \
---user=mysql&
+sh $DIR/stop.sh
+
+sleep 3
+
+sh $DIR/start.sh

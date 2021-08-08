@@ -1,0 +1,68 @@
+[client]
+#password	= your_password
+port		= 3357
+socket		= /tmp/mysql57.sock
+
+[mysqld]
+log-error   = mysql.log
+pid-file    = mysql.pid
+port		= 3357
+socket		= /tmp/mysql57.sock
+skip-external-locking   				#skip-locking
+key_buffer_size = 256M
+max_allowed_packet = 1M
+table_open_cache = 256
+sort_buffer_size = 1M
+read_buffer_size = 1M
+read_rnd_buffer_size = 4M
+myisam_sort_buffer_size = 64M
+thread_cache_size = 8
+query_cache_size= 16M
+lower_case_table_names = 2
+sql_mode = STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION
+basedir  	= /Applications/mdserver/bin/mysql/mysql57
+datadir 	= /Applications/mdserver/bin/mysql/mysql57/data
+
+#skip-networking
+#binlog-format=mysql-bin
+#binlog_format=mixed
+server-id	= 1
+
+#server-id       = 2
+#master-host     =   <hostname>
+#master-user     =   <username>
+#master-password =   <password>
+#master-port     =  <port>
+#log-bin=mysql-bin
+
+# Uncomment the following if you are using InnoDB tables
+#innodb_data_home_dir = /usr/local/mysql/data
+#innodb_data_file_path = ibdata1:10M:autoextend
+#innodb_log_group_home_dir = /usr/local/mysql/data
+# You can set .._buffer_pool_size up to 50 - 80 %
+# of RAM but beware of setting memory usage too high
+#innodb_buffer_pool_size = 256M
+#innodb_additional_mem_pool_size = 20M
+# Set .._log_file_size to 25 % of buffer pool size
+#innodb_log_file_size = 64M
+#innodb_log_buffer_size = 8M
+#innodb_flush_log_at_trx_commit = 1
+#innodb_lock_wait_timeout = 50
+
+[mysqldump]
+quick
+max_allowed_packet = 16M
+
+[mysql]
+no-auto-rehash
+# Remove the next comment character if you are not familiar with SQL
+#safe-updates
+
+[myisamchk]
+key_buffer_size = 128M
+sort_buffer_size = 128M
+read_buffer = 2M
+write_buffer = 2M
+
+[mysqlhotcopy]
+interactive-timeout

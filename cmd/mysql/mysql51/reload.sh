@@ -6,6 +6,12 @@ DIR=$(cd "$(dirname "$0")"; pwd)
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
+DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
-echo $MDIR
+
+sh $DIR/stop.sh
+
+sleep 3
+
+sh $DIR/start.sh
