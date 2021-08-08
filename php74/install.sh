@@ -13,7 +13,7 @@ MDIR=$(dirname "$DIR")
 
 mkdir -p $MDIR/source/php
 
-PHP_VER=7.4.7
+PHP_VER=7.4.22
 PHP_M_VER=74
 
 if [ ! -f $MDIR/source/php/php-${PHP_VER}.tar.xz ];then

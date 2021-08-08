@@ -9,7 +9,7 @@ MDIR=$(dirname "$DIR")
 
 mkdir -p $MDIR/source/php
 
-PHP_VER=8.0.0
+PHP_VER=8.0.9
 PHP_M_VER=80
 
 #php-8.0.0alpha1.tar.gz
