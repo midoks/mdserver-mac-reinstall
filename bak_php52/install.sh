@@ -64,8 +64,16 @@ if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 --enable-fastcgi \
 --enable-fpm
 
-make  && make install && make clean
+make  && make install 
+#&& make clean
 
+fi
+
+
+if [ "$?" != "0" ];then
+	#rm -rf $MDIR/source/php/php${PHP_M_VER}
+	echo "install fail!!"
+	exit 2
 fi
 
 

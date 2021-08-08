@@ -11,47 +11,35 @@ MDIR=$(dirname "$DIR")
 
 mkdir -p $MDIR/source/php
 
-PHP_VER=5.4.45
-PHP_M_VER=54
+PHP_VER=5.3.29
+PHP_M_VER=53
 
-if [ ! -f $MDIR/source/php/php-${PHP_VER}.tar.bz2 ];then
-	wget -O $MDIR/source/php/php-${PHP_VER}.tar.bz2 https://museum.php.net/php5/php-${PHP_VER}.tar.bz2
+if [ ! -f $MDIR/source/php/php-${PHP_VER}.tar.xz ]; then
+	wget -O $MDIR/source/php/php-${PHP_VER}.tar.xz https://museum.php.net/php5/php-${PHP_VER}.tar.xz
 fi
-
 
 
 if [ ! -d $MDIR/source/php/php${PHP_M_VER} ]; then
-	if [ ! -d $MDIR/source/php/php-${PHP_VER} ];then
-		cd $MDIR/source/php && tar -Jxf $MDIR/source/php/php-${PHP_VER}.tar.bz2
-
-		mv $MDIR/source/php/php-${PHP_VER} $MDIR/source/php/php${PHP_M_VER}
-		cd $MDIR/source/php/php${PHP_M_VER}
+	if [ ! -d $MDIR/source/php/php-${PHP_VER} ]; then
+		cd $MDIR/source/php && tar -Jxf $MDIR/source/php/php-${PHP_VER}.tar.xz
 	fi
-	
-fi
 
+	mv $MDIR/source/php/php-${PHP_VER} $MDIR/source/php/php${PHP_M_VER}
+fi
 
 cd $MDIR/source/php/php${PHP_M_VER}
 #./configure --help
-
 if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 
-
-./configure \
---prefix=$DIR/php/php${PHP_M_VER} \
+./configure --prefix=$DIR/php/php${PHP_M_VER} \
 --exec-prefix=$DIR/php/php${PHP_M_VER} \
 --with-config-file-path=$DIR/php/php${PHP_M_VER}/etc \
---with-mysql=mysqlnd \
---with-mysql-sock=/tmp/mysql.sock \
---enable-embedded-mysqli \
---with-mysqli=mysqlnd \
---with-pdo-mysql=mysqlnd \
 --with-zlib-dir=$DIR/cmd/zlib \
 --with-mhash=$DIR/cmd/mhash \
 --without-iconv \
 --enable-zip \
+--enable-mbstring \
 --enable-ftp \
---enable-wddx \
 --enable-soap \
 --enable-posix \
 --enable-simplexml \
@@ -61,13 +49,16 @@ if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 --enable-sysvshm \
 --enable-fpm
 
-\cp -rf $DIR/reinstall/php54/lib/reentrancy.c $MDIR/source/php/php54/main/reentrancy.c
-
-#--enable-mbstring \
+#--with-mysql=mysqlnd \
+#--with-pdo-mysql=mysqlnd \
+# --with-mysqli=mysqlnd \
+# --with-mysql-sock=/tmp/mysql.sock \
+# --enable-embedded-mysqli \
 #--enable-dtrace \
 #--enable-debug
-#--with-iconv=$DIR/cmd/libiconv \
-#--with-zlib-dir=$DIR/cmd/zlib \
+
+\cp -rf $DIR/reinstall/php53/lib/php_config.h $MDIR/source/php/php53/main/php_config.h
+\cp -rf $DIR/reinstall/php53/lib/reentrancy.c $MDIR/source/php/php53/main/reentrancy.c
 
 make && make install && make clean
 
@@ -79,6 +70,15 @@ if [ "$?" != "0" ];then
 	exit 2
 fi
 
+
+
+if [ ! -f $DIR/php/php${PHP_M_VER}/bin/php ];then
+	mv $DIR/php/php${PHP_M_VER}/bin/php.dSYM $DIR/php/php${PHP_M_VER}/bin/php
+fi
+
+if [ ! -f $DIR/php/php${PHP_M_VER}/sbin/php-fpm ];then
+	mv $DIR/php/php${PHP_M_VER}/sbin/php-fpm.dSYM $DIR/php/php${PHP_M_VER}/sbin/php-fpm
+fi
 
 
 USER=$(who | sed -n "2,1p" |awk '{print $1}')
@@ -117,10 +117,8 @@ if [ ! -f $DIR/php/php${PHP_M_VER}/etc/php-fpm.d/www.conf ];then
 fi
 
 
-if [ ! -d $DIR/php/php${PHP_M_VER}/lib/php/extensions/no-debug-non-zts-20100525 ]; then
-	mkdir -p $DIR/php/php${PHP_M_VER}/lib/php/extensions/no-debug-non-zts-20100525
+if [ ! -d $DIR/php/php${PHP_M_VER}/lib/php/extensions/no-debug-non-zts-20090626 ]; then
+	mkdir -p $DIR/php/php${PHP_M_VER}/lib/php/extensions/no-debug-non-zts-20090626
 fi
-
-
 
 
