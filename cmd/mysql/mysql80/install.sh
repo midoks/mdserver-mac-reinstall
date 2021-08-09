@@ -67,8 +67,9 @@ echo "$DIR/mysql/mysql${MY_VERSION}/bin/mysqld_safe --skip-grant-tables &" >> $L
 echo "$DIR/mysql/mysql${MY_VERSION}/bin/mysql --defaults-file=$DIR/mysql/mysql${MY_VERSION}/my.cnf -uroot -p" >> $LOG_FILE
 
 echo "mysql> use mysql;" >> $LOG_FILE
-echo "mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';" >> $LOG_FILE
 echo "mysql> flush privileges;"  >> $LOG_FILE
+echo "mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';" >> $LOG_FILE
+
 
 fi
 
