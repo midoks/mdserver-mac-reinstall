@@ -35,13 +35,18 @@ if [ ! -d $DIR/mysql/mysql${MY_VERSION}/my.cnf ]; then
 	cp $MDIR/bin/reinstall/tpl/mysql/my51.cnf $DIR/mysql/mysql${MY_VERSION}/my.cnf
 fi
 
-#mysql 5.1, 5.6版本,直接初始化表
-if [ ! -d $DIR/mysql/mysql${MY_VERSION}/data/mysql ];then
+#mysql 5.1, 5.5, 5.6版本,直接初始化表
+if [ ! -f $DIR/mysql/mysql${MY_VERSION}/data/mysql ];then
 	echo "init mysql table"
+
+	echo "$DIR/mysql/mysql${MY_VERSION}/scripts/mysql_install_db \
+	--basedir=$DIR/mysql/mysql${MY_VERSION} \
+	--datadir=$DIR/mysql/mysql${MY_VERSION}/data \
+	--user=mysql"
 	$DIR/mysql/mysql${MY_VERSION}/scripts/mysql_install_db \
 	--basedir=$DIR/mysql/mysql${MY_VERSION} \
 	--datadir=$DIR/mysql/mysql${MY_VERSION}/data \
-	--user=mysql
+	--user=mysql 
 
 	sleep 2
 fi

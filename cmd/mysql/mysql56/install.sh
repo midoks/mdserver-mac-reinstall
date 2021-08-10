@@ -36,7 +36,7 @@ if [ ! -d $DIR/mysql/mysql${MY_VERSION}/my.cnf ]; then
 fi
 
 #mysql 5.1, 5.6版本,直接初始化表
-if [ ! -d $DIR/mysql/mysql${MY_VERSION}/data/mysql.log ];then
+if [ ! -f $DIR/mysql/mysql${MY_VERSION}/data/mysql.log ];then
 	echo "$DIR/mysql/mysql${MY_VERSION}/scripts/mysql_install_db --basedir=$DIR/mysql/mysql${MY_VERSION} --datadir=$DIR/mysql/mysql${MY_VERSION}/data --user=mysql"
 
 	$DIR/mysql/mysql${MY_VERSION}/scripts/mysql_install_db \
