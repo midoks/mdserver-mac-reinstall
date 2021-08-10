@@ -1,12 +1,12 @@
 [client]
 #password	= your_password
-port		= 3356
+port		= 3306
 socket		= /tmp/mysql80.sock
 
 [mysqld]
 log-error   = mysql.log
 pid-file    = mysql.pid
-port		= 3357
+port		= 3306
 socket		= /tmp/mysql80.sock
 skip-external-locking   				#skip-locking
 key_buffer_size = 256M

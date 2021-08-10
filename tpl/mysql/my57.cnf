@@ -1,6 +1,6 @@
 [client]
 #password	= your_password
-port		= 3356
+port		= 3357
 socket		= /tmp/mysql57.sock
 
 [mysqld]
