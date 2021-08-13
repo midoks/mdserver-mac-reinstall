@@ -13,4 +13,4 @@ MY_VERSION=80
 
 cd $DIR/mysql/mysql${MY_VERSION}
 
-$DIR/mysql/mysql${MY_VERSION}/bin/mysqld --defaults-file=$DIR/mysql/mysql${MY_VERSION}/my.cnf --user=mysql &
+$DIR/mysql/mysql${MY_VERSION}/bin/mysqld --defaults-file=$DIR/mysql/mysql${MY_VERSION}/my.cnf &
