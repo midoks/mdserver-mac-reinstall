@@ -16,11 +16,6 @@ VERSION=$1
 
 sh $MDIR/bin/reinstall/cmd/brew/install.sh
 
-PHP_EXT_NEED_LIST=(openssl icu4c imagemagick curl wget libxml2 libevent oniguruma zlib libzip rabbitmq-c)
-for PHP_EXT in ${PHP_EXT_NEED_LIST[@]}; do
-	if [ ! -d /usr/local/Cellar/${PHP_EXT} ];then
-	fi
-done
 
 if [ ! -d $MDIR/source/php/php$VERSION ]; then
 	echo "PHP-VERIONS:$VERSION"
