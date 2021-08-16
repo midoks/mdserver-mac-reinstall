@@ -31,7 +31,8 @@ fi
 
 sh $MDIR/bin/reinstall/check_common.sh $VERSION
 
-extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20180731/${LIBNAME}.so
+NON_ZTS_FILENAME=`ls $DIR/php/php$VERSION/lib/php/extensions | grep no-debug-non-zts`
+extFile=$DIR/php/php$VERSION/lib/php/extensions/$NON_ZTS_FILENAME/${LIBNAME}.so
 
 isInstall=`cat $DIR/php/php$VERSION/etc/php.ini|grep '${LIBNAME}.so'`
 if [ "${isInstall}" != "" ]; then
@@ -43,16 +44,15 @@ if [ -f  $extFile ]; then
 	rm -rf $extFile
 fi
 
-LIB_DEPEND_DIR=`brew info icu4c | grep /usr/local/Cellar/icu4c | cut -d \  -f 1 | awk 'END {print}'`
-
+# LIB_DEPEND_DIR=`brew info icu4c | grep /usr/local/Cellar/icu4c | cut -d \  -f 1 | awk 'END {print}'`
 # echo $LIB_DEPEND_DIR
 # --with-icu-dir=$LIB_DEPEND_DIR
-echo $LIB_DEPEND_DIR
+
 if [ ! -f "$extFile" ]; then
 
 	cd $MDIR/source/php/php${VERSION}/ext/intl
 	$DIR/php/php$VERSION/bin/phpize
-	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config --with-icu-dir=$LIB_DEPEND_DIR && \
+	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config  && \
 	make && make install && make clean
 fi
 
