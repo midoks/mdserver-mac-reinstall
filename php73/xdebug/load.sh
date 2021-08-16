@@ -22,6 +22,7 @@ echo "" >> $DIR/php/php$VERSION/etc/php.ini
 echo "[${LIBNAME}]" >> $DIR/php/php$VERSION/etc/php.ini
 echo "zend_extension=${LIBNAME}.so" >> $DIR/php/php$VERSION/etc/php.ini
 echo "${LIBNAME}.profiler_enable=on" >> $DIR/php/php$VERSION/etc/php.ini
+echo "${LIBNAME}.auto_trace=on" >> $DIR/php/php$VERSION/etc/php.ini
 echo "${LIBNAME}.trace_output_dir=/Applications/mdserver/bin/tmp/xdebug" >> $DIR/php/php$VERSION/etc/php.ini
 echo "${LIBNAME}.profiler_output_dir=/Applications/mdserver/bin/tmp/xdebug" >> $DIR/php/php$VERSION/etc/php.ini
 
