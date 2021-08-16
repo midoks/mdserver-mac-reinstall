@@ -12,6 +12,9 @@ VERSION=$1
 LIBNAME=couchbase
 LIBV=2.6.2
 
-CONFIG_OPTION="--with-couchbase"
+LIB_DEPEND_DIR=`brew info libcouchbase | grep /usr/local/Cellar/libcouchbase | cut -d \  -f 1 | awk 'END {print}'`
+CONFIG_OPTION="--with-couchbase=$LIB_DEPEND_DIR"
+
+
 FIND="couchbase.decoder.json_arrays"
 sh $MDIR/bin/reinstall/ext_shell/install.sh $VERSION $LIBNAME $LIBV $CONFIG_OPTION $FIND

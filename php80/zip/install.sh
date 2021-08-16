@@ -32,11 +32,13 @@ fi
 
 sh $MDIR/bin/reinstall/check_common.sh $VERSION
 
-extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20200804/${LIBNAME}.so
 
-if [ -f  $extFile ]; then
-	rm -rf $extFile
-fi
+NON_ZTS_FILENAME=`ls $DIR/php/php$VERSION/lib/php/extensions | grep no-debug-non-zts`
+extFile=$DIR/php/php$VERSION/lib/php/extensions/$NON_ZTS_FILENAME/${LIBNAME}.so
+
+# if [ -f  $extFile ]; then
+# 	rm -rf $extFile
+# fi
 
 isInstall=`cat $DIR/php/php$VERSION/etc/php.ini|grep '${LIBNAME}'`
 if [ "${isInstall}" != "" ]; then
@@ -44,9 +46,9 @@ if [ "${isInstall}" != "" ]; then
 	return
 fi
 
-if [ -f  $extFile ]; then
-	rm -rf $extFile
-fi
+# if [ -f  $extFile ]; then
+# 	rm -rf $extFile
+# fi
 
 LIB_DEPEND_DIR=`brew info libzip | grep /usr/local/Cellar/libzip | cut -d \  -f 1 | awk 'END {print}'`
 

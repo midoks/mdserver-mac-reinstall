@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=couchbase
-LIBV=2.6.2
+LIBV=3.2.0
 
 CONFIG_OPTION="--with-couchbase"
 FIND="couchbase.decoder.json_arrays"

@@ -15,7 +15,8 @@ PHP_VER=5.6.36
 PHP_M_VER=56
 
 if [ ! -f $MDIR/source/php/php-${PHP_VER}.tar.xz ];then
-	wget -O $MDIR/source/php/php-${PHP_VER}.tar.xz https://museum.php.net/php5/php-${PHP_VER}.tar.xz
+	# wget -O $MDIR/source/php/php-${PHP_VER}.tar.xz https://museum.php.net/php5/php-${PHP_VER}.tar.xz
+	wget -O $MDIR/source/php/php-${PHP_VER}.tar.xz https://mirrors.sohu.com/php/php-${PHP_VER}.tar.xz
 fi
 
 

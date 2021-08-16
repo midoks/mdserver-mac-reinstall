@@ -68,9 +68,11 @@ if [ ! -f "$extFile" ]; then
 
 	$DIR/php/php$VERSION/bin/phpize
 
+
+	LIB_DEPEND_DIR=`brew info libcouchbase | grep /usr/local/Cellar/libcouchbase | cut -d \  -f 1 | awk 'END {print}'`
 	echo "./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config --with-couchbase"
 	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \
-	--with-couchbase && make && make install && make clean
+	--with-couchbase=$LIB_DEPEND_DIR && make && make install && make clean
 fi
 
 echo "install $LIBNAME end"

@@ -9,7 +9,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=mcrypt
-LIBV=1.0.3
+LIBV=1.0.4
 
 CONFIG_OPTION="--with-mcrypt=$DIR/cmd/libmcrypt"
 FIND="mcrypt.algorithms_dir"
