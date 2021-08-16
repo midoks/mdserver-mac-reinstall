@@ -22,26 +22,30 @@ fi
 
 # echo "$VERSION $LIBNAME $LIBV $FIND_KEYWORD $CONFIG_OPTION"
 
-NON_ZTS_FILENAME=no-debug-non-zts-20121212
-if [ "$VERSION" == "56" ]; then
-	NON_ZTS_FILENAME=no-debug-non-zts-20131226
-elif [[ "$VERSION" == "70" ]]; then
-	NON_ZTS_FILENAME=no-debug-non-zts-20151012
-elif [[ "$VERSION" == "71" ]]; then
-	NON_ZTS_FILENAME=no-debug-non-zts-20160303
-elif [[ "$VERSION" == "72" ]]; then
-	NON_ZTS_FILENAME=no-debug-non-zts-20170718
-elif [[ "$VERSION" == "73" ]]; then
-	NON_ZTS_FILENAME=no-debug-non-zts-20180731
-elif [[ "$VERSION" == "74" ]]; then
-	NON_ZTS_FILENAME=no-debug-non-zts-20190902
-elif [[ "$VERSION" == "80" ]]; then
-	NON_ZTS_FILENAME=no-debug-non-zts-20200930
-elif [[ "$VERSION" == "81" ]]; then
-	NON_ZTS_FILENAME=no-debug-non-zts-20201009
-else
-	NON_ZTS_FILENAME=no-debug-non-zts-20121212
-fi
+
+
+# NON_ZTS_FILENAME=no-debug-non-zts-20121212
+# if [ "$VERSION" == "56" ]; then
+# 	NON_ZTS_FILENAME=no-debug-non-zts-20131226
+# elif [[ "$VERSION" == "70" ]]; then
+# 	NON_ZTS_FILENAME=no-debug-non-zts-20151012
+# elif [[ "$VERSION" == "71" ]]; then
+# 	NON_ZTS_FILENAME=no-debug-non-zts-20160303
+# elif [[ "$VERSION" == "72" ]]; then
+# 	NON_ZTS_FILENAME=no-debug-non-zts-20170718
+# elif [[ "$VERSION" == "73" ]]; then
+# 	NON_ZTS_FILENAME=no-debug-non-zts-20180731
+# elif [[ "$VERSION" == "74" ]]; then
+# 	NON_ZTS_FILENAME=no-debug-non-zts-20190902
+# elif [[ "$VERSION" == "80" ]]; then
+# 	NON_ZTS_FILENAME=no-debug-non-zts-20200930
+# elif [[ "$VERSION" == "81" ]]; then
+# 	NON_ZTS_FILENAME=no-debug-non-zts-20201009
+# else
+# 	NON_ZTS_FILENAME=no-debug-non-zts-20121212
+# fi
+
+NON_ZTS_FILENAME=`ls $DIR/php/php$VERSION/lib/php/extensions | grep no-debug-non-zts`
 
 #check
 TMP_PHP_INI=/tmp/t_tmp_php.ini
