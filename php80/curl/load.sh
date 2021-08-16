@@ -9,11 +9,12 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=curl
-EXT_VERION=no-debug-non-zts-20200930
 
 echo "load $LIBNAME start"
 
-extFile=$DIR/php/php$VERSION/lib/php/extensions/${EXT_VERION}/${LIBNAME}.so
+
+NON_ZTS_FILENAME=`ls $DIR/php/php$VERSION/lib/php/extensions | grep no-debug-non-zts`
+extFile=$DIR/php/php$VERSION/lib/php/extensions/${NON_ZTS_FILENAME}/${LIBNAME}.so
 if [ ! -f $extFile ]; then
 	echo "load $LIBNAME fail"
 	exit 1

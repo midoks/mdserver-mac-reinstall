@@ -12,12 +12,13 @@ LIBNAME=curl
 
 echo "load $LIBNAME start"
 
-extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20180731/${LIBNAME}.so
+
+NON_ZTS_FILENAME=`ls $DIR/php/php$VERSION/lib/php/extensions | grep no-debug-non-zts`
+extFile=$DIR/php/php$VERSION/lib/php/extensions/${NON_ZTS_FILENAME}/${LIBNAME}.so
 if [ ! -f $extFile ]; then
 	echo "load $LIBNAME fail"
 	exit 1
 fi
-
 
 echo "" >> $DIR/php/php$VERSION/etc/php.ini
 echo "[${LIBNAME}]" >> $DIR/php/php$VERSION/etc/php.ini
