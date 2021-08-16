@@ -12,7 +12,8 @@ LIBNAME=xdebug
 
 echo "load $LIBNAME start"
 
-extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20131226/${LIBNAME}.so
+NON_ZTS_FILENAME=`ls $DIR/php/php$VERSION/lib/php/extensions | grep no-debug-non-zts`
+extFile=$DIR/php/php$VERSION/lib/php/extensions/${NON_ZTS_FILENAME}/${LIBNAME}.so
 if [ ! -f $extFile ]; then
 	echo "load $LIBNAME fail"
 	exit 1
@@ -22,6 +23,7 @@ echo "" >> $DIR/php/php$VERSION/etc/php.ini
 echo "[${LIBNAME}]" >> $DIR/php/php$VERSION/etc/php.ini
 echo "zend_extension=${LIBNAME}.so" >> $DIR/php/php$VERSION/etc/php.ini
 echo "${LIBNAME}.profiler_enable=on" >> $DIR/php/php$VERSION/etc/php.ini
+echo "${LIBNAME}.auto_trace=on" >> $DIR/php/php$VERSION/etc/php.ini
 echo "${LIBNAME}.trace_output_dir=/Applications/mdserver/bin/tmp/xdebug" >> $DIR/php/php$VERSION/etc/php.ini
 echo "${LIBNAME}.profiler_output_dir=/Applications/mdserver/bin/tmp/xdebug" >> $DIR/php/php$VERSION/etc/php.ini
 
