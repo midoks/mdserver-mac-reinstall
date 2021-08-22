@@ -13,5 +13,8 @@ LIBNAME=yaf
 LIBV=3.3.3
 
 CONFIG_OPTION="--enable-yaf"
+
+
 FIND="yaf.environ"
 sh $MDIR/bin/reinstall/ext_shell/install.sh $VERSION $LIBNAME $LIBV $CONFIG_OPTION $FIND
+
