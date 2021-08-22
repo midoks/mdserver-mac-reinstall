@@ -11,12 +11,12 @@ MDIR=$(dirname "$DIR")
 
 mkdir -p $MDIR/source/php
 
-PHP_VER=5.6.36
+PHP_VER=5.6.40
 PHP_M_VER=56
 
 if [ ! -f $MDIR/source/php/php-${PHP_VER}.tar.xz ];then
-	# wget -O $MDIR/source/php/php-${PHP_VER}.tar.xz https://museum.php.net/php5/php-${PHP_VER}.tar.xz
-	wget -O $MDIR/source/php/php-${PHP_VER}.tar.xz https://mirrors.sohu.com/php/php-${PHP_VER}.tar.xz
+	wget -O $MDIR/source/php/php-${PHP_VER}.tar.xz https://museum.php.net/php5/php-${PHP_VER}.tar.xz
+	# wget -O $MDIR/source/php/php-${PHP_VER}.tar.xz https://mirrors.sohu.com/php/php-${PHP_VER}.tar.xz
 fi
 
 
@@ -34,6 +34,8 @@ if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 cd $MDIR/source/php/php${PHP_M_VER}
 
 
+cp -f $MDIR/bin/reinstall/tpl/php/php56/reentrancy.c $MDIR/source/php/php56/main/reentrancy.c
+
 ./configure \
 --prefix=$DIR/php/php${PHP_M_VER} \
 --exec-prefix=$DIR/php/php${PHP_M_VER} \
@@ -46,8 +48,6 @@ cd $MDIR/source/php/php${PHP_M_VER}
 --with-zlib-dir=$DIR/cmd/zlib \
 --with-mhash=$DIR/cmd/mhash \
 --without-iconv \
---enable-zip \
---enable-mbstring \
 --enable-opcache \
 --enable-ftp \
 --enable-wddx \
@@ -60,6 +60,7 @@ cd $MDIR/source/php/php${PHP_M_VER}
 --enable-sysvshm \
 --enable-fpm
 
+# --enable-mbstring \
 #--enable-dtrace \
 #--enable-debug
 
