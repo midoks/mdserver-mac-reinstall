@@ -12,7 +12,6 @@ LIBNAME=protobuf
 
 echo "load $LIBNAME start"
 
-
 NON_ZTS_FILENAME=`ls $DIR/php/php$VERSION/lib/php/extensions | grep no-debug-non-zts`
 extFile=$DIR/php/php$VERSION/lib/php/extensions/${NON_ZTS_FILENAME}/${LIBNAME}.so
 if [ ! -f $extFile ]; then
@@ -23,8 +22,6 @@ fi
 echo "" >> $DIR/php/php$VERSION/etc/php.ini
 echo "[${LIBNAME}]" >> $DIR/php/php$VERSION/etc/php.ini
 echo "extension=${LIBNAME}.so" >> $DIR/php/php$VERSION/etc/php.ini
-echo "${LIBNAME}.use_namespace=1" >> $DIR/php/php$VERSION/etc/php.ini
-echo "${LIBNAME}.environ=develop" >> $DIR/php/php$VERSION/etc/php.ini
 
 $MDIR/bin/reinstall/reload.sh $VERSION
 

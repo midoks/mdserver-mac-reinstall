@@ -22,7 +22,7 @@ fi
 echo "cd $MDIR/php && ./status.sh $VERSION stop"
 cd $MDIR/php && ./status.sh $VERSION stop
 
-sleep 1
+ps -ef|grep php$VERSION | grep -v grep | awk '{print $2}'|xargs kill
 
 echo "cd $MDIR/php && ./status.sh $VERSION start"
 cd $MDIR/php && ./status.sh $VERSION start
