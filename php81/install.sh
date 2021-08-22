@@ -12,7 +12,7 @@ mkdir -p $MDIR/source/php
 PHP_VER=8.1
 PHP_M_VER=81
 
-PHP_VER=8.1.0beta1
+PHP_VER=8.1.0beta3
 if [ ! -f $MDIR/source/php/php-${PHP_VER}.tar.gz ];then
 	wget -O $MDIR/source/php/php-${PHP_VER}.tar.gz https://downloads.php.net/~ramsey/php-${PHP_VER}.tar.gz
 fi
