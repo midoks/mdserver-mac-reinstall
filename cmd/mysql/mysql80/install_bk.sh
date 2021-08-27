@@ -57,29 +57,19 @@ PASSWORD=${PASSWORD%% }
 PASSWORD=${PASSWORD## }
 
 echo $PASSWORD
-sleep 1
+sleep 3
 
 
 echo "MYSQL PROT: 3306" >> $LOG_FILE
 echo "MYSQL PASSWORD:${PASSWORD}" >> $LOG_FILE
 
-$DIR/mysql/mysql${MY_VERSION}/bin/mysqld_safe --defaults-file=$DIR/mysql/mysql${MY_VERSION}/my.cnf --skip-grant-tables &
+echo "$DIR/mysql/mysql${MY_VERSION}/bin/mysqld_safe --skip-grant-tables &" >> $LOG_FILE
+echo "$DIR/mysql/mysql${MY_VERSION}/bin/mysql --defaults-file=$DIR/mysql/mysql${MY_VERSION}/my.cnf -uroot -p" >> $LOG_FILE
 
-sleep 2
+echo "mysql> use mysql;" >> $LOG_FILE
+echo "mysql> flush privileges;"  >> $LOG_FILE
+echo "mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';" >> $LOG_FILE
 
-echo "use mysql;
-flush privileges;
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';
-flush privileges;
-" > /tmp/tmp_sql80.sql
 
-$DIR/mysql/mysql$MY_VERSION/bin/mysql --defaults-file=$DIR/mysql/mysql$MY_VERSION/my.cnf -uroot -p"$PASSWORD" < /tmp/tmp_sql80.sql
-
-rm -rf /tmp/tmp_sql80.sql
-
-sleep 1
-$DIR/mysql/mysql${MY_VERSION}/bin/mysqladmin --defaults-file=$DIR/mysql/mysql${MY_VERSION}/my.cnf -uroot -proot shutdown
-
-echo "shutdown ok"
 fi
 
