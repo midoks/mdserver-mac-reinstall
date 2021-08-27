@@ -19,8 +19,8 @@ if [ ! -f $MDIR/tmp/php$VERSION-fpm.pid ];then
 fi
 
 
-echo "cd $MDIR/php && ./status.sh $VERSION stop"
-cd $MDIR/php && ./status.sh $VERSION stop
+echo "cd $MDIR/php && ./status.sh $VERSION stopone"
+cd $MDIR/php && ./status.sh $VERSION stopone
 
 ps -ef|grep php$VERSION | grep -v grep | awk '{print $2}'|xargs kill
 
