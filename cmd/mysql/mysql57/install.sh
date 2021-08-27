@@ -45,28 +45,57 @@ fi
 
 #mysql init pwd
 
-echo "mysql5.7无法通过命令初始化密码"
+echo "----------------------- do cmd start -------------------------"
+
+$DIR/mysql/mysql${MY_VERSION}/bin/mysqld_safe --defaults-file=$DIR/mysql/mysql${MY_VERSION}/my.cnf --skip-grant-tables &
+sleep 2
+
+echo "use mysql;
+flush privileges;
+ALTER USER 'root'@'localhost' PASSWORD EXPIRE NEVER;
+update user set authentication_string=password('root123') where user='root';
+flush privileges;
+" > /tmp/tmp_sql57.sql
+
+
+
+$DIR/mysql/mysql$MY_VERSION/bin/mysql --defaults-file=$DIR/mysql/mysql$MY_VERSION/my.cnf -uroot -p" " < /tmp/tmp_sql57.sql
+
+rm -rf /tmp/tmp_sql57.sql
+
+sleep 1
+
+# CC=`ps -ef|grep mysql57`
+# echo $CC
+ps -ef|grep mysql57/data |grep -v grep|awk '{print $2}'|xargs kill
+# $DIR/mysql/mysql${MY_VERSION}/bin/mysqladmin --defaults-file=$DIR/mysql/mysql${MY_VERSION}/my.cnf -uroot -proot123 shutdown
+sleep 2
+echo "----------------------- reset -------------------------"
+
+echo "$DIR/mysql/mysql${MY_VERSION}/bin/mysqld_safe --defaults-file=$DIR/mysql/mysql${MY_VERSION}/my.cnf "
+$DIR/mysql/mysql${MY_VERSION}/bin/mysqld_safe --defaults-file=$DIR/mysql/mysql${MY_VERSION}/my.cnf &
+sleep 2
 
 echo "----------------------- do cmd start -------------------------"
 
-echo "$DIR/mysql/mysql${MY_VERSION}/bin/mysqld_safe --skip-grant-tables &"
-echo "$DIR/mysql/mysql${MY_VERSION}/bin/mysql --defaults-file=$DIR/mysql/mysql${MY_VERSION}/my.cnf -uroot -p"
-echo "mysql server$ use mysql;"
-echo "mysql server$ update user set authentication_string=password('root123') where user='root';"
-echo "mysql server$ flush privileges;"
-echo "mysql server$ exit;"
+echo "SET PASSWORD = PASSWORD('root');
+use mysql;
+flush privileges;
+ALTER USER 'root'@'localhost' PASSWORD EXPIRE NEVER;
+update user set authentication_string=password('root') where user='root';
+flush privileges;
+" > /tmp/tmp_sql57.sql
 
-echo "ps -ef|grep mysql57 |grep -v grep|awk '{print \$2}'|xargs kill"
+echo "$DIR/mysql/mysql$MY_VERSION/bin/mysql --defaults-file=$DIR/mysql/mysql$MY_VERSION/my.cnf --connect-expired-password -uroot -proot123 < /tmp/tmp_sql57.sql"
+$DIR/mysql/mysql$MY_VERSION/bin/mysql --defaults-file=$DIR/mysql/mysql$MY_VERSION/my.cnf --connect-expired-password -uroot -proot123 < /tmp/tmp_sql57.sql
 
-echo "----------------------- reset -------------------------"
-
-echo "$DIR/mysql/mysql${MY_VERSION}/bin/mysqld_safe --defaults-file=$DIR/mysql/mysql${MY_VERSION}/my.cnf --user=mysql &"
-echo "$DIR/mysql/mysql${MY_VERSION}/bin/mysql --defaults-file=$DIR/mysql/mysql${MY_VERSION}/my.cnf -uroot -p"
-echo "mysql server$ SET PASSWORD = PASSWORD('root');"
-echo "mysql server$ use mysql;"
-echo "mysql server$ ALTER USER 'root'@'localhost' PASSWORD EXPIRE NEVER;"
-echo "mysql server$ update user set authentication_string=password('root') where user='root';"
-echo "mysql server$ flush privileges;"
-echo "$DIR/mysql/mysql${MY_VERSION}/bin/mysqladmin -uroot -proot shutdown"
-
+rm -rf /tmp/tmp_sql57.sql
+sleep 1
 echo "----------------------- do cmd end -------------------------"
+
+
+echo "----------------------- do shutdown start -------------------------"
+
+$DIR/mysql/mysql${MY_VERSION}/bin/mysqladmin --defaults-file=$DIR/mysql/mysql$MY_VERSION/my.cnf -uroot -proot shutdown
+
+echo "----------------------- do shutdown ok -------------------------"
