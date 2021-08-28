@@ -9,7 +9,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=swoole
-LIBV=4.5.0
+LIBV=4.7.1
 
 
 LIB_DEPEND_DIR=`brew info openssl | grep /usr/local/Cellar/openssl | cut -d \  -f 1 | awk 'END {print}'`
