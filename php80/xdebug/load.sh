@@ -10,14 +10,14 @@ MDIR=$(dirname "$DIR")
 VERSION=$1
 LIBNAME=xdebug
 
+echo "load $LIBNAME start"
+
 NON_ZTS_FILENAME=`ls $DIR/php/php$VERSION/lib/php/extensions | grep no-debug-non-zts`
 extFile=$DIR/php/php$VERSION/lib/php/extensions/${NON_ZTS_FILENAME}/${LIBNAME}.so
 if [ ! -f $extFile ]; then
 	echo "load $LIBNAME fail"
 	exit 1
 fi
-
-echo "load $LIBNAME start"
 
 echo "" >> $DIR/php/php$VERSION/etc/php.ini
 echo "[${LIBNAME}]" >> $DIR/php/php$VERSION/etc/php.ini

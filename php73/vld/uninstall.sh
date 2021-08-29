@@ -6,7 +6,17 @@ DIR=$(cd "$(dirname "$0")"; pwd)
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
-DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
-echo $DIR
+VERSION=$1
+LIBNAME=vld
+
+echo "uninstall $LIBNAME start"
+
+extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20160303/${LIBNAME}.so
+
+if [ -f  $extFile ]; then
+	rm -rf $extFile
+fi
+
+echo "uninstall $LIBNAME end"

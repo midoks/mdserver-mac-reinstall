@@ -12,42 +12,12 @@ VERSION=$1
 LIBNAME=solr
 LIBV=2.4.0
 
-echo "install $LIBNAME start"
 
-sh $MDIR/bin/reinstall/check_common.sh $VERSION
 
-extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20131226/${LIBNAME}.so
+LIB_DEPEND_DIR=`brew info curl | grep /usr/local/Cellar/curl | cut -d \  -f 1 | awk 'END {print}'`
 
-isInstall=`cat $DIR/php/php$VERSION/etc/php.ini|grep '${LIBNAME}.so'`
-if [ "${isInstall}" != "" ]; then
-	echo "php-$VERSION 已安装${LIBNAME},请选择其它版本!"
-	return
-fi
 
-if [ ! -f "$extFile" ]; then
+CONFIG_OPTION="--with-curl=$LIB_DEPEND_DIR"
+FIND="Solr Support"
+sh $MDIR/bin/reinstall/ext_shell/install.sh $VERSION $LIBNAME $LIBV $CONFIG_OPTION $FIND
 
-	php_lib=$MDIR/source/php_lib
-	mkdir -p $php_lib
-
-	if [ ! -f $php_lib/${LIBNAME}-${LIBV}.tgz ]; then
-		wget -O $php_lib/${LIBNAME}-${LIBV}.tgz http://pecl.php.net/get/${LIBNAME}-${LIBV}.tgz
-		
-	fi
-	cd $php_lib/${LIBNAME}-${LIBV}
-
-	if [ ! -d $php_lib/${LIBNAME}-${LIBV} ]; then
-		cd $php_lib
-		tar xvf ${LIBNAME}-${LIBV}.tgz
-	fi
-
-	cd $php_lib/${LIBNAME}-${LIBV}
-
-	export $PATH
-	$DIR/php/php$VERSION/bin/phpize
-	./configure \
-	--with-php-config=$DIR/php/php$VERSION/bin/php-config \
-	--with-curl=/usr/local/opt/curl && \
-	make && make install && make clean
-fi
-
-echo "install $LIBNAME end"

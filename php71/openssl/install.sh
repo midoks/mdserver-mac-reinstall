@@ -12,6 +12,9 @@ VERSION=$1
 LIBNAME=openssl
 LIBV='0'
 
+NON_ZTS_FILENAME=`ls $DIR/php/php$VERSION/lib/php/extensions | grep no-debug-non-zts`
+extFile=$DIR/php/php$VERSION/lib/php/extensions/$NON_ZTS_FILENAME/${LIBNAME}.so
+
 #check
 TMP_PHP_INI=/tmp/t_tmp_php.ini
 TMP_CHECK_LOG=/tmp/t_check_php.log
@@ -22,18 +25,20 @@ FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "${LIBNAME}.cafile"`
 
 echo "install $LIBNAME start"
 
-rm -rf $TMP_PHP_INI
-rm -rf $TMP_CHECK_LOG
-if [ "$FIND_IS_INSTALL" != "" ]; then
-	echo "install $LIBNAME end"	
-	exit 0
+EXT_IS_INVAILD=`cat  $TMP_CHECK_LOG | grep "Unable to load dynamic library"`
+if [ "$EXT_IS_INVAILD" != "" ]; then
+	rm -rf $extFile
+else
+	if [ "$FIND_IS_INSTALL" != "" ]; then
+		echo "install $LIBNAME end ."
+		exit 0
+	fi
 fi
 
+rm -rf $TMP_PHP_INI
+rm -rf $TMP_CHECK_LOG
 
 sh $MDIR/bin/reinstall/check_common.sh $VERSION
-
-extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20160303/${LIBNAME}.so
-
 isInstall=`cat $DIR/php/php$VERSION/etc/php.ini|grep '${LIBNAME}.so'`
 if [ "${isInstall}" != "" ]; then
 	echo "php-$VERSION 已安装${LIBNAME},请选择其它版本!"
@@ -46,9 +51,6 @@ fi
 
 
 LIB_DEPEND_DIR=`brew info openssl | grep /usr/local/Cellar/openssl | cut -d \  -f 1 | awk 'END {print}'`
-
-echo "$LIBNAME-DIR:"
-echo $LIB_DEPEND_DIR
 
 if [ ! -f "$extFile" ]; then
 	cd $MDIR/source/php/php$VERSION/ext/openssl

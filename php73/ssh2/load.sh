@@ -20,11 +20,10 @@ if [ ! -f $extFile ]; then
 	exit 1
 fi
 
+
 echo "" >> $DIR/php/php$VERSION/etc/php.ini
 echo "[${LIBNAME}]" >> $DIR/php/php$VERSION/etc/php.ini
 echo "extension=${LIBNAME}.so" >> $DIR/php/php$VERSION/etc/php.ini
-echo "${LIBNAME}.use_namespace=1" >> $DIR/php/php$VERSION/etc/php.ini
-echo "${LIBNAME}.environ=develop" >> $DIR/php/php$VERSION/etc/php.ini
 
 $MDIR/bin/reinstall/reload.sh $VERSION
 

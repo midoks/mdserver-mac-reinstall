@@ -13,7 +13,7 @@ LIBNAME=pcntl
 LIBV='0'
 
 NON_ZTS_FILENAME=`ls $DIR/php/php$VERSION/lib/php/extensions | grep no-debug-non-zts`
-extFile=$DIR/php/php$VERSION/lib/php/extensions/$NON_ZTS_FILENAME/${LIBNAME}.so
+extFile=$DIR/php/php$VERSION/lib/php/extensions/${NON_ZTS_FILENAME}/${LIBNAME}.so
 
 
 #check
@@ -22,7 +22,7 @@ TMP_CHECK_LOG=/tmp/t_check_php.log
 
 echo "extension=$LIBNAME.so" > $TMP_PHP_INI
 $DIR/php/php$VERSION/bin/php -c $TMP_PHP_INI -r 'phpinfo();' > $TMP_CHECK_LOG 2>&1
-FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "${LIBNAME} support"`
+FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "pcntl support"`
 
 echo "install $LIBNAME start"
 
@@ -49,7 +49,7 @@ fi
 if [ ! -f "$extFile" ]; then
 	cd $MDIR/source/php/php$VERSION/ext/${LIBNAME}
 	$DIR/php/php$VERSION/bin/phpize
-	./configure  --with-php-config=$DIR/php/php$VERSION/bin/php-config  && make && make install && make clean
+	./configure  --with-php-config=$DIR/php/php$VERSION/bin/php-config  && make && make install
 fi
 
 echo "install $LIBNAME end"

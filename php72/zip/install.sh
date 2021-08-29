@@ -28,36 +28,26 @@ echo "install $LIBNAME start"
 EXT_IS_INVAILD=`cat  $TMP_CHECK_LOG | grep "Unable to load dynamic library"`
 if [ "$EXT_IS_INVAILD" != "" ]; then
 	rm -rf $extFile
+else
+	if [ "$FIND_IS_INSTALL" != "" ]; then
+		echo "install $LIBNAME end ."
+		exit 0
+	fi
 fi
 
 rm -rf $TMP_PHP_INI
 rm -rf $TMP_CHECK_LOG
-if [ "$FIND_IS_INSTALL" != "" ]; then
-	echo "install $LIBNAME end"	
-	exit 0
-fi
 
 sh $MDIR/bin/reinstall/check_common.sh $VERSION
-
-if [ -f  $extFile ]; then
-	rm -rf $extFile
-fi
-
 isInstall=`cat $DIR/php/php$VERSION/etc/php.ini|grep '${LIBNAME}.so'`
 if [ "${isInstall}" != "" ]; then
 	echo "php-$VERSION 已安装${LIBNAME},请选择其它版本!"
 	return
 fi
 
-if [ -f  $extFile ]; then
-	rm -rf $extFile
-fi
 
 LIB_DEPEND_DIR=`brew info libzip | grep /usr/local/Cellar/libzip | cut -d \  -f 1 | awk 'END {print}'`
 LIB_ZLIB_DEPEND_DIR=`brew info zlib | grep /usr/local/Cellar/zlib | cut -d \  -f 1 | awk 'END {print}'`
-
-echo "$LIBNAME-DIR:"
-echo $LIB_DEPEND_DIR
 
 if [ ! -f "$extFile" ]; then
 
