@@ -13,8 +13,7 @@ LIBV=1.1.2
 
 
 # LIB_DEPEND_DIR=`brew info libgearman | grep /usr/local/Cellar/libgearman | cut -d \  -f 1 | awk 'END {print}'`
-CONFIG_OPTION="--with-gearman=$DIR/gearman"
-
+CONFIG_OPTION="--with-gearman=$DIR/cmd/gearman"
 
 FIND="gearman support"
 sh $MDIR/bin/reinstall/ext_shell/install.sh $VERSION $LIBNAME $LIBV $CONFIG_OPTION $FIND

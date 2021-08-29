@@ -12,8 +12,8 @@ LIBNAME=gearman
 LIBV=2.1.0
 
 
-# LIB_DEPEND_DIR=`brew info libgearman | grep /usr/local/Cellar/libgearman | cut -d \  -f 1 | awk 'END {print}'`
-CONFIG_OPTION="--enable-gearman"
+LIB_DEPEND_DIR=`brew info gearman | grep /usr/local/Cellar/gearman | cut -d \  -f 1 | awk 'END {print}'`
+CONFIG_OPTION="--with-gearman=$LIB_DEPEND_DIR"
 
 
 FIND="gearman support"

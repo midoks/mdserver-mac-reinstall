@@ -13,5 +13,5 @@ LIBNAME=rdkafka
 LIBV=4.0.3
 
 CONFIG_OPTION="--enable-rdkafka"
-FIND="librdkafka"
+FIND="rdkafka support"
 sh $MDIR/bin/reinstall/ext_shell/install.sh $VERSION $LIBNAME $LIBV $CONFIG_OPTION $FIND

@@ -1,5 +1,4 @@
 #! /bin/sh
-
 PATH=$PATH:/opt/local/bin:/opt/local/sbin:/opt/local/share/man:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
 
 DIR=$(cd "$(dirname "$0")"; pwd)
@@ -10,45 +9,9 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=mcrypt
-LIBV=1.0.2
+LIBV=1.0.4
 
-echo "install $LIBNAME start"
+CONFIG_OPTION="--with-mcrypt=$DIR/cmd/libmcrypt"
+FIND="mcrypt.algorithms_dir"
+sh $MDIR/bin/reinstall/ext_shell/install.sh $VERSION $LIBNAME $LIBV $CONFIG_OPTION $FIND
 
-sh $MDIR/bin/reinstall/check_common.sh $VERSION
-
-extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20170718/${LIBNAME}.so
-
-isInstall=`cat $DIR/php/php$VERSION/etc/php.ini|grep '${LIBNAME}.so'`
-if [ "${isInstall}" != "" ]; then
-	echo "php-$VERSION 已安装${LIBNAME},请选择其它版本!"
-	return
-fi
-
-if [ ! -f "$extFile" ]; then
-
-	php_lib=$MDIR/source/php_lib
-	mkdir -p $php_lib
-
-	if [ ! -f $php_lib/${LIBNAME}-${LIBV}.tgz ]; then
-		wget -O $php_lib/${LIBNAME}-${LIBV}.tgz http://pecl.php.net/get/${LIBNAME}-${LIBV}.tgz
-		
-	fi
-	cd $php_lib/${LIBNAME}-${LIBV}
-
-	if [ ! -d $php_lib/${LIBNAME}-${LIBV} ]; then
-		cd $php_lib
-		tar xvf ${LIBNAME}-${LIBV}.tgz
-	fi
-
-	cd $php_lib/${LIBNAME}-${LIBV}
-
-	PATH=$PATH:$DIR/cmd/ImageMagick
-	export $PATH
-	$DIR/php/php$VERSION/bin/phpize
-	./configure \
-	--with-php-config=$DIR/php/php$VERSION/bin/php-config \
-	--with-mcrypt=$DIR/cmd/libmcrypt && \
-	make && make install && make clean
-fi
-
-echo "install $LIBNAME end"
