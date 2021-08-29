@@ -11,7 +11,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=amqp
-LIBV=1.9.3
+LIBV=1.8.0
 
 
 if [ ! -d /usr/local/Cellar/rabbitmq-c ];then
