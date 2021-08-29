@@ -31,7 +31,7 @@ fi
 rm -rf $TMP_PHP_INI
 rm -rf $TMP_CHECK_LOG
 if [ "$FIND_IS_INSTALL" != "" ]; then
-	echo "install $LIBNAME end"	
+	echo "install $LIBNAME end."
 	exit 0
 fi
 
