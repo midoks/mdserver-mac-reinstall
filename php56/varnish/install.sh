@@ -8,13 +8,13 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
-LIBNAME=geoip
-LIBV=1.1.1
+LIBNAME=varnish
+LIBV=1.2.6
 
 
-LIB_DEPEND_DIR=`brew info curl | grep /usr/local/Cellar/curl | cut -d \  -f 1 | awk 'END {print}'`
+LIB_DEPEND_DIR=`brew info varnish | grep /usr/local/Cellar/varnish | cut -d \  -f 1 | awk 'END {print}'`
+CONFIG_OPTION="--with-varnish=$LIB_DEPEND_DIR"
 
-CONFIG_OPTION="--with-geoip=$LIB_DEPEND_DIR"
 
-FIND="geoip.custom_directory"
+FIND="varnish.values_memory_size"
 sh $MDIR/bin/reinstall/ext_shell/install.sh $VERSION $LIBNAME $LIBV $CONFIG_OPTION $FIND
