@@ -13,7 +13,7 @@ LIBNAME=imagick
 LIBV=3.5.1
 
 
-LIB_DEPEND_DIR=`brew info imagemagick | grep /usr/local/Cellar/imagemagick | cut -d \  -f 1`
+LIB_DEPEND_DIR=`brew info imagemagick | grep /usr/local/Cellar/imagemagick | cut -d \  -f 1 | awk 'END {print}'`
 CONFIG_OPTION="--with-imagick=${LIB_DEPEND_DIR}"
 
 FIND="imagick.locale_fix"

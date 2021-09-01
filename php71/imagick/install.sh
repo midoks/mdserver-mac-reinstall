@@ -13,8 +13,8 @@ LIBNAME=imagick
 LIBV=3.5.1
 
 
-LIB_DEPEND_DIR=`brew info imagemagick | grep /usr/local/Cellar/imagemagick | cut -d \  -f 1| awk 'END {print}'`
+LIB_DEPEND_DIR=`brew info imagemagick | grep /usr/local/Cellar/imagemagick | cut -d \  -f 1 | awk 'END {print}'`
 CONFIG_OPTION="--with-imagick=${LIB_DEPEND_DIR}"
 
-# echo "sh $MDIR/bin/reinstall/ext_shell/install.sh $VERSION $LIBNAME $LIBV $CONFIG_OPTION"
-sh $MDIR/bin/reinstall/ext_shell/install.sh $VERSION $LIBNAME $LIBV $CONFIG_OPTION
+FIND="imagick.locale_fix"
+sh $MDIR/bin/reinstall/ext_shell/install.sh $VERSION $LIBNAME $LIBV $CONFIG_OPTION $FIND
