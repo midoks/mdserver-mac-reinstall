@@ -7,12 +7,15 @@ DIR=$(cd "$(dirname "$0")"; pwd)
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
+DIR=$(dirname "$DIR")
+DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
+
 
 GO_VERSION=1.3.4
 
 
-echo '' > $MDIR/bin/logs/reinstall/cmd_go-fastdfs_install.log
+echo '' > $MDIR/bin/logs/reinstall/cmd_other_dir_go-fastdfs_install.log
 echo 'install go-fastdfs start'
 
 if [ ! -d /usr/local/Cellar/go ];then

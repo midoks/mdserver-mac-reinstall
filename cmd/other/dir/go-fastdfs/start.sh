@@ -5,9 +5,12 @@ DIR=$(cd "$(dirname "$0")"; pwd)
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
+DIR=$(dirname "$DIR")
+DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
-LOG_FILE=$MDIR/bin/logs/reinstall/cmd_go-fastdfs_start.log
+
+echo '' > $MDIR/bin/logs/reinstall/cmd_other_dir_go-fastdfs_install.log
 echo "start!" > $LOG_FILE
 
 

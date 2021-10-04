@@ -9,7 +9,7 @@ DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
-echo '' > $MDIR/bin/logs/reinstall/cmd_wrk_install.log
+echo '' > $MDIR/bin/logs/reinstall/cmd_other_dir_wrk_install.log
 
 echo 'install wrk start'
 
