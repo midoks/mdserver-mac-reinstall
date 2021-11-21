@@ -6,8 +6,12 @@ DIR=$(cd "$(dirname "$0")"; pwd)
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
-DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
+app=mysql51
 
-ps -ef | grep mysql51 | grep -v grep | awk -F ' ' '{print $2}' | xargs kill
+ps -ef | grep $app | grep -v grep | awk -F ' ' '{print $2}' | xargs kill
+
+if [ -f $MDIR/mysql/$app/data/mysql.pid ];then
+	rm -rf $MDIR/mysql/$app/data/mysql.pid
+fi
