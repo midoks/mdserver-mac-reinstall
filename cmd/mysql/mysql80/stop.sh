@@ -10,8 +10,9 @@ MDIR=$(dirname "$DIR")
 
 app=mysql80
 
-ps -ef | grep $app | grep -v grep | awk -F ' ' '{print $2}' | xargs kill
-
 if [ -f $MDIR/mysql/$app/data/mysql.pid ];then
 	rm -rf $MDIR/mysql/$app/data/mysql.pid
 fi
+
+ps -ef | grep $app | grep -v grep | awk -F ' ' '{print $2}' | xargs kill
+
