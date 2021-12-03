@@ -9,10 +9,9 @@ MDIR=$(dirname "$DIR")
 
 mkdir -p $MDIR/source/php
 
-PHP_VER=8.0.10
+PHP_VER=8.0.13
 PHP_M_VER=80
 
-#php-8.0.0alpha1.tar.gz
 if [ ! -f $MDIR/source/php/php-${PHP_VER}.tar.gz ];then
 	wget -O $MDIR/source/php/php-${PHP_VER}.tar.gz https://www.php.net/distributions/php-${PHP_VER}.tar.gz
 fi
