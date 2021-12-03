@@ -32,17 +32,13 @@ PATH=$PATH:/Applications/mdserver/bin/cmd/libzip
 
 if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 
-#cp /Applications/mdserver/bin/cmd/libzip/include/zip.h /usr/local/include/zipconf.h
-./buildconf --force
-
+# ./buildconf --force
+# export PATH="/usr/local/opt/bison/bin:$PATH"
+# export LDFLAGS="-L/usr/local/opt/bison/lib"
+# export PKG_CONFIG_PATH="/usr/local/opt/libxml2/lib/pkgconfig"
+# export LDFLAGS="-L/usr/local/opt/libxml2/lib"
 
 cd $MDIR/source/php/php${PHP_M_VER}
-
-
-export PATH="/usr/local/opt/bison/bin:$PATH"
-export LDFLAGS="-L/usr/local/opt/bison/lib"
-export PKG_CONFIG_PATH="/usr/local/opt/libxml2/lib/pkgconfig"
-export LDFLAGS="-L/usr/local/opt/libxml2/lib"
 
 ./configure --prefix=$DIR/php/php${PHP_M_VER}/ \
 --exec-prefix=$DIR/php/php${PHP_M_VER}/ \
@@ -54,7 +50,6 @@ export LDFLAGS="-L/usr/local/opt/libxml2/lib"
 --with-zlib-dir=$DIR/cmd/zlib \
 --with-mhash=$DIR/cmd/mhash \
 --without-iconv \
---enable-mbstring \
 --enable-opcache \
 --enable-simplexml \
 --enable-ftp \
