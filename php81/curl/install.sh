@@ -45,9 +45,9 @@ if [ "${isInstall}" != "" ]; then
 	return
 fi
 
-if [ -f  $extFile ]; then
-	rm -rf $extFile
-fi
+# if [ -f  $extFile ]; then
+# 	rm -rf $extFile
+# fi
 
 LIB_DEPEND_DIR=`brew info curl | grep /usr/local/Cellar/curl | cut -d \  -f 1 | awk 'END {print}'`
 

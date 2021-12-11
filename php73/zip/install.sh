@@ -61,6 +61,7 @@ echo "$LIBNAME-DIR:"
 echo $LIB_DEPEND_DIR
 
 if [ ! -f "$extFile" ]; then
+	export PKG_CONFIG_PATH="/www/server/lib/libzip/lib/pkgconfig/"
 
 	cd $MDIR/source/php/php${VERSION}/ext/zip
 	$DIR/php/php$VERSION/bin/phpize

@@ -60,6 +60,8 @@ if [ ! -f "$extFile" ]; then
 
 	cd $MDIR/source/php/php${VERSION}/ext/zip
 	$DIR/php/php$VERSION/bin/phpize
+
+	export PKG_CONFIG_PATH="/www/server/lib/libzip/lib/pkgconfig/"
 	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \
 	--with-zip  && \
 	make && make install && make clean
