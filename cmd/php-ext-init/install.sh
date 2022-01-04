@@ -8,6 +8,7 @@ DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
+export HOMEBREW_NO_AUTO_UPDATE=true
 
 sh $MDIR/bin/reinstall/cmd/base/cmd_icu.sh
 
