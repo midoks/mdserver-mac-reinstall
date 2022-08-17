@@ -8,6 +8,7 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
+EXT_VERION=no-debug-non-zts-20190902
 LIBNAME=ioncube
 
 echo "load $LIBNAME start"
@@ -20,15 +21,9 @@ if [ ! -f $extFile ]; then
 	exit 1
 fi
 
-
-C='[ioncube]\
-zend_extension=ioncube.so\
-'
-
-sed -i '_bak' "1s/^/${C}/g" $DIR/php/php$VERSION/etc/php.ini
-
-
-
+echo "" >> $DIR/php/php$VERSION/etc/php.ini
+echo "[${LIBNAME}]" >> $DIR/php/php$VERSION/etc/php.ini
+echo "zend_extension=${LIBNAME}.so" >> $DIR/php/php$VERSION/etc/php.ini
 
 $MDIR/bin/reinstall/reload.sh $VERSION
 

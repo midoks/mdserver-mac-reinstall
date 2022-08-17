@@ -11,37 +11,34 @@ MDIR=$(dirname "$DIR")
 VERSION=$1
 LIBNAME=ioncube
 LIBV='0'
-PHP_VERSION='7.3'
 
-
+NON_ZTS_FILENAME=`ls $DIR/php/php$VERSION/lib/php/extensions | grep no-debug-non-zts`
+extFile=$DIR/php/php$VERSION/lib/php/extensions/${NON_ZTS_FILENAME}/${LIBNAME}.so
 
 #check
 TMP_PHP_INI=/tmp/t_tmp_php.ini
 TMP_CHECK_LOG=/tmp/t_check_php.log
 
-echo "zend_extension=$LIBNAME.so" > $TMP_PHP_INI
-$DIR/php/php$VERSION/bin/php -c $TMP_PHP_INI -r 'phpinfo();' > $TMP_CHECK_LOG
-FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "${LIBNAME}.loader.encoded_paths"`
-
+echo "extension=$LIBNAME.so" > $TMP_PHP_INI
+$DIR/php/php$VERSION/bin/php -c $TMP_PHP_INI -r 'phpinfo();' > $TMP_CHECK_LOG 2>&1
+FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "${LIBNAME}.scale"`
 
 echo "install $LIBNAME start"
 
+EXT_IS_INVAILD=`cat  $TMP_CHECK_LOG | grep "Unable to load dynamic library"`
+if [ "$EXT_IS_INVAILD" != "" ]; then
+	rm -rf $extFile
+else
+	if [ "$FIND_IS_INSTALL" != "" ]; then
+		echo "install $LIBNAME end ."
+		exit 0
+	fi
+fi
+
 rm -rf $TMP_PHP_INI
 rm -rf $TMP_CHECK_LOG
-if [ "$FIND_IS_INSTALL" != "" ]; then
-	echo "install $LIBNAME end"	
-	exit 0
-fi
-
 
 sh $MDIR/bin/reinstall/check_common.sh $VERSION
-
-extDir=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20180731
-extFile=$extDir/${LIBNAME}.so
-
-if [ -f  $extFile ]; then
-	rm -rf $extFile
-fi
 
 isInstall=`cat $DIR/php/php$VERSION/etc/php.ini|grep '${LIBNAME}.so'`
 if [ "${isInstall}" != "" ]; then
@@ -49,25 +46,24 @@ if [ "${isInstall}" != "" ]; then
 	return
 fi
 
+# https://downloads.ioncube.com/loader_downloads/ioncube_loaders_mac_x86-64.zip
 if [ ! -f "$extFile" ]; then
+
+	MIN_VER="${VERSION:0:1}.${VERSION:1:2}"
 
 	php_lib=$MDIR/source/php_lib
 	mkdir -p $php_lib
 
-	if [ ! -f $php_lib/ioncube_loaders_dar_x86-64.tar.gz ]; then
-		wget -O $php_lib/ioncube_loaders_dar_x86-64.tar.gz http://downloads3.ioncube.com/loader_downloads/ioncube_loaders_dar_x86-64.tar.gz
-		
+	if [ ! -f $php_lib/ioncube_loaders_mac_x86-64.zip ]; then
+		wget -O $php_lib/ioncube_loaders_mac_x86-64.zip https://downloads.ioncube.com/loader_downloads/ioncube_loaders_mac_x86-64.zip
 	fi
 
-	cd $php_lib/ioncube
-
-	if [ ! -d $php_lib/${LIBNAME}-${LIBV} ]; then
-		cd $php_lib
-		tar xvf ioncube_loaders_dar_x86-64.tar.gz
+	if [ ! -d $php_lib/ioncube ]; then
+		cd $php_lib && unzip ioncube_loaders_mac_x86-64.zip 
 	fi
 
-	cd $php_lib/ioncube
-	cp $php_lib/ioncube/ioncube_loader_dar_${PHP_VERSION}.so $extDir/ioncube.so
+	cp -rf $php_lib/ioncube/ioncube_loader_mac_${MIN_VER}.so $extFile
+	xattr -c  $extFile
+
 fi
-
 echo "install $LIBNAME end"
