@@ -58,7 +58,7 @@ brew unlink libzip && brew link libzip
 
 if [ ! -f "$extFile" ]; then
 	
-	export PKG_CONFIG_PATH="/www/server/lib/libzip/lib/pkgconfig/"
+	export PKG_CONFIG_PATH=$LIB_DEPEND_DIR"/lib/pkgconfig/"
 
 	cd $MDIR/source/php/php${VERSION}/ext/zip
 	$DIR/php/php$VERSION/bin/phpize

@@ -51,11 +51,13 @@ if [ -f  $extFile ]; then
 fi
 
 LIB_DEPEND_DIR=`brew info libzip | grep /usr/local/Cellar/libzip | cut -d \  -f 1 | awk 'END {print}'`
-brew unlink libzip && brew link libzip
+# brew unlink libzip && brew link libzip
+# echo $LIB_DEPEND_DIR
+
 
 if [ ! -f "$extFile" ]; then
 	
-	export PKG_CONFIG_PATH="/www/server/lib/libzip/lib/pkgconfig/"
+	export PKG_CONFIG_PATH=$LIB_DEPEND_DIR"/lib/pkgconfig/"
 
 	cd $MDIR/source/php/php${VERSION}/ext/zip
 	$DIR/php/php$VERSION/bin/phpize

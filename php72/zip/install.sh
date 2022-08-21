@@ -51,6 +51,8 @@ LIB_ZLIB_DEPEND_DIR=`brew info zlib | grep /usr/local/Cellar/zlib | cut -d \  -f
 
 if [ ! -f "$extFile" ]; then
 
+	export PKG_CONFIG_PATH=$LIB_DEPEND_DIR"/lib/pkgconfig/"
+
 	cd $MDIR/source/php/php${VERSION}/ext/zip
 	$DIR/php/php$VERSION/bin/phpize
 	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \

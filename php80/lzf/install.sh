@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=lzf
-LIBV=1.6.8
+LIBV=1.7.0
 
 _LIBNAME=$(echo $LIBNAME | tr '[a-z]' '[A-Z]')
 
