@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=solr
-LIBV=2.5.1
+LIBV=2.5.0
 
 
 

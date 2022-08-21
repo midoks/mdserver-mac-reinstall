@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=oci8
-LIBV=2.2.0
+LIBV=2.1.8
 
 sh $MDIR/bin/reinstall/cmd/base/cmd_oci8.sh
 
