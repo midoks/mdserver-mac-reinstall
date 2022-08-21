@@ -52,7 +52,9 @@ extFile=$DIR/php/php$VERSION/lib/php/extensions/${NON_ZTS_FILENAME}/${LIBNAME}.s
 TMP_PHP_INI=/tmp/t_tmp_php.ini
 TMP_CHECK_LOG=/tmp/t_check_php.log
 
-echo "extension=$LIBNAME.so" > $TMP_PHP_INI
+echo "extension=iconv.so" > $TMP_PHP_INI
+echo "extension=$LIBNAME.so" >> $TMP_PHP_INI
+
 $DIR/php/php$VERSION/bin/php -c $TMP_PHP_INI -r 'phpinfo();' > $TMP_CHECK_LOG 2>&1
 FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "$FIND_KEYWORD"`
 
