@@ -52,12 +52,20 @@ fi
 LIB_DEPEND_DIR=`brew info curl | grep /usr/local/Cellar/curl | cut -d \  -f 1 | awk 'END {print}'`
 
 if [ ! -f "$extFile" ]; then
+
+	export PKG_CONFIG_PATH=$LIB_DEPEND_DIR"/lib/pkgconfig"
+
 	cd $MDIR/source/php/php$VERSION/ext/curl
 	$DIR/php/php$VERSION/bin/phpize
 	./configure  \
 	--with-curl=$LIB_DEPEND_DIR \
-	--with-php-config=$DIR/php/php$VERSION/bin/php-config \
-	&& make && make install && make clean
+	--with-php-config=$DIR/php/php$VERSION/bin/php-config
+
+	echo "./configure  \
+	--with-curl=$LIB_DEPEND_DIR \
+	--with-php-config=$DIR/php/php$VERSION/bin/php-config"
+
+	make && make install && make clean
 fi
 
 echo "install $LIBNAME end"
