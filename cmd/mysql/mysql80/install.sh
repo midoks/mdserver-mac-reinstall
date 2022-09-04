@@ -41,7 +41,7 @@ if [ ! -d $DIR/mysql/mysql${MY_VERSION}/data/mysql.ibd ];then
 	$DIR/mysql/mysql${MY_VERSION}/bin/mysqld \
 	--basedir=$DIR/mysql/mysql${MY_VERSION} \
 	--datadir=$DIR/mysql/mysql${MY_VERSION}/data \
-	--initialize
+	--initialize-insecure
 
 	sleep 2
 fi
@@ -50,34 +50,34 @@ fi
 #mysql init pwd
 if [ ! -f $DIR/mysql/mysql${MY_VERSION}/data ]; then
 
-cd $DIR/mysql/mysql${MY_VERSION}
+# cd $DIR/mysql/mysql${MY_VERSION}
 
-PASSWORD=`cat $MDIR/bin/logs/reinstall/mysql_80_install.log | grep root@localhost | awk -F 'root@localhost:' '{print $2}'` 
-PASSWORD=${PASSWORD%% }
-PASSWORD=${PASSWORD## }
+# PASSWORD=`cat $MDIR/bin/logs/reinstall/mysql_80_install.log | grep root@localhost | awk -F 'root@localhost:' '{print $2}'` 
+# PASSWORD=${PASSWORD%% }
+# PASSWORD=${PASSWORD## }
 
-echo $PASSWORD
-sleep 1
+# echo $PASSWORD
+# sleep 1
 
+$DIR/mysql/mysql${MY_VERSION}/bin/mysqladmin --defaults-file=$DIR/mysql/mysql${MY_VERSION}/my.cnf -uroot password root
 
 echo "MYSQL PROT: 3306" >> $LOG_FILE
-echo "MYSQL PASSWORD:${PASSWORD}" >> $LOG_FILE
+echo "MYSQL PASSWORD:root" >> $LOG_FILE
 
-$DIR/mysql/mysql${MY_VERSION}/bin/mysqld_safe --defaults-file=$DIR/mysql/mysql${MY_VERSION}/my.cnf --skip-grant-tables &
+$DIR/mysql/mysql${MY_VERSION}/bin/mysqld_safe --defaults-file=$DIR/mysql/mysql${MY_VERSION}/my.cnf &
 
 sleep 2
 
-echo "use mysql;
-flush privileges;
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';
-flush privileges;
-" > /tmp/tmp_sql80.sql
+# echo "use mysql;
+# flush privileges;
+# ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';
+# flush privileges;
+# " > /tmp/tmp_sql80.sql
 
-$DIR/mysql/mysql$MY_VERSION/bin/mysql --defaults-file=$DIR/mysql/mysql$MY_VERSION/my.cnf -uroot -p"$PASSWORD" < /tmp/tmp_sql80.sql
+# $DIR/mysql/mysql$MY_VERSION/bin/mysql --defaults-file=$DIR/mysql/mysql$MY_VERSION/my.cnf -uroot -p"$PASSWORD" < /tmp/tmp_sql80.sql
+# rm -rf /tmp/tmp_sql80.sql
 
-rm -rf /tmp/tmp_sql80.sql
-
-sleep 1
+# sleep 1
 $DIR/mysql/mysql${MY_VERSION}/bin/mysqladmin --defaults-file=$DIR/mysql/mysql${MY_VERSION}/my.cnf -uroot -proot shutdown
 
 echo "shutdown ok"
