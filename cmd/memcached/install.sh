@@ -11,7 +11,7 @@ MDIR=$(dirname "$DIR")
 
 mkdir -p $MDIR/source/memcached
 
-VERSION=1.6.10
+VERSION=1.6.17
 
 if [ ! -f $MDIR/source/memcached/memcached-${VERSION}.tar.gz ];then
 	wget -O $MDIR/source/memcached/memcached-${VERSION}.tar.gz https://memcached.org/files/memcached-${VERSION}.tar.gz
