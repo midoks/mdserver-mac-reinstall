@@ -30,24 +30,18 @@ if [ ! -d $MDIR/source/php/php${PHP_M_VER} ]; then
 fi
 
 cd $MDIR/source/php/php${PHP_M_VER}
-
-PATH=$PATH:/Applications/mdserver/bin/cmd/libzip
 #./configure --help
 
 if [ ! -d $DIR/php/php${PHP_M_VER} ];then
-
-#cp /Applications/mdserver/bin/cmd/libzip/include/zip.h /usr/local/include/zipconf.h
-./buildconf --force
 
 
 cd $MDIR/source/php/php${PHP_M_VER}
 
 
-export PATH="/usr/local/opt/bison/bin:$PATH"
-export LDFLAGS="-L/usr/local/opt/bison/lib"
-export PKG_CONFIG_PATH="/usr/local/opt/libxml2/lib/pkgconfig"
-export LDFLAGS="-L/usr/local/opt/libxml2/lib"
+LIB_DEPEND_DIR=`brew info oniguruma | grep /usr/local/Cellar/oniguruma | cut -d \  -f 1 | awk 'END {print}'`
+export PKG_CONFIG_PATH=$LIB_DEPEND_DIR/lib/pkgconfig
 
+./buildconf --force
 ./configure --prefix=$DIR/php/php${PHP_M_VER}/ \
 --exec-prefix=$DIR/php/php${PHP_M_VER}/ \
 --with-config-file-path=$DIR/php/php${PHP_M_VER}/etc \

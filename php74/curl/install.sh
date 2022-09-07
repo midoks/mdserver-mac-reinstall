@@ -50,6 +50,7 @@ if [ -f  $extFile ]; then
 fi
 
 LIB_DEPEND_DIR=`brew info curl | grep /usr/local/Cellar/curl | cut -d \  -f 1 | awk 'END {print}'`
+export PKG_CONFIG_PATH=$LIB_DEPEND_DIR"/lib/pkgconfig"
 
 if [ ! -f "$extFile" ]; then
 	cd $MDIR/source/php/php$VERSION/ext/curl

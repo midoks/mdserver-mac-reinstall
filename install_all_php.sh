@@ -11,21 +11,27 @@ if [  "$CHECK_BREW" == "" ];then
 	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
-# PHP_EXT_NEED_LIST=(openssl icu4c imagemagick curl wget libxml2 libevent oniguruma zlib libzip rabbitmq-c geoip)
-# for PHP_EXT in ${PHP_EXT_NEED_LIST[@]}; do
-# 	if [ ! -d /usr/local/Cellar/${PHP_EXT} ];then
-# 		brew install ${PHP_EXT}
-# 	else
-# 		brew upgrade ${PHP_EXT}
-# 	fi
-# done
+PHP_EXT_NEED_LIST=(openssl@1.1 icu4c imagemagick curl wget libxml2 libevent oniguruma zlib libzip rabbitmq-c geoip)
+for PHP_EXT in ${PHP_EXT_NEED_LIST[@]}; do
+	if [ ! -d /usr/local/Cellar/${PHP_EXT} ];then
+		brew install ${PHP_EXT}
+	else
+		brew upgrade ${PHP_EXT}
+	fi
+done
 
 
-PHP_VER_LIST=(55 56 71 72 73 74 80 81)
-# PHP_VER_LIST=(81)
+
+PHP_VER_LIST=(55 56 71 72 73 74 80 81 82)
 for PHP_VER in ${PHP_VER_LIST[@]}; do
 	echo "php${PHP_VER} -- start"
 	cd $DIR/php$PHP_VER && sh install.sh
+
+	if [ ! -f $MDIR/php/php$PHP_VER/bin/phpize ];then
+		echo "$PHP_VER compilation failed"
+		continue;
+	fi
+
 	dir=$(ls -l $DIR/php$PHP_VER |awk '/^d/ {print $NF}')
 	for i in $dir
 	do

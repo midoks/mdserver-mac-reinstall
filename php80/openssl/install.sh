@@ -51,11 +51,9 @@ fi
 
 
 # echo $MDIR/bin/cmd/openssl
-LIB_DEPEND_DIR=`brew info openssl | grep /usr/local/Cellar/openssl | cut -d \  -f 1 | awk 'END {print}'`
+LIB_DEPEND_DIR=`brew info openssl@1.1 | grep /usr/local/Cellar/openssl | cut -d \  -f 1 | awk 'END {print}'`
 # echo $LIB_DEPEND_DIR
-
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PKG_CONFIG_PATH="/usr/local/opt/openssl/lib/pkgconfig"
+export PKG_CONFIG_PATH=$LIB_DEPEND_DIR/lib/pkgconfig
 
 if [ ! -f "$extFile" ]; then
 	cd $MDIR/source/php/php$VERSION/ext/openssl

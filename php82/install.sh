@@ -32,11 +32,6 @@ PATH=$PATH:/Applications/mdserver/bin/cmd/libzip
 
 if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 
-# ./buildconf --force
-# export PATH="/usr/local/opt/bison/bin:$PATH"
-# export LDFLAGS="-L/usr/local/opt/bison/lib"
-# export PKG_CONFIG_PATH="/usr/local/opt/libxml2/lib/pkgconfig"
-# export LDFLAGS="-L/usr/local/opt/libxml2/lib"
 
 cd $MDIR/source/php/php${PHP_M_VER}
 

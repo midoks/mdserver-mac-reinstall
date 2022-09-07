@@ -30,6 +30,9 @@ fi
 #./configure --help
 if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 cd $MDIR/source/php/php${PHP_M_VER}
+
+cp -f $MDIR/bin/reinstall/tpl/php/php7/reentrancy.c $MDIR/source/php/php${PHP_M_VER}/main/reentrancy.c
+
 ./configure \
 --prefix=$DIR/php/php${PHP_M_VER} \
 --exec-prefix=$DIR/php/php${PHP_M_VER} \

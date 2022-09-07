@@ -38,6 +38,9 @@ if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 # export PKG_CONFIG_PATH="/usr/local/opt/libxml2/lib/pkgconfig"
 # export LDFLAGS="-L/usr/local/opt/libxml2/lib"
 
+LIB_DEPEND_DIR=`brew info oniguruma | grep /usr/local/Cellar/oniguruma | cut -d \  -f 1 | awk 'END {print}'`
+export PKG_CONFIG_PATH=$LIB_DEPEND_DIR/lib/pkgconfig
+
 cd $MDIR/source/php/php${PHP_M_VER}
 ./buildconf --force
 ./configure --prefix=$DIR/php/php${PHP_M_VER}/ \
