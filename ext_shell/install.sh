@@ -101,8 +101,14 @@ if [ ! -f "$extFile" ]; then
 	cd $php_lib/${LIBNAME}-${LIBV}
 
 	$DIR/php/php$VERSION/bin/phpize
-	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config ${CONFIG_OPTION} && \
-	make && make install && make clean
+	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config ${CONFIG_OPTION}
+	make -j8 && make install && make clean
+	# if [ "$LIBNAME" == "grpc" ];then
+	# 	make -j8 && make install && make clean
+	# else
+	# 	make && make install && make clean
+	# fi
+	
 
 fi
 

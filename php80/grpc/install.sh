@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=grpc
-LIBV=1.40.0
+LIBV=1.48.0
 
 PHP_EXT_NEED_LIST=(grpc)
 for PHP_EXT in ${PHP_EXT_NEED_LIST[@]}; do

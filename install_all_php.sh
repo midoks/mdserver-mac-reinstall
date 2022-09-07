@@ -23,6 +23,8 @@ done
 
 
 PHP_VER_LIST=(55 56 71 72 73 74 80 81 82)
+PHP_EXT_LIST=(openssl pcntl mcrypt fileinfo \
+	exif gd gettext intl memcache memcached redis imagick xhprof swoole yaf mongodb iconv)
 for PHP_VER in ${PHP_VER_LIST[@]}; do
 	echo "php${PHP_VER} -- start"
 	cd $DIR/php$PHP_VER && sh install.sh
@@ -38,6 +40,16 @@ for PHP_VER in ${PHP_VER_LIST[@]}; do
 		cd $DIR/php$PHP_VER/$i && sh install.sh $PHP_VER
 	done
 	echo "php${PHP_VER} -- end"
+
+	for PHP_EXT in ${PHP_EXT_LIST[@]}; do
+		echo "php${PHP_VER} - ${PHP_EXT} -- load start"
+		if [ -d $DIR/php$PHP_VER/$PHP_EXT ];then
+			cd $DIR/php$PHP_VER/$PHP_EXT && sh unload.sh $PHP_VER
+			cd $DIR/php$PHP_VER/$PHP_EXT && sh load.sh $PHP_VER
+		fi
+		echo "php${PHP_VER} - ${PHP_EXT} -- load end"
+	done
+
 done
 
 
