@@ -56,6 +56,7 @@ cp -f $MDIR/bin/reinstall/tpl/php/php7/reentrancy.c $MDIR/source/php/php${PHP_M_
 --enable-sysvmsg \
 --enable-sysvsem \
 --enable-sysvshm \
+--disable-fileinfo \
 --enable-fpm
 
 #--enable-dtrace \

@@ -50,10 +50,12 @@ if [ ! -f "$extFile" ]; then
 	cd $MDIR/source/php/php${VERSION}/ext/gd
 	$DIR/php/php$VERSION/bin/phpize
 	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \
-	--with-zlib-dir=$DIR/cmd/zlib \
-	--with-png-dir=$DIR/cmd/libpng \
-	--with-freetype-dir=$DIR/cmd/freetype \
-	--with-jpeg-dir=$DIR/cmd/libjpeg && \
+	--enable-gd  \
+	--with-webp \
+	--with-jpeg  \
+	--with-freetype \
+	--with-xpm \
+	--enable-gd-jis-conv && \
 	make && make install
 fi
 

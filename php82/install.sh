@@ -9,7 +9,7 @@ MDIR=$(dirname "$DIR")
 
 mkdir -p $MDIR/source/php
 
-PHP_VER=8.2.0RC1
+PHP_VER=8.2.0RC2
 PHP_M_VER=82
 
 if [ ! -f $MDIR/source/php/php-${PHP_VER}.tar.bz2 ];then
@@ -55,6 +55,7 @@ cd $MDIR/source/php/php${PHP_M_VER}
 --enable-sysvmsg \
 --enable-sysvsem \
 --enable-sysvshm \
+--disable-fileinfo \
 --enable-fpm
 
 #--enable-dtrace \

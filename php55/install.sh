@@ -58,6 +58,7 @@ cd $MDIR/source/php/php${PHP_M_VER}
 --enable-sysvmsg \
 --enable-sysvsem \
 --enable-sysvshm \
+--disable-fileinfo \
 --enable-fpm
 
 #--enable-dtrace \

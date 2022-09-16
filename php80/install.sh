@@ -67,6 +67,7 @@ export PKG_CONFIG_PATH=$LIB_DEPEND_DIR/lib/pkgconfig
 --enable-sysvmsg \
 --enable-sysvsem \
 --enable-sysvshm \
+--disable-fileinfo \
 --enable-fpm
 
 #--enable-dtrace \

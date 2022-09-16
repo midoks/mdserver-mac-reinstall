@@ -58,6 +58,7 @@ cp -f $MDIR/bin/reinstall/tpl/php/php56/reentrancy.c $MDIR/source/php/php56/main
 --enable-sysvmsg \
 --enable-sysvsem \
 --enable-sysvshm \
+--disable-fileinfo \
 --enable-fpm
 
 # --enable-mbstring \
