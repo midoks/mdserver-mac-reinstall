@@ -9,7 +9,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=gearman
-LIBV=2.1.0
+LIBV=1.1.2
 
 
 LIB_DEPEND_DIR=`brew info gearman | grep /usr/local/Cellar/gearman | cut -d \  -f 1 | awk 'END {print}'`

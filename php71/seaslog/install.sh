@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=SeasLog
-LIBV=2.2.0
+LIBV=1.6.0
 
 _LIBNAME=$(echo $LIBNAME | tr '[A-Z]' '[a-z]')
 
