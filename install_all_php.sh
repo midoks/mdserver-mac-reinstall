@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 export PATH=$PATH:/opt/local/bin:/opt/local/sbin:/opt/local/share/man:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
 
@@ -23,7 +23,7 @@ done
 
 
 PHP_VER_LIST=(55 56 71 72 73 74 80 81 82)
-# PHP_VER_LIST=(74)
+# PHP_VER_LIST=(71)
 PHP_EXT_LIST=(curl openssl pcntl mcrypt fileinfo \
 	exif gd gettext intl memcache memcached redis imagick xhprof swoole yaf mongodb iconv)
 for PHP_VER in ${PHP_VER_LIST[@]}
@@ -39,9 +39,20 @@ do
 	dir=$(ls -l $DIR/php$PHP_VER |awk '/^d/ {print $NF}')
 	for i in $dir
 	do
+		if [ "grpc" == "$i" ];then
+			continue;
+		fi
+
+		if [ "zip" == "$i" ];then
+			continue;
+		fi
+
+		if [ "intl" == "$i" ];then
+			continue;
+		fi
+
 		cd $DIR/php$PHP_VER/$i && sh install.sh $PHP_VER
 	done
-	echo "php${PHP_VER} -- end"
 
 	for PHP_EXT in ${PHP_EXT_LIST[@]}
 	do
@@ -52,7 +63,5 @@ do
 		fi
 		echo "php${PHP_VER} - ${PHP_EXT} -- load end"
 	done
+	echo "php${PHP_VER} -- end"
 done
-
-
-
