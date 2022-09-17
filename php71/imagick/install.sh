@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=imagick
-LIBV=3.7.0
+LIBV=3.6.0
 
 
 LIB_DEPEND_DIR=`brew info imagemagick | grep /usr/local/Cellar/imagemagick | cut -d \  -f 1 | awk 'END {print}'`

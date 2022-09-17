@@ -12,7 +12,7 @@ LIBNAME=swoole
 LIBV=4.5.0
 
 
-LIB_DEPEND_DIR=`brew info openssl | grep /usr/local/Cellar/openssl | cut -d \  -f 1 | awk 'END {print}'`
+LIB_DEPEND_DIR=`brew info openssl@1.1 | grep /usr/local/Cellar/openssl | cut -d \  -f 1 | awk 'END {print}'`
 CONFIG_OPTION="--enable-openssl|--with-openssl-dir=${LIB_DEPEND_DIR}|--enable-sockets"
 
 

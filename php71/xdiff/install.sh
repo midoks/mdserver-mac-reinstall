@@ -9,7 +9,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=xdiff
-LIBV=2.1.0
+LIBV=2.1.1
 
 
 LIB_DEPEND_DIR=`brew info libxdiff | grep /usr/local/Cellar/libxdiff | cut -d \  -f 1 | awk 'END {print}'`

@@ -50,7 +50,7 @@ if [ -f  $extFile ]; then
 fi
 
 
-LIB_DEPEND_DIR=`brew info openssl | grep /usr/local/Cellar/openssl | cut -d \  -f 1 | awk 'END {print}'`
+LIB_DEPEND_DIR=`brew info openssl@1.1 | grep /usr/local/Cellar/openssl | cut -d \  -f 1 | awk 'END {print}'`
 
 if [ ! -f "$extFile" ]; then
 	cd $MDIR/source/php/php$VERSION/ext/openssl

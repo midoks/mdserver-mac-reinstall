@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=yaf
-LIBV=3.3.3
+LIBV=3.3.5
 
 CONFIG_OPTION="--enable-yaf"
 

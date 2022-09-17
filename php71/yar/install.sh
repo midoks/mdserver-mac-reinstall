@@ -9,7 +9,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=yar
-LIBV=2.2.0
+LIBV=2.3.2
 
 LIB_DEPEND_DIR=`brew info curl | grep /usr/local/Cellar/curl | cut -d \  -f 1 | awk 'END {print}'`
 CONFIG_OPTION="--enable-yar|--with-curl=$LIB_DEPEND_DIR"

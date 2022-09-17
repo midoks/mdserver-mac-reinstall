@@ -38,7 +38,7 @@ else
 	fi
 fi
 
-if [ "$EXT_IS_INVAILD" == "" &&  "$FIND_IS_INSTALL" == "" ];then
+if [ "$EXT_IS_INVAILD" == "" ] && [ "$FIND_IS_INSTALL" == "" ];then
 	rm -rf $extFile
 fi
 

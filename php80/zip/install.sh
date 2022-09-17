@@ -51,8 +51,7 @@ fi
 
 
 LIB_DEPEND_DIR=`brew info libzip | grep /usr/local/Cellar/libzip | cut -d \  -f 1 | awk 'END {print}'`
-
-echo $LIB_DEPEND_DIR
+export PKG_CONFIG_PATH=$LIB_DEPEND_DIR/lib/pkgconfig
 
 brew unlink libzip && brew link libzip
 

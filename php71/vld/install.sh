@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=vld
-LIBV=0.17.1
+LIBV=0.18.0
 
 CONFIG_OPTION="--enable-vld"
 FIND="vld.active"

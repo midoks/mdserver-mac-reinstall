@@ -9,7 +9,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=yac
-LIBV=2.3.0
+LIBV=2.3.1
 
 CONFIG_OPTION="--enable-yac"
 

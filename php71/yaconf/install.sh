@@ -9,7 +9,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=yaconf
-LIBV=1.1.0
+LIBV=1.1.2
 
 
 CONFIG_OPTION="--enable-yaconf"

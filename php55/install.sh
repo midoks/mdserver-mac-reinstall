@@ -34,6 +34,9 @@ if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 
 cd $MDIR/source/php/php${PHP_M_VER}
 
+cp -f $MDIR/bin/reinstall/tpl/php/php56/reentrancy.c $MDIR/source/php/php55/main/reentrancy.c
+
+
 ./configure \
 --prefix=$DIR/php/php${PHP_M_VER} \
 --exec-prefix=$DIR/php/php${PHP_M_VER} \
@@ -47,7 +50,6 @@ cd $MDIR/source/php/php${PHP_M_VER}
 --with-mhash=$DIR/cmd/mhash \
 --without-iconv \
 --enable-zip \
---enable-mbstring \
 --enable-opcache \
 --enable-ftp \
 --enable-wddx \
@@ -58,6 +60,7 @@ cd $MDIR/source/php/php${PHP_M_VER}
 --enable-sysvmsg \
 --enable-sysvsem \
 --enable-sysvshm \
+--disable-mbstring \
 --disable-fileinfo \
 --enable-fpm
 
