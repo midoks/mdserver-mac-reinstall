@@ -25,7 +25,7 @@ done
 PHP_VER_LIST=(55 56 71 72 73 74 80 81 82)
 # PHP_VER_LIST=(71)
 PHP_EXT_LIST=(curl openssl pcntl mcrypt fileinfo \
-	exif gd gettext intl memcache memcached redis imagick xhprof swoole yaf mongodb iconv)
+	exif gd gettext zlib intl memcache memcached redis imagick xhprof swoole yaf mongodb iconv)
 for PHP_VER in ${PHP_VER_LIST[@]}
 do
 	echo "php${PHP_VER} -- start"
