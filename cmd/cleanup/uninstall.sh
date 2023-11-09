@@ -1,4 +1,5 @@
 #! /bin/sh
+export PATH=$PATH:/opt/homebrew/bin
 
 SDIR=$(cd "$(dirname "$0")"; pwd)
 SDIR=$(dirname "$SDIR")

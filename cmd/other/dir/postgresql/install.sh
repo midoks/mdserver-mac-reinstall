@@ -1,5 +1,6 @@
 #! /bin/sh
 export PATH=$PATH:/opt/local/bin:/opt/local/sbin:/opt/local/share/man:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
+export PATH=$PATH:/opt/homebrew/bin
 
 # 简单的HTTP压测工具
 
