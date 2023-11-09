@@ -1,6 +1,7 @@
 #! /bin/sh
 
 PATH=$PATH:/opt/local/bin:/opt/local/sbin:/opt/local/share/man:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
+export PATH=$PATH:/opt/homebrew/bin
 
 DIR=$(cd "$(dirname "$0")"; pwd)
 DIR=$(dirname "$DIR")
@@ -46,11 +47,18 @@ if [ "${isInstall}" != "" ]; then
 	return
 fi
 
+BREW_DIR=`which brew`
+BREW_DIR=${BREW_DIR/\/bin\/brew/}
+
+LIB_DEPEND_DIR=`brew info icu4c | grep ${BREW_DIR}/Cellar/icu4c | cut -d \  -f 1 | awk 'END {print}'`
+
 if [ ! -f "$extFile" ]; then
 
 	cd $MDIR/source/php/php${VERSION}/ext/intl
 	$DIR/php/php$VERSION/bin/phpize
-	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config --enable-intl && \
+	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \
+	--with-icu-dir=$LIB_DEPEND_DIR \
+	--enable-intl && \
 	make && make install && make clean
 fi
 
