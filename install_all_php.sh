@@ -12,9 +12,12 @@ if [  "$CHECK_BREW" == "" ];then
 	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
+BREW_DIR=`which brew`
+BREW_DIR=${BREW_DIR/\/bin\/brew/}
+
 PHP_EXT_NEED_LIST=(openssl@1.1 icu4c imagemagick curl wget libxml2 libevent oniguruma zlib libzip rabbitmq-c geoip)
 for PHP_EXT in ${PHP_EXT_NEED_LIST[@]}; do
-	if [ ! -d /usr/local/Cellar/${PHP_EXT} ];then
+	if [ ! -d ${BREW_DIR}/Cellar/${PHP_EXT} ];then
 		brew install ${PHP_EXT}
 	else
 		brew upgrade ${PHP_EXT}
