@@ -27,6 +27,7 @@ done
 # cd /Applications/mdserver/bin/reinstall/cmd/base && bash install.sh
 # cd /Applications/mdserver/bin/reinstall/cmd/base && bash cmd_pcre.sh
 # cd /Applications/mdserver/bin/reinstall/cmd/base && bash cmd_zlib.sh
+# cd /Applications/mdserver/bin/reinstall/cmd/base && bash cmd_gettext.sh
 
 # cd /Applications/mdserver/bin/reinstall/php71 && bash install.sh
 
