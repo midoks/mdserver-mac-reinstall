@@ -38,8 +38,13 @@ if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 # export PKG_CONFIG_PATH="/usr/local/opt/libxml2/lib/pkgconfig"
 # export LDFLAGS="-L/usr/local/opt/libxml2/lib"
 
-LIB_DEPEND_DIR=`brew info oniguruma | grep /usr/local/Cellar/oniguruma | cut -d \  -f 1 | awk 'END {print}'`
+BREW_DIR=`which brew`
+BREW_DIR=${BREW_DIR/\/bin\/brew/}
+LIB_DEPEND_DIR=`brew info oniguruma | grep ${BREW_DIR}/Cellar/oniguruma | cut -d \  -f 1 | awk 'END {print}'`
 export PKG_CONFIG_PATH=$LIB_DEPEND_DIR/lib/pkgconfig
+
+OPTIONS=''
+OPTIONS="${OPTIONS} --with-external-pcre=$DIR/cmd/pcre"
 
 cd $MDIR/source/php/php${PHP_M_VER}
 ./buildconf --force
@@ -52,6 +57,7 @@ cd $MDIR/source/php/php${PHP_M_VER}
 --with-pdo-mysql=mysqlnd \
 --with-zlib-dir=$DIR/cmd/zlib \
 --with-mhash=$DIR/cmd/mhash \
+$OPTIONS \
 --without-iconv \
 --enable-opcache \
 --enable-simplexml \

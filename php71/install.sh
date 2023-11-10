@@ -33,8 +33,9 @@ fi
 if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 cd $MDIR/source/php/php${PHP_M_VER}
 
-cp -rf $MDIR/bin/reinstall/tpl/php/php7/reentrancy.c $MDIR/source/php/php${PHP_M_VER}/main/reentrancy.c
-
+cat $MDIR/bin/reinstall/tpl/php/php7/reentrancy.c > $MDIR/source/php/php${PHP_M_VER}/main/reentrancy.c
+cat $MDIR/bin/reinstall/tpl/php/php7/mkstemp.c > $MDIR/source/php/php${PHP_M_VER}/ext/zip/lib/mkstemp.c
+cat $MDIR/bin/reinstall/tpl/php/php7/ext/pcre/sljitConfigInternal.h > $MDIR/source/php/php${PHP_M_VER}/ext/pcre/pcrelib/sljit/sljitConfigInternal.h
 
 ./configure \
 --prefix=$DIR/php/php${PHP_M_VER} \

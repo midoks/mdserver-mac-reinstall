@@ -17,15 +17,18 @@ if [ ! -f $MDIR/source/cmd/jpegsrc.v9c.tar.gz ];then
 	wget -O $MDIR/source/cmd/jpegsrc.v9c.tar.gz http://www.ijg.org/files/jpegsrc.v9c.tar.gz
 fi
 
-if [ ! -d $MDIR/source/cmd/jpeg-9c ];then
-	cd $MDIR/source/cmd &&  tar -zxvf jpegsrc.v9c.tar.gz
-fi
+
 
 if [ ! -d $DIR/cmd/libjpeg ];then
-
-cd $MDIR/source/cmd/jpeg-9c
-./configure --prefix=$DIR/cmd/libjpeg --enable-shared --enable-static && make && make install && make clean
+	if [ ! -d $MDIR/source/cmd/jpeg-9c ];then
+		cd $MDIR/source/cmd &&  tar -zxvf jpegsrc.v9c.tar.gz
+	fi
+	cd $MDIR/source/cmd/jpeg-9c
+	./configure --prefix=$DIR/cmd/libjpeg --enable-shared --enable-static && make && make install && make clean
 fi
 
+if [ -d $MDIR/source/cmd/jpeg-9c ];then
+	rm -rf $MDIR/source/cmd/jpeg-9c
+fi
 
 echo 'curl end'

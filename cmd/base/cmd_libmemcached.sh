@@ -16,16 +16,20 @@ if [ ! -f $MDIR/source/cmd/libmemcached-1.0.4.tar.gz ];then
 	wget -O $MDIR/source/cmd/libmemcached-1.0.4.tar.gz https://launchpadlibrarian.net/91217116/libmemcached-1.0.4.tar.gz
 fi
 
-if [ ! -d $MDIR/source/cmd/libmemcached-1.0.4 ];then
-	cd $MDIR/source/cmd &&  tar -zxvf libmemcached-1.0.4.tar.gz
-fi
 
 
 if [ ! -d $DIR/cmd/libmemcached ];then
+	if [ ! -d $MDIR/source/cmd/libmemcached-1.0.4 ];then
+		cd $MDIR/source/cmd &&  tar -zxvf libmemcached-1.0.4.tar.gz
+	fi
 
-cd $MDIR/source/cmd/libmemcached-1.0.4
-./configure --prefix=$DIR/cmd/libmemcached --with-memcached && make && make install && make clean
+	cd $MDIR/source/cmd/libmemcached-1.0.4
+	./configure --prefix=$DIR/cmd/libmemcached --with-memcached && make && make install && make clean
 
+fi
+
+if [ -d $MDIR/source/cmd/libmemcached-1.0.4 ];then
+	rm -rf $MDIR/source/cmd/libmemcached-1.0.4
 fi
 echo 'libmemcached end'
 

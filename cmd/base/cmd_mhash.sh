@@ -17,15 +17,19 @@ if [ ! -f $MDIR/source/cmd/mhash-0.9.9.9.tar.gz ];then
 	wget -O $MDIR/source/cmd/mhash-0.9.9.9.tar.gz https://nchc.dl.sourceforge.net/project/mhash/mhash/0.9.9.9/mhash-0.9.9.9.tar.gz
 fi
 
-if [ ! -d $MDIR/source/cmd/mhash-0.9.9.9 ];then
-	cd $MDIR/source/cmd &&  tar -zxvf mhash-0.9.9.9.tar.gz
-fi
+
 
 if [ ! -d $DIR/cmd/mhash ];then
+	if [ ! -d $MDIR/source/cmd/mhash-0.9.9.9 ];then
+		cd $MDIR/source/cmd &&  tar -zxvf mhash-0.9.9.9.tar.gz
+	fi
+	cd $MDIR/source/cmd/mhash-0.9.9.9
+	./configure --prefix=$DIR/cmd/mhash && \
+	make && make install && make clean
+fi
 
-cd $MDIR/source/cmd/mhash-0.9.9.9
-./configure --prefix=$DIR/cmd/mhash && \
-make && make install && make clean
+if [ -d $MDIR/source/cmd/mhash-0.9.9.9 ];then
+	rm -rf $MDIR/source/cmd/mhash-0.9.9.9
 fi
 
 echo 'mhash end'

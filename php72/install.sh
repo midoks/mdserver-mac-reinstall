@@ -31,7 +31,15 @@ fi
 if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 cd $MDIR/source/php/php${PHP_M_VER}
 
-cp -f $MDIR/bin/reinstall/tpl/php/php7/reentrancy.c $MDIR/source/php/php${PHP_M_VER}/main/reentrancy.c
+cat $MDIR/bin/reinstall/tpl/php/php7/reentrancy.c > $MDIR/source/php/php${PHP_M_VER}/main/reentrancy.c
+cat $MDIR/bin/reinstall/tpl/php/php7/mkstemp.c > $MDIR/source/php/php${PHP_M_VER}/ext/zip/lib/mkstemp.c
+cat $MDIR/bin/reinstall/tpl/php/php7/ext/pcre/sljitConfigInternal.h > $MDIR/source/php/php${PHP_M_VER}/ext/pcre/pcrelib/sljit/sljitConfigInternal.h
+
+OPTIONS='--without-iconv'
+IS_64BIT=`getconf LONG_BIT`
+if [ "$IS_64BIT" == "64" ];then
+	OPTIONS="${OPTIONS} --with-libdir=lib64"
+fi
 
 ./configure \
 --prefix=$DIR/php/php${PHP_M_VER} \
@@ -44,7 +52,7 @@ cp -f $MDIR/bin/reinstall/tpl/php/php7/reentrancy.c $MDIR/source/php/php${PHP_M_
 --with-pdo-mysql=mysqlnd \
 --with-zlib-dir=$DIR/cmd/zlib \
 --with-mhash=$DIR/cmd/mhash \
---without-iconv \
+$OPTIONS \
 --enable-mbstring \
 --enable-opcache \
 --enable-ftp \

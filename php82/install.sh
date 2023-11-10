@@ -36,6 +36,9 @@ if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 
 cd $MDIR/source/php/php${PHP_M_VER}
 
+OPTIONS=''
+OPTIONS="${OPTIONS} --with-external-pcre=$DIR/cmd/pcre"
+
 ./buildconf --force
 ./configure --prefix=$DIR/php/php${PHP_M_VER}/ \
 --exec-prefix=$DIR/php/php${PHP_M_VER}/ \
@@ -46,6 +49,7 @@ cd $MDIR/source/php/php${PHP_M_VER}
 --with-pdo-mysql=mysqlnd \
 --with-zlib-dir=$DIR/cmd/zlib \
 --with-mhash=$DIR/cmd/mhash \
+$OPTIONS \
 --without-iconv \
 --enable-opcache \
 --enable-simplexml \

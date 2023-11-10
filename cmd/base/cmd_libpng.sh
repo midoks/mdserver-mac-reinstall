@@ -17,17 +17,22 @@ if [ ! -f $MDIR/source/cmd/libpng-1.6.28.tar.xz ];then
 	wget -O $MDIR/source/cmd/libpng-1.6.28.tar.xz http://ftp.lfs-matrix.net/pub/blfs/conglomeration/libpng/libpng-1.6.28.tar.xz
 fi
 
-if [ ! -d $MDIR/source/cmd/libpng-1.6.28 ];then
-	cd $MDIR/source/cmd &&  tar zxvf libpng-1.6.28.tar.xz
-fi
+
 
 if [ ! -d $DIR/cmd/libpng ]; then
 
-cd $MDIR/source/cmd/libpng-1.6.28/
-echo `pwd`
-echo $MDIR/source/cmd/libpng-1.6.28
-./configure --prefix=$DIR/cmd/libpng && make && make install && make clean
+	if [ ! -d $MDIR/source/cmd/libpng-1.6.28 ];then
+		cd $MDIR/source/cmd &&  tar zxvf libpng-1.6.28.tar.xz
+	fi
+	cd $MDIR/source/cmd/libpng-1.6.28/
+	echo `pwd`
+	echo $MDIR/source/cmd/libpng-1.6.28
+	./configure --prefix=$DIR/cmd/libpng && make && make install && make clean
 
 fi
+
+if [ -d $MDIR/source/cmd/libpng-1.6.28 ];then
+	rm -rf $MDIR/source/cmd/libpng-1.6.28
+fi 
 
 echo 'libpng end'

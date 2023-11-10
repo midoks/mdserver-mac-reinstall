@@ -17,15 +17,18 @@ if [ ! -f $MDIR/source/cmd/freetype-2.3.5.tar.bz2 ];then
 	wget -O $MDIR/source/cmd/freetype-2.3.5.tar.bz2 https://download.savannah.gnu.org/releases/freetype/freetype-old/freetype-2.3.5.tar.bz2
 fi
 
-if [ ! -d $MDIR/source/cmd/freetype-2.3.5 ];then
-	cd $MDIR/source/cmd &&  tar jxvf freetype-2.3.5.tar.bz2
-fi
-
 if [ ! -d $DIR/cmd/freetype ];then
 
-cd $MDIR/source/cmd/freetype-2.3.5
-./configure --prefix=$DIR/cmd/freetype && make && make install && make clean
+	if [ ! -d $MDIR/source/cmd/freetype-2.3.5 ];then
+		cd $MDIR/source/cmd &&  tar jxvf freetype-2.3.5.tar.bz2
+	fi
+
+	cd $MDIR/source/cmd/freetype-2.3.5
+	./configure --prefix=$DIR/cmd/freetype && make && make install && make clean
 fi
 
+if [ -d $MDIR/source/cmd/freetype-2.3.5 ];then
+	rm -rf $MDIR/source/cmd/freetype-2.3.5
+fi
 
 echo 'freetype end'

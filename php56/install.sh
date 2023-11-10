@@ -34,7 +34,14 @@ if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 cd $MDIR/source/php/php${PHP_M_VER}
 
 
-cp -f $MDIR/bin/reinstall/tpl/php/php56/reentrancy.c $MDIR/source/php/php56/main/reentrancy.c
+cat $MDIR/bin/reinstall/tpl/php/php56/reentrancy.c > $MDIR/source/php/php56/main/reentrancy.c
+cat $MDIR/bin/reinstall/tpl/php/php56/ext/pcre/sljitConfigInternal.h > $MDIR/source/php/php56/ext/pcre/pcrelib/sljit/sljitConfigInternal.h
+
+OPTIONS='--without-iconv'
+IS_64BIT=`getconf LONG_BIT`
+if [ "$IS_64BIT" == "64" ];then
+	OPTIONS="${OPTIONS} --with-libdir=lib64"
+fi
 
 ./configure \
 --prefix=$DIR/php/php${PHP_M_VER} \
@@ -47,7 +54,7 @@ cp -f $MDIR/bin/reinstall/tpl/php/php56/reentrancy.c $MDIR/source/php/php56/main
 --with-pdo-mysql=mysqlnd \
 --with-zlib-dir=$DIR/cmd/zlib \
 --with-mhash=$DIR/cmd/mhash \
---without-iconv \
+$OPTIONS \
 --enable-opcache \
 --enable-ftp \
 --enable-wddx \

@@ -24,9 +24,15 @@ for PHP_EXT in ${PHP_EXT_NEED_LIST[@]}; do
 	fi
 done
 
+# cd /Applications/mdserver/bin/reinstall/cmd/base && bash install.sh
+# cd /Applications/mdserver/bin/reinstall/cmd/base && bash cmd_pcre.sh
+# cd /Applications/mdserver/bin/reinstall/cmd/base && bash cmd_zlib.sh
+
+# cd /Applications/mdserver/bin/reinstall/php71 && bash install.sh
 
 
-PHP_VER_LIST=(55 56 71 72 73 74 80 81 82)
+
+PHP_VER_LIST=(55 56 71 72 74 80 81 82)
 # PHP_VER_LIST=(71)
 PHP_EXT_LIST=(curl openssl pcntl mcrypt fileinfo \
 	exif gd gettext zlib intl memcache memcached redis imagick xhprof swoole yaf mongodb iconv)

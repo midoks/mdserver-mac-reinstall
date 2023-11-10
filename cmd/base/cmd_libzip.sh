@@ -16,16 +16,20 @@ if [ ! -f $MDIR/source/cmd/libzip-1.2.0.tar.gz ];then
 	wget -O $MDIR/source/cmd/libzip-1.2.0.tar.gz https://nih.at/libzip/libzip-1.2.0.tar.gz
 fi
 
-if [ ! -d $MDIR/source/cmd/libzip-1.2.0 ];then
-	cd $MDIR/source/cmd &&  tar -zxvf libzip-1.2.0.tar.gz
-fi
-
 
 if [ ! -d $DIR/cmd/libzip ];then
 
-cd $MDIR/source/cmd/libzip-1.2.0
-./configure --prefix=$DIR/cmd/libzip && make && make install && make clean
+	if [ ! -d $MDIR/source/cmd/libzip-1.2.0 ];then
+		cd $MDIR/source/cmd &&  tar -zxvf libzip-1.2.0.tar.gz
+	fi
 
+	cd $MDIR/source/cmd/libzip-1.2.0
+	./configure --prefix=$DIR/cmd/libzip && make && make install && make clean
+
+fi
+
+if [ -d $MDIR/source/cmd/libzip-1.2.0 ];then
+	rm -rf $MDIR/source/cmd/libzip-1.2.0
 fi
 echo 'libzip end'
 

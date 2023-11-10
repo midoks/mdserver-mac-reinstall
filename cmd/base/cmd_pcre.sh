@@ -13,19 +13,26 @@ mkdir -p $MDIR/source/cmd
 
 echo 'pcre start'
 
-if [ ! -f $MDIR/source/cmd/pcre-8.38.tar.gz ];then
-	wget -O $MDIR/source/cmd/pcre-8.38.tar.gz https://ftp.pcre.org/pub/pcre/pcre-8.38.tar.gz
-fi
+pcreVersion='8.38'
 
-if [ ! -d $MDIR/source/cmd/pcre-8.38 ];then
-	cd $MDIR/source/cmd &&  tar -zxvf pcre-8.38.tar.gz
+if [ ! -f $MDIR/source/cmd/pcre-${pcreVersion}.tar.gz ];then
+	wget --no-check-certificate -O $MDIR/source/cmd/pcre-${pcreVersion}.tar.gz https://netix.dl.sourceforge.net/project/pcre/pcre/${pcreVersion}/pcre-${pcreVersion}.tar.gz
 fi
 
 if [ ! -d $DIR/cmd/pcre ];then
+	if [ ! -d $MDIR/source/cmd/pcre-${pcreVersion} ];then
+		cd $MDIR/source/cmd &&  tar -zxvf pcre-${pcreVersion}.tar.gz
+	fi
 
-cd $MDIR/source/cmd/pcre-8.38
-./configure --prefix=$DIR/cmd/pcre --enable-utf8 && \
-make && make install && make clean
+	if [ ! -d $DIR/cmd/pcre ];then
+		cd $MDIR/source/cmd/pcre-${pcreVersion}
+		./configure --prefix=$DIR/cmd/pcre && make && make install && make clean
+	fi
+fi
+
+
+if [ -d $MDIR/source/cmd/pcre-${pcreVersion} ];then
+	rm -rf $MDIR/source/cmd/pcre-${pcreVersion}
 fi
 
 echo 'pcre end'
