@@ -11,8 +11,11 @@ MDIR=$(dirname "$DIR")
 
 mkdir -p $MDIR/source/cmd
 
+BREW_DIR=`which brew`
+BREW_DIR=${BREW_DIR/\/bin\/brew/}
+
 echo 'brew curl start'
-if [ ! -d /usr/local/Cellar/curl ];then
+if [ ! -d ${BREW_DIR}/Cellar/curl ];then
 	brew install curl
 fi
 echo 'brew curl start'
