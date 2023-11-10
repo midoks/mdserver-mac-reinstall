@@ -16,12 +16,13 @@ LIBNAME=amqp
 LIBV=1.9.4
 
 
-if [ ! -d /usr/local/Cellar/rabbitmq-c ];then
+BREW_DIR=`which brew`
+BREW_DIR=${BREW_DIR/\/bin\/brew/}
+
+if [ ! -d ${BREW_DIR}/Cellar/rabbitmq-c ];then
 	brew install rabbitmq-c
 fi
 
-BREW_DIR=`which brew`
-BREW_DIR=${BREW_DIR/\/bin\/brew/}
 LIB_DEPEND_DIR=`brew info rabbitmq-c | grep ${BREW_DIR}/Cellar/rabbitmq-c | cut -d \  -f 1 | awk 'END {print}'`
 CONFIG_OPTION="--with-amqp|--with-librabbitmq-dir=${LIB_DEPEND_DIR}"
 

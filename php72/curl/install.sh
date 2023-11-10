@@ -3,6 +3,8 @@
 PATH=$PATH:/opt/local/bin:/opt/local/sbin:/opt/local/share/man:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
 export PATH=$PATH:/opt/homebrew/bin
 
+# cd /Applications/mdserver/bin/reinstall/php55/curl && bash install.sh 55
+
 DIR=$(cd "$(dirname "$0")"; pwd)
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
