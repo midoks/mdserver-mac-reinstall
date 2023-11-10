@@ -90,7 +90,7 @@ if [ ! -f "$extFile" ]; then
 	mkdir -p $php_lib
 
 	if [ ! -f $php_lib/${LIBNAME}-${LIBV}.tgz ]; then
-		wget -O $php_lib/${LIBNAME}-${LIBV}.tgz http://pecl.php.net/get/${LIBNAME}-${LIBV}.tgz
+		wget --no-check-certificate -O $php_lib/${LIBNAME}-${LIBV}.tgz http://pecl.php.net/get/${LIBNAME}-${LIBV}.tgz
 		
 	fi
 
@@ -103,13 +103,16 @@ if [ ! -f "$extFile" ]; then
 
 	$DIR/php/php$VERSION/bin/phpize
 	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config ${CONFIG_OPTION}
-	make -j8 && make install && make clean
+	make clean && make -j8 && make install && make clean
 	# if [ "$LIBNAME" == "grpc" ];then
 	# 	make -j8 && make install && make clean
 	# else
 	# 	make && make install && make clean
 	# fi
 	
+	if [ -d $php_lib/${LIBNAME}-${LIBV} ];then
+		rm -rf $php_lib/${LIBNAME}-${LIBV}
+	fi
 
 fi
 
