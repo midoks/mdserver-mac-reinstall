@@ -32,14 +32,14 @@ if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 cd $MDIR/source/php/php${PHP_M_VER}
 
 cat $MDIR/bin/reinstall/tpl/php/php7/reentrancy.c > $MDIR/source/php/php${PHP_M_VER}/main/reentrancy.c
-cat $MDIR/bin/reinstall/tpl/php/php7/mkstemp.c > $MDIR/source/php/php${PHP_M_VER}/ext/zip/lib/mkstemp.c
-cat $MDIR/bin/reinstall/tpl/php/php7/ext/pcre/sljitConfigInternal.h > $MDIR/source/php/php${PHP_M_VER}/ext/pcre/pcrelib/sljit/sljitConfigInternal.h
 
 OPTIONS='--without-iconv'
 IS_64BIT=`getconf LONG_BIT`
 if [ "$IS_64BIT" == "64" ];then
 	OPTIONS="${OPTIONS} --with-libdir=lib64"
 fi
+
+OPTIONS="${OPTIONS} --with-external-pcre=$DIR/cmd/pcre"
 
 ./configure \
 --prefix=$DIR/php/php${PHP_M_VER} \
