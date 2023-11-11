@@ -52,9 +52,7 @@ if [ ! -f "$extFile" ]; then
 
 	if [ ! -f $php_lib/${LIBNAME}-${LIBV}.tgz ]; then
 		wget -O $php_lib/${LIBNAME}-${LIBV}.tgz https://github.com/mgdm/Mosquitto-PHP/archive/master.zip
-		
 	fi
-	cd $php_lib/${LIBNAME}-${LIBV}
 
 	if [ ! -d $php_lib/${LIBNAME}-${LIBV} ]; then
 		cd $php_lib

@@ -17,8 +17,8 @@ if [ ! -d $DIR/cmd/openssl ];then
 	cd $MDIR/bin/reinstall/cmd/base && sh cmd_openssl.sh
 fi
 
-export PKG_CONFIG_PATH=/Applications/mdserver/bin/cmd/openssl11/lib/pkgconfig
-LDFLAGS="-Wl,-rpath-link=$DIR/cmd/openssl11 -Wl,--verbose"
+# export PKG_CONFIG_PATH=/Applications/mdserver/bin/cmd/openssl/lib/pkgconfig
+# LDFLAGS="-Wl,-rpath-link=$DIR/cmd/openssl -Wl,--verbose"
 
 # BREW_DIR=`which brew`
 # BREW_DIR=${BREW_DIR/\/bin\/brew/}
@@ -54,7 +54,8 @@ rm -rf $TMP_PHP_INI
 rm -rf $TMP_CHECK_LOG
 
 sh $MDIR/bin/reinstall/check_common.sh $VERSION
-# LIB_DEPEND_DIR=`brew info openssl | grep /usr/local/Cellar/openssl | cut -d \  -f 1 | awk 'END {print}'`
+
+
 isInstall=`cat $DIR/php/php$VERSION/etc/php.ini|grep '${LIBNAME}.so'`
 if [ "${isInstall}" != "" ]; then
 	echo "php-$VERSION 已安装${LIBNAME},请选择其它版本!"
@@ -69,9 +70,16 @@ if [ ! -f "$extFile" ]; then
 		mv $MDIR/source/php/php$VERSION/ext/openssl/config0.m4 $MDIR/source/php/php$VERSION/ext/openssl/config.m4
 	fi
 
+	BREW_DIR=`which brew`
+	BREW_DIR=${BREW_DIR/\/bin\/brew/}
+	LIB_DEPEND_DIR=`brew info openssl@1.0 | grep ${BREW_DIR}/Cellar/openssl | cut -d \  -f 1 | awk 'END {print}'`
+
+	# ${DIR}/cmd/openssl
+	# ${LIB_DEPEND_DIR}
+
 	$DIR/php/php$VERSION/bin/phpize
 	./configure  --with-php-config=$DIR/php/php$VERSION/bin/php-config \
-	--with-openssl=$DIR/cmd/openssl11 && make && make install && make clean
+	--with-openssl=${LIB_DEPEND_DIR} && make && make install && make clean
 fi
 
 echo "install $LIBNAME end"

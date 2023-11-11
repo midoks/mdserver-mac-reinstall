@@ -9,7 +9,7 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
-LIBNAME=scws
+LIBNAME=yar
 
 echo "unload $LIBNAME start"
 

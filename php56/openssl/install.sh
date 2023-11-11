@@ -67,9 +67,13 @@ if [ ! -f "$extFile" ]; then
 		mv $MDIR/source/php/php$VERSION/ext/openssl/config0.m4 $MDIR/source/php/php$VERSION/ext/openssl/config.m4
 	fi
 
+	BREW_DIR=`which brew`
+	BREW_DIR=${BREW_DIR/\/bin\/brew/}
+	LIB_DEPEND_DIR=`brew info openssl@1.0 | grep ${BREW_DIR}/Cellar/openssl | cut -d \  -f 1 | awk 'END {print}'`
+
 	$DIR/php/php$VERSION/bin/phpize
 	./configure  --with-php-config=$DIR/php/php$VERSION/bin/php-config \
-	--with-openssl=$DIR/cmd/openssl11 && make && make install && make clean
+	--with-openssl=${LIB_DEPEND_DIR} && make && make install && make clean
 fi
 
 echo "install $LIBNAME end"

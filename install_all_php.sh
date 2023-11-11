@@ -6,35 +6,29 @@ export PATH=$PATH:/opt/homebrew/bin
 DIR=$(cd "$(dirname "$0")"; pwd)
 MDIR=$(dirname "$DIR")
 
-CHECK_BREW=`which brew`
-if [  "$CHECK_BREW" == "" ];then
-	echo "缺少brew命令,正在安装..."
-	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-fi
 
-BREW_DIR=`which brew`
-BREW_DIR=${BREW_DIR/\/bin\/brew/}
+# cd /Applications/mdserver/bin/reinstall && bash install_all_php.sh
 
-PHP_EXT_NEED_LIST=(openssl@1.1 icu4c imagemagick curl wget libxml2 libevent oniguruma zlib libzip rabbitmq-c geoip)
-for PHP_EXT in ${PHP_EXT_NEED_LIST[@]}; do
-	if [ ! -d ${BREW_DIR}/Cellar/${PHP_EXT} ];then
-		brew install ${PHP_EXT}
-	else
-		brew upgrade ${PHP_EXT}
-	fi
-done
 
 # cd /Applications/mdserver/bin/reinstall/cmd/base && bash install.sh
 # cd /Applications/mdserver/bin/reinstall/cmd/base && bash cmd_pcre.sh
 # cd /Applications/mdserver/bin/reinstall/cmd/base && bash cmd_zlib.sh
 # cd /Applications/mdserver/bin/reinstall/cmd/base && bash cmd_gettext.sh
+# cd /Applications/mdserver/bin/reinstall/cmd/base && bash cmd_openssl.sh
 
-# cd /Applications/mdserver/bin/reinstall/php71 && bash install.sh
+# cd /Applications/mdserver/bin/reinstall/php54/openssl && bash install.sh 54
+# cd /Applications/mdserver/bin/reinstall/php55/openssl && bash install.sh 55
+# cd /Applications/mdserver/bin/reinstall/php71/openssl && bash install.sh 71
+# cd /Applications/mdserver/bin/reinstall/php71/nsq && bash install.sh 71
 
 
 
-PHP_VER_LIST=(55 56 71 72 74 80 81 82)
-# PHP_VER_LIST=(71)
+# cd /Applications/mdserver/bin/reinstall/php56 && bash install.sh
+
+
+
+# PHP_VER_LIST=(55 56 71 72 74 80 81 82)
+PHP_VER_LIST=(72)
 PHP_EXT_LIST=(curl openssl pcntl mcrypt fileinfo \
 	exif gd gettext zlib intl memcache memcached redis imagick xhprof swoole yaf mongodb iconv)
 for PHP_VER in ${PHP_VER_LIST[@]}
@@ -48,18 +42,22 @@ do
 	fi
 
 	dir=$(ls -l $DIR/php$PHP_VER |awk '/^d/ {print $NF}')
+
+	EXT_IGNORE=(grpc zip intl oci8 sqlsrv mosquitto xdiff nsq mcrypt lua)
+
 	for i in $dir
 	do
-		if [ "grpc" == "$i" ];then
-			continue;
-		fi
+		IS_IGNORE=''
+		for EXT_IGNORE_I in ${EXT_IGNORE[@]}
+		do
+			if [ "$EXT_IGNORE_I" == "$i" ];then
+				IS_IGNORE='ok'
+				break
+			fi
+		done
 
-		if [ "zip" == "$i" ];then
-			continue;
-		fi
-
-		if [ "intl" == "$i" ];then
-			continue;
+		if [ "$IS_IGNORE" == "ok" ];then
+			continue
 		fi
 
 		cd $DIR/php$PHP_VER/$i && sh install.sh $PHP_VER

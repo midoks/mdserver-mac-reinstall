@@ -15,9 +15,6 @@ fi
 
 VERSION=$1
 
-sh $MDIR/bin/reinstall/cmd/brew/install.sh
-
-
 if [ ! -d $MDIR/source/php/php$VERSION ]; then
 	echo "PHP-VERIONS:$VERSION"
 	echo "$MDIR/source/php/php$VERSION"
