@@ -22,6 +22,11 @@ if [ ! -d ${BREW_DIR}/Cellar/wget ];then
 	brew install wget
 fi
 
+if [ ! -d ${BREW_DIR}/Cellar/openssl@1.0 ];then
+	brew install rbenv/tap/openssl@1.0
+fi
+
+
 DEPEND_ON_1=(binutils libressl)
 for DO in ${DEPEND_ON_1[@]}; do
 	if [ ! -d ${BREW_DIR}/Cellar/${DO} ];then
