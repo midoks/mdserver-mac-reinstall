@@ -14,7 +14,7 @@ LIBV=1.1.1
 
 BREW_DIR=`which brew`
 BREW_DIR=${BREW_DIR/\/bin\/brew/}
-LIB_DEPEND_DIR=`brew info curl | grep ${BREW_DIR}/Cellar/curl | cut -d \  -f 1 | awk 'END {print}'`
+LIB_DEPEND_DIR=`brew info geoip | grep ${BREW_DIR}/Cellar/geoip | cut -d \  -f 1 | awk 'END {print}'`
 
 CONFIG_OPTION="--with-geoip=$LIB_DEPEND_DIR"
 
