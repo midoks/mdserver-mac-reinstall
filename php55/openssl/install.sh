@@ -17,8 +17,14 @@ if [ ! -d $DIR/cmd/openssl ];then
 	cd $MDIR/bin/reinstall/cmd/base && sh cmd_openssl.sh
 fi
 
-export PKG_CONFIG_PATH=/Applications/mdserver/bin/cmd/openssl/lib/pkgconfig
-LDFLAGS="-Wl,-rpath-link=$DIR/cmd/openssl -Wl,--verbose"
+export PKG_CONFIG_PATH=/Applications/mdserver/bin/cmd/openssl11/lib/pkgconfig
+LDFLAGS="-Wl,-rpath-link=$DIR/cmd/openssl11 -Wl,--verbose"
+
+# BREW_DIR=`which brew`
+# BREW_DIR=${BREW_DIR/\/bin\/brew/}
+
+# LIB_DEPEND_DIR=`brew info openssl@1.1 | grep ${BREW_DIR}/Cellar/openssl | cut -d \  -f 1 | awk 'END {print}'`
+# export PKG_CONFIG_PATH=$LIB_DEPEND_DIR/lib/pkgconfig
 
 NON_ZTS_FILENAME=`ls $DIR/php/php$VERSION/lib/php/extensions | grep no-debug-non-zts`
 extFile=$DIR/php/php$VERSION/lib/php/extensions/$NON_ZTS_FILENAME/${LIBNAME}.so
@@ -65,7 +71,7 @@ if [ ! -f "$extFile" ]; then
 
 	$DIR/php/php$VERSION/bin/phpize
 	./configure  --with-php-config=$DIR/php/php$VERSION/bin/php-config \
-	--with-openssl=$DIR/cmd/openssl && make && make install && make clean
+	--with-openssl=$DIR/cmd/openssl11 && make && make install && make clean
 fi
 
 echo "install $LIBNAME end"

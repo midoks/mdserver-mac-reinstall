@@ -54,7 +54,7 @@ fi
 BREW_DIR=`which brew`
 BREW_DIR=${BREW_DIR/\/bin\/brew/}
 
-LIB_DEPEND_DIR=`brew info openssl@1.1 | grep ${BREW_DIR}/Cellar/openssl | cut -d \  -f 1 | awk 'END {print}'`
+LIB_DEPEND_DIR=`brew info openssl@3 | grep ${BREW_DIR}/Cellar/openssl | cut -d \  -f 1 | awk 'END {print}'`
 
 if [ ! -f "$extFile" ]; then
 	cd $MDIR/source/php/php$VERSION/ext/openssl

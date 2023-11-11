@@ -46,11 +46,16 @@ if [ "${isInstall}" != "" ]; then
 	return
 fi
 
+BREW_DIR=`which brew`
+BREW_DIR=${BREW_DIR/\/bin\/brew/}
+
+LIB_DEPEND_DIR=`brew info libmcrypt | grep ${BREW_DIR}/Cellar/libmcrypt | cut -d \  -f 1 | awk 'END {print}'`
+
 if [ ! -f "$extFile" ]; then
 	cd $MDIR/source/php/php$VERSION/ext/mcrypt
 	$DIR/php/php$VERSION/bin/phpize
 	./configure  --with-php-config=$DIR/php/php$VERSION/bin/php-config  \
-	--with-mcrypt=$DIR/cmd/libmcrypt && make && make install
+	--with-mcrypt=${LIB_DEPEND_DIR} && make && make install
 fi
 
 echo "install $LIBNAME end"

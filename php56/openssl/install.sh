@@ -57,6 +57,9 @@ if [ -f  $extFile ]; then
 fi
 
 
+# export PKG_CONFIG_PATH=/Applications/mdserver/bin/cmd/openssl11/lib/pkgconfig
+# LDFLAGS="-Wl,-rpath-link=$DIR/cmd/openssl11 -Wl,--verbose"
+
 if [ ! -f "$extFile" ]; then
 	cd $MDIR/source/php/php$VERSION/ext/openssl
 
@@ -66,7 +69,7 @@ if [ ! -f "$extFile" ]; then
 
 	$DIR/php/php$VERSION/bin/phpize
 	./configure  --with-php-config=$DIR/php/php$VERSION/bin/php-config \
-	--with-openssl=$DIR/cmd/openssl && make && make install && make clean
+	--with-openssl=$DIR/cmd/openssl11 && make && make install && make clean
 fi
 
 echo "install $LIBNAME end"
