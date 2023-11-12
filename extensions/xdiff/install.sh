@@ -9,19 +9,19 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
-LIBNAME=geoip
-LIBV=1.1.1
+LIBNAME=xdiff
+LIBV=2.1.1
 
 if [ "$VERSION" -lt "70" ];then
-	LIBV=1.1.1
+	LIBV=1.4.1
 fi
+
 
 BREW_DIR=`which brew`
 BREW_DIR=${BREW_DIR/\/bin\/brew/}
+LIB_DEPEND_DIR=`brew info libxdiff | grep ${BREW_DIR}/Cellar/libxdiff | cut -d \  -f 1 | awk 'END {print}'`
 
-LIB_DEPEND_DIR=`brew info geoip | grep ${BREW_DIR}/Cellar/geoip | cut -d \  -f 1 | awk 'END {print}'`
+CONFIG_OPTION="--with-xdiff=$LIB_DEPEND_DIR"
 
-CONFIG_OPTION="--with-geoip=$LIB_DEPEND_DIR"
-
-FIND="geoip.custom_directory"
+FIND="libxdiff version"
 sh $MDIR/bin/reinstall/ext_shell/install.sh $VERSION $LIBNAME $LIBV $CONFIG_OPTION $FIND

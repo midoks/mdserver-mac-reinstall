@@ -11,7 +11,12 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=memcached
-LIBV=2.2.0
+LIBV=3.2.0
+
+if [ "$VERSION" -lt "70" ];then
+	LIBV=2.2.0
+fi
+
 
 CONFIG_OPTION="--with-libmemcached-dir=$DIR/cmd/libmemcached|--with-zlib-dir=$DIR/cmd/zlib"
 FIND="memcached.compression_factor"

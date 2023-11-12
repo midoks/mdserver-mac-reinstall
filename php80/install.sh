@@ -76,7 +76,7 @@ $OPTIONS \
 # --enable-zip \
 
 
-make && make install && make clean
+make -j4 && make install && make clean
 
 fi
 

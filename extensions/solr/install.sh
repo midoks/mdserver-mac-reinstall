@@ -11,7 +11,16 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=solr
-LIBV=2.4.0
+LIBV=2.6.0
+
+if [ "$VERSION" -lt "80" ];then
+	LIBV=2.5.1
+fi
+
+if [ "$VERSION" -lt "70" ];then
+	LIBV=2.4.0
+fi
+
 
 BREW_DIR=`which brew`
 BREW_DIR=${BREW_DIR/\/bin\/brew/}

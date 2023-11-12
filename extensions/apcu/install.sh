@@ -11,7 +11,12 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=apcu
-LIBV=4.0.11
+LIBV=5.1.22
+
+if [ "$VERSION" -lt "70" ];then
+	LIBV=4.0.11
+fi
+
 
 CONFIG_OPTION="--enable-${LIBNAME}"
 

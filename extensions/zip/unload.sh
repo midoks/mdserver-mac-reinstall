@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 export PATH=$PATH:/opt/local/bin:/opt/local/sbin:/opt/local/share/man:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
 export PATH=$PATH:/opt/homebrew/bin
 
@@ -9,14 +9,6 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
-LIBNAME=bitset
-LIBV=3.2.0
+LIBNAME=zip
 
-if [ "$VERSION" -lt "70" ];then
-	LIBV=2.0.4
-fi
-
-CONFIG_OPTION="--enable-bitset"
-
-FIND="BitSet Version"
-sh $MDIR/bin/reinstall/ext_shell/install.sh $VERSION $LIBNAME $LIBV $CONFIG_OPTION $FIND
+sh $MDIR/bin/reinstall/ext_shell/unload.sh $VERSION $LIBNAME

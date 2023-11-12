@@ -30,14 +30,30 @@ function stopPHP(){
 		$DIR/php/php$PHP_VERSION/php-fpm stop
 	fi
 
-	PHP_VER_LIST=(55 56 71 72 73 74 80)
+	ps -ef|grep php$PHP_VERSION | grep -v grep | awk '{print $2}'|xargs kill
+
+
+	/bin/rm -rf $DIR/tmp/xhprof/*.xhprof
+	/bin/rm -rf $DIR/tmp/xdebug/*
+	/bin/rm -rf $DIR/tmp/session/sess_*
+	/bin/rm -rf $DIR/tmp/logs/*
+}
+
+function stopAllPHP(){
+
+	PHP_VER_LIST=(55 56 71 72 73 74 80 81 82 83)
 	for PHP_VER in ${PHP_VER_LIST[@]}; do
+		if [ -f $DIR/php/php$PHP_VER/php-fpm ];then
+			continue
+		fi
 		isStop=`$DIR/php/php$PHP_VER/php-fpm status | grep 'stopped'`
 		if [ "$isStop" == "" ];then
 			echo "$DIR/php/php$PHP_VER/php-fpm stop"
 			$DIR/php/php$PHP_VER/php-fpm stop
 		fi 
 	done
+
+	ps -ef|grep php | grep -v grep | awk '{print $2}'|xargs kill
 
 	/bin/rm -rf $DIR/tmp/xhprof/*.xhprof
 	/bin/rm -rf $DIR/tmp/xdebug/*
@@ -60,6 +76,11 @@ if [ $2 = "start" ];then
 fi
 
 if [ $2 = "stop" ];then 
+	stopAllPHP
+	checkPHPStop
+fi
+
+if [ $2 = "stopone" ];then 
 	stopPHP
 	checkPHPStop
 fi

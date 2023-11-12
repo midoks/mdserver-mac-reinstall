@@ -12,9 +12,22 @@ MDIR=$(dirname "$DIR")
 VERSION=$1
 LIBNAME=openssl
 LIBV='0'
+BREW_OPENSSL=openssl@1.1
 
-if [ ! -d $DIR/cmd/openssl ];then
-	cd $MDIR/bin/reinstall/cmd/base && sh cmd_openssl.sh
+if [ "$VERSION" -lt "70" ];then
+	BREW_OPENSSL=openssl@1.0
+fi
+
+if [ "$VERSION" -lt "70" ];then
+	if [ ! -d $DIR/cmd/openssl ];then
+		cd $MDIR/bin/reinstall/cmd/base && sh cmd_openssl.sh
+	fi
+fi
+
+if [ "$VERSION" -gt "70" ];then
+	if [ ! -d $DIR/cmd/openssl11 ];then
+		cd $MDIR/bin/reinstall/cmd/base && sh cmd_openssl11.sh
+	fi
 fi
 
 # export PKG_CONFIG_PATH=/Applications/mdserver/bin/cmd/openssl/lib/pkgconfig
@@ -35,14 +48,15 @@ TMP_CHECK_LOG=/tmp/t_check_php.log
 
 echo "extension=$LIBNAME.so" > $TMP_PHP_INI
 $DIR/php/php$VERSION/bin/php -c $TMP_PHP_INI -r 'phpinfo();' > $TMP_CHECK_LOG 2>&1
-FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "OpenSSL Library Version"`
+FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "${LIBNAME}.cafile"`
 
 
 echo "install $LIBNAME start"
 
-EXT_IS_INVAILD=`cat  $TMP_CHECK_LOG | grep "Unable to load dynamic library"`
+EXT_IS_INVAILD=`cat $TMP_CHECK_LOG | grep "Unable to load dynamic library"`
 if [ "$EXT_IS_INVAILD" != "" ]; then
 	rm -rf $extFile
+	# echo $extFile
 else
 	if [ "$FIND_IS_INSTALL" != "" ]; then
 		echo "install $LIBNAME end ."
@@ -72,10 +86,15 @@ if [ ! -f "$extFile" ]; then
 
 	BREW_DIR=`which brew`
 	BREW_DIR=${BREW_DIR/\/bin\/brew/}
-	LIB_DEPEND_DIR=`brew info openssl@1.0 | grep ${BREW_DIR}/Cellar/openssl | cut -d \  -f 1 | awk 'END {print}'`
+	LIB_DEPEND_DIR=`brew info ${BREW_OPENSSL} | grep ${BREW_DIR}/Cellar/${BREW_OPENSSL} | cut -d \  -f 1 | awk 'END {print}'`
 
-	# ${DIR}/cmd/openssl
-	# ${LIB_DEPEND_DIR}
+	if [ "$VERSION" -lt "74" ];then
+		LIB_DEPEND_DIR=$DIR/cmd/openssl11
+	fi
+
+	if [ "$VERSION" -lt "70" ];then
+		LIB_DEPEND_DIR=$DIR/cmd/openssl
+	fi
 
 	$DIR/php/php$VERSION/bin/phpize
 	./configure  --with-php-config=$DIR/php/php$VERSION/bin/php-config \

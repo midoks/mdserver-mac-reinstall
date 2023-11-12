@@ -11,7 +11,12 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=grpc
-LIBV=1.4.4
+LIBV=1.57.0
+
+if [ "$VERSION" -ge "70" ];then
+	LIBV=1.59.1
+fi
+
 
 BREW_DIR=`which brew`
 BREW_DIR=${BREW_DIR/\/bin\/brew/}

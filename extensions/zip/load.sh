@@ -9,14 +9,7 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
-LIBNAME=bitset
-LIBV=3.2.0
+LIBNAME=zip
 
-if [ "$VERSION" -lt "70" ];then
-	LIBV=2.0.4
-fi
+sh $MDIR/bin/reinstall/ext_shell/load.sh $VERSION $LIBNAME
 
-CONFIG_OPTION="--enable-bitset"
-
-FIND="BitSet Version"
-sh $MDIR/bin/reinstall/ext_shell/install.sh $VERSION $LIBNAME $LIBV $CONFIG_OPTION $FIND

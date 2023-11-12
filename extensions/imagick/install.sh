@@ -11,7 +11,8 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=imagick
-LIBV=3.6.0
+LIBV=3.7.0
+
 
 BREW_DIR=`which brew`
 BREW_DIR=${BREW_DIR/\/bin\/brew/}

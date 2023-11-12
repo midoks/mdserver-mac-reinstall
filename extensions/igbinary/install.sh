@@ -11,7 +11,11 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=igbinary
-LIBV=1.1.1
+LIBV=3.2.14 
+
+if [ "$VERSION" -lt "70" ];then
+	LIBV=1.1.1
+fi
 
 CONFIG_OPTION="--enable-igbinary"
 FIND="igbinary.compact_strings"

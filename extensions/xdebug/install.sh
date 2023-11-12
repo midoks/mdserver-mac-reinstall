@@ -11,7 +11,15 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=xdebug
-LIBV=2.5.5
+LIBV=3.2.2
+
+if [ "$VERSION" -lt "80" ];then
+	LIBV=2.6.0
+fi
+
+if [ "$VERSION" -lt "70" ];then
+	LIBV=2.2.7
+fi
 
 CONFIG_OPTION="|"
 FIND="xdebug.auto_trace"

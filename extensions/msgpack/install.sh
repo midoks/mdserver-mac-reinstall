@@ -11,7 +11,11 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=msgpack
-LIBV=0.5.7
+LIBV=2.1.2
+
+if [ "$VERSION" -le "70" ];then
+	LIBV=0.5.7
+fi
 
 CONFIG_OPTION="|"
 FIND="${LIBNAME}.error_display"

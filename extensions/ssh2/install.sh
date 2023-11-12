@@ -11,7 +11,11 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=ssh2
-LIBV=0.13
+LIBV=1.4
+
+if [ "$VERSION" -lt "70" ];then
+	LIBV=0.13
+fi
 
 BREW_DIR=`which brew`
 BREW_DIR=${BREW_DIR/\/bin\/brew/}

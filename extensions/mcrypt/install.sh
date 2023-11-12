@@ -46,10 +46,16 @@ if [ "${isInstall}" != "" ]; then
 	return
 fi
 
-BREW_DIR=`which brew`
-BREW_DIR=${BREW_DIR/\/bin\/brew/}
+if [ "$VERSION" -lt "70" ];then
+	LIB_DEPEND_DIR=$DIR/cmd/libmcrypt
+else
+	BREW_DIR=`which brew`
+	BREW_DIR=${BREW_DIR/\/bin\/brew/}
+	LIB_DEPEND_DIR=`brew info libmcrypt | grep ${BREW_DIR}/Cellar/libmcrypt | cut -d \  -f 1 | awk 'END {print}'`
+fi
 
-LIB_DEPEND_DIR=`brew info libmcrypt | grep ${BREW_DIR}/Cellar/libmcrypt | cut -d \  -f 1 | awk 'END {print}'`
+echo $LIB_DEPEND_DIR
+exit
 
 if [ ! -f "$extFile" ]; then
 	cd $MDIR/source/php/php$VERSION/ext/mcrypt

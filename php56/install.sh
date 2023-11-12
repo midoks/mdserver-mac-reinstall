@@ -75,7 +75,7 @@ $OPTIONS \
 #--with-iconv=$DIR/cmd/libiconv \
 #--with-zlib-dir=$DIR/cmd/zlib \
 
-make && make install && make clean
+make -j4 && make install && make clean
 
 fi
 

@@ -67,7 +67,7 @@ cat $MDIR/bin/reinstall/tpl/php/php7/ext/pcre/sljitConfigInternal.h > $MDIR/sour
 #--enable-dtrace \
 #--enable-debug
 
-make && make install && make clean
+make -j4 && make install && make clean
 
 fi
 

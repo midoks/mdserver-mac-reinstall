@@ -34,4 +34,4 @@ xhprof使用 在test下
 
 #程序调试
 http://localhost:8888/tz.php?mdd=ok
-当$GET[‘mdd’]=ok时,会使用xhprof进行分析
+当$GET['mdd']=ok时,会使用xhprof进行分析

@@ -13,9 +13,11 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=amqp
-LIBV=1.8.0
+LIBV=2.1.1
 
-
+if [ "$VERSION" -lt "74" ];then
+	LIBV=1.8.0
+fi
 
 
 BREW_DIR=`which brew`

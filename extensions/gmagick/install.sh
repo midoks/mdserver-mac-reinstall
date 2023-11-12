@@ -11,10 +11,10 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=gmagick
-LIBV=1.1.7RC3
+LIBV=2.0.6RC1
 
-if [ "$VERSION" -ge "70" ];then
-	LIBV=3.6.0
+if [ "$VERSION" -lt "70" ];then
+	LIBV=1.1.7RC3
 fi
 
 BREW_DIR=`which brew`

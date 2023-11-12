@@ -15,21 +15,24 @@ MDIR=$(dirname "$DIR")
 # cd /Applications/mdserver/bin/reinstall/cmd/base && bash cmd_zlib.sh
 # cd /Applications/mdserver/bin/reinstall/cmd/base && bash cmd_gettext.sh
 # cd /Applications/mdserver/bin/reinstall/cmd/base && bash cmd_openssl.sh
+# cd /Applications/mdserver/bin/reinstall/cmd/base && bash cmd_libmcrypt.sh
 
-# cd /Applications/mdserver/bin/reinstall/php54/openssl && bash install.sh 54
-# cd /Applications/mdserver/bin/reinstall/php55/openssl && bash install.sh 55
-# cd /Applications/mdserver/bin/reinstall/php71/openssl && bash install.sh 71
-# cd /Applications/mdserver/bin/reinstall/php71/nsq && bash install.sh 71
+
+
+# cd /Applications/mdserver/bin/reinstall/extensions/mbstring && bash install.sh 55
+# cd /Applications/mdserver/bin/reinstall/extensions/grpc && bash install.sh 82
+# cd /Applications/mdserver/bin/reinstall/extensions/openssl && bash install.sh 71
+# cd /Applications/mdserver/bin/reinstall/extensions/nsq && bash install.sh 71
 
 # cd /Applications/mdserver/bin/reinstall/php56 && bash install.sh
 
 
 PHP_VER_LIST=(55 56 71 72 74 80 81 82)
 PHP_EXT_LIST=(curl openssl pcntl mcrypt fileinfo \
-	exif gd gettext zlib intl memcache memcached redis imagick xhprof swoole yaf mongodb iconv)
+	exif gd gettext zlib intl memcache memcached redis imagick xhprof swoole yaf mongodb iconv xdiff)
 
-# PHP_VER_LIST=(82)
-# PHP_EXT_LIST=(curl)
+PHP_VER_LIST=(74)
+# PHP_EXT_LIST=(xdiff)
 
 for PHP_VER in ${PHP_VER_LIST[@]}
 do
@@ -45,40 +48,21 @@ do
 	# ext_lib=$(cat -n $DIR/extensions/lib.md)
 	# echo $ext_lib
 
-
-	EXT_IGNORE=(grpc zip intl oci8 sqlsrv mosquitto xdiff nsq mcrypt lua)
-
 	for i in $ext_all
 	do
-
-		IS_IGNORE=''
-		for EXT_IGNORE_I in ${EXT_IGNORE[@]}
-		do
-			if [ "$EXT_IGNORE_I" == "$i" ];then
-				IS_IGNORE='ok'
-				break
-			fi
-		done
-
-		if [ "$IS_IGNORE" == "ok" ];then
-			continue
-		fi
-
 		find_support=$(cat ${DIR}/extensions/lib.md |grep $i | awk -F '|' '{print $2}')
 		if [ "$find_support" = "" ];then
 			continue
 		fi
-		# echo "find_support:"$find_support
 		find_support_php=$(echo $find_support |grep $PHP_VER)
 		if [ "$find_support_php" != "" ];then
-			# echo "find_support_php:"$find_support_php
 			cd $DIR/extensions/$i && sh install.sh $PHP_VER
 		fi
 	done
 
 	for PHP_EXT in ${PHP_EXT_LIST[@]}
 	do
-		find_support=$(echo $ext_lib |grep $i | awk -F '|' '{print $2}')
+		find_support=$(cat ${DIR}/extensions/lib.md |grep $PHP_EXT | awk -F '|' '{print $2}')
 		find_support_php=$(echo $find_support |grep $PHP_VER)
 		if [ "$find_support_php" != "" ];then
 			echo "php${PHP_VER} - ${PHP_EXT} -- load start"

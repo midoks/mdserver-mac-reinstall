@@ -23,8 +23,6 @@ fi
 
 # echo "$VERSION $LIBNAME $LIBV $FIND_KEYWORD $CONFIG_OPTION"
 
-
-
 # NON_ZTS_FILENAME=no-debug-non-zts-20121212
 # if [ "$VERSION" == "56" ]; then
 # 	NON_ZTS_FILENAME=no-debug-non-zts-20131226
@@ -104,16 +102,11 @@ if [ ! -f "$extFile" ]; then
 	$DIR/php/php$VERSION/bin/phpize
 	echo "./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config ${CONFIG_OPTION}"
 	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config ${CONFIG_OPTION}
-	make clean && make -j8 && make install && make clean
-	# if [ "$LIBNAME" == "grpc" ];then
-	# 	make -j8 && make install && make clean
-	# else
-	# 	make && make install && make clean
-	# fi
-	
-	# if [ -d $php_lib/${LIBNAME}-${LIBV} ];then
-	# 	rm -rf $php_lib/${LIBNAME}-${LIBV}
-	# fi
+	make -j4 && make install && make clean
+
+	if [ -d $php_lib/${LIBNAME}-${LIBV} ];then
+		rm -rf $php_lib/${LIBNAME}-${LIBV}
+	fi
 
 fi
 

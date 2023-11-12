@@ -11,13 +11,11 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=yar
-LIBV=1.2.5
+LIBV=2.3.2
 
-
-if [ "$VERSION" -ge "70" ];then
-	LIBV=2.3.2
+if [ "$VERSION" -le "70" ];then
+	LIBV=1.2.5
 fi
-
 
 
 BREW_DIR=`which brew`
