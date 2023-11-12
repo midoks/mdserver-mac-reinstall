@@ -28,7 +28,7 @@ fi
 
 cd $MDIR/source/php/php${PHP_M_VER}
 
-PATH=$PATH:/Applications/mdserver/bin/cmd/libzip
+# PATH=$PATH:/Applications/mdserver/bin/cmd/libzip
 #./configure --help
 
 if [ ! -d $DIR/php/php${PHP_M_VER} ];then
@@ -37,7 +37,7 @@ if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 cd $MDIR/source/php/php${PHP_M_VER}
 
 OPTIONS=''
-OPTIONS="${OPTIONS} --with-external-pcre=$DIR/cmd/pcre"
+
 
 ./buildconf --force
 ./configure --prefix=$DIR/php/php${PHP_M_VER}/ \
@@ -47,7 +47,6 @@ OPTIONS="${OPTIONS} --with-external-pcre=$DIR/cmd/pcre"
 --enable-mysqlnd \
 --with-mysqli=mysqlnd \
 --with-pdo-mysql=mysqlnd \
---with-zlib-dir=$DIR/cmd/zlib \
 --with-mhash=$DIR/cmd/mhash \
 $OPTIONS \
 --without-iconv \

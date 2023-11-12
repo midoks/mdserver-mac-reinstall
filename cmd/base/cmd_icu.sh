@@ -14,7 +14,7 @@ mkdir -p $MDIR/bin/cmd/icu4c
 
 echo 'icu4c start'
 
-if [ ! -d $MDIR/bin/cmd/icu4c/54 ];then
+if [ ! -d $MDIR/bin/cmd/icu4c/55 ];then
 
 	if [ ! -f $MDIR/source/cmd/icu4c-55_2-src.tgz ];then
 		wget -O $MDIR/source/cmd/icu4c-55_2-src.tgz https://github.com/unicode-org/icu/releases/download/release-55-2/icu4c-55_2-src.tgz
@@ -25,7 +25,7 @@ if [ ! -d $MDIR/bin/cmd/icu4c/54 ];then
 	fi
 
 	cd $MDIR/source/cmd/icu/source
-	./runConfigureICU MacOSX --prefix=$MDIR/bin/cmd/icu4c/54  && make  CXXFLAGS="-g -O2 -std=c++11" && make install
+	./runConfigureICU MacOSX --prefix=$MDIR/bin/cmd/icu4c/55  && make  CXXFLAGS="-g -O2 -std=c++11" && make install
 fi
 
 if [ -d $MDIR/source/cmd/icu ];then

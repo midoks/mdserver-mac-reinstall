@@ -13,6 +13,18 @@ VERSION=$1
 LIBNAME=intl
 LIBV=0
 
+
+if [ "$VERSION" -lt "73" ];then
+	LIB_DEPEND_DIR=$DIR/cmd/icu4c/55
+else
+	BREW_DIR=`which brew`
+	BREW_DIR=${BREW_DIR/\/bin\/brew/}
+	LIB_DEPEND_DIR=`brew info icu4c | grep ${BREW_DIR}/Cellar/icu4c | cut -d \  -f 1 | awk 'END {print}'`
+fi
+
+#must 
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:${LIB_DEPEND_DIR}/lib/pkgconfig
+
 #check
 TMP_PHP_INI=/tmp/t_tmp_php.ini
 TMP_CHECK_LOG=/tmp/t_check_php.log
@@ -28,11 +40,12 @@ FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "${LIBNAME}.default_locale"`
 echo "install $LIBNAME start"
 
 EXT_IS_INVAILD=`cat  $TMP_CHECK_LOG | grep "Unable to load dynamic library"`
+echo $EXT_IS_INVAILD
 if [ "$EXT_IS_INVAILD" != "" ]; then
 	rm -rf $extFile
 else
 	if [ "$FIND_IS_INSTALL" != "" ]; then
-		echo "install ${$VERSION}|$LIBNAME end ."
+		echo "install ${VERSION}|$LIBNAME end ."
 		exit 0
 	fi
 fi
@@ -48,14 +61,6 @@ if [ "${isInstall}" != "" ]; then
 fi
 
 
-if [ "$VERSION" -lt "70" ];then
-	LIB_DEPEND_DIR=$DIR/cmd/icu4c/54
-else
-	BREW_DIR=`which brew`
-	BREW_DIR=${BREW_DIR/\/bin\/brew/}
-	LIB_DEPEND_DIR=`brew info icu4c | grep ${BREW_DIR}/Cellar/icu4c | cut -d \  -f 1 | awk 'END {print}'`
-
-fi
  
 if [ ! -f "$extFile" ]; then
 

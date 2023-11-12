@@ -3,6 +3,7 @@
 PATH=$PATH:/opt/local/bin:/opt/local/sbin:/opt/local/share/man:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
 export PATH=$PATH:/opt/homebrew/bin
 
+curDir=$(dirname "$0")
 DIR=$(cd "$(dirname "$0")"; pwd)
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
@@ -12,6 +13,11 @@ MDIR=$(dirname "$DIR")
 VERSION=$1
 LIBNAME=mcrypt
 LIBV='0'
+
+if [ "$VERSION" -gt "74" ];then
+	cd $curDir && bash install_ge8.sh $VERSION
+	exit 0
+fi
 
 #check
 TMP_PHP_INI=/tmp/t_tmp_php.ini

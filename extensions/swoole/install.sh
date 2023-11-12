@@ -12,13 +12,15 @@ VERSION=$1
 LIBNAME=swoole
 LIBV=5.0.3
 
-if [ "$version" == "80" ];then
-	LIBV=4.7.1
-elif [ "$version" == "70" ];then
+if [ "$VERSION" -lt "70" ];then
+	LIBV=1.10.1
+elif [ "$VERSION" == "70" ];then
 	LIBV=4.3.0
-elif [ "$version" == "71" ];then
+elif [ "$VERSION" == "71" ];then
 	LIBV=4.5.2
-elif [ "$version" -gt "74" ];then
+elif [ "$VERSION" == "72" ];then
+	LIBV=4.8.10
+elif [ "$VERSION" -gt "74" ];then
 	LIBV=5.0.3
 fi
 

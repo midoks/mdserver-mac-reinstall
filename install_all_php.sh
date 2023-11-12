@@ -25,58 +25,60 @@ MDIR=$(dirname "$DIR")
 # cd /Applications/mdserver/bin/reinstall/extensions/nsq && bash install.sh 71
 
 # cd /Applications/mdserver/bin/reinstall/php56 && bash install.sh
+# cd /Applications/mdserver/bin/reinstall/php82 && bash install.sh
 
 
 PHP_VER_LIST=(55 56 71 72 74 80 81 82)
 PHP_EXT_LIST=(curl openssl pcntl mcrypt fileinfo \
 	exif gd gettext zlib intl memcache memcached redis imagick xhprof swoole yaf mongodb iconv)
 
-PHP_VER_LIST=(82)
-
-# test version all ext
-# for PHP_VER in ${PHP_VER_LIST[@]}
-# do
-# 	test_ext=mongodb
-# 	cd $DIR/extensions/$test_ext && sh install.sh $PHP_VER
-# done
+# PHP_VER_LIST=(82)
 
 
 for PHP_VER in ${PHP_VER_LIST[@]}
 do
-	echo "php${PHP_VER} -- start"
-	cd $DIR/php$PHP_VER && sh install.sh
-
-	if [ ! -f $MDIR/php/php$PHP_VER/bin/phpize ];then
-		echo "$PHP_VER compilation failed"
-		continue;
-	fi
-
-	ext_all=$(ls -l $DIR/extensions |awk '/^d/ {print $NF}')
-	for i in $ext_all
-	do
-		find_support=$(cat ${DIR}/extensions/lib.md |grep $i | awk -F '|' '{print $2}')
-		if [ "$find_support" = "" ];then
-			continue
-		fi
-		find_support_php=$(echo $find_support |grep $PHP_VER)
-		if [ "$find_support_php" != "" ];then
-			cd $DIR/extensions/$i && sh install.sh $PHP_VER
-		fi
-	done
-
-	# for PHP_EXT in ${PHP_EXT_LIST[@]}
-	# do
-	# 	find_support=$(cat ${DIR}/extensions/lib.md |grep $PHP_EXT | awk -F '|' '{print $2}')
-	# 	find_support_php=$(echo $find_support |grep $PHP_VER)
-	# 	if [ "$find_support_php" != "" ];then
-	# 		echo "php${PHP_VER} - ${PHP_EXT} -- load start"
-	# 		if [ -d $DIR/extensions/$PHP_EXT ];then
-	# 			cd $DIR/extensions/$PHP_EXT && sh unload.sh $PHP_VER
-	# 			cd $DIR/extensions/$PHP_EXT && sh load.sh $PHP_VER
-	# 		fi
-	# 		echo "php${PHP_VER} - ${PHP_EXT} -- load end"
-	# 	fi
-
-	# done
-	echo "php${PHP_VER} -- end"
+	# test version all ext
+	test_ext=intl
+	cd $DIR/extensions/$test_ext && sh install.sh $PHP_VER
 done
+
+
+# for PHP_VER in ${PHP_VER_LIST[@]}
+# do
+# 	echo "php${PHP_VER} -- start"
+# 	cd $DIR/php$PHP_VER && sh install.sh
+
+# 	if [ ! -f $MDIR/php/php$PHP_VER/bin/phpize ];then
+# 		echo "$PHP_VER compilation failed"
+# 		continue;
+# 	fi
+
+# 	ext_all=$(ls -l $DIR/extensions |awk '/^d/ {print $NF}')
+# 	for i in $ext_all
+# 	do
+# 		find_support=$(cat ${DIR}/extensions/lib.md |grep $i | awk -F '|' '{print $2}')
+# 		if [ "$find_support" = "" ];then
+# 			continue
+# 		fi
+# 		find_support_php=$(echo $find_support |grep $PHP_VER)
+# 		if [ "$find_support_php" != "" ];then
+# 			cd $DIR/extensions/$i && sh install.sh $PHP_VER
+# 		fi
+# 	done
+
+# 	for PHP_EXT in ${PHP_EXT_LIST[@]}
+# 	do
+# 		find_support=$(cat ${DIR}/extensions/lib.md |grep $PHP_EXT | awk -F '|' '{print $2}')
+# 		find_support_php=$(echo $find_support |grep $PHP_VER)
+# 		if [ "$find_support_php" != "" ];then
+# 			echo "php${PHP_VER} - ${PHP_EXT} -- load start"
+# 			if [ -d $DIR/extensions/$PHP_EXT ];then
+# 				cd $DIR/extensions/$PHP_EXT && sh unload.sh $PHP_VER
+# 				cd $DIR/extensions/$PHP_EXT && sh load.sh $PHP_VER
+# 			fi
+# 			echo "php${PHP_VER} - ${PHP_EXT} -- load end"
+# 		fi
+
+# 	done
+# 	echo "php${PHP_VER} -- end"
+# done
