@@ -31,7 +31,7 @@ PHP_VER_LIST=(55 56 71 72 74 80 81 82)
 PHP_EXT_LIST=(curl openssl pcntl mcrypt fileinfo \
 	exif gd gettext zlib intl memcache memcached redis imagick xhprof swoole yaf mongodb iconv)
 
-PHP_VER_LIST=(82)
+# PHP_VER_LIST=(82)
 # PHP_EXT_LIST=(xdiff)
 
 for PHP_VER in ${PHP_VER_LIST[@]}
@@ -60,19 +60,19 @@ do
 		fi
 	done
 
-	for PHP_EXT in ${PHP_EXT_LIST[@]}
-	do
-		find_support=$(cat ${DIR}/extensions/lib.md |grep $PHP_EXT | awk -F '|' '{print $2}')
-		find_support_php=$(echo $find_support |grep $PHP_VER)
-		if [ "$find_support_php" != "" ];then
-			echo "php${PHP_VER} - ${PHP_EXT} -- load start"
-			if [ -d $DIR/extensions/$PHP_EXT ];then
-				cd $DIR/extensions/$PHP_EXT && sh unload.sh $PHP_VER
-				cd $DIR/extensions/$PHP_EXT && sh load.sh $PHP_VER
-			fi
-			echo "php${PHP_VER} - ${PHP_EXT} -- load end"
-		fi
+	# for PHP_EXT in ${PHP_EXT_LIST[@]}
+	# do
+	# 	find_support=$(cat ${DIR}/extensions/lib.md |grep $PHP_EXT | awk -F '|' '{print $2}')
+	# 	find_support_php=$(echo $find_support |grep $PHP_VER)
+	# 	if [ "$find_support_php" != "" ];then
+	# 		echo "php${PHP_VER} - ${PHP_EXT} -- load start"
+	# 		if [ -d $DIR/extensions/$PHP_EXT ];then
+	# 			cd $DIR/extensions/$PHP_EXT && sh unload.sh $PHP_VER
+	# 			cd $DIR/extensions/$PHP_EXT && sh load.sh $PHP_VER
+	# 		fi
+	# 		echo "php${PHP_VER} - ${PHP_EXT} -- load end"
+	# 	fi
 
-	done
+	# done
 	echo "php${PHP_VER} -- end"
 done
