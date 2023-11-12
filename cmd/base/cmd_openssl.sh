@@ -38,7 +38,7 @@ if [ ! -d $DIR/cmd/openssl ];then
 	# 也行
 	# brew install rbenv/tap/openssl@1.0
 	# /opt/homebrew/Library/Taps/rbenv/homebrew-tap
-
+	# https://github.com/rbenv/homebrew-tap/issues/1
 	if [ "${SYS_ARCH}" == "arm64" ] ;then
 
 		echo "use [ brew install rbenv/tap/openssl@1.0 ]"

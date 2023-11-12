@@ -21,16 +21,16 @@ MDIR=$(dirname "$DIR")
 # cd /Applications/mdserver/bin/reinstall/php71/openssl && bash install.sh 71
 # cd /Applications/mdserver/bin/reinstall/php71/nsq && bash install.sh 71
 
-
-
 # cd /Applications/mdserver/bin/reinstall/php56 && bash install.sh
 
 
-
-# PHP_VER_LIST=(55 56 71 72 74 80 81 82)
-PHP_VER_LIST=(72)
+PHP_VER_LIST=(55 56 71 72 74 80 81 82)
 PHP_EXT_LIST=(curl openssl pcntl mcrypt fileinfo \
 	exif gd gettext zlib intl memcache memcached redis imagick xhprof swoole yaf mongodb iconv)
+
+# PHP_VER_LIST=(56)
+# PHP_EXT_LIST=(curl)
+
 for PHP_VER in ${PHP_VER_LIST[@]}
 do
 	echo "php${PHP_VER} -- start"
@@ -41,7 +41,7 @@ do
 		continue;
 	fi
 
-	dir=$(ls -l $DIR/php$PHP_VER |awk '/^d/ {print $NF}')
+	dir=$(ls -l $DIR/extensions |awk '/^d/ {print $NF}')
 
 	EXT_IGNORE=(grpc zip intl oci8 sqlsrv mosquitto xdiff nsq mcrypt lua)
 
@@ -60,15 +60,15 @@ do
 			continue
 		fi
 
-		cd $DIR/php$PHP_VER/$i && sh install.sh $PHP_VER
+		cd $DIR/extensions/$i && sh install.sh $PHP_VER
 	done
 
 	for PHP_EXT in ${PHP_EXT_LIST[@]}
 	do
 		echo "php${PHP_VER} - ${PHP_EXT} -- load start"
-		if [ -d $DIR/php$PHP_VER/$PHP_EXT ];then
-			cd $DIR/php$PHP_VER/$PHP_EXT && sh unload.sh $PHP_VER
-			cd $DIR/php$PHP_VER/$PHP_EXT && sh load.sh $PHP_VER
+		if [ -d $DIR/extensions/$PHP_EXT ];then
+			cd $DIR/extensions/$PHP_EXT && sh unload.sh $PHP_VER
+			cd $DIR/extensions/$PHP_EXT && sh load.sh $PHP_VER
 		fi
 		echo "php${PHP_VER} - ${PHP_EXT} -- load end"
 	done

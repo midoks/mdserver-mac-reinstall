@@ -10,30 +10,19 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
-
-
-if [ "$VERSION" != "55" ];then
-	echo "not need"
-	exit 1
-fi
-
-
-LIBNAME=ZendGuardLoader
-LIBV='0'
-PHP_VERSION=5.5
-
-
-NON_ZTS_FILENAME=`ls $DIR/php/php$VERSION/lib/php/extensions | grep no-debug-non-zts`
-extDir=$DIR/php/php$VERSION/lib/php/extensions/$NON_ZTS_FILENAME
-extFile=$extDir/${LIBNAME}.so
+LIBNAME=intl
+LIBV=0
 
 #check
 TMP_PHP_INI=/tmp/t_tmp_php.ini
 TMP_CHECK_LOG=/tmp/t_check_php.log
 
-echo "zend_extension=$LIBNAME.so" > $TMP_PHP_INI
+NON_ZTS_FILENAME=`ls $DIR/php/php$VERSION/lib/php/extensions | grep no-debug-non-zts`
+extFile=$DIR/php/php$VERSION/lib/php/extensions/$NON_ZTS_FILENAME/${LIBNAME}.so
+
+echo "extension=$LIBNAME.so" > $TMP_PHP_INI
 $DIR/php/php$VERSION/bin/php -c $TMP_PHP_INI -r 'phpinfo();' > $TMP_CHECK_LOG 2>&1
-FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "${LIBNAME}.loader.encoded_paths"`
+FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "${LIBNAME}.default_locale"`
 
 
 echo "install $LIBNAME start"
@@ -51,7 +40,6 @@ fi
 rm -rf $TMP_PHP_INI
 rm -rf $TMP_CHECK_LOG
 
-
 sh $MDIR/bin/reinstall/check_common.sh $VERSION
 isInstall=`cat $DIR/php/php$VERSION/etc/php.ini|grep '${LIBNAME}.so'`
 if [ "${isInstall}" != "" ]; then
@@ -59,23 +47,19 @@ if [ "${isInstall}" != "" ]; then
 	return
 fi
 
+BREW_DIR=`which brew`
+BREW_DIR=${BREW_DIR/\/bin\/brew/}
+
+LIB_DEPEND_DIR=`brew info icu4c | grep ${BREW_DIR}/Cellar/icu4c | cut -d \  -f 1 | awk 'END {print}'`
+
 if [ ! -f "$extFile" ]; then
 
-	php_lib=$MDIR/source/php_lib
-	mkdir -p $php_lib
-
-	if [ ! -f $php_lib/zend-loader-php5.5-darwin10.7-x86_64_update1.tar.gz ]; then
-		wget -O $php_lib/zend-loader-php5.5-darwin10.7-x86_64_update1.tar.gz http://downloads.zend.com/guard/7.0.0/zend-loader-php5.5-darwin10.7-x86_64_update1.tar.gz
-		
-	fi
-
-	if [ ! -d $php_lib/${LIBNAME}-${LIBV} ]; then
-		cd $php_lib
-		tar xvf zend-loader-php5.5-darwin10.7-x86_64_update1.tar.gz
-	fi
-
-	cd $php_lib/zend-loader-php5.5-darwin10.7-x86_64
-	cp $php_lib/zend-loader-php5.5-darwin10.7-x86_64/ZendGuardLoader.so $extDir/ZendGuardLoader.so
+	cd $MDIR/source/php/php${VERSION}/ext/intl
+	$DIR/php/php$VERSION/bin/phpize
+	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \
+	--with-icu-dir=$LIB_DEPEND_DIR \
+	--enable-intl && \
+	make && make install && make clean
 fi
 
 echo "install $LIBNAME end"

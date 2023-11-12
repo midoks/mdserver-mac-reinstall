@@ -10,31 +10,22 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
+LIBNAME=SeasLog
+LIBV=2.0.2
 
-
-if [ "$VERSION" != "55" ];then
-	echo "not need"
-	exit 1
-fi
-
-
-LIBNAME=ZendGuardLoader
-LIBV='0'
-PHP_VERSION=5.5
-
+_LIBNAME=$(echo $LIBNAME | tr '[A-Z]' '[a-z]')
 
 NON_ZTS_FILENAME=`ls $DIR/php/php$VERSION/lib/php/extensions | grep no-debug-non-zts`
-extDir=$DIR/php/php$VERSION/lib/php/extensions/$NON_ZTS_FILENAME
-extFile=$extDir/${LIBNAME}.so
+extFile=$DIR/php/php$VERSION/lib/php/extensions/${NON_ZTS_FILENAME}/${_LIBNAME}.so
 
 #check
 TMP_PHP_INI=/tmp/t_tmp_php.ini
 TMP_CHECK_LOG=/tmp/t_check_php.log
 
-echo "zend_extension=$LIBNAME.so" > $TMP_PHP_INI
+echo "extension=$_LIBNAME.so" > $TMP_PHP_INI
+echo "default_logger=default" >> $TMP_PHP_INI
 $DIR/php/php$VERSION/bin/php -c $TMP_PHP_INI -r 'phpinfo();' > $TMP_CHECK_LOG 2>&1
-FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "${LIBNAME}.loader.encoded_paths"`
-
+FIND_IS_INSTALL=`cat $TMP_CHECK_LOG | grep "${_LIBNAME}.buffer_size"`
 
 echo "install $LIBNAME start"
 
@@ -48,14 +39,17 @@ else
 	fi
 fi
 
+if [ "$EXT_IS_INVAILD" == "" ] && [ "$FIND_IS_INSTALL" == "" ];then
+	rm -rf $extFile
+fi
+
 rm -rf $TMP_PHP_INI
 rm -rf $TMP_CHECK_LOG
 
-
 sh $MDIR/bin/reinstall/check_common.sh $VERSION
-isInstall=`cat $DIR/php/php$VERSION/etc/php.ini|grep '${LIBNAME}.so'`
+isInstall=`cat $DIR/php/php$VERSION/etc/php.ini|grep '${_LIBNAME}.so'`
 if [ "${isInstall}" != "" ]; then
-	echo "php-$VERSION 已安装${LIBNAME},请选择其它版本!"
+	echo "php-$VERSION 已安装${_LIBNAME},请选择其它版本!"
 	return
 fi
 
@@ -64,18 +58,22 @@ if [ ! -f "$extFile" ]; then
 	php_lib=$MDIR/source/php_lib
 	mkdir -p $php_lib
 
-	if [ ! -f $php_lib/zend-loader-php5.5-darwin10.7-x86_64_update1.tar.gz ]; then
-		wget -O $php_lib/zend-loader-php5.5-darwin10.7-x86_64_update1.tar.gz http://downloads.zend.com/guard/7.0.0/zend-loader-php5.5-darwin10.7-x86_64_update1.tar.gz
+	if [ ! -f $php_lib/${LIBNAME}-${LIBV}.tgz ]; then
+		wget -O $php_lib/${LIBNAME}-${LIBV}.tgz http://pecl.php.net/get/${LIBNAME}-${LIBV}.tgz
 		
 	fi
+	cd $php_lib/${LIBNAME}-${LIBV}
 
 	if [ ! -d $php_lib/${LIBNAME}-${LIBV} ]; then
 		cd $php_lib
-		tar xvf zend-loader-php5.5-darwin10.7-x86_64_update1.tar.gz
+		tar xvf ${LIBNAME}-${LIBV}.tgz
 	fi
 
-	cd $php_lib/zend-loader-php5.5-darwin10.7-x86_64
-	cp $php_lib/zend-loader-php5.5-darwin10.7-x86_64/ZendGuardLoader.so $extDir/ZendGuardLoader.so
+	cd $php_lib/${LIBNAME}-${LIBV}
+
+	$DIR/php/php$VERSION/bin/phpize
+	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config  && \
+	make && make install && make clean
 fi
 
 echo "install $LIBNAME end"
