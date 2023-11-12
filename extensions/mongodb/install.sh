@@ -10,7 +10,22 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=mongodb
-LIBV=1.5.5
+LIBV=1.13.0
+
+if [ "$VERSION" == '80' ];then
+	LIBV=1.9.0
+elif [ "$VERSION" == '74' ];then
+	LIBV=1.7.4
+elif [ "$VERSION" == '71' ];then
+	LIBV=1.7.4
+elif [ "$VERSION" == '70' ];then
+	LIBV=1.7.4
+elif [ "$VERSION" == '56' ];then
+	LIBV=1.7.4
+elif [ "$VERSION" == '55' ];then
+	LIBV=1.5.3
+fi
+
 
 CONFIG_OPTION="|"
 

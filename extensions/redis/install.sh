@@ -11,7 +11,16 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=redis
-LIBV=3.1.3
+LIBV=5.3.7
+
+
+if [ "$VERSION" == "52" ];then
+	LIBV=2.2.7
+elif [ "$VERSION" -lt "70" ];then
+	LIBV=4.2.0
+elif [ "$VERSION" -gt "74" ];then
+	LIBV=5.3.7
+fi
 
 
 CONFIG_OPTION="|"

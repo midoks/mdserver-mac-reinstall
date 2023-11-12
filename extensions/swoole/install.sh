@@ -10,12 +10,27 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=swoole
-LIBV=1.10.1
+LIBV=5.0.3
+
+if [ "$version" == "80" ];then
+	LIBV=4.7.1
+elif [ "$version" == "70" ];then
+	LIBV=4.3.0
+elif [ "$version" == "71" ];then
+	LIBV=4.5.2
+elif [ "$version" -gt "74" ];then
+	LIBV=5.0.3
+fi
+
+
 DEPEND_LIB_NAME=openssl
 
 if [ "$VERSION" -gt "72" ];then
-	LIBV=5.0.0
 	DEPEND_LIB_NAME=openssl@1.1
+fi
+
+if [ "$VERSION" -ge "74" ];then
+	DEPEND_LIB_NAME=openssl@3
 fi
 
 BREW_DIR=`which brew`

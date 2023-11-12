@@ -13,12 +13,10 @@ VERSION=$1
 LIBNAME=solr
 LIBV=2.6.0
 
-if [ "$VERSION" -lt "80" ];then
-	LIBV=2.5.1
-fi
-
 if [ "$VERSION" -lt "70" ];then
 	LIBV=2.4.0
+elif [ "$VERSION" -lt "82" ];then
+	LIBV=2.5.1
 fi
 
 

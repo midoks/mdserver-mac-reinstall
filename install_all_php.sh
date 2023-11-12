@@ -29,9 +29,9 @@ MDIR=$(dirname "$DIR")
 
 PHP_VER_LIST=(55 56 71 72 74 80 81 82)
 PHP_EXT_LIST=(curl openssl pcntl mcrypt fileinfo \
-	exif gd gettext zlib intl memcache memcached redis imagick xhprof swoole yaf mongodb iconv xdiff)
+	exif gd gettext zlib intl memcache memcached redis imagick xhprof swoole yaf mongodb iconv)
 
-PHP_VER_LIST=(74)
+PHP_VER_LIST=(82)
 # PHP_EXT_LIST=(xdiff)
 
 for PHP_VER in ${PHP_VER_LIST[@]}

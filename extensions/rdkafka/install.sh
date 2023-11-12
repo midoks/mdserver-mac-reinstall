@@ -11,7 +11,14 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=rdkafka
-LIBV=3.0.5
+LIBV=6.0.3
+
+if [ "$VERSION" == "56" ];then
+	LIBV=4.0.3
+elif [ "$VERSION" == "55" ];then
+	LIBV=3.0.5
+fi
+
 
 BREW_DIR=`which brew`
 BREW_DIR=${BREW_DIR/\/bin\/brew/}

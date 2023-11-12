@@ -11,7 +11,11 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=protobuf
-LIBV=3.11.4
+LIBV=3.25.0 
+
+if [ "$VERSION" -lt "80" ];then
+	LIBV=3.11.4
+fi
 
 CONFIG_OPTION="--enable-protobuf"
 FIND="protobuf.keep_descriptor_pool_after_request"

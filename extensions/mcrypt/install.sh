@@ -54,8 +54,8 @@ else
 	LIB_DEPEND_DIR=`brew info libmcrypt | grep ${BREW_DIR}/Cellar/libmcrypt | cut -d \  -f 1 | awk 'END {print}'`
 fi
 
-echo $LIB_DEPEND_DIR
-exit
+# echo $LIB_DEPEND_DIR
+# exit
 
 if [ ! -f "$extFile" ]; then
 	cd $MDIR/source/php/php$VERSION/ext/mcrypt
