@@ -13,6 +13,13 @@ VERSION=$1
 LIBNAME=yar
 LIBV=1.2.5
 
+
+if [ "$VERSION" -ge "70" ];then
+	LIBV=2.3.2
+fi
+
+
+
 BREW_DIR=`which brew`
 BREW_DIR=${BREW_DIR/\/bin\/brew/}
 

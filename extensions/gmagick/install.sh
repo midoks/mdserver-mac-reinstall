@@ -13,6 +13,10 @@ VERSION=$1
 LIBNAME=gmagick
 LIBV=1.1.7RC3
 
+if [ "$VERSION" -ge "70" ];then
+	LIBV=3.6.0
+fi
+
 BREW_DIR=`which brew`
 BREW_DIR=${BREW_DIR/\/bin\/brew/}
 

@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 export PATH=$PATH:/opt/local/bin:/opt/local/sbin:/opt/local/share/man:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
 export PATH=$PATH:/opt/homebrew/bin
@@ -28,7 +28,7 @@ PHP_VER_LIST=(55 56 71 72 74 80 81 82)
 PHP_EXT_LIST=(curl openssl pcntl mcrypt fileinfo \
 	exif gd gettext zlib intl memcache memcached redis imagick xhprof swoole yaf mongodb iconv)
 
-# PHP_VER_LIST=(56)
+# PHP_VER_LIST=(82)
 # PHP_EXT_LIST=(curl)
 
 for PHP_VER in ${PHP_VER_LIST[@]}
@@ -41,12 +41,16 @@ do
 		continue;
 	fi
 
-	dir=$(ls -l $DIR/extensions |awk '/^d/ {print $NF}')
+	ext_all=$(ls -l $DIR/extensions |awk '/^d/ {print $NF}')
+	# ext_lib=$(cat -n $DIR/extensions/lib.md)
+	# echo $ext_lib
+
 
 	EXT_IGNORE=(grpc zip intl oci8 sqlsrv mosquitto xdiff nsq mcrypt lua)
 
-	for i in $dir
+	for i in $ext_all
 	do
+
 		IS_IGNORE=''
 		for EXT_IGNORE_I in ${EXT_IGNORE[@]}
 		do
@@ -60,17 +64,31 @@ do
 			continue
 		fi
 
-		cd $DIR/extensions/$i && sh install.sh $PHP_VER
+		find_support=$(cat ${DIR}/extensions/lib.md |grep $i | awk -F '|' '{print $2}')
+		if [ "$find_support" = "" ];then
+			continue
+		fi
+		# echo "find_support:"$find_support
+		find_support_php=$(echo $find_support |grep $PHP_VER)
+		if [ "$find_support_php" != "" ];then
+			# echo "find_support_php:"$find_support_php
+			cd $DIR/extensions/$i && sh install.sh $PHP_VER
+		fi
 	done
 
 	for PHP_EXT in ${PHP_EXT_LIST[@]}
 	do
-		echo "php${PHP_VER} - ${PHP_EXT} -- load start"
-		if [ -d $DIR/extensions/$PHP_EXT ];then
-			cd $DIR/extensions/$PHP_EXT && sh unload.sh $PHP_VER
-			cd $DIR/extensions/$PHP_EXT && sh load.sh $PHP_VER
+		find_support=$(echo $ext_lib |grep $i | awk -F '|' '{print $2}')
+		find_support_php=$(echo $find_support |grep $PHP_VER)
+		if [ "$find_support_php" != "" ];then
+			echo "php${PHP_VER} - ${PHP_EXT} -- load start"
+			if [ -d $DIR/extensions/$PHP_EXT ];then
+				cd $DIR/extensions/$PHP_EXT && sh unload.sh $PHP_VER
+				cd $DIR/extensions/$PHP_EXT && sh load.sh $PHP_VER
+			fi
+			echo "php${PHP_VER} - ${PHP_EXT} -- load end"
 		fi
-		echo "php${PHP_VER} - ${PHP_EXT} -- load end"
+
 	done
 	echo "php${PHP_VER} -- end"
 done
