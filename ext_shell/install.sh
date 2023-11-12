@@ -57,7 +57,7 @@ echo "extension=$LIBNAME.so" >> $TMP_PHP_INI
 $DIR/php/php$VERSION/bin/php -c $TMP_PHP_INI -r 'phpinfo();' > $TMP_CHECK_LOG 2>&1
 FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "$FIND_KEYWORD"`
 
-echo "install $LIBNAME start"
+echo "install ${VERSION}|$LIBNAME start"
 
 
 EXT_IS_INVAILD=`cat  $TMP_CHECK_LOG | grep "Unable to load dynamic library"`
@@ -102,7 +102,7 @@ if [ ! -f "$extFile" ]; then
 	$DIR/php/php$VERSION/bin/phpize
 	echo "./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config ${CONFIG_OPTION}"
 	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config ${CONFIG_OPTION}
-	make -j4 && make install && make clean
+	make && make install && make clean
 
 	if [ -d $php_lib/${LIBNAME}-${LIBV} ];then
 		rm -rf $php_lib/${LIBNAME}-${LIBV}
@@ -110,4 +110,5 @@ if [ ! -f "$extFile" ]; then
 
 fi
 
-echo "install $LIBNAME end"
+echo "install ${VERSION}|$LIBNAME end"
+

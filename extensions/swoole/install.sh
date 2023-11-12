@@ -36,7 +36,7 @@ fi
 BREW_DIR=`which brew`
 BREW_DIR=${BREW_DIR/\/bin\/brew/}
 
-LIB_DEPEND_DIR=`brew info openssl | grep ${BREW_DIR}/Cellar/openssl | cut -d \  -f 1 | awk 'END {print}'`
+LIB_DEPEND_DIR=`brew info ${DEPEND_LIB_NAME} | grep ${BREW_DIR}/Cellar/${DEPEND_LIB_NAME} | cut -d \  -f 1 | awk 'END {print}'`
 CONFIG_OPTION="--enable-openssl|--with-openssl-dir=${LIB_DEPEND_DIR}|--enable-sockets"
 
 FIND="swoole.display_errors"

@@ -31,8 +31,15 @@ PHP_VER_LIST=(55 56 71 72 74 80 81 82)
 PHP_EXT_LIST=(curl openssl pcntl mcrypt fileinfo \
 	exif gd gettext zlib intl memcache memcached redis imagick xhprof swoole yaf mongodb iconv)
 
-# PHP_VER_LIST=(82)
-# PHP_EXT_LIST=(xdiff)
+PHP_VER_LIST=(82)
+
+# test version all ext
+# for PHP_VER in ${PHP_VER_LIST[@]}
+# do
+# 	test_ext=mongodb
+# 	cd $DIR/extensions/$test_ext && sh install.sh $PHP_VER
+# done
+
 
 for PHP_VER in ${PHP_VER_LIST[@]}
 do
@@ -45,9 +52,6 @@ do
 	fi
 
 	ext_all=$(ls -l $DIR/extensions |awk '/^d/ {print $NF}')
-	# ext_lib=$(cat -n $DIR/extensions/lib.md)
-	# echo $ext_lib
-
 	for i in $ext_all
 	do
 		find_support=$(cat ${DIR}/extensions/lib.md |grep $i | awk -F '|' '{print $2}')
