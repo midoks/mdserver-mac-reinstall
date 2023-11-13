@@ -14,11 +14,11 @@ LIBNAME=intl
 LIBV=0
 
 
+BREW_DIR=`which brew`
+BREW_DIR=${BREW_DIR/\/bin\/brew/}
 if [ "$VERSION" -lt "73" ];then
-	LIB_DEPEND_DIR=$DIR/cmd/icu4c/55
+	LIB_DEPEND_DIR=`brew info icu4c@55.2 | grep ${BREW_DIR}/Cellar/icu4c@55.2 | cut -d \  -f 1 | awk 'END {print}'`
 else
-	BREW_DIR=`which brew`
-	BREW_DIR=${BREW_DIR/\/bin\/brew/}
 	LIB_DEPEND_DIR=`brew info icu4c | grep ${BREW_DIR}/Cellar/icu4c | cut -d \  -f 1 | awk 'END {print}'`
 fi
 
