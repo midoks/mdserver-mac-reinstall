@@ -26,6 +26,10 @@ if [ ! -d ${BREW_DIR}/Cellar/openssl@1.0 ];then
 	brew install rbenv/tap/openssl@1.0
 fi
 
+if [ ! -d ${BREW_DIR}/Cellar/icu4c@55.2 ];then
+	brew install midoks/tap/icu4c@55.2
+fi
+
 
 DEPEND_ON_1=(binutils libressl)
 for DO in ${DEPEND_ON_1[@]}; do
