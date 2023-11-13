@@ -29,7 +29,6 @@ $DIR/php/php$VERSION/bin/php -c $TMP_PHP_INI -r 'phpinfo();' > $TMP_CHECK_LOG 2>
 FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "${LIBNAME}.output_dir"`
 echo "install $LIBNAME start"
 
-
 EXT_IS_INVAILD=`cat  $TMP_CHECK_LOG | grep "Unable to load dynamic library"`
 if [ "$EXT_IS_INVAILD" != "" ]; then
 	rm -rf $extFile
@@ -39,6 +38,7 @@ else
 		exit 0
 	fi
 fi
+
 rm -rf $TMP_PHP_INI
 rm -rf $TMP_CHECK_LOG
 
@@ -51,8 +51,19 @@ if [ "${isInstall}" != "" ]; then
 fi
 
 
-LIB_DEPEND_DIR=`brew info libzip | grep /usr/local/Cellar/libzip | cut -d \  -f 1 | awk 'END {print}'`
-export PKG_CONFIG_PATH=$LIB_DEPEND_DIR/lib/pkgconfig
+BREW_DIR=`which brew`
+BREW_DIR=${BREW_DIR/\/bin\/brew/}
+LIB_DEPEND_DIR=`brew info libzip | grep ${BREW_DIR}/Cellar/libzip | cut -d \  -f 1 | awk 'END {print}'`
+# PCRE_DEPEND_DIR=`brew info pcre | grep ${BREW_DIR}/Cellar/pcre | cut -d \  -f 1 | awk 'END {print}'`
+# export PKG_CONFIG_PATH=$LIB_DEPEND_DIR/lib/pkgconfig:${PCRE_DEPEND_DIR}/lib/pkgconfig
+
+# LIB_CONFIG_PATH=$LIB_DEPEND_DIR/lib/pkgconfig:${PCRE_DEPEND_DIR}/lib/pkgconfig
+
+# echo $PKG_CONFIG_PATH
+
+# exit 0
+
+
 
 if [ ! -f "$extFile" ]; then
 

@@ -38,13 +38,16 @@ if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 cd $MDIR/source/php/php${PHP_M_VER}
 
 
-LIB_DEPEND_DIR=`brew info oniguruma | grep /usr/local/Cellar/oniguruma | cut -d \  -f 1 | awk 'END {print}'`
-export PKG_CONFIG_PATH=$LIB_DEPEND_DIR/lib/pkgconfig
+# BREW_DIR=`which brew`
+# BREW_DIR=${BREW_DIR/\/bin\/brew/}
+# LIB_DEPEND_DIR=`brew info oniguruma | grep ${BREW_DIR}/Cellar/oniguruma | cut -d \  -f 1 | awk 'END {print}'`
+# export PKG_CONFIG_PATH=$LIB_DEPEND_DIR/lib/pkgconfig
+
 
 OPTIONS=''
 OPTIONS="${OPTIONS} --with-external-pcre=$DIR/cmd/pcre"
 
-./buildconf --force
+# ./buildconf --force
 ./configure --prefix=$DIR/php/php${PHP_M_VER}/ \
 --exec-prefix=$DIR/php/php${PHP_M_VER}/ \
 --with-config-file-path=$DIR/php/php${PHP_M_VER}/etc \
@@ -52,8 +55,8 @@ OPTIONS="${OPTIONS} --with-external-pcre=$DIR/cmd/pcre"
 --enable-mysqlnd \
 --with-mysqli=mysqlnd \
 --with-pdo-mysql=mysqlnd \
---with-zlib-dir=$DIR/cmd/zlib \
 --with-mhash=$DIR/cmd/mhash \
+--with-openssl-dir=$DIR/cmd/openssl11 \
 $OPTIONS \
 --without-iconv \
 --enable-mbstring \
@@ -75,9 +78,15 @@ $OPTIONS \
 # --enable-zip \
 
 
-make -j4 && make install && make clean
+make clean && make -j4 && make install && make clean
 
 fi
+
+# 缺少pcre2.h头文件
+if [ ! -f ${DIR}/php/php${PHP_M_VER}/include/php/ext/pcre/pcre2.h ];then
+	cp -rf ${MDIR}/source/php/php${PHP_M_VER}/ext/pcre/pcre2lib/pcre2.h ${DIR}/php/php${PHP_M_VER}/include/php/ext/pcre/pcre2.h
+fi
+
 
 if [ "$?" != "0" ];then
 	echo "install fail!!"
