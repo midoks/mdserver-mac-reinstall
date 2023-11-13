@@ -27,21 +27,18 @@ fi
 
 cd $MDIR/source/php/php${PHP_M_VER}
 
-PATH=$PATH:/Applications/mdserver/bin/cmd/libzip
 #./configure --help
-
 if [ ! -d $DIR/php/php${PHP_M_VER} ];then
-
-#cp /Applications/mdserver/bin/cmd/libzip/include/zip.h /usr/local/include/zipconf.h
-./buildconf --force
+# ./buildconf --force
 
 
 cd $MDIR/source/php/php${PHP_M_VER}
 
-BREW_DIR=`which brew`
-BREW_DIR=${BREW_DIR/\/bin\/brew/}
-LIB_DEPEND_DIR=`brew info oniguruma | grep ${BREW_DIR}/Cellar/oniguruma | cut -d \  -f 1 | awk 'END {print}'`
-export PKG_CONFIG_PATH=$LIB_DEPEND_DIR/lib/pkgconfig
+# BREW_DIR=`which brew`
+# BREW_DIR=${BREW_DIR/\/bin\/brew/}
+# LIB_DEPEND_DIR=`brew info oniguruma | grep ${BREW_DIR}/Cellar/oniguruma | cut -d \  -f 1 | awk 'END {print}'`
+# export PKG_CONFIG_PATH=$LIB_DEPEND_DIR/lib/pkgconfig
+# PCRE_DEPEND_DIR=`brew info pcre | grep ${BREW_DIR}/Cellar/pcre | cut -d \  -f 1 | awk 'END {print}'`
 
 OPTIONS=''
 OPTIONS="${OPTIONS} --with-external-pcre=$DIR/cmd/pcre"
@@ -53,7 +50,6 @@ OPTIONS="${OPTIONS} --with-external-pcre=$DIR/cmd/pcre"
 --enable-mysqlnd \
 --with-mysqli=mysqlnd \
 --with-pdo-mysql=mysqlnd \
---with-zlib-dir=$DIR/cmd/zlib \
 --with-mhash=$DIR/cmd/mhash \
 $OPTIONS \
 --without-iconv \
@@ -75,9 +71,13 @@ $OPTIONS \
 # --with-libzip=$DIR/cmd/libzip \
 # --enable-zip \
 
+make clean && make -j4 && make install && make clean
 
-make -j4 && make install && make clean
+fi
 
+# 缺少pcre2.h头文件
+if [ ! -f ${DIR}/php/php${PHP_M_VER}/include/php/ext/pcre/pcre2.h ];then
+	cp -rf ${MDIR}/source/php/php${PHP_M_VER}//ext/pcre/pcre2lib/pcre2.h ${DIR}/php/php${PHP_M_VER}/include/php/ext/pcre/pcre2.h
 fi
 
 if [ "$?" != "0" ];then
