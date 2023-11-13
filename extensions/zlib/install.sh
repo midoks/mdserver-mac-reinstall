@@ -54,12 +54,8 @@ if [ ! -f "$extFile" ]; then
 		mv config0.m4 config.m4
 	fi 
 
-	
-
 	OPTIONS=''
-	if [ "$VERSION" == "73" ];then
-		OPTIONS="$OPTIONS --with-zlib=${DIR}/cmd/zlib"
-	fi
+	OPTIONS="$OPTIONS --with-zlib=${DIR}/cmd/zlib"
 	
 	$DIR/php/php$VERSION/bin/phpize
 	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config $OPTIONS && \
