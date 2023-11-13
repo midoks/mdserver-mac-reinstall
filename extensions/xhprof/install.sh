@@ -12,6 +12,11 @@ VERSION=$1
 LIBNAME=xhprof
 LIBV=2.3.4
 
+if [ "$VERSION" -lt "70" ];then
+	LIBV=0.9.4
+fi
+
+
 NON_ZTS_FILENAME=`ls $DIR/php/php$VERSION/lib/php/extensions | grep no-debug-non-zts`
 extFile=$DIR/php/php$VERSION/lib/php/extensions/${NON_ZTS_FILENAME}/${LIBNAME}.so
 
@@ -64,7 +69,7 @@ if [ ! -f "$extFile" ]; then
 
 	cd $php_lib/${LIBNAME}-${LIBV}/extension
 
-	$DIR/php/php$VERSION/bin/phpize
+	$DIR/php/php${VERSION}/bin/phpize
 	./configure --enable-xhprof \
 	--with-php-config=$DIR/php/php$VERSION/bin/php-config  \
 	&& make && make install && make clean

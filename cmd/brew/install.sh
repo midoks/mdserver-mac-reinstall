@@ -47,3 +47,11 @@ for PHP_EXT in ${PHP_EXT_NEED_LIST[@]}; do
 	fi
 done
 
+if [ ! -d ${BREW_DIR}/Cellar/opencv ];then
+	brew install opencv
+fi
+
+if [ ! -d /usr/local/Cellar/opencv@3 ];then
+	brew install opencv@3
+fi
+

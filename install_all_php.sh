@@ -24,22 +24,22 @@ MDIR=$(dirname "$DIR")
 # cd /Applications/mdserver/bin/reinstall/extensions/openssl && bash install.sh 71
 # cd /Applications/mdserver/bin/reinstall/extensions/nsq && bash install.sh 71
 
-# cd /Applications/mdserver/bin/reinstall/php56 && bash install.sh
-# cd /Applications/mdserver/bin/reinstall/php82 && bash install.sh
+# cd /Applications/mdserver/bin/reinstall/php73 && bash install.sh
+# cd /Applications/mdserver/bin/reinstall/php81 && bash install.sh
 
 
-PHP_VER_LIST=(55 56 71 72 74 80 81 82)
+PHP_VER_LIST=(55 56 71 72 73 74 80 81 82 83)
 PHP_EXT_LIST=(curl openssl pcntl mcrypt fileinfo \
-	exif gd gettext zlib intl memcache memcached redis imagick xhprof swoole yaf mongodb iconv)
+	exif gd gettext zlib zip intl memcache memcached redis imagick xhprof swoole yaf mongodb iconv)
 
-# PHP_VER_LIST=(82)
-
+# PHP_VER_LIST=(83)
 
 for PHP_VER in ${PHP_VER_LIST[@]}
 do
 	# test version all ext
-	test_ext=intl
-	cd $DIR/extensions/$test_ext && sh install.sh $PHP_VER
+	test_ext=grpc
+	# cd $DIR/extensions/$test_ext && bash uninstall.sh $PHP_VER
+	cd $DIR/extensions/${test_ext} && bash install.sh ${PHP_VER}
 done
 
 
@@ -56,6 +56,12 @@ done
 # 	ext_all=$(ls -l $DIR/extensions |awk '/^d/ {print $NF}')
 # 	for i in $ext_all
 # 	do
+
+# 		if [ "$i" == "grpc" ];then
+# 			continue
+# 		fi
+
+
 # 		find_support=$(cat ${DIR}/extensions/lib.md |grep $i | awk -F '|' '{print $2}')
 # 		if [ "$find_support" = "" ];then
 # 			continue
@@ -82,3 +88,4 @@ done
 # 	done
 # 	echo "php${PHP_VER} -- end"
 # done
+

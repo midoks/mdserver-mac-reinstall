@@ -1,6 +1,7 @@
 #! /bin/sh
 
 PATH=$PATH:/opt/local/bin:/opt/local/sbin:/opt/local/share/man:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
+export PATH=$PATH:/opt/homebrew/bin
 
 DIR=$(cd "$(dirname "$0")"; pwd)
 DIR=$(dirname "$DIR")
@@ -8,19 +9,14 @@ DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
-exit 0
 
-if [ ! -d /usr/local/Cellar/opencv ];then
-	brew install opencv
-fi
+# export LDFLAGS="-L/usr/local/opt/openblas/lib"
+# export CPPFLAGS="-I/usr/local/opt/openblas/include"
+# export PKG_CONFIG_PATH="/usr/local/opt/openblas/lib/pkgconfig"
 
-export LDFLAGS="-L/usr/local/opt/openblas/lib"
-export CPPFLAGS="-I/usr/local/opt/openblas/include"
-export PKG_CONFIG_PATH="/usr/local/opt/openblas/lib/pkgconfig"
-
-export LDFLAGS="-L/usr/local/opt/opencv@2/lib"
-export CPPFLAGS="-I/usr/local/opt/opencv@2/include"
-export PKG_CONFIG_PATH="/usr/local/opt/opencv@2/lib/pkgconfig"
+# export LDFLAGS="-L/usr/local/opt/opencv@2/lib"
+# export CPPFLAGS="-I/usr/local/opt/opencv@2/include"
+# export PKG_CONFIG_PATH="/usr/local/opt/opencv@2/lib/pkgconfig"
 
 VERSION=$1
 LIBNAME=php-opencv
@@ -43,10 +39,11 @@ if [ "$FIND_IS_INSTALL" != "" ]; then
 	exit 0
 fi
 
+
 sh $MDIR/bin/reinstall/check_common.sh $VERSION
 
-extFile=$DIR/php/php$VERSION/lib/php/extensions/no-debug-non-zts-20160303/${LIBNAME}.so
-
+NON_ZTS_FILENAME=`ls $DIR/php/php$VERSION/lib/php/extensions | grep no-debug-non-zts`
+extFile=$DIR/php/php$VERSION/lib/php/extensions/${NON_ZTS_FILENAME}/${LIBNAME}.so
 
 isInstall=`cat $DIR/php/php$VERSION/etc/php.ini|grep '${LIBNAME}.so'`
 if [ "${isInstall}" != "" ]; then
@@ -57,17 +54,6 @@ fi
 if [ -f  $extFile ]; then
 	rm -rf $extFile
 fi
-
-
-if [ ! -d /usr/local/Cellar/opencv@3 ];then
-	brew install opencv@3
-fi
-
-# LIB_DEPEND_DIR=`brew info opencv@3 | grep /usr/local/Cellar/opencv@3 | cut -d \  -f 1 | awk 'END {print}'`
-# echo "$LIBNAME-DIR:"
-# echo $LIB_DEPEND_DIR
-brew unlink opencv
-brew link opencv@3 --force
 
 if [ ! -f "$extFile" ]; then
 
@@ -87,10 +73,15 @@ if [ ! -f "$extFile" ]; then
 
 	cd $php_lib/${LIBNAME}-${LIBV}
 
-	#echo 'export PATH="/usr/local/opt/opencv@3/bin:$PATH"' >> ~/.bash_profile
-	export LDFLAGS="-L/usr/local/opt/opencv@3/lib"
-  	export CPPFLAGS="-I/usr/local/opt/opencv@3/include"
-	export PKG_CONFIG_PATH="/usr/local/opt/opencv@3/lib/pkgconfig"
+
+	BREW_DIR=`which brew`
+	BREW_DIR=${BREW_DIR/\/bin\/brew/}
+
+	LIB_DEPEND_DIR=`brew info opencv@3 | grep ${BREW_DIR}/Cellar/opencv@3 | cut -d \  -f 1 | awk 'END {print}'`
+
+	export LDFLAGS="-L${LIB_DEPEND_DIR}/lib"
+  	export CPPFLAGS="-I${LIB_DEPEND_DIR}/include"
+	export PKG_CONFIG_PATH="${LIB_DEPEND_DIR}/lib/pkgconfig"
 
 	$DIR/php/php$VERSION/bin/phpize
 	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \

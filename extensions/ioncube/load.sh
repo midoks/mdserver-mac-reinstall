@@ -8,7 +8,6 @@ DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
 VERSION=$1
-EXT_VERION=no-debug-non-zts-20190902
 LIBNAME=ioncube
 
 echo "load $LIBNAME start"

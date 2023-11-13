@@ -104,7 +104,7 @@ if [ ! -f "$extFile" ]; then
 	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config ${CONFIG_OPTION}
 	make clean && make && make install && make clean
 
-	if [ -d $php_lib/${LIBNAME}-${LIBV} ];then
+	if [ "$?" == "0" ] && [ -d $php_lib/${LIBNAME}-${LIBV} ];then
 		rm -rf $php_lib/${LIBNAME}-${LIBV}
 	fi
 

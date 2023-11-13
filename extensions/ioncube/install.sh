@@ -7,6 +7,7 @@ DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
+SYS_ARCH=`arch`
 
 VERSION=$1
 LIBNAME=ioncube
@@ -54,16 +55,45 @@ if [ ! -f "$extFile" ]; then
 	php_lib=$MDIR/source/php_lib
 	mkdir -p $php_lib
 
-	if [ ! -f $php_lib/ioncube_loaders_mac_x86-64.zip ]; then
-		wget -O $php_lib/ioncube_loaders_mac_x86-64.zip https://downloads.ioncube.com/loader_downloads/ioncube_loaders_mac_x86-64.zip
-	fi
 
-	if [ ! -d $php_lib/ioncube ]; then
-		cd $php_lib && unzip ioncube_loaders_mac_x86-64.zip 
-	fi
+	if [ "$SYS_ARCH" == "arm64" ];then
+		if [ ! -f $php_lib/ioncube_loaders_dar_arm64.tar.gz ]; then
+			wget -O $php_lib/ioncube_loaders_dar_arm64.tar.gz https://downloads.ioncube.com/loader_downloads/ioncube_loaders_dar_arm64.tar.gz
+		fi
 
-	cp -rf $php_lib/ioncube/ioncube_loader_mac_${MIN_VER}.so $extFile
-	xattr -c  $extFile
+		echo "cd $php_lib && tar -zxvf ioncube_loaders_dar_arm64.tar.gz"
+		if [ ! -d $php_lib/ioncube ]; then
+			cd $php_lib && tar -zxvf ioncube_loaders_dar_arm64.tar.gz
+		fi
+
+		if [ -f $extFile ];then
+			echo "install $LIBNAME end ."
+			exit 0
+		fi
+
+		if [ -f $php_lib/ioncube/ioncube_loader_dar_${MIN_VER}.so ];then
+			cp -rf $php_lib/ioncube/ioncube_loader_dar_${MIN_VER}.so $extFile
+			echo "cp -rf $php_lib/ioncube/ioncube_loader_dar_${MIN_VER}.so $extFile"
+			xattr -c  $extFile
+		fi
+
+
+
+	else
+		if [ ! -f $php_lib/ioncube_loaders_mac_x86-64.zip ]; then
+			wget -O $php_lib/ioncube_loaders_mac_x86-64.zip https://downloads.ioncube.com/loader_downloads/ioncube_loaders_mac_x86-64.zip
+		fi
+
+		if [ ! -d $php_lib/ioncube ]; then
+			cd $php_lib && unzip ioncube_loaders_mac_x86-64.zip 
+		fi
+
+		if [ -f $php_lib/ioncube/ioncube_loader_mac_${MIN_VER}.so ];then
+			cp -rf $php_lib/ioncube/ioncube_loader_mac_${MIN_VER}.so $extFile
+			xattr -c  $extFile
+		fi
+		
+	fi
 
 fi
 echo "install $LIBNAME end"

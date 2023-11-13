@@ -17,5 +17,9 @@ BREW_DIR=${BREW_DIR/\/bin\/brew/}
 
 LIB_DEPEND_DIR=`brew info libevent | grep ${BREW_DIR}/Cellar/libevent | cut -d \  -f 1 | awk 'END {print}'`
 CONFIG_OPTION="--with-nsq|--with-libevent-path=${LIB_DEPEND_DIR}"
+
+export LDFLAGS="-L${LIB_DEPEND_DIR}/lib"
+export CPPFLAGS="-I${LIB_DEPEND_DIR}/include"
+
 FIND="zhenyu.wu"
 sh $MDIR/bin/reinstall/ext_shell/install.sh $VERSION $LIBNAME $LIBV $CONFIG_OPTION $FIND
