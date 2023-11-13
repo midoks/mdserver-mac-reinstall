@@ -18,11 +18,11 @@ if [ "$VERSION" -lt "70" ];then
 	BREW_OPENSSL=openssl@1.0
 fi
 
-if [ "$VERSION" -le "70" ];then
-	if [ ! -d $DIR/cmd/openssl ];then
-		cd $MDIR/bin/reinstall/cmd/base && sh cmd_openssl.sh
-	fi
-fi
+# if [ "$VERSION" -le "70" ];then
+# 	if [ ! -d $DIR/cmd/openssl ];then
+# 		cd $MDIR/bin/reinstall/cmd/base && sh cmd_openssl.sh
+# 	fi
+# fi
 
 if [ "$VERSION" -gt "70" ];then
 	if [ ! -d $DIR/cmd/openssl11 ];then
@@ -32,7 +32,7 @@ fi
 
 
 NON_ZTS_FILENAME=`ls $DIR/php/php$VERSION/lib/php/extensions | grep no-debug-non-zts`
-extFile=$DIR/php/php$VERSION/lib/php/extensions/$NON_ZTS_FILENAME/${LIBNAME}.so
+extFile=$DIR/php/php${VERSION}/lib/php/extensions/$NON_ZTS_FILENAME/${LIBNAME}.so
 
 #check
 TMP_PHP_INI=/tmp/t_tmp_php.ini
@@ -43,7 +43,7 @@ $DIR/php/php$VERSION/bin/php -c $TMP_PHP_INI -r 'phpinfo();' > $TMP_CHECK_LOG 2>
 FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "${LIBNAME}.cafile"`
 
 
-echo "install $LIBNAME start"
+echo "install ${VERSION}|$LIBNAME start"
 
 EXT_IS_INVAILD=`cat $TMP_CHECK_LOG | grep "Unable to load dynamic library"`
 if [ "$EXT_IS_INVAILD" != "" ]; then
@@ -51,7 +51,7 @@ if [ "$EXT_IS_INVAILD" != "" ]; then
 	# echo $extFile
 else
 	if [ "$FIND_IS_INSTALL" != "" ]; then
-		echo "install $LIBNAME end ."
+		echo "install ${VERSION}|$LIBNAME end ."
 		exit 0
 	fi
 fi
@@ -81,18 +81,20 @@ if [ ! -f "$extFile" ]; then
 	LIB_DEPEND_DIR=`brew info ${BREW_OPENSSL} | grep ${BREW_DIR}/Cellar/${BREW_OPENSSL} | cut -d \  -f 1 | awk 'END {print}'`
 
 
-	if [ "$VERSION" -le "70" ];then
-		LIB_DEPEND_DIR=$DIR/cmd/openssl
-	else 
+	if [ "$VERSION" -lt "70" ];then
+		export OPENSSL_CFLAGS="-I${LIB_DEPEND_DIR}/include"
+		export OPENSSL_LIBS="-L/${LIB_DEPEND_DIR}/lib -lssl -lcrypto"
+	else
 		LIB_DEPEND_DIR=$DIR/cmd/openssl11
+		export OPENSSL_CFLAGS="-I${LIB_DEPEND_DIR}/include"
+		export OPENSSL_LIBS="-L/${LIB_DEPEND_DIR}/lib -lssl -lcrypto"
 	fi
 
-	echo $LIB_DEPEND_DIR
-	exit 0
-
+	
 	$DIR/php/php$VERSION/bin/phpize
 	./configure  --with-php-config=$DIR/php/php$VERSION/bin/php-config \
-	--with-openssl=${LIB_DEPEND_DIR} && make clean && make && make install && make clean
+	--with-openssl=${LIB_DEPEND_DIR}
+	make clean && make && make install && make clean
 fi
 
-echo "install $LIBNAME end"
+echo "install ${VERSION}|$LIBNAME end"

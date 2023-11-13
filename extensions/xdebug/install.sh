@@ -15,8 +15,10 @@ LIBV=3.2.2
 
 if [ "$VERSION" -lt "70" ];then
 	LIBV=2.2.7
-elif [ "$VERSION" -lt "80" ];then
-	LIBV=2.6.0
+elif [ "$VERSION" == "74" ];then
+	LIBV=2.8.0
+elif [ "$VERSION" -lt "74" ];then
+	LIBV=2.7.0
 fi
 
 CONFIG_OPTION="|"

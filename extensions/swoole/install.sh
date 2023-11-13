@@ -20,8 +20,10 @@ elif [ "$VERSION" == "71" ];then
 	LIBV=4.5.2
 elif [ "$VERSION" == "72" ];then
 	LIBV=4.8.10
-elif [ "$VERSION" -gt "74" ];then
-	LIBV=5.0.3
+elif [ "$VERSION" == "73" ];then
+	LIBV=4.8.10
+elif [ "$VERSION" == "74" ];then
+	LIBV=4.8.10
 fi
 
 

@@ -25,14 +25,14 @@ echo "extension=$LIBNAME.so" > $TMP_PHP_INI
 $DIR/php/php$VERSION/bin/php -c $TMP_PHP_INI -r 'phpinfo();' > $TMP_CHECK_LOG 2>&1
 FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "GetText Support"`
 
-echo "install $LIBNAME start"
+echo "install ${VERSION}|$LIBNAME start"
 
 EXT_IS_INVAILD=`cat  $TMP_CHECK_LOG | grep "Unable to load dynamic library"`
 if [ "$EXT_IS_INVAILD" != "" ]; then
 	rm -rf $extFile
 else
 	if [ "$FIND_IS_INSTALL" != "" ]; then
-		echo "install $LIBNAME end ."
+		echo "install ${VERSION}|$LIBNAME end ."
 		exit 0
 	fi
 fi
@@ -60,4 +60,4 @@ if [ ! -f "$extFile" ]; then
 	make && make install && make clean
 fi
 
-echo "install $LIBNAME end"
+echo "install ${VERSION}|$LIBNAME end"

@@ -11,6 +11,10 @@ VERSION=$1
 LIBNAME=taint
 LIBV=2.1.0
 
+if [ "$VERSION" -ge "80" ];then
+	LIBV=2.1.0
+fi
+
 CONFIG_OPTION="--enable-taint"
 
 

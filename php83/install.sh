@@ -1,10 +1,6 @@
-#! /bin/sh
-
-# https://wiki.php.net/todo/php74
-
+#!/bin/sh
 export PATH=$PATH:/opt/local/bin:/opt/local/sbin:/opt/local/share/man:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
 export PATH=$PATH:/opt/homebrew/bin
-
 
 DIR=$(cd "$(dirname "$0")"; pwd)
 DIR=$(dirname "$DIR")
@@ -13,41 +9,34 @@ MDIR=$(dirname "$DIR")
 
 mkdir -p $MDIR/source/php
 
-PHP_VER=7.4.30
-PHP_M_VER=74
+PHP_VER=8.3.0RC6
+PHP_M_VER=83
 
-if [ ! -f $MDIR/source/php/php-${PHP_VER}.tar.xz ];then
-	wget -O $MDIR/source/php/php-${PHP_VER}.tar.xz https://www.php.net/distributions/php-${PHP_VER}.tar.xz
+if [ ! -f $MDIR/source/php/php-${PHP_VER}.tar.bz2 ];then
+	# https://downloads.php.net/~eric/php-8.3.0RC6.tar.xz
+	wget -O $MDIR/source/php/php-${PHP_VER}.tar.bz2 https://downloads.php.net/~eric/php-8.3.0RC6.tar.xz
 fi
+
 
 if [ ! -d $MDIR/source/php/php${PHP_M_VER} ]; then
 	if [ ! -d $MDIR/source/php/php-${PHP_VER} ];then
-		cd $MDIR/source/php && tar -Jxf $MDIR/source/php/php-${PHP_VER}.tar.xz
+		cd $MDIR/source/php && tar -jxvf $MDIR/source/php/php-${PHP_VER}.tar.bz2
 	fi
 
 	mv $MDIR/source/php/php-${PHP_VER} $MDIR/source/php/php${PHP_M_VER}
-	
 fi
 
 cd $MDIR/source/php/php${PHP_M_VER}
-#./configure --help
 
 if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 
 
 cd $MDIR/source/php/php${PHP_M_VER}
 
-
-# BREW_DIR=`which brew`
-# BREW_DIR=${BREW_DIR/\/bin\/brew/}
-# LIB_DEPEND_DIR=`brew info oniguruma | grep ${BREW_DIR}/Cellar/oniguruma | cut -d \  -f 1 | awk 'END {print}'`
-# export PKG_CONFIG_PATH=$LIB_DEPEND_DIR/lib/pkgconfig
-
-
 OPTIONS=''
-OPTIONS="${OPTIONS} --with-external-pcre=$DIR/cmd/pcre"
 
-# ./buildconf --force
+
+./buildconf --force
 ./configure --prefix=$DIR/php/php${PHP_M_VER}/ \
 --exec-prefix=$DIR/php/php${PHP_M_VER}/ \
 --with-config-file-path=$DIR/php/php${PHP_M_VER}/etc \
@@ -58,7 +47,6 @@ OPTIONS="${OPTIONS} --with-external-pcre=$DIR/cmd/pcre"
 --with-mhash=$DIR/cmd/mhash \
 $OPTIONS \
 --without-iconv \
---enable-mbstring \
 --enable-opcache \
 --enable-simplexml \
 --enable-ftp \
@@ -77,15 +65,9 @@ $OPTIONS \
 # --enable-zip \
 
 
-make clean && make -j4 && make install && make clean
+make -j4 && make install && make clean
 
 fi
-
-# 缺少pcre2.h头文件
-if [ ! -f ${DIR}/php/php${PHP_M_VER}/include/php/ext/pcre/pcre2.h ];then
-	cp -rf ${MDIR}/source/php/php${PHP_M_VER}/ext/pcre/pcre2lib/pcre2.h ${DIR}/php/php${PHP_M_VER}/include/php/ext/pcre/pcre2.h
-fi
-
 
 if [ "$?" != "0" ];then
 	echo "install fail!!"
@@ -141,5 +123,3 @@ if [ ! -f $DIR/php/php${PHP_M_VER}/etc/php-fpm.d/www.conf ];then
 
 	rm -rf $DIR/php/php${PHP_M_VER}/etc/php-fpm.d/www.conf_bak
 fi
-
-

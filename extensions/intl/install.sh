@@ -16,7 +16,7 @@ LIBV=0
 
 BREW_DIR=`which brew`
 BREW_DIR=${BREW_DIR/\/bin\/brew/}
-if [ "$VERSION" -lt "73" ];then
+if [ "$VERSION" -lt "74" ];then
 	LIB_DEPEND_DIR=`brew info icu4c@55.2 | grep ${BREW_DIR}/Cellar/icu4c@55.2 | cut -d \  -f 1 | awk 'END {print}'`
 else
 	LIB_DEPEND_DIR=`brew info icu4c | grep ${BREW_DIR}/Cellar/icu4c | cut -d \  -f 1 | awk 'END {print}'`
@@ -37,10 +37,9 @@ $DIR/php/php$VERSION/bin/php -c $TMP_PHP_INI -r 'phpinfo();' > $TMP_CHECK_LOG 2>
 FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "${LIBNAME}.default_locale"`
 
 
-echo "install $LIBNAME start"
+echo "install ${VERSION}|$LIBNAME start"
 
 EXT_IS_INVAILD=`cat  $TMP_CHECK_LOG | grep "Unable to load dynamic library"`
-echo $EXT_IS_INVAILD
 if [ "$EXT_IS_INVAILD" != "" ]; then
 	rm -rf $extFile
 else
@@ -59,8 +58,6 @@ if [ "${isInstall}" != "" ]; then
 	echo "php-$VERSION 已安装${LIBNAME},请选择其它版本!"
 	return
 fi
-
-
  
 if [ ! -f "$extFile" ]; then
 
@@ -72,4 +69,4 @@ if [ ! -f "$extFile" ]; then
 	make && make install && make clean
 fi
 
-echo "install $LIBNAME end"
+echo "install ${VERSION}|$LIBNAME end"

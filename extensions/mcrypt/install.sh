@@ -14,7 +14,7 @@ VERSION=$1
 LIBNAME=mcrypt
 LIBV='0'
 
-if [ "$VERSION" -gt "73" ];then
+if [ "$VERSION" -gt "71" ];then
 	cd $curDir && bash install_ge8.sh $VERSION
 	exit 0
 fi
@@ -30,14 +30,14 @@ echo "extension=$LIBNAME.so" > $TMP_PHP_INI
 $DIR/php/php$VERSION/bin/php -c $TMP_PHP_INI -r 'phpinfo();' > $TMP_CHECK_LOG 2>&1
 FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "${LIBNAME}.modes_dir"`
 
-echo "install $LIBNAME start"
+echo "install ${VERSION}|$LIBNAME start"
 
 EXT_IS_INVAILD=`cat  $TMP_CHECK_LOG | grep "Unable to load dynamic library"`
 if [ "$EXT_IS_INVAILD" != "" ]; then
 	rm -rf $extFile
 else
 	if [ "$FIND_IS_INSTALL" != "" ]; then
-		echo "install $LIBNAME end ."
+		echo "install ${VERSION}|$LIBNAME end ."
 		exit 0
 	fi
 fi
@@ -52,13 +52,13 @@ if [ "${isInstall}" != "" ]; then
 	return
 fi
 
-if [ "$VERSION" -lt "70" ];then
-	LIB_DEPEND_DIR=$DIR/cmd/libmcrypt
-else
+# if [ "$VERSION" -lt "70" ];then
+	# LIB_DEPEND_DIR=$DIR/cmd/libmcrypt
+# else
 	BREW_DIR=`which brew`
 	BREW_DIR=${BREW_DIR/\/bin\/brew/}
-	LIB_DEPEND_DIR=`brew info libmcrypt | grep ${BREW_DIR}/Cellar/libmcrypt | cut -d \  -f 1 | awk 'END {print}'`
-fi
+	LIB_DEPEND_DIR=`brew info mcrypt | grep ${BREW_DIR}/Cellar/mcrypt | cut -d \  -f 1 | awk 'END {print}'`
+# fi
 
 # echo $LIB_DEPEND_DIR
 # exit
@@ -70,4 +70,4 @@ if [ ! -f "$extFile" ]; then
 	--with-mcrypt=${LIB_DEPEND_DIR} && make && make install
 fi
 
-echo "install $LIBNAME end"
+echo "install ${VERSION}|$LIBNAME end"

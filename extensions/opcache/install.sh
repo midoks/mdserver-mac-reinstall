@@ -13,6 +13,6 @@ VERSION=$1
 LIBNAME=opcache
 LIBV='0'
 
-echo "install $LIBNAME start"
+echo "install ${VERSION}|$LIBNAME start"
 sh $MDIR/bin/reinstall/check_common.sh $VERSION
-echo "install $LIBNAME end ."
+echo "install ${VERSION}|$LIBNAME end ."
