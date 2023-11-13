@@ -48,7 +48,6 @@ cd $MDIR/source/php/php${PHP_M_VER}
 --enable-mysqlnd \
 --with-mysqli=mysqlnd \
 --with-pdo-mysql=mysqlnd \
---with-zlib-dir=$DIR/cmd/zlib \
 --with-mhash=$DIR/cmd/mhash \
 $OPTIONS \
 --without-iconv \
