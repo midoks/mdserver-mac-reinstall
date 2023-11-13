@@ -14,7 +14,7 @@ VERSION=$1
 LIBNAME=mcrypt
 LIBV='0'
 
-if [ "$VERSION" -gt "74" ];then
+if [ "$VERSION" -gt "73" ];then
 	cd $curDir && bash install_ge8.sh $VERSION
 	exit 0
 fi
