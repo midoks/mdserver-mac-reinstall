@@ -11,7 +11,11 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=yaml
-LIBV=2.1.0
+LIBV=2.2.3
+
+if [ "$VERSION" -lt '71' ];then
+	LIBV=2.1.0
+fi
 
 BREW_DIR=`which brew`
 BREW_DIR=${BREW_DIR/\/bin\/brew/}
