@@ -102,7 +102,7 @@ if [ ! -f "$extFile" ]; then
 	$DIR/php/php$VERSION/bin/phpize
 	echo "./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config ${CONFIG_OPTION}"
 	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config ${CONFIG_OPTION}
-	make && make install && make clean
+	make clean && make && make install && make clean
 
 	if [ -d $php_lib/${LIBNAME}-${LIBV} ];then
 		rm -rf $php_lib/${LIBNAME}-${LIBV}
