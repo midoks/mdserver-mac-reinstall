@@ -32,19 +32,12 @@ PATH=$PATH:/Applications/mdserver/bin/cmd/libzip
 
 if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 
-# ./buildconf --force
-# export PATH="/usr/local/opt/bison/bin:$PATH"
-# export LDFLAGS="-L/usr/local/opt/bison/lib"
-# export PKG_CONFIG_PATH="/usr/local/opt/libxml2/lib/pkgconfig"
-# export LDFLAGS="-L/usr/local/opt/libxml2/lib"
-
-BREW_DIR=`which brew`
-BREW_DIR=${BREW_DIR/\/bin\/brew/}
-LIB_DEPEND_DIR=`brew info oniguruma | grep ${BREW_DIR}/Cellar/oniguruma | cut -d \  -f 1 | awk 'END {print}'`
-export PKG_CONFIG_PATH=$LIB_DEPEND_DIR/lib/pkgconfig
+# BREW_DIR=`which brew`
+# BREW_DIR=${BREW_DIR/\/bin\/brew/}
+# LIB_DEPEND_DIR=`brew info oniguruma | grep ${BREW_DIR}/Cellar/oniguruma | cut -d \  -f 1 | awk 'END {print}'`
+# export PKG_CONFIG_PATH=$LIB_DEPEND_DIR/lib/pkgconfig
 
 OPTIONS=''
-OPTIONS="${OPTIONS} --with-external-pcre=$DIR/cmd/pcre"
 
 cd $MDIR/source/php/php${PHP_M_VER}
 ./buildconf --force
