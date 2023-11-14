@@ -27,7 +27,7 @@ if [ ! -d $DIR/memcached ]; then
 # --with-libevent=$DIR/cmd/libevent \
 # --with-zlib-dir=$DIR/cmd/zlib \
 cd $MDIR/source/memcached/memcached-${VERSION}
-./configure --prefix=$DIR/memcached && \
+./configure --prefix=$DIR/memcached --with-libevent=$(brew --prefix libevent) && \
 make && make install && make clean
 
 fi
