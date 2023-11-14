@@ -34,13 +34,13 @@ PHP_EXT_LIST=(curl openssl pcntl mcrypt fileinfo \
 
 # PHP_VER_LIST=(83)
 
-for PHP_VER in ${PHP_VER_LIST[@]}
-do
-	# test version all ext
-	test_ext=grpc
-	# cd $DIR/extensions/$test_ext && bash uninstall.sh $PHP_VER
-	cd $DIR/extensions/${test_ext} && bash install.sh ${PHP_VER}
-done
+# for PHP_VER in ${PHP_VER_LIST[@]}
+# do
+# 	# test version all ext
+# 	test_ext=grpc
+# 	# cd $DIR/extensions/$test_ext && bash uninstall.sh $PHP_VER
+# 	cd $DIR/extensions/${test_ext} && bash install.sh ${PHP_VER}
+# done
 
 
 for PHP_VER in ${PHP_VER_LIST[@]}
