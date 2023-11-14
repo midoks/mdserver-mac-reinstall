@@ -43,49 +43,49 @@ do
 done
 
 
-# for PHP_VER in ${PHP_VER_LIST[@]}
-# do
-# 	echo "php${PHP_VER} -- start"
-# 	cd $DIR/php$PHP_VER && sh install.sh
+for PHP_VER in ${PHP_VER_LIST[@]}
+do
+	echo "php${PHP_VER} -- start"
+	cd $DIR/php$PHP_VER && sh install.sh
 
-# 	if [ ! -f $MDIR/php/php$PHP_VER/bin/phpize ];then
-# 		echo "$PHP_VER compilation failed"
-# 		continue;
-# 	fi
+	if [ ! -f $MDIR/php/php$PHP_VER/bin/phpize ];then
+		echo "$PHP_VER compilation failed"
+		continue;
+	fi
 
-# 	ext_all=$(ls -l $DIR/extensions |awk '/^d/ {print $NF}')
-# 	for i in $ext_all
-# 	do
+	ext_all=$(ls -l $DIR/extensions |awk '/^d/ {print $NF}')
+	for i in $ext_all
+	do
 
-# 		if [ "$i" == "grpc" ];then
-# 			continue
-# 		fi
+		if [ "$i" == "grpc" ];then
+			continue
+		fi
 
 
-# 		find_support=$(cat ${DIR}/extensions/lib.md |grep $i | awk -F '|' '{print $2}')
-# 		if [ "$find_support" = "" ];then
-# 			continue
-# 		fi
-# 		find_support_php=$(echo $find_support |grep $PHP_VER)
-# 		if [ "$find_support_php" != "" ];then
-# 			cd $DIR/extensions/$i && sh install.sh $PHP_VER
-# 		fi
-# 	done
+		find_support=$(cat ${DIR}/extensions/lib.md |grep $i | awk -F '|' '{print $2}')
+		if [ "$find_support" = "" ];then
+			continue
+		fi
+		find_support_php=$(echo $find_support |grep $PHP_VER)
+		if [ "$find_support_php" != "" ];then
+			cd $DIR/extensions/$i && sh install.sh $PHP_VER
+		fi
+	done
 
-# 	for PHP_EXT in ${PHP_EXT_LIST[@]}
-# 	do
-# 		find_support=$(cat ${DIR}/extensions/lib.md |grep $PHP_EXT | awk -F '|' '{print $2}')
-# 		find_support_php=$(echo $find_support |grep $PHP_VER)
-# 		if [ "$find_support_php" != "" ];then
-# 			echo "php${PHP_VER} - ${PHP_EXT} -- load start"
-# 			if [ -d $DIR/extensions/$PHP_EXT ];then
-# 				cd $DIR/extensions/$PHP_EXT && sh unload.sh $PHP_VER
-# 				cd $DIR/extensions/$PHP_EXT && sh load.sh $PHP_VER
-# 			fi
-# 			echo "php${PHP_VER} - ${PHP_EXT} -- load end"
-# 		fi
+	for PHP_EXT in ${PHP_EXT_LIST[@]}
+	do
+		find_support=$(cat ${DIR}/extensions/lib.md |grep $PHP_EXT | awk -F '|' '{print $2}')
+		find_support_php=$(echo $find_support |grep $PHP_VER)
+		if [ "$find_support_php" != "" ];then
+			echo "php${PHP_VER} - ${PHP_EXT} -- load start"
+			if [ -d $DIR/extensions/$PHP_EXT ];then
+				cd $DIR/extensions/$PHP_EXT && sh unload.sh $PHP_VER
+				cd $DIR/extensions/$PHP_EXT && sh load.sh $PHP_VER
+			fi
+			echo "php${PHP_VER} - ${PHP_EXT} -- load end"
+		fi
 
-# 	done
-# 	echo "php${PHP_VER} -- end"
-# done
+	done
+	echo "php${PHP_VER} -- end"
+done
 
