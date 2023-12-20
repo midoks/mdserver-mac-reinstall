@@ -48,13 +48,26 @@ fi
 
 if [ ! -f "$extFile" ]; then
 
+	OPTIONS="--with-zlib-dir=$DIR/cmd/zlib "
+	OPTIONS="$OPTIONS --with-png-dir=$DIR/cmd/libpng"
+	OPTIONS="$OPTIONS --with-png-dir=$DIR/cmd/freetype"
+	OPTIONS="$OPTIONS --with-png-dir=$DIR/cmd/libjpeg"
+
+
+	OPTIONS_GT8='--enable-gd --enable-gd-jis-conv --with-webp --with-xpm --with-jpeg --with-freetype'
+
+
+	SELECT_OPTION=$OPTIONS
+	if [ "$VERSION" -gt "74" ];then
+		SELECT_OPTION=$OPTIONS_GT8
+	fi
+
+
 	cd $MDIR/source/php/php${VERSION}/ext/gd
 	$DIR/php/php$VERSION/bin/phpize
 	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \
-	--with-zlib-dir=$DIR/cmd/zlib \
-	--with-png-dir=$DIR/cmd/libpng \
-	--with-freetype-dir=$DIR/cmd/freetype \
-	--with-jpeg-dir=$DIR/cmd/libjpeg && \
+	$SELECT_OPTION
+	
 	make && make install
 fi
 

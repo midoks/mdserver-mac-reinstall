@@ -9,12 +9,12 @@ MDIR=$(dirname "$DIR")
 
 mkdir -p $MDIR/source/php
 
-PHP_VER=8.3.0RC6
+PHP_VER=8.3.0
 PHP_M_VER=83
 
 if [ ! -f $MDIR/source/php/php-${PHP_VER}.tar.bz2 ];then
-	# https://downloads.php.net/~eric/php-8.3.0RC6.tar.xz
-	wget -O $MDIR/source/php/php-${PHP_VER}.tar.bz2 https://downloads.php.net/~eric/php-8.3.0RC6.tar.xz
+	# https://www.php.net/distributions/php-8.3.0.tar.xz
+	wget -O $MDIR/source/php/php-${PHP_VER}.tar.bz2 https://www.php.net/distributions/php-${PHP_VER}.tar.bz2
 fi
 
 
