@@ -54,7 +54,8 @@ if [ ! -f "$extFile" ]; then
 	OPTIONS="$OPTIONS --with-png-dir=$DIR/cmd/libjpeg"
 
 
-	OPTIONS_GT8='--enable-gd --enable-gd-jis-conv --with-webp --with-xpm --with-jpeg --with-freetype'
+	# --enable-gd-jis-conv
+	OPTIONS_GT8='--enable-gd  --with-webp --with-xpm --with-jpeg --with-freetype'
 
 
 	SELECT_OPTION=$OPTIONS
