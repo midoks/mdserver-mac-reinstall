@@ -29,8 +29,9 @@ MDIR=$(dirname "$DIR")
 
 
 PHP_VER_LIST=(55 56 71 72 73 74 80 81 82 83 84)
-PHP_VER_LIST=(84)
-PHP_EXT_LIST=(curl openssl pcntl mcrypt fileinfo \
+# PHP_VER_LIST=(84)
+# openssl
+PHP_EXT_LIST=(curl pcntl mcrypt fileinfo \
 	exif gd gettext zlib zip intl memcache memcached redis imagick xhprof swoole yaf mongodb iconv)
 
 # PHP_VER_LIST=(83)
