@@ -12,6 +12,12 @@ VERSION=$1
 LIBNAME=mongo
 LIBV=1.6.16
 
+if [ "$VERSION" -gt "74" ];then
+	echo "install fail, use by php-mongodb extension!"
+	exit 0
+fi
+
+
 APPLE_SDK=/Library/Developer/CommandLineTools/SDKs
 APP_SDK_DIR=`ls $APPLE_SDK | grep sdk | cut -d \  -f 1 | awk 'END {print}'`
 ABS_PATH_SDK=${APPLE_SDK}/${APP_SDK_DIR}
