@@ -1,7 +1,7 @@
 #! /bin/sh
 
 PATH=$PATH:/opt/local/bin:/opt/local/sbin:/opt/local/share/man:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
-# export PATH=$PATH:/opt/homebrew/bin
+export PATH=$PATH:/opt/homebrew/bin
 
 DIR=$(cd "$(dirname "$0")"; pwd)
 DIR=$(dirname "$DIR")
@@ -12,7 +12,7 @@ MDIR=$(dirname "$DIR")
 VERSION=$1
 LIBNAME=openssl
 LIBV='0'
-BREW_OPENSSL=openssl@1.1
+BREW_OPENSSL=openssl@3
 
 if [ "$VERSION" -lt "70" ];then
 	BREW_OPENSSL=openssl@1.0
@@ -30,6 +30,9 @@ if [ "$VERSION" -gt "70" ];then
 	fi
 fi
 
+
+# export LDFLAGS="-L/Applications/mdserver/bin/cmd/openssl11/lib"
+# export CPPFLAGS="-I/Applications/mdserver/bin/cmd/openssl11/include"
 
 NON_ZTS_FILENAME=`ls $DIR/php/php$VERSION/lib/php/extensions | grep no-debug-non-zts`
 extFile=$DIR/php/php${VERSION}/lib/php/extensions/$NON_ZTS_FILENAME/${LIBNAME}.so
@@ -78,18 +81,19 @@ if [ ! -f "$extFile" ]; then
 
 	BREW_DIR=`which brew`
 	BREW_DIR=${BREW_DIR/\/bin\/brew/}
+	# brew info openssl@1.1 | grep /opt/homebrew/Cellar/openssl@1.1 | cut -d \  -f 1 | awk 'END {print}'
 	LIB_DEPEND_DIR=`brew info ${BREW_OPENSSL} | grep ${BREW_DIR}/Cellar/${BREW_OPENSSL} | cut -d \  -f 1 | awk 'END {print}'`
-
-
+	echo "LIB_DEPEND_DIR:"$LIB_DEPEND_DIR
 	if [ "$VERSION" -lt "70" ];then
-		export OPENSSL_CFLAGS="-I${LIB_DEPEND_DIR}/include"
-		export OPENSSL_LIBS="-L/${LIB_DEPEND_DIR}/lib -lssl -lcrypto"
-	else
+		echo "------"
 		LIB_DEPEND_DIR=$DIR/cmd/openssl11
-		export OPENSSL_CFLAGS="-I${LIB_DEPEND_DIR}/include"
-		export OPENSSL_LIBS="-L/${LIB_DEPEND_DIR}/lib -lssl -lcrypto"
+	else
+		echo "------"
+		
 	fi
 
+	export OPENSSL_CFLAGS="-I${LIB_DEPEND_DIR}/include"
+	export OPENSSL_LIBS="-L/${LIB_DEPEND_DIR}/lib -lssl -lcrypto"
 	
 	$DIR/php/php$VERSION/bin/phpize
 	./configure  --with-php-config=$DIR/php/php$VERSION/bin/php-config \
