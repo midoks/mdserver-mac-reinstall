@@ -17,6 +17,11 @@ if [ "$VERSION" -lt "72" ];then
 	LIBV=2.0.2
 fi
 
+if [ "$VERSION" == "81" ];then
+	echo "install fail, wait for new version!"
+	exit 0
+fi
+
 
 _LIBNAME=$(echo $LIBNAME | tr '[A-Z]' '[a-z]')
 
