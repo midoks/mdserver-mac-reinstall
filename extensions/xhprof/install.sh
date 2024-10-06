@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=xhprof
-LIBV=2.3.4
+LIBV=2.3.10
 
 if [ "$VERSION" -lt "70" ];then
 	LIBV=0.9.4
