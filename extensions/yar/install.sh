@@ -11,7 +11,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=yar
-LIBV=2.3.2
+LIBV=2.3.3
 
 if [ "$VERSION" -le "70" ];then
 	LIBV=1.2.5
