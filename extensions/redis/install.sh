@@ -11,7 +11,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=redis
-LIBV=5.3.7
+LIBV=6.1.0
 
 
 if [ "$VERSION" == "52" ];then
@@ -19,7 +19,7 @@ if [ "$VERSION" == "52" ];then
 elif [ "$VERSION" -lt "70" ];then
 	LIBV=4.2.0
 elif [ "$VERSION" -gt "74" ];then
-	LIBV=5.3.7
+	LIBV=6.1.0
 fi
 
 
