@@ -46,6 +46,7 @@ OPTIONS=''
 --with-pdo-mysql=mysqlnd \
 --with-mhash=$DIR/cmd/mhash \
 $OPTIONS \
+--with-openssl \
 --without-iconv \
 --enable-opcache \
 --enable-simplexml \
