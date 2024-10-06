@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=mongodb
-LIBV=1.13.0
+LIBV=1.20.0
 
 if [ "$VERSION" == '80' ];then
 	LIBV=1.9.0
