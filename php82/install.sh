@@ -14,7 +14,7 @@ PHP_M_VER=82
 
 if [ ! -f $MDIR/source/php/php-${PHP_VER}.tar.bz2 ];then
 	# https://www.php.net/distributions/php-8.2.12.tar.gz
-	wget -O $MDIR/source/php/php-${PHP_VER}.tar.bz2 https://www.php.net/distributions/php-${PHP_VER}.tar.gz
+	wget -O $MDIR/source/php/php-${PHP_VER}.tar.bz2 https://www.php.net/distributions/php-${PHP_VER}.tar.bz2
 fi
 
 
