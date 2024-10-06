@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=zip
-LIBV=1.22.1
+LIBV=1.22.4
 
 if [ "$VERSION" -lt "70" ];then
 	LIBV=1.21.1
