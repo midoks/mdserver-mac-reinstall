@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=swoole
-LIBV=5.0.3
+LIBV=5.1.4
 
 if [ "$VERSION" -lt "70" ];then
 	LIBV=1.10.1

@@ -18,6 +18,21 @@ if [ "$VERSION" -lt "70" ];then
 	BREW_OPENSSL=openssl@1.0
 fi
 
+if [ "$VERSION" == "81" ];then
+	echo "install ${VERSION}|$LIBNAME no need"
+	exit 0
+fi
+
+if [ "$VERSION" == "82" ];then
+	echo "install ${VERSION}|$LIBNAME no need"
+	exit 0
+fi
+
+if [ "$VERSION" == "83" ];then
+	echo "install ${VERSION}|$LIBNAME no need"
+	exit 0
+fi
+
 # if [ "$VERSION" -le "70" ];then
 # 	if [ ! -d $DIR/cmd/openssl ];then
 # 		cd $MDIR/bin/reinstall/cmd/base && sh cmd_openssl.sh
@@ -42,6 +57,8 @@ TMP_PHP_INI=/tmp/t_tmp_php.ini
 TMP_CHECK_LOG=/tmp/t_check_php.log
 
 echo "extension=$LIBNAME.so" > $TMP_PHP_INI
+echo "echo "extension=$LIBNAME.so" > $TMP_PHP_INI"
+echo "$DIR/php/php$VERSION/bin/php -c $TMP_PHP_INI -r 'phpinfo();' > $TMP_CHECK_LOG 2>&1"
 $DIR/php/php$VERSION/bin/php -c $TMP_PHP_INI -r 'phpinfo();' > $TMP_CHECK_LOG 2>&1
 FIND_IS_INSTALL=`cat  $TMP_CHECK_LOG | grep "${LIBNAME}.cafile"`
 
@@ -93,11 +110,12 @@ if [ ! -f "$extFile" ]; then
 	fi
 
 	export OPENSSL_CFLAGS="-I${LIB_DEPEND_DIR}/include"
-	export OPENSSL_LIBS="-L/${LIB_DEPEND_DIR}/lib -lssl -lcrypto"
+	export OPENSSL_LIBS="-L/${LIB_DEPEND_DIR}/lib -lssl -lcrypto -lz"
 	
 	$DIR/php/php$VERSION/bin/phpize
 	./configure  --with-php-config=$DIR/php/php$VERSION/bin/php-config \
-	--with-openssl=${LIB_DEPEND_DIR}
+	--with-openssl
+	# =${LIB_DEPEND_DIR}
 	make clean && make && make install && make clean
 fi
 
