@@ -11,10 +11,14 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=protobuf
-LIBV=4.27.5
+LIBV=3.25.5
 
 if [ "$VERSION" -lt "80" ];then
 	LIBV=3.11.4
+fi
+
+if [ "$VERSION" -ge "81" ];then
+	LIBV=4.27.5
 fi
 
 CONFIG_OPTION="--enable-protobuf"
