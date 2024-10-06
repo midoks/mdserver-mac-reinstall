@@ -14,7 +14,7 @@ PHP_VER=8.4.0RC1
 PHP_M_VER=84
 
 if [ ! -f $MDIR/source/php/php-${PHP_VER}.tar.bz2 ];then
-	# https://www.php.net/distributions/php-8.3.0.tar.xz
+	# https://www.php.net/distributions/php-8.4.0.tar.xz
 	wget -O $MDIR/source/php/php-${PHP_VER}.tar.bz2 https://downloads.php.net/~saki/php-${PHP_VER}.tar.bz2
 fi
 
