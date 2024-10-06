@@ -13,16 +13,6 @@ VERSION=$1
 LIBNAME=yaf
 LIBV=3.3.6
 
-if [ "$VERSION" == "82" ];then
-	echo "install fail, wait for new version!"
-	exit 0
-fi
-
-if [ "$VERSION" == "83" ];then
-	echo "install fail, wait for new version!"
-	exit 0
-fi
-
 if [ "$VERSION" == "84" ];then
 	echo "install fail, wait for new version!"
 	exit 0
