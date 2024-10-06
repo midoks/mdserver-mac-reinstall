@@ -32,6 +32,11 @@ if [ "$VERSION" == "83" ];then
 	exit 0
 fi
 
+if [ "$VERSION" == "84" ];then
+	echo "install fail, wait for new version!"
+	exit 0
+fi
+
 
 _LIBNAME=$(echo $LIBNAME | tr '[A-Z]' '[a-z]')
 
