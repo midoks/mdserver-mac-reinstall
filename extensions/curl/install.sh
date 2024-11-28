@@ -57,6 +57,7 @@ BREW_DIR=${BREW_DIR/\/bin\/brew/}
 LIB_DEPEND_DIR=`brew info curl | grep ${BREW_DIR}/Cellar/curl | cut -d \  -f 1 | awk 'END {print}'`
 
 if [ ! -f "$extFile" ]; then
+	export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$LIB_DEPEND_DIR/lib/pkgconfig
 	cd $MDIR/source/php/php$VERSION/ext/curl
 	$DIR/php/php$VERSION/bin/phpize
 	./configure  \
