@@ -37,7 +37,7 @@ if [ ! -d $DIR/php/php${PHP_M_VER} ];then
 cd $MDIR/source/php/php${PHP_M_VER}
 
 OPTIONS=''
-
+# OPTIONS='${OPTIONS} --with-openssl-dir=/Applications/mdserver/bin/cmd/openssl332 '
 
 ./buildconf --force
 ./configure --prefix=$DIR/php/php${PHP_M_VER}/ \
@@ -49,7 +49,6 @@ OPTIONS=''
 --with-pdo-mysql=mysqlnd \
 --with-mhash=$DIR/cmd/mhash \
 $OPTIONS \
---with-openssl \
 --without-iconv \
 --enable-opcache \
 --enable-simplexml \
@@ -62,6 +61,29 @@ $OPTIONS \
 --enable-sysvshm \
 --disable-fileinfo \
 --enable-fpm
+
+echo "./configure --prefix=$DIR/php/php${PHP_M_VER}/ \
+--exec-prefix=$DIR/php/php${PHP_M_VER}/ \
+--with-config-file-path=$DIR/php/php${PHP_M_VER}/etc \
+--with-mysql-sock=/tmp/mysql.sock \
+--enable-mysqlnd \
+--with-mysqli=mysqlnd \
+--with-pdo-mysql=mysqlnd \
+--with-mhash=$DIR/cmd/mhash \
+$OPTIONS \
+--without-iconv \
+--enable-opcache \
+--enable-simplexml \
+--enable-ftp \
+--enable-soap \
+--enable-sockets \
+--enable-posix \
+--enable-sysvmsg \
+--enable-sysvsem \
+--enable-sysvshm \
+--disable-fileinfo \
+--enable-fpm"
+# exit 0
 
 #--enable-dtrace \
 #--enable-debug 

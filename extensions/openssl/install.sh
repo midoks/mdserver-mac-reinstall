@@ -23,10 +23,10 @@ if [ "$VERSION" == "81" ];then
 	exit 0
 fi
 
-if [ "$VERSION" == "82" ];then
-	echo "install ${VERSION}|$LIBNAME no need"
-	exit 0
-fi
+# if [ "$VERSION" == "82" ];then
+# 	echo "install ${VERSION}|$LIBNAME no need"
+# 	exit 0
+# fi
 
 if [ "$VERSION" == "83" ];then
 	echo "install ${VERSION}|$LIBNAME no need"
@@ -96,26 +96,28 @@ if [ ! -f "$extFile" ]; then
 		mv $MDIR/source/php/php$VERSION/ext/openssl/config0.m4 $MDIR/source/php/php$VERSION/ext/openssl/config.m4
 	fi
 
-	BREW_DIR=`which brew`
-	BREW_DIR=${BREW_DIR/\/bin\/brew/}
+	LIB_DEPEND_DIR=$DIR/cmd/openssl332
+
+	# BREW_DIR=`which brew`
+	# BREW_DIR=${BREW_DIR/\/bin\/brew/}
 	# brew info openssl@1.1 | grep /opt/homebrew/Cellar/openssl@1.1 | cut -d \  -f 1 | awk 'END {print}'
-	LIB_DEPEND_DIR=`brew info ${BREW_OPENSSL} | grep ${BREW_DIR}/Cellar/${BREW_OPENSSL} | cut -d \  -f 1 | awk 'END {print}'`
+	# LIB_DEPEND_DIR=`brew info ${BREW_OPENSSL} | grep ${BREW_DIR}/Cellar/${BREW_OPENSSL} | cut -d \  -f 1 | awk 'END {print}'`
 	echo "LIB_DEPEND_DIR:"$LIB_DEPEND_DIR
 	if [ "$VERSION" -lt "70" ];then
 		echo "------"
-		LIB_DEPEND_DIR=$DIR/cmd/openssl11
+		LIB_DEPEND_DIR=$DIR/cmd/openssl332
 	else
+		LIB_DEPEND_DIR=$DIR/cmd/openssl332
 		echo "------"
-		
 	fi
+
 
 	export OPENSSL_CFLAGS="-I${LIB_DEPEND_DIR}/include"
 	export OPENSSL_LIBS="-L/${LIB_DEPEND_DIR}/lib -lssl -lcrypto -lz"
 	
 	$DIR/php/php$VERSION/bin/phpize
 	./configure  --with-php-config=$DIR/php/php$VERSION/bin/php-config \
-	--with-openssl
-	# =${LIB_DEPEND_DIR}
+	--with-openssl=${LIB_DEPEND_DIR}
 	make clean && make && make install && make clean
 fi
 
