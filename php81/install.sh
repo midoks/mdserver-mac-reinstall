@@ -9,17 +9,17 @@ MDIR=$(dirname "$DIR")
 
 mkdir -p $MDIR/source/php
 
-PHP_VER=8.1.30
+PHP_VER=8.1.31
 PHP_M_VER=81
 
-if [ ! -f $MDIR/source/php/php-${PHP_VER}.tar.gz ];then
-	wget -O $MDIR/source/php/php-${PHP_VER}.tar.gz https://www.php.net/distributions/php-${PHP_VER}.tar.gz
+if [ ! -f $MDIR/source/php/php-${PHP_VER}.tar.bz2 ];then
+	wget -O $MDIR/source/php/php-${PHP_VER}.tar.bz2 https://www.php.net/distributions/php-${PHP_VER}.tar.bz2
 fi
 
 
 if [ ! -d $MDIR/source/php/php${PHP_M_VER} ]; then
 	if [ ! -d $MDIR/source/php/php-${PHP_VER} ];then
-		cd $MDIR/source/php && tar -zvxf $MDIR/source/php/php-${PHP_VER}.tar.gz
+		cd $MDIR/source/php && tar -jxvf $MDIR/source/php/php-${PHP_VER}.tar.bz2
 	fi
 
 	mv $MDIR/source/php/php-${PHP_VER} $MDIR/source/php/php${PHP_M_VER}

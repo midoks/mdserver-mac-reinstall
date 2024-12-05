@@ -19,7 +19,8 @@ BREW_DIR=${BREW_DIR/\/bin\/brew/}
 if [ "$VERSION" -lt "74" ];then
 	LIB_DEPEND_DIR=`brew info icu4c@55.2 | grep ${BREW_DIR}/Cellar/icu4c@55.2 | cut -d \  -f 1 | awk 'END {print}'`
 else
-	LIB_DEPEND_DIR=`brew info icu4c | grep ${BREW_DIR}/Cellar/icu4c | cut -d \  -f 1 | awk 'END {print}'`
+	# LIB_DEPEND_DIR=`brew info icu4c | grep ${BREW_DIR}/Cellar/icu4c | cut -d \  -f 1 | awk 'END {print}'`
+	LIB_DEPEND_DIR=`brew info icu4c@75 | grep ${BREW_DIR}/Cellar/icu4c@75  | cut -d \  -f 1 | awk 'END {print}'`
 fi
 
 #must 
@@ -64,7 +65,6 @@ if [ ! -f "$extFile" ]; then
 	cd $MDIR/source/php/php${VERSION}/ext/intl
 	$DIR/php/php$VERSION/bin/phpize
 	./configure --with-php-config=$DIR/php/php$VERSION/bin/php-config \
-	--with-icu-dir=${LIB_DEPEND_DIR} \
 	--enable-intl && \
 	make && make install && make clean
 fi
