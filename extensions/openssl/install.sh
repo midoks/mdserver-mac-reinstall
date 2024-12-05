@@ -18,20 +18,10 @@ if [ "$VERSION" -lt "70" ];then
 	BREW_OPENSSL=openssl@1.0
 fi
 
-if [ "$VERSION" == "81" ];then
-	echo "install ${VERSION}|$LIBNAME no need"
-	exit 0
-fi
-
-# if [ "$VERSION" == "82" ];then
+# if [ "$VERSION" == "81" ];then
 # 	echo "install ${VERSION}|$LIBNAME no need"
 # 	exit 0
 # fi
-
-if [ "$VERSION" == "83" ];then
-	echo "install ${VERSION}|$LIBNAME no need"
-	exit 0
-fi
 
 # if [ "$VERSION" -le "70" ];then
 # 	if [ ! -d $DIR/cmd/openssl ];then
@@ -111,7 +101,7 @@ if [ ! -f "$extFile" ]; then
 		echo "------"
 	fi
 
-
+	export PKG_CONFIG_PATH=$LIB_DEPEND_DIR/lib/pkgconfig
 	export OPENSSL_CFLAGS="-I${LIB_DEPEND_DIR}/include"
 	export OPENSSL_LIBS="-L/${LIB_DEPEND_DIR}/lib -lssl -lcrypto -lz"
 	
