@@ -51,7 +51,6 @@ cd $MDIR/source/php/php${PHP_M_VER}
 --with-mhash=$DIR/cmd/mhash \
 $OPTIONS \
 --without-iconv \
---with-openssl \
 --enable-opcache \
 --enable-simplexml \
 --enable-ftp \
