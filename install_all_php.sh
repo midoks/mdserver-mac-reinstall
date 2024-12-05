@@ -21,18 +21,18 @@ MDIR=$(dirname "$DIR")
 
 # cd /Applications/mdserver/bin/reinstall/extensions/mbstring && bash install.sh 55
 # cd /Applications/mdserver/bin/reinstall/extensions/grpc && bash install.sh 82
-# cd /Applications/mdserver/bin/reinstall/extensions/openssl && bash install.sh 71
+# cd /Applications/mdserver/bin/reinstall/extensions/openssl && bash install.sh 80
 # cd /Applications/mdserver/bin/reinstall/extensions/nsq && bash install.sh 71
+# cd /Applications/mdserver/bin/reinstall/extensions/curl && bash install.sh 84
 
 # cd /Applications/mdserver/bin/reinstall/php73 && bash install.sh
 # cd /Applications/mdserver/bin/reinstall/php81 && bash install.sh
 
 
-PHP_VER_LIST=(55 56 71 72 73 74 80 81 82 83 84)
+PHP_VER_LIST=(55 56 71 72 73 74 81 82 83 84)
 # PHP_VER_LIST=(81)
-# openssl
 PHP_EXT_LIST=(curl pcntl mcrypt fileinfo \
-	exif gd gettext zlib zip intl memcache memcached redis imagick xhprof swoole yaf mongodb iconv)
+	exif gd gettext zlib zip intl openssl memcache memcached redis imagick xhprof swoole yaf mongodb iconv)
 
 # PHP_VER_LIST=(83)
 
