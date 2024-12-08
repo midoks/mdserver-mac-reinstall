@@ -93,7 +93,7 @@ if [ ! -f "$extFile" ]; then
 	# brew info openssl@1.1 | grep /opt/homebrew/Cellar/openssl@1.1 | cut -d \  -f 1 | awk 'END {print}'
 	# LIB_DEPEND_DIR=`brew info ${BREW_OPENSSL} | grep ${BREW_DIR}/Cellar/${BREW_OPENSSL} | cut -d \  -f 1 | awk 'END {print}'`
 	echo "LIB_DEPEND_DIR:"$LIB_DEPEND_DIR
-	if [ "$VERSION" -lt "81" ];then
+	if [ "$VERSION" -lt "82" ];then
 		echo "------"
 		LIB_DEPEND_DIR=$DIR/cmd/openssl11
 	else
