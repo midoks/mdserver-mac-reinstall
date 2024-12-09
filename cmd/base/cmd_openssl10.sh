@@ -18,7 +18,7 @@ mkdir -p $MDIR/source/cmd
 
 echo "openssl start"
 
-# cd /Applications/mdserver/bin/reinstall/cmd/base && bash cmd_openssl.sh
+# cd /Applications/mdserver/bin/reinstall/cmd/base && bash cmd_openssl10.sh
 
 opensslVersion="1.0.2u"
 
@@ -27,7 +27,7 @@ if [ ! -f $MDIR/source/cmd/openssl-${opensslVersion}.tar.gz ];then
 	wget -O $MDIR/source/cmd/openssl-${opensslVersion}.tar.gz https://www.openssl.org/source/openssl-${opensslVersion}.tar.gz
 fi
 
-if [ ! -d $DIR/cmd/openssl ];then
+if [ ! -d $DIR/cmd/openssl10 ];then
 
 	if [ ! -d $MDIR/source/cmd/openssl-${opensslVersion} ];then
 		cd $MDIR/source/cmd &&  tar -zxvf openssl-${opensslVersion}.tar.gz
@@ -39,16 +39,16 @@ if [ ! -d $DIR/cmd/openssl ];then
 	# brew install rbenv/tap/openssl@1.0
 	# /opt/homebrew/Library/Taps/rbenv/homebrew-tap
 	# https://github.com/rbenv/homebrew-tap/issues/1
-	if [ "${SYS_ARCH}" == "arm64" ] ;then
-		if [ ! -d ${BREW_DIR}/Cellar/openssl@1.0 ];then
-			brew install rbenv/tap/openssl@1.0
-		fi
-	else
+	# if [ "${SYS_ARCH}" == "arm64" ] ;then
+	# 	if [ ! -d ${BREW_DIR}/Cellar/openssl@1.0 ];then
+	# 		brew install rbenv/tap/openssl@1.0
+	# 	fi
+	# else
 		# mac amd
-		./Configure darwin64-x86_64-cc --prefix=$DIR/cmd/openssl shared zlib
-		# sed -i "s/darwin-i386-cc/darwin64-x86_64-cc/g" Makefile
-		make && make install && make clean
-	fi
+	./Configure darwin64-x86_64-cc --prefix=$DIR/cmd/openssl10 shared zlib
+	# sed -i "s/darwin-i386-cc/darwin64-x86_64-cc/g" Makefile
+	make && make install && make clean
+	# fi
 
 fi
 
