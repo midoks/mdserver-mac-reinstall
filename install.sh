@@ -6,6 +6,7 @@ export PATH=$PATH:/opt/homebrew/bin
 DIR=$(cd "$(dirname "$0")"; pwd)
 MDIR=$(dirname "$DIR")
 
+# brew install graphviz
 
 # redis start #
 #cd $DIR/cmd/redis && sh install.sh
