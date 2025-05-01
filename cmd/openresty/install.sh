@@ -12,7 +12,7 @@ MDIR=$(dirname "$DIR")
 mkdir -p $MDIR/source/openresty
 
 # 1.15.8.3
-VERSION=1.21.4.3
+VERSION=1.27.1.2
 
 if [ ! -f $MDIR/source/openresty/openresty-${VERSION}.tar.gz ]; then
 	wget -O $MDIR/source/openresty/openresty-${VERSION}.tar.gz https://openresty.org/download/openresty-${VERSION}.tar.gz
@@ -22,11 +22,17 @@ if [ ! -d $MDIR/source/openresty/openresty-${VERSION} ]; then
 	cd $MDIR/source/openresty && tar -zxvf $MDIR/source/openresty/openresty-${VERSION}.tar.gz
 fi
 
+if [ ! -d $MDIR/source/cmd/pcre-8.38 ];then
+	cd $MDIR/source/cmd && tar -zxvf $MDIR/source/cmd/pcre-8.38.tar.gz
+fi
+
+if [ ! -d $MDIR/source/cmd/openssl-1.1.1p ];then
+	cd $MDIR/source/cmd && tar -zxvf $MDIR/source/cmd/openssl-1.1.1p.tar.gz
+fi
+
 cd $MDIR/source/openresty/openresty-${VERSION}
 
-
 if [ ! -d $DIR/openresty ]; then
-
 
 ./configure \
 --prefix=$DIR/openresty \
