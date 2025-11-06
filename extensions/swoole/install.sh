@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=swoole
-LIBV=5.1.4
+LIBV=6.1.1
 
 if [ "$VERSION" -lt "70" ];then
 	LIBV=1.10.1
@@ -27,13 +27,13 @@ elif [ "$VERSION" == "74" ];then
 elif [ "$VERSION" == "80" ];then
 	LIBV=6.0.2
 elif [ "$VERSION" == "81" ];then
-	LIBV=6.0.2
+	LIBV=6.1.1
 elif [ "$VERSION" == "82" ];then
-	LIBV=6.0.2
+	LIBV=6.1.1
 elif [ "$VERSION" == "83" ];then
-	LIBV=6.0.2
+	LIBV=6.1.1
 elif [ "$VERSION" == "84" ];then
-	LIBV=6.0.2
+	LIBV=6.1.1
 fi
 
 
