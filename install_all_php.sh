@@ -28,11 +28,13 @@ MDIR=$(dirname "$DIR")
 # cd /Applications/mdserver/bin/reinstall/php73 && bash install.sh
 # cd /Applications/mdserver/bin/reinstall/php81 && bash install.sh
 
+# 安装，开启后无法使用
+# xhprof mongodb 
 
 PHP_VER_LIST=(55 56 71 72 73 74 81 82 83 84 85)
-# PHP_VER_LIST=(85)
+# PHP_VER_LIST=(84)
 PHP_EXT_LIST=(curl pcntl mcrypt fileinfo \
-	exif gd gettext zlib zip intl openssl memcache memcached redis imagick xhprof swoole yaf mongodb iconv)
+	exif gd gettext zlib zip intl openssl memcache memcached redis imagick swoole yaf iconv)
 
 # PHP_VER_LIST=(83)
 
@@ -70,6 +72,7 @@ do
 		fi
 		find_support_php=$(echo $find_support |grep $PHP_VER)
 		if [ "$find_support_php" != "" ];then
+			# echo "cd $DIR/extensions/$i && sh install.sh $PHP_VER"
 			cd $DIR/extensions/$i && sh install.sh $PHP_VER
 		fi
 	done
