@@ -11,12 +11,12 @@ MDIR=$(dirname "$DIR")
 
 VERSION=$1
 LIBNAME=vld
-LIBV=0.14.0
+LIBV=0.19.1
 
-if [ "$VERSION" -ge "70" ];then
-	LIBV=0.18.0
+
+if [ "$VERSION" -le "70" ];then
+	LIBV=0.14.0
 fi
-
 
 CONFIG_OPTION="--enable-vld"
 FIND="vld.active"
