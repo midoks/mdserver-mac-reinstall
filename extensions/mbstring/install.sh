@@ -31,7 +31,7 @@ if [ "$EXT_IS_INVAILD" != "" ]; then
 	rm -rf $extFile
 else
 	if [ "$FIND_IS_INSTALL" != "" ]; then
-		echo "install $LIBNAME end ."
+		echo "install ${VERSION}|$LIBNAME end ."
 		exit 0
 	fi
 fi
@@ -53,4 +53,4 @@ if [ ! -f "$extFile" ]; then
 	--enable-mbstring && make && make install
 fi
 
-echo "install $LIBNAME end"
+echo "install ${VERSION}|$LIBNAME end"

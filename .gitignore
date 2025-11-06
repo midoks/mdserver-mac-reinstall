@@ -3,3 +3,4 @@ cmd/self-*
 php52/*
 php53/*
 php54/*
+/extensions/mongodb/source

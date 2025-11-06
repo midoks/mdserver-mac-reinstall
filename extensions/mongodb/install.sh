@@ -8,11 +8,13 @@ DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
+# cd /Applications/mdserver/bin/reinstall/extensions/mongodb && bash install.sh 81
+
 VERSION=$1
 LIBNAME=mongodb
-LIBV=1.20.1
-if [ "$VERSION" == '82' ];then
-	LIBV=1.17.0
+LIBV=2.1.4
+if [ "$VERSION" == '81' ];then
+	LIBV=2.1.4
 elif [ "$VERSION" == '80' ];then
 	LIBV=1.9.0
 elif [ "$VERSION" == '74' ];then
