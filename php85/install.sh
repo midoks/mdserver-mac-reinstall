@@ -10,7 +10,7 @@ MDIR=$(dirname "$DIR")
 mkdir -p $MDIR/source/php
 
 # 8.5.0beta1.tar.bz2
-PHP_VER=8.5.0beta1
+PHP_VER=8.5.0RC3
 PHP_M_VER=85
 
 # if [ ! -f $MDIR/source/php/php-${PHP_VER}.tar.bz2 ];then
@@ -18,7 +18,7 @@ PHP_M_VER=85
 # fi
 
 if [ ! -f $MDIR/source/php/php-${PHP_VER}.tar.bz2 ];then
-	wget -O $MDIR/source/php/php-${PHP_VER}.tar.bz2 https://downloads.php.net/~edorian/php-${PHP_VER}.tar.bz2
+	wget -O $MDIR/source/php/php-${PHP_VER}.tar.bz2 https://downloads.php.net/~daniels/php-${PHP_VER}.tar.bz2
 fi
 
 
