@@ -9,6 +9,8 @@ DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
+# cd /Applications/mdserver/bin/reinstall/cmd/mysql/mysql51 && bash install.sh
+
 # https://downloads.mysql.com/archives/community/
 mkdir -p $MDIR/source/mysql
 

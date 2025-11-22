@@ -9,6 +9,8 @@ DIR=$(dirname "$DIR")
 DIR=$(dirname "$DIR")
 MDIR=$(dirname "$DIR")
 
+# cd /Applications/mdserver/bin/reinstall/cmd/mysql/mysql80 && bash install.sh
+
 LOG_FILE=$MDIR/bin/logs/reinstall/mysql_80_install.log
 echo "" > $LOG_FILE
 

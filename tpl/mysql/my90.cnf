@@ -6,7 +6,7 @@ socket		= /tmp/mysql90.sock
 [mysqld]
 log-error   = mysql.log
 pid-file    = mysql.pid
-port		= 3306
+port		= 3390
 socket		= /tmp/mysql90.sock
 skip-external-locking   				#skip-locking
 key_buffer_size = 256M

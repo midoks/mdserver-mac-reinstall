@@ -31,7 +31,7 @@ fi
 
 if [ ! -d $DIR/mysql/mysql${MY_VERSION} ];then
 	mkdir -p $DIR/mysql/mysql${MY_VERSION}
-	cp -r $MDIR/source/mysql/mysql-${VERSION}-macos11-x86_64/ $DIR/mysql/mysql${MY_VERSION}
+	cp -r $MDIR/source/mysql/mysql-${VERSION}-macos14-arm64/ $DIR/mysql/mysql${MY_VERSION}
 fi
 
 if [ ! -d $DIR/mysql/mysql${MY_VERSION}/my.cnf ]; then
@@ -39,7 +39,7 @@ if [ ! -d $DIR/mysql/mysql${MY_VERSION}/my.cnf ]; then
 	cp $MDIR/bin/reinstall/tpl/mysql/my${MY_VERSION}.cnf $DIR/mysql/mysql${MY_VERSION}/my.cnf
 fi
 
-#mysql 8 版本,直接初始化表
+#mysql9 版本,直接初始化表
 if [ ! -d $DIR/mysql/mysql${MY_VERSION}/data/mysql.ibd ];then
 	$DIR/mysql/mysql${MY_VERSION}/bin/mysqld \
 	--basedir=$DIR/mysql/mysql${MY_VERSION} \
