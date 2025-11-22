@@ -9,7 +9,7 @@ MDIR=$(dirname "$DIR")
 
 mkdir -p $MDIR/source/php
 
-PHP_VER=8.4.14
+PHP_VER=8.4.15
 PHP_M_VER=84
 
 if [ ! -f $MDIR/source/php/php-${PHP_VER}.tar.bz2 ];then
