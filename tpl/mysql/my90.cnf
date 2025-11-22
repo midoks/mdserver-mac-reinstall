@@ -1,0 +1,64 @@
+[client]
+#password	= your_password
+port		= 3306
+socket		= /tmp/mysql90.sock
+
+[mysqld]
+log-error   = mysql.log
+pid-file    = mysql.pid
+port		= 3306
+socket		= /tmp/mysql90.sock
+skip-external-locking   				#skip-locking
+key_buffer_size = 256M
+max_allowed_packet = 1M
+table_open_cache = 256
+sort_buffer_size = 1M
+read_buffer_size = 1M
+read_rnd_buffer_size = 4M
+myisam_sort_buffer_size = 64M
+thread_cache_size = 8
+lower_case_table_names = 2
+basedir=/Applications/mdserver/bin/mysql/mysql90
+datadir=/Applications/mdserver/bin/mysql/mysql90/data
+
+#skip-networking
+server-id	= 1
+
+#log-bin=mysql-bin
+#binlog_format=mixed
+
+slow_query_log=1
+slow-query-log-file=/Applications/mdserver/bin/mysql/mysql90/data/mysql-slow.log
+long_query_time=3
+
+default_storage_engine = InnoDB
+innodb_data_home_dir = /Applications/mdserver/bin/mysql/mysql90/data
+innodb_data_file_path = ibdata1:10M:autoextend
+innodb_log_group_home_dir = /Applications/mdserver/bin/mysql/mysql90/data
+innodb_buffer_pool_size = 16M
+innodb_log_file_size = 5M
+innodb_log_buffer_size = 8M
+innodb_flush_log_at_trx_commit = 1
+innodb_lock_wait_timeout = 120
+innodb_max_dirty_pages_pct = 90
+innodb_read_io_threads = 1
+innodb_write_io_threads = 1
+innodb_file_per_table=1
+
+[mysqldump]
+quick
+max_allowed_packet = 16M
+
+[mysql]
+no-auto-rehash
+# Remove the next comment character if you are not familiar with SQL
+#safe-updates
+
+[myisamchk]
+key_buffer_size = 128M
+sort_buffer_size = 128M
+read_buffer = 2M
+write_buffer = 2M
+
+[mysqlhotcopy]
+interactive-timeout
