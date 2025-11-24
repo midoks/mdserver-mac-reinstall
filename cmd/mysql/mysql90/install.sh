@@ -55,7 +55,7 @@ if [ ! -f $DIR/mysql/mysql${MY_VERSION}/data ]; then
 
 # cd $DIR/mysql/mysql${MY_VERSION}
 
-# PASSWORD=`cat $MDIR/bin/logs/reinstall/mysql_80_install.log | grep root@localhost | awk -F 'root@localhost:' '{print $2}'` 
+# PASSWORD=`cat $MDIR/bin/logs/reinstall/mysql_90_install.log | grep root@localhost | awk -F 'root@localhost:' '{print $2}'` 
 # PASSWORD=${PASSWORD%% }
 # PASSWORD=${PASSWORD## }
 
@@ -64,7 +64,7 @@ if [ ! -f $DIR/mysql/mysql${MY_VERSION}/data ]; then
 
 $DIR/mysql/mysql${MY_VERSION}/bin/mysqladmin --defaults-file=$DIR/mysql/mysql${MY_VERSION}/my.cnf -uroot password root
 
-echo "MYSQL PROT: 3306" >> $LOG_FILE
+echo "MYSQL PROT: 3390" >> $LOG_FILE
 echo "MYSQL PASSWORD:root" >> $LOG_FILE
 
 $DIR/mysql/mysql${MY_VERSION}/bin/mysqld_safe --defaults-file=$DIR/mysql/mysql${MY_VERSION}/my.cnf &
